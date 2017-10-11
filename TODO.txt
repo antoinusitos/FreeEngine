@@ -1,0 +1,27 @@
+DOING :
+
+Window
+input manager
+
+TO DO :
+
+hot reload
+audio manager
+sprite manager
+resource manager
+timer manager
+Camera manager
+Component
+Particles
+Light ?
+scene manager
+Prefab
+Serialization
+Collisions
+Level Editor
+Editor
+Delegate
+Double return ? (out)
+inheritage + static class
+Transform
+Entity
