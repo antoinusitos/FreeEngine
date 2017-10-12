@@ -1,11 +1,12 @@
 #include "Input.h"
 #include <iostream>
 
-Input Input::_instance = Input();
+Input* Input::_instance = NULL;
 
 Input::Input()
 {
 	std::cout << "Creation Input" << std::endl;
+	// Initialization of the map of the input
 	_mapping = std::map<KEY, bool>();
 	_mapping.emplace(KEY::SPACE, false);
 	_mapping.emplace(KEY::ESCAPE, false);
@@ -16,19 +17,20 @@ Input::~Input()
 	std::cout << "Destroy Input" << std::endl;
 }
 
-Input& Input::GetInstance()
+bool Input::MustClose()
 {
-	return _instance;
+	return _mustClose;
 }
 
 void Input::ProcessInput(sf::Window& window)
 {
+	// Process all events that happend in the SFML window
 	while (window.pollEvent(_event))
 	{
 		switch (_event.type) 
 		{
 		case sf::Event::Closed:
-				window.close();
+			_mustClose = true;
 			break;
 
 		case sf::Event::KeyPressed:

@@ -1,8 +1,6 @@
 #include <iostream>
 
 #include "Engine.h"
-#include "Input.h"
-#include "Window.h"
 
 Engine::Engine()
 {
@@ -16,7 +14,7 @@ Engine::~Engine()
 
 void Engine::Update()
 {
-	if (Input::GetInstance().GetKeyPressed(KEY::SPACE))
+	if (_input.GetKeyPressed(KEY::SPACE))
 	{
 		std::cout << "Space Pressed" << std::endl;
 	}
@@ -25,18 +23,24 @@ void Engine::Update()
 void Engine::Launch()
 {
 	_isRunning = true;
-	Window::GetInstance().Init();
+	_window.Init();
+
 	while (_isRunning)
 	{
-		Input::GetInstance().ProcessInput(*Window::GetInstance().GetWindow());
+		// Update the time of the engine
+		_time.Update();
+
+		// Gather the inputs for the engine
+		_input.ProcessInput(*_window.GetWindow());
 
 		// Close the window if escape is pressed
-		if (Input::GetInstance().GetKeyPressed(KEY::ESCAPE))
+		if (_input.GetKeyPressed(KEY::ESCAPE) || _input.MustClose())
 		{
-			Window::GetInstance().Exit();
+			_window.Exit();
 			_isRunning = false;
 		}
 
-		Update(); // add the delta time with a time manager
+		// Put engine stuff here
+		Update();
 	}
 }

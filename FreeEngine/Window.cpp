@@ -1,6 +1,6 @@
 #include "Window.h"
 
-Window Window::_instance = Window();
+Window* Window::_instance = NULL;
 
 Window::Window()
 {
@@ -9,11 +9,6 @@ Window::Window()
 
 Window::~Window()
 {
-}
-
-Window& Window::GetInstance()
-{
-	return _instance;
 }
 
 sf::Window* Window::GetWindow()
