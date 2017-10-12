@@ -2,19 +2,21 @@ DOING :
 
 Window
 input manager
+time manager
+object manager
 
 TO DO :
 
-hot reload
 audio manager
 sprite manager
 resource manager
-timer manager
-Camera manager
+camera manager
+scene manager
+
+hot reload
 Component
 Particles
 Light ?
-scene manager
 Prefab
 Serialization
 Collisions

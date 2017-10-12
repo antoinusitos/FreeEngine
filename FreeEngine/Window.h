@@ -1,6 +1,6 @@
 #pragma once
 
-#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 
 class Window
 {
@@ -30,12 +30,15 @@ public:
 	// Close the window
 	void Exit();
 
+	// Render the Window
+	void Render();
+
 private :
 	// Unique instance of the time
 	static Window* _instance;
 
 	// Instance of the SFML window
-	sf::Window* _window;
+	sf::RenderWindow* _window;
 
 };
 

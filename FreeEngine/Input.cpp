@@ -10,6 +10,10 @@ Input::Input()
 	_mapping = std::map<KEY, bool>();
 	_mapping.emplace(KEY::SPACE, false);
 	_mapping.emplace(KEY::ESCAPE, false);
+	_mapping.emplace(KEY::ARROWUP, false);
+	_mapping.emplace(KEY::ARROWDOWN, false);
+	_mapping.emplace(KEY::ARROWRIGHT, false);
+	_mapping.emplace(KEY::ARROWLEFT, false);
 }
 
 Input::~Input()
@@ -42,6 +46,22 @@ void Input::ProcessInput(sf::Window& window)
 			{
 				_mapping[KEY::ESCAPE] = true;
 			}
+			else if (_event.key.code == sf::Keyboard::Up)
+			{
+				_mapping[KEY::ARROWUP] = true;
+			}
+			else if (_event.key.code == sf::Keyboard::Down)
+			{
+				_mapping[KEY::ARROWDOWN] = true;
+			}
+			else if (_event.key.code == sf::Keyboard::Right)
+			{
+				_mapping[KEY::ARROWRIGHT] = true;
+			}
+			else if (_event.key.code == sf::Keyboard::Left)
+			{
+				_mapping[KEY::ARROWLEFT] = true;
+			}
 			break;
 
 		case sf::Event::KeyReleased:
@@ -52,6 +72,22 @@ void Input::ProcessInput(sf::Window& window)
 			else if (_event.key.code == sf::Keyboard::Escape)
 			{
 				_mapping[KEY::ESCAPE] = false;
+			}
+			else if (_event.key.code == sf::Keyboard::Up)
+			{
+				_mapping[KEY::ARROWUP] = false;
+			}
+			else if (_event.key.code == sf::Keyboard::Down)
+			{
+				_mapping[KEY::ARROWDOWN] = false;
+			}
+			else if (_event.key.code == sf::Keyboard::Right)
+			{
+				_mapping[KEY::ARROWRIGHT] = false;
+			}
+			else if (_event.key.code == sf::Keyboard::Left)
+			{
+				_mapping[KEY::ARROWLEFT] = false;
 			}
 			break;
 

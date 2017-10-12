@@ -5,8 +5,12 @@
 
 enum KEY
 {
-SPACE,
-ESCAPE,
+	SPACE,
+	ESCAPE,
+	ARROWUP,
+	ARROWDOWN,
+	ARROWRIGHT,
+	ARROWLEFT,
 };
 
 class Input
