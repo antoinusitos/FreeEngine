@@ -25,13 +25,19 @@ public:
 
 	void RegisterEngineObject(EngineObject* object);
 
+	void StartAllEngineObjects();
 	void UpdateAllEngineObjects(float deltaTime);
 	void RenderAllEngineObjects();
+	void DestroyObject(EngineObject* object);
+
+	int GetID();
 
 private:
 	// Unique instance of the time
 	static ObjectsManager* _instance;
 
 	std::vector<EngineObject*> _allEngineObjects;
+
+	int ID = 0;
 };
 

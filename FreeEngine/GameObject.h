@@ -5,13 +5,17 @@
 class GameObject : public EngineObject
 {
 public:
-	GameObject();
+	GameObject(std::string Name);
+	GameObject(bool InRunTime);
+	GameObject(std::string Name, bool InRunTime);
 	~GameObject();
 
 	void Start();
 
 	void Update(float deltaTime);
 	void Render();
+
+	void Destroy();
 
 	Transform transform;
 };

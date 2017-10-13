@@ -11,6 +11,8 @@ enum KEY
 	ARROWDOWN,
 	ARROWRIGHT,
 	ARROWLEFT,
+	A,
+	B,
 };
 
 class Input

@@ -2,9 +2,26 @@
 #include "Input.h"
 #include <iostream>
 
-GameObject::GameObject() : EngineObject()
+GameObject::GameObject(std::string Name) : EngineObject()
+{
+	name = Name;
+	transform = Transform();
+	Start();
+}
+
+GameObject::GameObject(bool InRunTime) : EngineObject()
 {
 	transform = Transform();
+	if (InRunTime)
+		Start();
+}
+
+GameObject::GameObject(std::string Name, bool InRunTime) : EngineObject()
+{
+	name = Name;
+	transform = Transform();
+	if(InRunTime)
+		Start();
 }
 
 GameObject::~GameObject()
@@ -30,4 +47,13 @@ void GameObject::Update(float deltaTime)
 void GameObject::Render()
 {
 	EngineObject::Render();
+}
+
+void GameObject::Destroy()
+{
+	EngineObject::Destroy();
+	
+	std::cout << "Destroy object" << name << std::endl;
+
+	DestroyObject();
 }

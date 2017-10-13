@@ -14,6 +14,8 @@ Input::Input()
 	_mapping.emplace(KEY::ARROWDOWN, false);
 	_mapping.emplace(KEY::ARROWRIGHT, false);
 	_mapping.emplace(KEY::ARROWLEFT, false);
+	_mapping.emplace(KEY::A, false);
+	_mapping.emplace(KEY::B, false);
 }
 
 Input::~Input()
@@ -62,6 +64,14 @@ void Input::ProcessInput(sf::Window& window)
 			{
 				_mapping[KEY::ARROWLEFT] = true;
 			}
+			else if (_event.key.code == sf::Keyboard::A)
+			{
+				_mapping[KEY::A] = true;
+			}
+			else if (_event.key.code == sf::Keyboard::B)
+			{
+				_mapping[KEY::B] = true;
+			}
 			break;
 
 		case sf::Event::KeyReleased:
@@ -88,6 +98,14 @@ void Input::ProcessInput(sf::Window& window)
 			else if (_event.key.code == sf::Keyboard::Left)
 			{
 				_mapping[KEY::ARROWLEFT] = false;
+			}
+			else if (_event.key.code == sf::Keyboard::A)
+			{
+				_mapping[KEY::A] = false;
+			}
+			else if (_event.key.code == sf::Keyboard::B)
+			{
+				_mapping[KEY::B] = false;
 			}
 			break;
 

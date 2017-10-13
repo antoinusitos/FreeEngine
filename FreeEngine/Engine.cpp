@@ -1,7 +1,11 @@
 #include <iostream>
+#include <string>
 
 #include "Engine.h"
 #include "GameObject.h"
+
+bool lol = false;
+GameObject* go;
 
 Engine::Engine()
 {
@@ -18,6 +22,9 @@ void Engine::Launch()
 	_isRunning = true;
 	_window->Init();
 
+	GameObject* goBis = new GameObject("BeforeStart", false);
+
+	_objectManager->StartAllEngineObjects();
 	while (_isRunning)
 	{
 		// Update the time of the engine
@@ -34,6 +41,9 @@ void Engine::Launch()
 
 		_window->Render();
 	}
+
+	delete goBis;
+	delete go;
 }
 
 void Engine::CheckMustCloseWindow()
@@ -49,18 +59,26 @@ void Engine::CheckMustCloseWindow()
 	}
 }
 
-bool lol = false;
-GameObject* go;
-
 void Engine::Update(float deltaTime)
 {
 	if (_input->GetKeyPressed(KEY::SPACE))
 	{
-		std::cout << "Space Pressed" << std::endl;
+		//std::cout << "Space Pressed" << std::endl;
 		if (lol == false)
 		{
 			lol = true;
-			go = new GameObject();
+			go = new GameObject(std::string("ObjectUpdate"));
+		}
+	}
+
+	if (_input->GetKeyPressed(KEY::A))
+	{
+		if (go != nullptr)
+		{
+			go->Destroy();
+			delete go;
+			go = nullptr;
+			lol = false;
 		}
 	}
 }
