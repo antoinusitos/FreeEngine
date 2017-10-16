@@ -2,6 +2,8 @@
 
 #include <SFML/Graphics.hpp>
 
+#include "WindowLayout.h"
+
 class Window
 {
 public:
@@ -22,7 +24,7 @@ public:
 	}
 
 	// Get the SFML window
-	sf::Window* GetWindow();
+	sf::RenderWindow* GetWindow();
 
 	// Init the class
 	void Init();
@@ -33,6 +35,8 @@ public:
 	// Render the Window
 	void Render();
 
+	void AddRenderingLayout(WindowLayout* newLayout);
+
 private :
 	// Unique instance of the time
 	static Window* _instance;
@@ -40,5 +44,6 @@ private :
 	// Instance of the SFML window
 	sf::RenderWindow* _window;
 
+	std::vector<WindowLayout*> _allWindowLayout;
 };
 
