@@ -2,6 +2,7 @@
 #define NULL 0
 
 #include <vector>
+
 #include "EngineObject.h"
 
 class ObjectsManager
@@ -29,6 +30,7 @@ public:
 	void UpdateAllEngineObjects(float deltaTime);
 	void RenderAllEngineObjects();
 	void DestroyObject(EngineObject* object);
+	void DestroyAllObjects();
 
 	int GetID();
 

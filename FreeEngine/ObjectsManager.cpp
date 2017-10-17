@@ -1,15 +1,18 @@
 #include <iostream>
-#include "ObjectsManager.h"
 #include <iomanip>
 #include <locale>
 #include <sstream>
 #include <string>
 
+#include "ObjectsManager.h"
+#include "GarbageCollector.h"
+#include "Debug.h"
+
 ObjectsManager* ObjectsManager::_instance = NULL;
 
 ObjectsManager::ObjectsManager()
 {
-	std::cout << " Create Object manager" << std::endl;
+	Debug::GetInstance()->Print("Create Object manager");
 }
 
 ObjectsManager::~ObjectsManager()
@@ -56,11 +59,16 @@ void ObjectsManager::RenderAllEngineObjects()
 void ObjectsManager::DestroyObject(EngineObject* object)
 {
 	int index = -1;
+	EngineObject* temp = nullptr;
 	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		index++;
 		if ((*it) == object)
+		{
+			temp = *it;
 			break;
+		}
 	}
 	_allEngineObjects.erase(_allEngineObjects.begin() + index);
+	GarbageCollector::GetInstance()->SetDestroyable(object);
 }

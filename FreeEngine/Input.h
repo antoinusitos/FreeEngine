@@ -43,6 +43,8 @@ public:
 	// Check if we must close the window
 	bool MustClose();
 
+	void SetCanInput(bool NewState);
+
 private :
 
 	// Object that gather the events in the SFML window
@@ -56,6 +58,8 @@ private :
 
 	// Should we close the SFML window ?
 	bool _mustClose = false;
+
+	bool _canInput = false;
 };
 
 

@@ -6,6 +6,7 @@
 
 bool lol = false;
 GameObject* go;
+GameObject* goBis;
 
 Engine::Engine()
 {
@@ -14,7 +15,10 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-
+	if(go != nullptr)
+		go->Destroy();
+	if (goBis != nullptr)
+		goBis->Destroy();
 }
 
 void Engine::Launch()
@@ -22,7 +26,7 @@ void Engine::Launch()
 	_isRunning = true;
 	_window->Init();
 
-	GameObject* goBis = new GameObject("BeforeStart", false);
+	goBis = new GameObject("BeforeStart", false);
 
 	_objectManager->StartAllEngineObjects();
 	while (_isRunning)
@@ -41,9 +45,6 @@ void Engine::Launch()
 
 		_window->Render();
 	}
-
-	delete goBis;
-	delete go;
 }
 
 void Engine::CheckMustCloseWindow()
@@ -61,9 +62,17 @@ void Engine::CheckMustCloseWindow()
 
 void Engine::Update(float deltaTime)
 {
+	if (_currentTimeForInput < _timeBeforeInput)
+	{
+		_currentTimeForInput += deltaTime;
+		if (_currentTimeForInput >= _timeBeforeInput)
+		{
+			_input->SetCanInput(true);
+		}
+	}
+
 	if (_input->GetKeyPressed(KEY::SPACE))
 	{
-		//std::cout << "Space Pressed" << std::endl;
 		if (lol == false)
 		{
 			lol = true;
@@ -76,7 +85,6 @@ void Engine::Update(float deltaTime)
 		if (go != nullptr)
 		{
 			go->Destroy();
-			delete go;
 			go = nullptr;
 			lol = false;
 		}

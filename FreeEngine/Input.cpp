@@ -30,6 +30,8 @@ bool Input::MustClose()
 
 void Input::ProcessInput(sf::Window& window)
 {
+	if (!_canInput) return;
+
 	// Process all events that happend in the SFML window
 	while (window.pollEvent(_event))
 	{
@@ -119,4 +121,9 @@ void Input::ProcessInput(sf::Window& window)
 bool Input::GetKeyPressed(KEY key)
 {
 	return _mapping.find(key)->second;
+}
+
+void Input::SetCanInput(bool NewState)
+{
+	_canInput = NewState;
 }

@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#include "debug.h"
+
 class EngineObject
 {
 public:
@@ -24,5 +26,7 @@ public:
 
 protected:
 	int _ID = -1;
+
+	bool _beingDestroy = false;
 };
 

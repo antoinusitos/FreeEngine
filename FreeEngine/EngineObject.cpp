@@ -1,5 +1,4 @@
 #include "ObjectsManager.h"
-#include "EngineObject.h"
 
 EngineObject::EngineObject()
 {
@@ -10,6 +9,7 @@ EngineObject::EngineObject()
 
 EngineObject::~EngineObject()
 {
+
 }
 
 void EngineObject::PreAwake()
@@ -43,5 +43,6 @@ void EngineObject::Destroy()
 
 void EngineObject::DestroyObject()
 {
+	_beingDestroy = true;
 	ObjectsManager::GetInstance()->DestroyObject(this);
 }
