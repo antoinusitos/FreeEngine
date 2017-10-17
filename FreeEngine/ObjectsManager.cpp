@@ -7,12 +7,14 @@
 #include "ObjectsManager.h"
 #include "GarbageCollector.h"
 #include "Debug.h"
+#include "EngineObject.h"
 
-ObjectsManager* ObjectsManager::_instance = NULL;
+std::unique_ptr<ObjectsManager> ObjectsManager::_instance;
+std::once_flag ObjectsManager::onceFlag;
 
 ObjectsManager::ObjectsManager()
 {
-	Debug::GetInstance()->Print("Create Object manager");
+	//Debug::Instance().Print("Create Object manager");
 }
 
 ObjectsManager::~ObjectsManager()
@@ -21,7 +23,8 @@ ObjectsManager::~ObjectsManager()
 
 void ObjectsManager::RegisterEngineObject(EngineObject* object)
 {
-	_allEngineObjects.push_back(object);
+
+	_allEngineObjects.push_back(std::make_shared<EngineObject>(*object));
 }
 
 int ObjectsManager::GetID()
@@ -32,7 +35,7 @@ int ObjectsManager::GetID()
 
 void ObjectsManager::StartAllEngineObjects()
 {
-	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	for (std::vector<std::shared_ptr<EngineObject>>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		(*it)->Start();
 	}
@@ -40,7 +43,7 @@ void ObjectsManager::StartAllEngineObjects()
 
 void ObjectsManager::UpdateAllEngineObjects(float deltaTime)
 {
-	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	for (std::vector<std::shared_ptr<EngineObject>>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		if((*it) != nullptr)
 			(*it)->Update(deltaTime);
@@ -49,26 +52,26 @@ void ObjectsManager::UpdateAllEngineObjects(float deltaTime)
 
 void ObjectsManager::RenderAllEngineObjects()
 {
-	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	for (std::vector<std::shared_ptr<EngineObject>>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		if ((*it) != nullptr)
 			(*it)->Render();
 	}
 }
 
-void ObjectsManager::DestroyObject(EngineObject* object)
+void ObjectsManager::DestroyObject(std::shared_ptr<EngineObject> object)
 {
 	int index = -1;
-	EngineObject* temp = nullptr;
-	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	std::shared_ptr<EngineObject> temp = nullptr;
+	for (std::vector<std::shared_ptr<EngineObject>>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		index++;
 		if ((*it) == object)
 		{
-			temp = *it;
+			temp = (*it);
 			break;
 		}
 	}
 	_allEngineObjects.erase(_allEngineObjects.begin() + index);
-	GarbageCollector::GetInstance()->SetDestroyable(object);
+	//GarbageCollector::Instance().SetDestroyable(object);
 }

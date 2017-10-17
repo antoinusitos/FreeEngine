@@ -1,7 +1,12 @@
 #include "Window.h"
 #include "DebugWindowLayout.h"
+#include "WindowLayout.h"
+#include "Engine.h"
 
-Window* Window::_instance = NULL;
+#define FULLSCREEN false
+
+std::unique_ptr<Window> Window::_instance;
+std::once_flag Window::onceFlag;
 
 Window::Window()
 {
@@ -12,16 +17,26 @@ Window::~Window()
 {
 }
 
-sf::RenderWindow* Window::GetWindow()
+std::shared_ptr<sf::RenderWindow> Window::GetWindow()
 {
 	return _window;
 }
 
-void Window::Init()
+std::shared_ptr<sf::RenderWindow> Window::Init()
 {
-	_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Free Engine", sf::Style::Fullscreen);
+#if FULLSCREEN
+	_window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine", sf::Style::Fullscreen);
+#else
+	_window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine"/*, sf::Style::Fullscreen*/);
+#endif
 
+	return _window;
+}
+
+void Window::InitInternalWindows()
+{
 	dwl = new DebugWindowLayout();
+	dwl->Init();
 }
 
 void Window::Exit()

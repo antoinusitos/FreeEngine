@@ -1,8 +1,1 @@
-Create Debug Class
-Create Object manager
-Create Garbage Collector
 lol
-Destroy objectObjectUpdate
-Destroy objectObjectUpdate
-Destroy objectObjectUpdate
-Destroy objectObjectUpdate

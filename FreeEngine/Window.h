@@ -2,9 +2,12 @@
 
 #include <SFML/Graphics.hpp>
 
-#include "WindowLayout.h"
+#include <memory>
+#include <mutex>
+#include <iostream>
 
 class DebugWindowLayout;
+class WindowLayout;
 
 class Window
 {
@@ -15,21 +18,23 @@ public:
 	~Window();
 
 	// Get a unique instance of the time
-	static Window* GetInstance()
+	static Window& Window::Instance()
 	{
-		if (NULL == _instance)
-		{
-			_instance = new Window;
-		}
+		std::call_once(Window::onceFlag, []() {
+			_instance.reset(new Window);
+		});
 
-		return _instance;
+		std::cout << "Getting  Window instance" << '\n';
+		return *(_instance.get());
 	}
 
 	// Get the SFML window
-	sf::RenderWindow* GetWindow();
+	std::shared_ptr<sf::RenderWindow> GetWindow();
 
 	// Init the class
-	void Init();
+	std::shared_ptr<sf::RenderWindow> Init();
+
+	void InitInternalWindows();
 
 	// Close the window
 	void Exit();
@@ -43,10 +48,11 @@ public:
 
 private :
 	// Unique instance of the time
-	static Window* _instance;
+	static std::unique_ptr<Window> _instance;
+	static std::once_flag onceFlag;
 
 	// Instance of the SFML window
-	sf::RenderWindow* _window;
+	std::shared_ptr<sf::RenderWindow> _window;
 
 	std::vector<WindowLayout*> _allWindowLayout;
 

@@ -37,7 +37,7 @@ void GameObject::Update(float deltaTime)
 {
 	EngineObject::Update(deltaTime);
 
-	if (Input::GetInstance()->GetKeyPressed(KEY::ARROWRIGHT))
+	if (Input::Instance().GetKeyPressed(KEY::ARROWRIGHT))
 	{
 		transform.position.x += deltaTime * 2.0f;
 		std::cout << "pos x : " << transform.position.x << std::endl;
@@ -53,8 +53,7 @@ void GameObject::Destroy()
 {
 	EngineObject::Destroy();
 	
-	if(Debug::GetInstance() != nullptr)
-		Debug::GetInstance()->Print("Destroy object" + name);
+	Debug::Instance().Print("Destroy object" + name);
 
 	DestroyObject();
 }

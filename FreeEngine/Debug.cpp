@@ -2,11 +2,12 @@
 
 #include "Debug.h"
 
-Debug* Debug::_instance = NULL;
+std::unique_ptr<Debug> Debug::_instance;
+std::once_flag Debug::onceFlag;
 
 Debug::Debug()
 {
-	Print("Create Debug Class");
+	//Print("Create Debug Class");
 }
 
 Debug::~Debug()
@@ -39,5 +40,5 @@ void Debug::SaveLog()
 
 void Debug::SetDebugWindow(DebugWindowLayout* newWindow)
 {
-	debugWindow = newWindow;
+	debugWindow.reset(newWindow);
 }

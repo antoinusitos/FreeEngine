@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <memory>
+#include <mutex>
 
 #include "SFML\Graphics.hpp"
 #include "SFML\System.hpp"
@@ -13,12 +15,12 @@ public:
 	WindowLayout();
 	~WindowLayout();
 
-	virtual void Render(sf::RenderWindow* SFMLWindow);
+	virtual void Render(std::shared_ptr<sf::RenderWindow> SFMLWindow);
 
 protected:
 	void AddToRendering();
 
-	std::vector<sf::Drawable*> _allDrawable;
-
+	std::vector<std::shared_ptr<sf::Drawable>> _allDrawable;
+	int lol;
 };
 

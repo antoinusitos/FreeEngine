@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+#include <mutex>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -15,14 +17,14 @@ public:
 	~Debug();
 
 	// Get a unique instance of the time
-	static Debug* GetInstance()
+	static Debug& Debug::Instance()
 	{
-		if (NULL == _instance)
-		{
-			_instance = new Debug;
-		}
+		std::call_once(Debug::onceFlag, []() {
+			_instance.reset(new Debug);
+		});
 
-		return _instance;
+		std::cout << "Getting  Debug instance" << '\n';
+		return *(_instance.get());
 	}
 
 	void Print(std::string message);
@@ -33,10 +35,11 @@ public:
 
 private:
 	// Unique instance of the time
-	static Debug* _instance;
+	static std::unique_ptr<Debug> _instance;
+	static std::once_flag onceFlag;
 
 	std::vector<std::string> _allString;
 
-	DebugWindowLayout* debugWindow = nullptr;
+	std::shared_ptr<DebugWindowLayout> debugWindow;
 };
 

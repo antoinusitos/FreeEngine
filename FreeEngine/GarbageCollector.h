@@ -1,6 +1,9 @@
 #pragma once
 
-#include "EngineObject.h"
+#include <memory>
+#include <mutex>
+
+class EngineObject;
 
 class GarbageCollector
 {
@@ -11,20 +14,21 @@ public:
 	~GarbageCollector();
 
 	// Get a unique instance of the time
-	static GarbageCollector* GetInstance()
+	static GarbageCollector& GarbageCollector::Instance()
 	{
-		if (NULL == _instance)
-		{
-			_instance = new GarbageCollector;
-		}
+		std::call_once(GarbageCollector::onceFlag, []() {
+			_instance.reset(new GarbageCollector);
+		});
 
-		return _instance;
+		std::cout << "Getting  GarbageCollector instance" << '\n';
+		return *(_instance.get());
 	}
 
-	void SetDestroyable(EngineObject* object);
+	//void SetDestroyable(EngineObject* object);
 
 private:
 	// Unique instance of the time
-	static GarbageCollector* _instance;
+	static std::unique_ptr<GarbageCollector> _instance;
+	static std::once_flag onceFlag;
 };
 

@@ -1,12 +1,22 @@
 #include "Input.h"
 #include <iostream>
 
-Input* Input::_instance = NULL;
+std::unique_ptr<Input> Input::_instance;
+std::once_flag Input::onceFlag;
 
 Input::Input()
 {
-	std::cout << "Creation Input" << std::endl;
+	//std::cout << "Creation Input" << std::endl;
 	// Initialization of the map of the input
+}
+
+Input::~Input()
+{
+	std::cout << "Destroy Input" << std::endl;
+}
+
+void Input::Init()
+{
 	_mapping = std::map<KEY, bool>();
 	_mapping.emplace(KEY::SPACE, false);
 	_mapping.emplace(KEY::ESCAPE, false);
@@ -16,11 +26,6 @@ Input::Input()
 	_mapping.emplace(KEY::ARROWLEFT, false);
 	_mapping.emplace(KEY::A, false);
 	_mapping.emplace(KEY::B, false);
-}
-
-Input::~Input()
-{
-	std::cout << "Destroy Input" << std::endl;
 }
 
 bool Input::MustClose()

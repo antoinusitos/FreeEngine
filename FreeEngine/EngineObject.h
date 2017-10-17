@@ -5,7 +5,7 @@
 
 #include "debug.h"
 
-class EngineObject
+class EngineObject : public std::enable_shared_from_this<EngineObject>
 {
 public:
 	EngineObject();
@@ -23,6 +23,8 @@ public:
 	void DestroyObject();
 
 	std::string name;
+
+	void RegisterInObjectManager();
 
 protected:
 	int _ID = -1;

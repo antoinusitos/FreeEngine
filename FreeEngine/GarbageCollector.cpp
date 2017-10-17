@@ -1,21 +1,23 @@
 #include <iostream>
 
 #include "GarbageCollector.h"
+#include "EngineObject.h"
 #include "Debug.h"
 
-GarbageCollector* GarbageCollector::_instance = NULL;
+std::unique_ptr<GarbageCollector> GarbageCollector::_instance;
+std::once_flag GarbageCollector::onceFlag;
 
 GarbageCollector::GarbageCollector()
 {
-	Debug::GetInstance()->Print("Create Garbage Collector");
+	//Debug::Instance().Print("Create Garbage Collector");
 }
 
 GarbageCollector::~GarbageCollector()
 {
 }
 
-void GarbageCollector::SetDestroyable(EngineObject* object)
+/*void GarbageCollector::SetDestroyable(EngineObject* object)
 {
 	delete object;
 	object = nullptr;
-}
+}*/

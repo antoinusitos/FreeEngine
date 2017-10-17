@@ -2,6 +2,9 @@
 #define NULL 0
 
 #include <time.h> 
+#include <memory>
+#include <mutex>
+#include <iostream>
 
 class Time
 {
@@ -12,14 +15,14 @@ public:
 	~Time();
 
 	// Get a unique instance of the time
-	static Time* GetInstance()
+	static Time& Time::Instance()
 	{
-		if (NULL == _instance)
-		{
-			_instance = new Time;
-		}
+		std::call_once(Time::onceFlag, []() {
+			_instance.reset(new Time);
+		});
 
-		return _instance;
+		std::cout << "Getting  Time instance" << '\n';
+		return *(_instance.get());
 	}
 
 	// Update the time in the engine
@@ -32,7 +35,8 @@ public:
 
 private:
 	// Unique instance of the time
-	static Time* _instance;
+	static std::unique_ptr<Time> _instance;
+	static std::once_flag onceFlag;
 
 	// Current Time according to Computer time
 	clock_t _currentTime;

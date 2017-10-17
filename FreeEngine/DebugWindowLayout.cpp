@@ -1,26 +1,32 @@
 #include "DebugWindowLayout.h"
 #include "Window.h"
+#include "Debug.h"
 
 DebugWindowLayout::DebugWindowLayout()
 {
 	if (!font.loadFromFile("arial.ttf"))
 	{
-		std::cout << "Error : fail to load font arial.ttf" << std::endl;
+		Debug::Instance().Print("Error : fail to load font arial.ttf" + '\n');
 	}
+}
 
-	_background = new sf::RectangleShape(sf::Vector2f(Window::GetInstance()->GetWindow()->getSize().x , _debugZoneSizeY));
-	_background->setFillColor(sf::Color(153,153,153));
-	_background->setPosition(0, Window::GetInstance()->GetWindow()->getSize().y - _debugZoneSizeY);
+DebugWindowLayout::~DebugWindowLayout()
+{
+}
+
+void DebugWindowLayout::Init()
+{
+	std::shared_ptr<sf::RenderWindow> sp = Window::Instance().GetWindow();
+	sf::RenderWindow* spb = Window::Instance().GetWindow().get();
+	_background = std::make_shared<sf::RectangleShape>(sf::Vector2f(sp.get()->getSize().x, _debugZoneSizeY));
+	_background->setFillColor(sf::Color(153, 153, 153));
+	_background->setPosition(0, Window::Instance().GetWindow()->getSize().y - _debugZoneSizeY);
 	_allDrawable.push_back(_background);
 
 	_beginY = _background->getPosition().y;
 	_beginX = _background->getPosition().x + 5;
 
 	AddToRendering();
-}
-
-DebugWindowLayout::~DebugWindowLayout()
-{
 }
 
 void DebugWindowLayout::AddString(std::string newString)
@@ -35,7 +41,7 @@ void DebugWindowLayout::AddString(std::string newString)
 	_index++;
 }
 
-void DebugWindowLayout::Render(sf::RenderWindow* SFMLWindow)
+void DebugWindowLayout::Render(std::shared_ptr<sf::RenderWindow> SFMLWindow)
 {
 	WindowLayout::Render(SFMLWindow);
 

@@ -2,6 +2,9 @@
 
 #include <SFML/Window.hpp>
 #include <map> 
+#include <memory>
+#include <mutex>
+#include <iostream>
 
 enum KEY
 {
@@ -24,14 +27,14 @@ public:
 	~Input();
 
 	// Get a unique instance of the time
-	static Input* GetInstance()
+	static Input& Input::Instance()
 	{
-		if (NULL == _instance)
-		{
-			_instance = new Input;
-		}
+		std::call_once(Input::onceFlag, []() {
+			_instance.reset(new Input);
+		});
 
-		return _instance;
+		std::cout << "Getting Input instance" << '\n';
+		return *(_instance.get());
 	}
 
 	// Process the input related to the engine
@@ -45,13 +48,16 @@ public:
 
 	void SetCanInput(bool NewState);
 
+	void Init();
+
 private :
 
 	// Object that gather the events in the SFML window
 	sf::Event _event;
 
 	// Unique instance of the time
-	static Input* _instance;	
+	static std::unique_ptr<Input> _instance;
+	static std::once_flag onceFlag;
 
 	// Map that contain the state of the Input
 	std::map<KEY, bool> _mapping;

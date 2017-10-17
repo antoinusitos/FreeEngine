@@ -2,8 +2,10 @@
 #define NULL 0
 
 #include <vector>
+#include <memory>
+#include <mutex>
 
-#include "EngineObject.h"
+class EngineObject;
 
 class ObjectsManager
 {
@@ -14,14 +16,14 @@ public:
 	~ObjectsManager();
 
 	// Get a unique instance of the time
-	static ObjectsManager* GetInstance()
+	static ObjectsManager& ObjectsManager::Instance()
 	{
-		if (NULL == _instance)
-		{
-			_instance = new ObjectsManager;
-		}
+		std::call_once(ObjectsManager::onceFlag, []() {
+			_instance.reset(new ObjectsManager);
+		});
 
-		return _instance;
+		std::cout << "Getting  ObjectsManager instance" << '\n';
+		return *(_instance.get());
 	}
 
 	void RegisterEngineObject(EngineObject* object);
@@ -29,15 +31,16 @@ public:
 	void StartAllEngineObjects();
 	void UpdateAllEngineObjects(float deltaTime);
 	void RenderAllEngineObjects();
-	void DestroyObject(EngineObject* object);
+	void DestroyObject(std::shared_ptr<EngineObject> object);
 
 	int GetID();
 
 private:
 	// Unique instance of the time
-	static ObjectsManager* _instance;
+	static std::unique_ptr<ObjectsManager> _instance;
+	static std::once_flag onceFlag;
 
-	std::vector<EngineObject*> _allEngineObjects;
+	std::vector<std::shared_ptr<EngineObject>> _allEngineObjects;
 
 	int ID = 0;
 };

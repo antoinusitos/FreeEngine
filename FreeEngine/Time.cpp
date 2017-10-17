@@ -1,7 +1,8 @@
 #include "Time.h"
 #include <iostream>
 
-Time* Time::_instance = NULL;
+std::unique_ptr<Time> Time::_instance;
+std::once_flag Time::onceFlag;
 
 Time::Time()
 {

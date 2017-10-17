@@ -12,10 +12,12 @@ public:
 
 	void AddString(std::string newString);
 
-	void Render(sf::RenderWindow* SFMLWindow);
+	void Render(std::shared_ptr<sf::RenderWindow> SFMLWindow);
+
+	void Init();
 
 private:
-	sf::RectangleShape* _background = nullptr;
+	std::shared_ptr<sf::RectangleShape> _background;
 
 	float _debugZoneSizeY = 200.f;
 

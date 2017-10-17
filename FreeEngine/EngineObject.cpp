@@ -1,10 +1,10 @@
+#include "EngineObject.h"
 #include "ObjectsManager.h"
 
 EngineObject::EngineObject()
 {
-	_ID = ObjectsManager::GetInstance()->GetID();
+	_ID = ObjectsManager::Instance().GetID();
 	name = "Object" + std::to_string(_ID);
-	ObjectsManager::GetInstance()->RegisterEngineObject(this);
 }
 
 EngineObject::~EngineObject()
@@ -44,5 +44,10 @@ void EngineObject::Destroy()
 void EngineObject::DestroyObject()
 {
 	_beingDestroy = true;
-	ObjectsManager::GetInstance()->DestroyObject(this);
+//	ObjectsManager::Instance().DestroyObject(this);
+}
+
+void EngineObject::RegisterInObjectManager()
+{
+	ObjectsManager::Instance().RegisterEngineObject(this);
 }
