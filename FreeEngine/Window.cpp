@@ -21,7 +21,7 @@ void Window::Init()
 {
 	_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Free Engine", sf::Style::Fullscreen);
 
-	DebugWindowLayout* dwl = new DebugWindowLayout();
+	dwl = new DebugWindowLayout();
 }
 
 void Window::Exit()
@@ -42,4 +42,9 @@ void Window::Render()
 void Window::AddRenderingLayout(WindowLayout* newLayout)
 {
 	_allWindowLayout.push_back(newLayout);
+}
+
+DebugWindowLayout* Window::GetDebugWindowLayout()
+{
+	return dwl;
 }

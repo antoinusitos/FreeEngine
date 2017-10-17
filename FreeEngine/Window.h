@@ -4,6 +4,8 @@
 
 #include "WindowLayout.h"
 
+class DebugWindowLayout;
+
 class Window
 {
 public:
@@ -37,6 +39,8 @@ public:
 
 	void AddRenderingLayout(WindowLayout* newLayout);
 
+	DebugWindowLayout* GetDebugWindowLayout();
+
 private :
 	// Unique instance of the time
 	static Window* _instance;
@@ -45,5 +49,7 @@ private :
 	sf::RenderWindow* _window;
 
 	std::vector<WindowLayout*> _allWindowLayout;
+
+	DebugWindowLayout* dwl = nullptr;
 };
 

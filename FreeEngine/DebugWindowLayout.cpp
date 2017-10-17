@@ -13,7 +13,8 @@ DebugWindowLayout::DebugWindowLayout()
 	_background->setPosition(0, Window::GetInstance()->GetWindow()->getSize().y - _debugZoneSizeY);
 	_allDrawable.push_back(_background);
 
-	AddString("Test Debug");
+	_beginY = _background->getPosition().y;
+	_beginX = _background->getPosition().x + 5;
 
 	AddToRendering();
 }
@@ -24,22 +25,33 @@ DebugWindowLayout::~DebugWindowLayout()
 
 void DebugWindowLayout::AddString(std::string newString)
 {
-	_allString.push_back(newString);
 	sf::Text text;
 	text.setFont(font);
 	text.setCharacterSize(24);
 	text.setString(sf::String(newString));
 	text.setFillColor(sf::Color::Black);
-	text.setPosition(_background->getPosition().x + 5, _background->getPosition().y);
+	text.setPosition(_beginX, _beginY + _index * _incrementingY);
 	_allText.push_back(text);
+	_index++;
 }
 
 void DebugWindowLayout::Render(sf::RenderWindow* SFMLWindow)
 {
 	WindowLayout::Render(SFMLWindow);
 
-	for (std::vector<sf::Text>::iterator it = _allText.begin(); it != _allText.end(); ++it)
+	int tempIndex = 0;
+	int startingIndex = 0;
+
+	int size = _allText.size();
+	if (size > _numberLogInConsole)
 	{
+		startingIndex = size - _numberLogInConsole;
+	}
+
+	for (std::vector<sf::Text>::iterator it = _allText.begin() + startingIndex; it != _allText.end(); ++it)
+	{
+		(*it).setPosition(_beginX, _beginY + tempIndex * _incrementingY);
 		SFMLWindow->draw((*it));
+		tempIndex++;
 	}
 }

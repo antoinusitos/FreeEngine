@@ -30,7 +30,6 @@ public:
 	void UpdateAllEngineObjects(float deltaTime);
 	void RenderAllEngineObjects();
 	void DestroyObject(EngineObject* object);
-	void DestroyAllObjects();
 
 	int GetID();
 

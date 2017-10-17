@@ -53,7 +53,8 @@ void GameObject::Destroy()
 {
 	EngineObject::Destroy();
 	
-	std::cout << "Destroy object" << name << std::endl;
+	if(Debug::GetInstance() != nullptr)
+		Debug::GetInstance()->Print("Destroy object" + name);
 
 	DestroyObject();
 }

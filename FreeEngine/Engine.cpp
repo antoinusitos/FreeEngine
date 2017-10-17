@@ -15,10 +15,10 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-	if(go != nullptr)
+	/*if(go != nullptr)
 		go->Destroy();
 	if (goBis != nullptr)
-		goBis->Destroy();
+		goBis->Destroy();*/
 }
 
 void Engine::Launch()
@@ -27,6 +27,10 @@ void Engine::Launch()
 	_window->Init();
 
 	goBis = new GameObject("BeforeStart", false);
+
+	_debug->SetDebugWindow(_window->GetDebugWindowLayout());
+
+	_debug->Print("lol");
 
 	_objectManager->StartAllEngineObjects();
 	while (_isRunning)
@@ -45,6 +49,14 @@ void Engine::Launch()
 
 		_window->Render();
 	}
+
+	_debug->SaveLog();
+	delete _input;
+	delete _window;
+	delete _time;
+	delete _objectManager;
+	delete _garbageCollector;
+	delete _debug;
 }
 
 void Engine::CheckMustCloseWindow()

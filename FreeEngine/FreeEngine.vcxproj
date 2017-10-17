@@ -154,10 +154,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DebugWindowLayout.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EngineObject.cpp" />
+    <ClCompile Include="EngineVisual.cpp" />
     <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="GarbageCollector.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
@@ -168,10 +171,13 @@
     <ClCompile Include="WindowLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Debug.h" />
     <ClInclude Include="DebugWindowLayout.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineObject.h" />
+    <ClInclude Include="EngineVisual.h" />
     <ClInclude Include="GameObject.h" />
+    <ClInclude Include="GarbageCollector.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="ObjectsManager.h" />
     <ClInclude Include="Time.h" />
