@@ -56,6 +56,6 @@ private :
 
 	std::vector<WindowLayout*> _allWindowLayout;
 
-	DebugWindowLayout* dwl = nullptr;
+	std::unique_ptr<DebugWindowLayout> dwl;
 };
 
