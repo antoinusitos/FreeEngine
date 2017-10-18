@@ -33,8 +33,8 @@ void Window::Init()
 
 void Window::InitInternalWindows()
 {
-	dwl = new DebugWindowLayout();
-	dwl->Init();
+	dwl = std::make_unique<DebugWindowLayout>();
+	dwl.get()->Init();
 }
 
 void Window::Exit()
@@ -59,5 +59,5 @@ void Window::AddRenderingLayout(WindowLayout* newLayout)
 
 DebugWindowLayout* Window::GetDebugWindowLayout()
 {
-	return dwl;
+	return dwl.get();
 }
