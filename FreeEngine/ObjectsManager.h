@@ -20,9 +20,9 @@ public:
 	{
 		std::call_once(ObjectsManager::onceFlag, []() {
 			_instance.reset(new ObjectsManager);
+			std::cout << "Getting  ObjectsManager instance" << '\n';
 		});
 
-		std::cout << "Getting  ObjectsManager instance" << '\n';
 		return *(_instance.get());
 	}
 
@@ -31,7 +31,7 @@ public:
 	void StartAllEngineObjects();
 	void UpdateAllEngineObjects(float deltaTime);
 	void RenderAllEngineObjects();
-	void DestroyObject(std::shared_ptr<EngineObject> object);
+	void DestroyObject(EngineObject* object);
 
 	int GetID();
 
@@ -40,7 +40,7 @@ private:
 	static std::unique_ptr<ObjectsManager> _instance;
 	static std::once_flag onceFlag;
 
-	std::vector<std::shared_ptr<EngineObject>> _allEngineObjects;
+	std::vector<EngineObject*> _allEngineObjects;
 
 	int ID = 0;
 };

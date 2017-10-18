@@ -10,12 +10,12 @@ GameObject* goBis;
 
 Engine::Engine()
 {
-	_debug = Debug::Instance(); // keep it up to record and print everything
-	_input = Input::Instance();
-	_window = Window::Instance();
-	_time = Time::Instance();
-	_objectManager = ObjectsManager::Instance();
-	_garbageCollector = GarbageCollector::Instance();
+	_debug = &Debug::Instance(); // keep it up to record and print everything
+	_input = &Input::Instance();
+	_window = &Window::Instance();
+	_time = &Time::Instance();
+	_objectManager = &ObjectsManager::Instance();
+	_garbageCollector = &GarbageCollector::Instance();
 	Launch();
 }
 
@@ -26,53 +26,51 @@ Engine::~Engine()
 
 void Engine::Launch()
 {
-	_input.Init();
 	_isRunning = true;
-	sp =_window.Init();
+	
+	_input->Init();
 
-	//sp = Window::Instance().GetWindow();
-	// TODO : Fix the empty shared pointer
-	sf::RenderWindow* spb = sp.get();
+	_window->Init();
+	_window->InitInternalWindows();
 
 	goBis = new GameObject("BeforeStart", false);
 	goBis->RegisterInObjectManager();
 
-	_debug.SetDebugWindow(_window.GetDebugWindowLayout());
 
-	_debug.Print("lol");
+	_debug->SetDebugWindow(_window->GetDebugWindowLayout());
 
-	_window.InitInternalWindows();
+	_debug->Print("lol");
 
-	_objectManager.StartAllEngineObjects();
+	_objectManager->StartAllEngineObjects();
 	while (_isRunning)
 	{
 		// Update the time of the engine
-		_time.Update();
+		_time->Update();
 
 		// Handle the events to close the engine
 		CheckMustCloseWindow();
 
 		// Put engine stuff here
-		Update(_time.deltaTime);
+		Update(_time->deltaTime);
 
-		_objectManager.UpdateAllEngineObjects(_time.deltaTime);
-		_objectManager.RenderAllEngineObjects();
+		_objectManager->UpdateAllEngineObjects(_time->deltaTime);
+		_objectManager->RenderAllEngineObjects();
 
-		_window.Render();
+		_window->Render();
 	}
 
-	_debug.SaveLog();
+	_debug->SaveLog();
 }
 
 void Engine::CheckMustCloseWindow()
 {
 	// Gather the inputs for the engine
-	_input.ProcessInput(*_window.GetWindow());
+	_input->ProcessInput(*_window->GetWindow());
 
 	// Close the window if escape is pressed
-	if (_input.GetKeyPressed(KEY::ESCAPE) || _input.MustClose())
+	if (_input->GetKeyPressed(KEY::ESCAPE) || _input->MustClose())
 	{
-		_window.Exit();
+		_window->Exit();
 		_isRunning = false;
 	}
 }
@@ -84,11 +82,11 @@ void Engine::Update(float deltaTime)
 		_currentTimeForInput += deltaTime;
 		if (_currentTimeForInput >= _timeBeforeInput)
 		{
-			_input.SetCanInput(true);
+			_input->SetCanInput(true);
 		}
 	}
 
-	if (_input.GetKeyPressed(KEY::SPACE))
+	if (_input->GetKeyPressed(KEY::SPACE))
 	{
 		if (lol == false)
 		{
@@ -98,7 +96,7 @@ void Engine::Update(float deltaTime)
 		}
 	}
 
-	if (_input.GetKeyPressed(KEY::A))
+	if (_input->GetKeyPressed(KEY::A))
 	{
 		if (go != nullptr)
 		{

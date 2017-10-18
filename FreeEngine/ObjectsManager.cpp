@@ -24,7 +24,7 @@ ObjectsManager::~ObjectsManager()
 void ObjectsManager::RegisterEngineObject(EngineObject* object)
 {
 
-	_allEngineObjects.push_back(std::make_shared<EngineObject>(*object));
+	_allEngineObjects.push_back(object);
 }
 
 int ObjectsManager::GetID()
@@ -35,7 +35,7 @@ int ObjectsManager::GetID()
 
 void ObjectsManager::StartAllEngineObjects()
 {
-	for (std::vector<std::shared_ptr<EngineObject>>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		(*it)->Start();
 	}
@@ -43,7 +43,7 @@ void ObjectsManager::StartAllEngineObjects()
 
 void ObjectsManager::UpdateAllEngineObjects(float deltaTime)
 {
-	for (std::vector<std::shared_ptr<EngineObject>>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		if((*it) != nullptr)
 			(*it)->Update(deltaTime);
@@ -52,18 +52,18 @@ void ObjectsManager::UpdateAllEngineObjects(float deltaTime)
 
 void ObjectsManager::RenderAllEngineObjects()
 {
-	for (std::vector<std::shared_ptr<EngineObject>>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		if ((*it) != nullptr)
 			(*it)->Render();
 	}
 }
 
-void ObjectsManager::DestroyObject(std::shared_ptr<EngineObject> object)
+void ObjectsManager::DestroyObject(EngineObject* object)
 {
 	int index = -1;
-	std::shared_ptr<EngineObject> temp = nullptr;
-	for (std::vector<std::shared_ptr<EngineObject>>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	EngineObject* temp = nullptr;
+	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		index++;
 		if ((*it) == object)

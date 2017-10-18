@@ -9,9 +9,9 @@ WindowLayout::~WindowLayout()
 {
 }
 
-void WindowLayout::Render(std::shared_ptr<sf::RenderWindow> SFMLWindow)
+void WindowLayout::Render(sf::RenderWindow* SFMLWindow)
 {
-	for (std::vector<std::shared_ptr<sf::Drawable>>::iterator it = _allDrawable.begin(); it != _allDrawable.end(); ++it)
+	for (std::vector<sf::Drawable*>::iterator it = _allDrawable.begin(); it != _allDrawable.end(); ++it)
 	{
 		SFMLWindow->draw((**it));
 	}

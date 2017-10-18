@@ -16,12 +16,11 @@ DebugWindowLayout::~DebugWindowLayout()
 
 void DebugWindowLayout::Init()
 {
-	std::shared_ptr<sf::RenderWindow> sp = Window::Instance().GetWindow();
-	sf::RenderWindow* spb = Window::Instance().GetWindow().get();
-	_background = std::make_shared<sf::RectangleShape>(sf::Vector2f(sp.get()->getSize().x, _debugZoneSizeY));
+	sf::RenderWindow* sp = Window::Instance().GetWindow();
+	_background = std::make_unique<sf::RectangleShape>(sf::Vector2f(sp->getSize().x, _debugZoneSizeY));
 	_background->setFillColor(sf::Color(153, 153, 153));
 	_background->setPosition(0, Window::Instance().GetWindow()->getSize().y - _debugZoneSizeY);
-	_allDrawable.push_back(_background);
+	_allDrawable.push_back(_background.get());
 
 	_beginY = _background->getPosition().y;
 	_beginX = _background->getPosition().x + 5;
@@ -41,7 +40,7 @@ void DebugWindowLayout::AddString(std::string newString)
 	_index++;
 }
 
-void DebugWindowLayout::Render(std::shared_ptr<sf::RenderWindow> SFMLWindow)
+void DebugWindowLayout::Render(sf::RenderWindow* SFMLWindow)
 {
 	WindowLayout::Render(SFMLWindow);
 

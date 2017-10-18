@@ -31,9 +31,9 @@ public:
 	{
 		std::call_once(Input::onceFlag, []() {
 			_instance.reset(new Input);
+			std::cout << "Getting  Input instance" << '\n';
 		});
 
-		std::cout << "Getting Input instance" << '\n';
 		return *(_instance.get());
 	}
 

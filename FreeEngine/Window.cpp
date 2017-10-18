@@ -17,20 +17,18 @@ Window::~Window()
 {
 }
 
-std::shared_ptr<sf::RenderWindow> Window::GetWindow()
+sf::RenderWindow* Window::GetWindow()
 {
-	return _window;
+	return _window.get();
 }
 
-std::shared_ptr<sf::RenderWindow> Window::Init()
+void Window::Init()
 {
 #if FULLSCREEN
-	_window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine", sf::Style::Fullscreen);
+	_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine", sf::Style::Fullscreen);
 #else
-	_window = std::make_shared<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine"/*, sf::Style::Fullscreen*/);
+	_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine"/*, sf::Style::Fullscreen*/);
 #endif
-
-	return _window;
 }
 
 void Window::InitInternalWindows()
@@ -49,7 +47,7 @@ void Window::Render()
 	_window->clear(sf::Color::Black);
 	for (std::vector<WindowLayout*>::iterator it = _allWindowLayout.begin(); it != _allWindowLayout.end(); ++it)
 	{
-		(*it)->Render(_window);
+		(*it)->Render(_window.get());
 	}
 	_window->display();
 }

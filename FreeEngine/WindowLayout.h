@@ -15,12 +15,13 @@ public:
 	WindowLayout();
 	~WindowLayout();
 
-	virtual void Render(std::shared_ptr<sf::RenderWindow> SFMLWindow);
+	//virtual void Render(std::unique_ptr<sf::RenderWindow> SFMLWindow);
+	virtual void Render(sf::RenderWindow* SFMLWindow);
 
 protected:
 	void AddToRendering();
 
-	std::vector<std::shared_ptr<sf::Drawable>> _allDrawable;
+	std::vector<sf::Drawable*> _allDrawable;
 	int lol;
 };
 

@@ -22,17 +22,17 @@ public:
 	{
 		std::call_once(Window::onceFlag, []() {
 			_instance.reset(new Window);
+			std::cout << "Getting  Window instance" << '\n';
 		});
 
-		std::cout << "Getting  Window instance" << '\n';
 		return *(_instance.get());
 	}
 
 	// Get the SFML window
-	std::shared_ptr<sf::RenderWindow> GetWindow();
+	sf::RenderWindow* GetWindow();
 
 	// Init the class
-	std::shared_ptr<sf::RenderWindow> Init();
+	void Init();
 
 	void InitInternalWindows();
 
@@ -52,7 +52,7 @@ private :
 	static std::once_flag onceFlag;
 
 	// Instance of the SFML window
-	std::shared_ptr<sf::RenderWindow> _window;
+	std::unique_ptr<sf::RenderWindow> _window;
 
 	std::vector<WindowLayout*> _allWindowLayout;
 

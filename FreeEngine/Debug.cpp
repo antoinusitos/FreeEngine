@@ -17,10 +17,11 @@ Debug::~Debug()
 
 void Debug::Print(std::string message)
 {
-	std::cout << message << std::endl;
+	std::cout << message << '\n';
 	_allString.push_back(message);
 	if (debugWindow != nullptr)
 	{
+		std::cout << "sent to debug window" << '\n';
 		debugWindow->AddString(message);
 	}
 }

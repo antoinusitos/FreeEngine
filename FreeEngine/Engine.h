@@ -21,17 +21,17 @@ public:
 	// Handle the events to close the engine
 	void CheckMustCloseWindow();
 
-	std::shared_ptr<sf::RenderWindow> sp;
+	sf::RenderWindow* sp;
 private :
 	// Control the end of the engine
 	bool _isRunning = false;
 
-	Input _input;
-	Window _window;
-	Time _time;
-	ObjectsManager _objectManager;
-	GarbageCollector _garbageCollector;
-	Debug _debug;
+	Input* _input;
+	Window* _window;
+	Time* _time;
+	ObjectsManager* _objectManager;
+	GarbageCollector* _garbageCollector;
+	Debug* _debug;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

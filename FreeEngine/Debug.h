@@ -21,9 +21,9 @@ public:
 	{
 		std::call_once(Debug::onceFlag, []() {
 			_instance.reset(new Debug);
+			std::cout << "Getting  Debug instance" << '\n';
 		});
 
-		std::cout << "Getting  Debug instance" << '\n';
 		return *(_instance.get());
 	}
 
@@ -40,6 +40,6 @@ private:
 
 	std::vector<std::string> _allString;
 
-	std::shared_ptr<DebugWindowLayout> debugWindow;
+	std::unique_ptr<DebugWindowLayout> debugWindow;
 };
 
