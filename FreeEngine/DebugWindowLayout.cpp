@@ -30,8 +30,9 @@ void DebugWindowLayout::Init()
 
 	_beginY = _background.getPosition().y;
 	_beginX = _background.getPosition().x + 5;
-
-	AddToRendering();
+       
+	Window::Instance().AddRenderingLayout(this);
+	
 }
 
 void DebugWindowLayout::AddString(std::string newString)
