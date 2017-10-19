@@ -12,18 +12,24 @@ DebugWindowLayout::DebugWindowLayout()
 
 DebugWindowLayout::~DebugWindowLayout()
 {
+	//WindowLayout::~WindowLayout();
+
+	//_allDrawable.erase(_allDrawable.begin(), _allDrawable.end());
+	//_allText.erase(_allText.begin(), _allText.end());
+
+	//UnregisterToRendering();
+
 }
 
 void DebugWindowLayout::Init()
 {
-	sf::RenderWindow* sp = Window::Instance().GetWindow();
-	_background = std::make_unique<sf::RectangleShape>(sf::Vector2f(sp->getSize().x, _debugZoneSizeY));
-	_background->setFillColor(sf::Color(153, 153, 153));
-	_background->setPosition(0, Window::Instance().GetWindow()->getSize().y - _debugZoneSizeY);
-	_allDrawable.push_back(_background.get());
+	_background = sf::RectangleShape(sf::Vector2f(Window::Instance().GetWindow()->getSize().x, _debugZoneSizeY));
+	_background.setFillColor(sf::Color(153, 153, 153));
+	_background.setPosition(0, Window::Instance().GetWindow()->getSize().y - _debugZoneSizeY);
+	_allDrawable.push_back(&_background);
 
-	_beginY = _background->getPosition().y;
-	_beginX = _background->getPosition().x + 5;
+	_beginY = _background.getPosition().y;
+	_beginX = _background.getPosition().x + 5;
 
 	AddToRendering();
 }

@@ -43,8 +43,11 @@ public:
 	void Render();
 
 	void AddRenderingLayout(WindowLayout* newLayout);
+	void RemoveRenderingLayout(WindowLayout* layoutToRemove);
 
 	DebugWindowLayout* GetDebugWindowLayout();
+
+	void RemoveAllRendering();
 
 private :
 	// Unique instance of the time

@@ -21,7 +21,6 @@ void Debug::Print(std::string message)
 	_allString.push_back(message);
 	if (debugWindow != nullptr)
 	{
-		std::cout << "sent to debug window" << '\n';
 		debugWindow->AddString(message);
 	}
 }
@@ -41,5 +40,5 @@ void Debug::SaveLog()
 
 void Debug::SetDebugWindow(DebugWindowLayout* newWindow)
 {
-	debugWindow.reset(newWindow);
+	debugWindow = newWindow;
 }

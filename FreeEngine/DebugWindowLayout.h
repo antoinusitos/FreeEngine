@@ -17,7 +17,7 @@ public:
 	void Init();
 
 private:
-	std::unique_ptr<sf::RectangleShape> _background;
+	sf::RectangleShape _background;
 
 	float _debugZoneSizeY = 200.f;
 

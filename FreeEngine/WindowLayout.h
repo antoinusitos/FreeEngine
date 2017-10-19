@@ -18,6 +18,7 @@ public:
 	//virtual void Render(std::unique_ptr<sf::RenderWindow> SFMLWindow);
 	virtual void Render(sf::RenderWindow* SFMLWindow);
 
+	void UnregisterToRendering();
 protected:
 	void AddToRendering();
 

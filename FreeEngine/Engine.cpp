@@ -59,6 +59,8 @@ void Engine::Launch()
 		_window->Render();
 	}
 
+	_window->RemoveAllRendering();
+	//_window->GetDebugWindowLayout()->UnregisterToRendering();
 	_debug->SaveLog();
 }
 

@@ -21,3 +21,8 @@ void WindowLayout::AddToRendering()
 {
 	Window::Instance().AddRenderingLayout(this);
 }
+
+void WindowLayout::UnregisterToRendering()
+{
+	Window::Instance().RemoveRenderingLayout(this);
+}

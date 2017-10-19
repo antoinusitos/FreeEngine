@@ -57,6 +57,26 @@ void Window::AddRenderingLayout(WindowLayout* newLayout)
 	_allWindowLayout.push_back(newLayout);
 }
 
+void Window::RemoveRenderingLayout(WindowLayout* layoutToRemove)
+{
+	if ((int)_allWindowLayout.size() == 0) return;
+	
+	std::cout << _allWindowLayout.size() << '\n';
+
+	for (std::vector<WindowLayout*>::iterator it = _allWindowLayout.begin(); it != _allWindowLayout.end(); ++it)
+	{
+		if (layoutToRemove == (*it))
+		{
+			_allWindowLayout.erase(it);
+		}
+	}
+}
+
+void Window::RemoveAllRendering()
+{
+	_allWindowLayout.erase(_allWindowLayout.begin(), _allWindowLayout.end());
+}
+
 DebugWindowLayout* Window::GetDebugWindowLayout()
 {
 	return dwl.get();

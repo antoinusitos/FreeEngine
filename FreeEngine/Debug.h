@@ -40,6 +40,6 @@ private:
 
 	std::vector<std::string> _allString;
 
-	std::unique_ptr<DebugWindowLayout> debugWindow;
+	DebugWindowLayout* debugWindow;
 };
 
