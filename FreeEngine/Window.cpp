@@ -34,12 +34,13 @@ void Window::Init()
 void Window::InitInternalWindows()
 {
 	dwl = std::make_unique<DebugWindowLayout>();
-	dwl.get()->Init();
+	dwl->Init();
 }
 
 void Window::Exit()
 {
 	_window->close();
+	dwl.release();
 }
 
 void Window::Render()
@@ -59,16 +60,21 @@ void Window::AddRenderingLayout(WindowLayout* newLayout)
 
 void Window::RemoveRenderingLayout(WindowLayout* layoutToRemove)
 {
-	if ((int)_allWindowLayout.size() == 0) return;
-	
-	std::cout << _allWindowLayout.size() << '\n';
+	int index = -1;
+	bool found = false;
 
 	for (std::vector<WindowLayout*>::iterator it = _allWindowLayout.begin(); it != _allWindowLayout.end(); ++it)
 	{
+		index++;
 		if (layoutToRemove == (*it))
 		{
-			_allWindowLayout.erase(it);
+			found = true;
 		}
+	}
+
+	if (found)
+	{
+		_allWindowLayout.erase(_allWindowLayout.begin() + index);
 	}
 }
 

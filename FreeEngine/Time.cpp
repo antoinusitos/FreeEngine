@@ -29,3 +29,17 @@ void Time::Update()
 	// Stock the current time for the delta time
 	lastTimeElapsed = timeElapsed;
 }
+
+std::string Time::GetCurrentTimeAsString()
+{
+	time_t rawtime;
+	struct tm timeinfo;
+	char buffer[80];
+
+	time(&rawtime);
+	localtime_s(&timeinfo, &rawtime);
+
+	strftime(buffer, sizeof(buffer), "%d-%m-%Y_%I-%M-%S", &timeinfo);
+	std::string str(buffer);
+	return str;
+}

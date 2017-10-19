@@ -36,7 +36,6 @@ void Engine::Launch()
 	goBis = new GameObject("BeforeStart", false);
 	goBis->RegisterInObjectManager();
 
-
 	_debug->SetDebugWindow(_window->GetDebugWindowLayout());
 
 	_debug->Print("lol");
@@ -60,7 +59,6 @@ void Engine::Launch()
 	}
 
 	_window->RemoveAllRendering();
-	//_window->GetDebugWindowLayout()->UnregisterToRendering();
 	_debug->SaveLog();
 }
 
@@ -103,6 +101,7 @@ void Engine::Update(float deltaTime)
 		if (go != nullptr)
 		{
 			go->Destroy();
+			delete go;
 			go = nullptr;
 			lol = false;
 		}

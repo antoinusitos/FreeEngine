@@ -1,6 +1,7 @@
 #include <fstream>
 
 #include "Debug.h"
+#include "Time.h"
 
 std::unique_ptr<Debug> Debug::_instance;
 std::once_flag Debug::onceFlag;
@@ -28,7 +29,8 @@ void Debug::Print(std::string message)
 void Debug::SaveLog()
 {
 	std::ofstream myfile;
-	myfile.open("Assets/Logs.txt");
+	std::string currentTime = Time::Instance().GetCurrentTimeAsString();
+	myfile.open("Assets/Log/Logs_" + currentTime + ".txt");
 
 	for (std::vector<std::string>::iterator it = _allString.begin(); it != _allString.end(); ++it)
 	{

@@ -16,6 +16,8 @@ public:
 
 	void Init();
 
+	void Unregister();
+
 private:
 	sf::RectangleShape _background;
 

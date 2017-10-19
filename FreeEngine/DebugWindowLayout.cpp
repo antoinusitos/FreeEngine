@@ -12,13 +12,6 @@ DebugWindowLayout::DebugWindowLayout()
 
 DebugWindowLayout::~DebugWindowLayout()
 {
-	//WindowLayout::~WindowLayout();
-
-	//_allDrawable.erase(_allDrawable.begin(), _allDrawable.end());
-	//_allText.erase(_allText.begin(), _allText.end());
-
-	//UnregisterToRendering();
-
 }
 
 void DebugWindowLayout::Init()
@@ -33,6 +26,11 @@ void DebugWindowLayout::Init()
        
 	Window::Instance().AddRenderingLayout(this);
 	
+}
+
+void DebugWindowLayout::Unregister()
+{
+	Window::Instance().RemoveRenderingLayout(this);
 }
 
 void DebugWindowLayout::AddString(std::string newString)

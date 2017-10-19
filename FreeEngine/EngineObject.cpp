@@ -44,7 +44,7 @@ void EngineObject::Destroy()
 void EngineObject::DestroyObject()
 {
 	_beingDestroy = true;
-//	ObjectsManager::Instance().DestroyObject(this);
+	ObjectsManager::Instance().DestroyObject(this);
 }
 
 void EngineObject::RegisterInObjectManager()

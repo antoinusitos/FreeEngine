@@ -33,6 +33,8 @@ public:
 	// Time elapsed since the last frame
 	double deltaTime;
 
+	std::string GetCurrentTimeAsString();
+
 private:
 	// Unique instance of the time
 	static std::unique_ptr<Time> _instance;

@@ -62,16 +62,17 @@ void ObjectsManager::RenderAllEngineObjects()
 void ObjectsManager::DestroyObject(EngineObject* object)
 {
 	int index = -1;
-	EngineObject* temp = nullptr;
+	bool found = false;
 	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
 		index++;
 		if ((*it) == object)
 		{
-			temp = (*it);
+			found = true;
 			break;
 		}
 	}
-	_allEngineObjects.erase(_allEngineObjects.begin() + index);
-	//GarbageCollector::Instance().SetDestroyable(object);
+	
+	if(found)
+		_allEngineObjects.erase(_allEngineObjects.begin() + index);
 }
