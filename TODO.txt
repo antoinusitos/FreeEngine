@@ -11,7 +11,7 @@ Math classes
 TO DO :
 
 hot reload + engine ini
-File reader
+File reader/writer
 
 camera manager
 audio manager
@@ -30,3 +30,7 @@ Editor
 Delegate
 Double return ? (out)
 inheritage + static class
+
+Research :
+Class FileSystemWatcher : https://msdn.microsoft.com/en-us/library/system.io.filesystemwatcher(VS.80).aspx#Mtps_DropDownFilterText
+Read/write file : http://www.cplusplus.com/doc/tutorial/files/
