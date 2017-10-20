@@ -4,16 +4,21 @@ Window
 input manager
 time manager
 object manager
+Transform
+Entity
+Math classes
 
 TO DO :
 
-audio manager
-sprite manager
-resource manager
+hot reload + engine ini
+File reader
+
 camera manager
+audio manager
+resource manager
+sprite manager
 scene manager
 
-hot reload
 Component
 Particles
 Light ?
@@ -25,5 +30,3 @@ Editor
 Delegate
 Double return ? (out)
 inheritage + static class
-Transform
-Entity
