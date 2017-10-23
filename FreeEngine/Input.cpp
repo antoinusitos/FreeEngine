@@ -26,6 +26,16 @@ void Input::Init()
 	_mapping.emplace(KEY::ARROWLEFT, false);
 	_mapping.emplace(KEY::A, false);
 	_mapping.emplace(KEY::B, false);
+
+	_lastMapping = std::map<KEY, bool>();
+	_lastMapping.emplace(KEY::SPACE, false);
+	_lastMapping.emplace(KEY::ESCAPE, false);
+	_lastMapping.emplace(KEY::ARROWUP, false);
+	_lastMapping.emplace(KEY::ARROWDOWN, false);
+	_lastMapping.emplace(KEY::ARROWRIGHT, false);
+	_lastMapping.emplace(KEY::ARROWLEFT, false);
+	_lastMapping.emplace(KEY::A, false);
+	_lastMapping.emplace(KEY::B, false);
 }
 
 bool Input::MustClose()
@@ -36,6 +46,9 @@ bool Input::MustClose()
 void Input::ProcessInput(sf::Window& window)
 {
 	if (!_canInput) return;
+
+	for (std::map<KEY, bool>::iterator it = _lastMapping.begin(); it != _lastMapping.end(); ++it)
+		it->second = false;
 
 	// Process all events that happend in the SFML window
 	while (window.pollEvent(_event))
@@ -84,34 +97,42 @@ void Input::ProcessInput(sf::Window& window)
 		case sf::Event::KeyReleased:
 			if (_event.key.code == sf::Keyboard::Space)
 			{
+				_lastMapping[KEY::SPACE] = true;
 				_mapping[KEY::SPACE] = false;
 			}
 			else if (_event.key.code == sf::Keyboard::Escape)
 			{
+				_lastMapping[KEY::ESCAPE] = true;
 				_mapping[KEY::ESCAPE] = false;
 			}
 			else if (_event.key.code == sf::Keyboard::Up)
 			{
+				_lastMapping[KEY::ARROWUP] = true;
 				_mapping[KEY::ARROWUP] = false;
 			}
 			else if (_event.key.code == sf::Keyboard::Down)
 			{
+				_lastMapping[KEY::ARROWDOWN] = true;
 				_mapping[KEY::ARROWDOWN] = false;
 			}
 			else if (_event.key.code == sf::Keyboard::Right)
 			{
+				_lastMapping[KEY::ARROWRIGHT] = true;
 				_mapping[KEY::ARROWRIGHT] = false;
 			}
 			else if (_event.key.code == sf::Keyboard::Left)
 			{
+				_lastMapping[KEY::ARROWLEFT] = true;
 				_mapping[KEY::ARROWLEFT] = false;
 			}
 			else if (_event.key.code == sf::Keyboard::A)
 			{
+				_lastMapping[KEY::A] = true;
 				_mapping[KEY::A] = false;
 			}
 			else if (_event.key.code == sf::Keyboard::B)
 			{
+				_lastMapping[KEY::B] = true;
 				_mapping[KEY::B] = false;
 			}
 			break;
@@ -125,7 +146,7 @@ void Input::ProcessInput(sf::Window& window)
 
 bool Input::GetKeyPressed(KEY key)
 {
-	return _mapping.find(key)->second;
+	return _mapping.find(key)->second != _lastMapping.find(key)->second;
 }
 
 void Input::SetCanInput(bool NewState)

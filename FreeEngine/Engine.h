@@ -6,8 +6,9 @@
 #include "ObjectsManager.h"
 #include "GarbageCollector.h"
 #include "Debug.h"
+#include "FileHandler.h"
 
-class Engine
+class Engine : public FileObserver
 {
 public:
 	Engine();
@@ -22,6 +23,10 @@ public:
 	void CheckMustCloseWindow();
 
 	sf::RenderWindow* sp;
+
+	//TEST
+	void NotifyChange();
+
 private :
 	// Control the end of the engine
 	bool _isRunning = false;
@@ -32,6 +37,7 @@ private :
 	ObjectsManager* _objectManager;
 	GarbageCollector* _garbageCollector;
 	Debug* _debug;
+	FileHandler* _fileHandler;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

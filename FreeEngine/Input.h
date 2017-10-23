@@ -61,6 +61,7 @@ private :
 
 	// Map that contain the state of the Input
 	std::map<KEY, bool> _mapping;
+	std::map<KEY, bool> _lastMapping;
 
 	// Should we close the SFML window ?
 	bool _mustClose = false;

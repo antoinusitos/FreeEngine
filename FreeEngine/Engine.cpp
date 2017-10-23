@@ -16,12 +16,18 @@ Engine::Engine()
 	_time = &Time::Instance();
 	_objectManager = &ObjectsManager::Instance();
 	_garbageCollector = &GarbageCollector::Instance();
+	_fileHandler = &FileHandler::Instance();
 	Launch();
 }
 
 Engine::~Engine()
 {
 
+}
+
+void Engine::NotifyChange()
+{
+	std::cout << "lol" << '\n';
 }
 
 void Engine::Launch()
@@ -38,7 +44,7 @@ void Engine::Launch()
 
 	_debug->SetDebugWindow(_window->GetDebugWindowLayout());
 
-	_debug->Print("lol");
+	_fileHandler->RegisterNewWatcher(this, "D:/Test.txt");
 
 	_objectManager->StartAllEngineObjects();
 	while (_isRunning)
@@ -56,6 +62,7 @@ void Engine::Launch()
 		_objectManager->RenderAllEngineObjects();
 
 		_window->Render();
+
 	}
 
 	_window->RemoveAllRendering();
@@ -85,6 +92,8 @@ void Engine::Update(float deltaTime)
 			_input->SetCanInput(true);
 		}
 	}
+
+	_fileHandler->UpdateWatchers(_time->deltaTime);
 
 	if (_input->GetKeyPressed(KEY::SPACE))
 	{
