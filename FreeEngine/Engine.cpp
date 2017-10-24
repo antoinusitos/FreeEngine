@@ -11,6 +11,7 @@ GameObject* goBis;
 Engine::Engine()
 {
 	_debug = &Debug::Instance(); // keep it up to record and print everything
+	_data = &Data::Instance();
 	_input = &Input::Instance();
 	_window = &Window::Instance();
 	_time = &Time::Instance();
@@ -27,7 +28,7 @@ Engine::~Engine()
 
 void Engine::NotifyChange()
 {
-	std::cout << "lol" << '\n';
+	std::cout << "file changed !" << '\n';
 }
 
 void Engine::Launch()
@@ -44,7 +45,7 @@ void Engine::Launch()
 
 	_debug->SetDebugWindow(_window->GetDebugWindowLayout());
 
-	_fileHandler->RegisterNewWatcher(this, "D:/Test.txt");
+	_fileHandler->RegisterNewWatcher(this, "FreeEngine/Assets/test.txt");
 
 	_objectManager->StartAllEngineObjects();
 	while (_isRunning)

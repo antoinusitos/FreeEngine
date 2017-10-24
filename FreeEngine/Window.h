@@ -6,10 +6,19 @@
 #include <mutex>
 #include <iostream>
 
+#include "FileHandler.h"
+
+struct EngineData
+{
+public:
+	std::string category = "";
+	std::string value = "";
+};
+
 class DebugWindowLayout;
 class WindowLayout;
 
-class Window
+class Window : public FileObserver
 {
 public:
 	// Constructor
@@ -49,6 +58,8 @@ public:
 
 	void RemoveAllRendering();
 
+	void NotifyChange();
+
 private :
 	// Unique instance of the time
 	static std::unique_ptr<Window> _instance;
@@ -60,5 +71,11 @@ private :
 	std::vector<WindowLayout*> _allWindowLayout;
 
 	std::unique_ptr<DebugWindowLayout> dwl;
+
+	std::string configFileName = "Assets/Config/Engine.txt";
+
+	std::vector<EngineData> _allEngineData;
+
+	void HandleDataChanges();
 };
 

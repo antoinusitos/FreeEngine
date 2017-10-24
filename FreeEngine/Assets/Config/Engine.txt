@@ -1,0 +1,6 @@
+######Appearence######
+#
+#FULLSCREEN/WINDOWED
+Sceen=WINDOWED
+#LengthxHeight
+Resolution=1024x720

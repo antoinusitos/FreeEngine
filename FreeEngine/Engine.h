@@ -7,6 +7,7 @@
 #include "GarbageCollector.h"
 #include "Debug.h"
 #include "FileHandler.h"
+#include "Data.h"
 
 class Engine : public FileObserver
 {
@@ -31,6 +32,7 @@ private :
 	// Control the end of the engine
 	bool _isRunning = false;
 
+	Data* _data;
 	Input* _input;
 	Window* _window;
 	Time* _time;

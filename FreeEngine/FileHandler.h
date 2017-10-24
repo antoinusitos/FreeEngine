@@ -46,7 +46,7 @@ public:
 	void UnregisterWatcher(int ID);
 
 private:
-	std::vector<Watcher*> _allWatcher;
+	std::vector<Watcher> _allWatcher;
 	static std::unique_ptr<FileHandler> _instance;
 	static std::once_flag onceFlag;
 	int ids;
