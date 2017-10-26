@@ -25,7 +25,7 @@ Data::Data()
 	}
 	projectPath += '/';
 
-	Debug::Instance().Print("project path:" + projectPath);
+	Debug::Instance().Print("project path:" + projectPath + '\n');
 }
 
 Data::~Data()

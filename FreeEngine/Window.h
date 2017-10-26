@@ -77,5 +77,7 @@ private :
 	std::vector<EngineData> _allEngineData;
 
 	void HandleDataChanges();
+
+	bool _isFullScreen = false;
 };
 

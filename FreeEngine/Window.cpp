@@ -3,7 +3,7 @@
 #include "WindowLayout.h"
 #include "Engine.h"
 
-#define FULLSCREEN false
+const bool FULLSCREEN = false;
 
 std::unique_ptr<Window> Window::_instance;
 std::once_flag Window::onceFlag;
@@ -26,8 +26,10 @@ void Window::Init()
 {
 #if FULLSCREEN
 	_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine", sf::Style::Fullscreen);
+	_isFullScreen = true;
 #else
-	_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine"/*, sf::Style::Fullscreen*/);
+	_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine");
+	_isFullScreen = false;
 #endif
 }
 
@@ -97,6 +99,8 @@ void Window::NotifyChange()
 
 	if(readable)
 	{
+		_allEngineData.erase(_allEngineData.begin(), _allEngineData.end());
+
 		std::cout << "file : " << configFileName << " changed !" << '\n';
 
 		std::string delimiter = "\n";
@@ -120,6 +124,8 @@ void Window::NotifyChange()
 			allLines.erase(0, pos + delimiter.length());
 		}
 
+		std::cout << "token:" << '\n';
+
 		HandleDataChanges();
 	}
 	else
@@ -136,21 +142,71 @@ void Window::HandleDataChanges()
 		std::string tempCat = (it)->category.c_str();
 		std::string tempVal = (it)->value.c_str();
 
-		if (tempCat == "Resolution")
+		if (tempCat == "FullScreenResolution")
 		{
-			std::string delimiter = "x";
-			std::string x = tempVal.substr(0, tempVal.find(delimiter));
-			size_t posTemp = tempVal.find(delimiter);
-			tempVal.erase(0, posTemp + delimiter.length());
-			std::string y = tempVal;
+			if (_isFullScreen)
+			{
+				std::string delimiter = "x";
+				std::string x = tempVal.substr(0, tempVal.find(delimiter));
+				size_t posTemp = tempVal.find(delimiter);
+				tempVal.erase(0, posTemp + delimiter.length());
+				std::string y = tempVal;
 
-			unsigned int dimX = atoi(x.c_str());
-			unsigned int dimY = atoi(y.c_str());
+				unsigned int dimX = atoi(x.c_str());
+				unsigned int dimY = atoi(y.c_str());
 
-			sf::Vector2u vec = sf::Vector2u(dimX, dimY);
-			_window.get()->setSize(vec);
+				sf::Vector2u vec = sf::Vector2u(dimX, dimY);
+				_window.get()->setSize(vec);
 
-			std::cout << "Set new Size to " << dimX << "x" << dimY << '\n';
+				_window.get()->setSize(vec);
+				_window->setPosition(sf::Vector2i(0, 0));
+
+				std::string debug = "Set new Size to fullscreen " + std::to_string(dimX) + "x" + std::to_string(dimY) + '\n';
+				Debug::Instance().Print(debug);
+			}
+		}
+		else if (tempCat == "Resolution")
+		{
+			if (!_isFullScreen)
+			{
+				std::string delimiter = "x";
+				std::string x = tempVal.substr(0, tempVal.find(delimiter));
+				size_t posTemp = tempVal.find(delimiter);
+				tempVal.erase(0, posTemp + delimiter.length());
+				std::string y = tempVal;
+
+				unsigned int dimX = atoi(x.c_str());
+				unsigned int dimY = atoi(y.c_str());
+
+				sf::Vector2u vec = sf::Vector2u(dimX, dimY);
+				_window.get()->setSize(vec);
+
+				sf::Vector2u size = _window.get()->getSize();
+				_window->setPosition(sf::Vector2i(size.x / 2, size.y / 2));
+
+				std::string debug = "Set new Size to windowed " + std::to_string(dimX) + "x" + std::to_string(dimY) + '\n';
+				Debug::Instance().Print(debug);
+			}
+		}
+		else if (tempCat == "Sceen")
+		{
+			if (tempVal == "FULLSCREEN" && !_isFullScreen)
+			{
+				_isFullScreen = true;
+				_window.get()->close();
+				_window.release();
+				_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine", sf::Style::Fullscreen);
+				_window->setPosition(sf::Vector2i(0,0));
+			}
+			else if (tempVal == "WINDOWED" && _isFullScreen)
+			{
+				_isFullScreen = false;
+				_window.get()->close();
+				_window.release();
+				_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine");
+				sf::Vector2u size = _window.get()->getSize();
+				_window->setPosition(sf::Vector2i(size.x / 2, size.y / 2));
+			}
 		}
 	}
 }

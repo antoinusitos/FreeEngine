@@ -45,7 +45,7 @@ void Engine::Launch()
 
 	_debug->SetDebugWindow(_window->GetDebugWindowLayout());
 
-	_fileHandler->RegisterNewWatcher(this, "FreeEngine/Assets/test.txt");
+	//_fileHandler->RegisterNewWatcher(this, "FreeEngine/Assets/test.txt");
 
 	_objectManager->StartAllEngineObjects();
 	while (_isRunning)

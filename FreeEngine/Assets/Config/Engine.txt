@@ -2,5 +2,9 @@
 #
 #FULLSCREEN/WINDOWED
 Sceen=WINDOWED
-#LengthxHeight
-Resolution=1024x720
+#
+#Windowed LengthxHeight
+Resolution=800x600
+#
+#FullScreen LengthxHeight
+FullScreenResolution=1920x1080
