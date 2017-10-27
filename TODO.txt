@@ -10,11 +10,11 @@ Math classes
 hot reload + engine ini
 File reader/writer
 resource manager
+audio manager
 
 TO DO :
 
 camera manager
-audio manager
 sprite manager
 scene manager
 

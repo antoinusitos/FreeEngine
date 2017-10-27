@@ -25,7 +25,7 @@ public:
 	{
 		std::call_once(Window::onceFlag, []() {
 			_instance.reset(new Window);
-			std::cout << "Getting  Window instance" << '\n';
+			//std::cout << "Getting  Window instance" << '\n';
 		});
 
 		return *(_instance.get());

@@ -19,7 +19,7 @@ public:
 	{
 		std::call_once(Time::onceFlag, []() {
 			_instance.reset(new Time);
-			std::cout << "Getting  Time instance" << '\n';
+			//std::cout << "Getting  Time instance" << '\n';
 		});
 
 		return *(_instance.get());

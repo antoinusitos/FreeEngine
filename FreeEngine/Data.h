@@ -5,6 +5,16 @@
 #include <mutex>
 #include <iostream>
 
+
+// For release version,
+// - Copy all the Assets in the Debug folder
+// - Change RELEASEVERSION to true
+const bool ISRELEASE = false;
+const std::string DEBUGFOLDER = "FreeEngine";
+const std::string RELEASEFOLDER = "Debug";
+const std::string RELEASEVERSION = "0.1";
+
+
 enum ScreenType
 {
 	FULLSCREEN,
@@ -31,6 +41,13 @@ struct DebugMessage
 	DebugMessageType messageType;
 };
 
+enum SoundType
+{
+	SOUND,
+	MUSIC,
+	LISTENER,
+};
+
 class Data
 {
 public:
@@ -42,7 +59,7 @@ public:
 	{
 		std::call_once(Data::onceFlag, []() {
 			_instance.reset(new Data);
-			std::cout << "Getting  Data instance" << '\n';
+			//std::cout << "Getting  Data instance" << '\n';
 		});
 
 		return *(_instance.get());

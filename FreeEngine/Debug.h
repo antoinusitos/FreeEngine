@@ -22,7 +22,7 @@ public:
 	{
 		std::call_once(Debug::onceFlag, []() {
 			_instance.reset(new Debug);
-			std::cout << "Getting  Debug instance" << '\n';
+			//std::cout << "Getting  Debug instance" << '\n';
 		});
 
 		return *(_instance.get());

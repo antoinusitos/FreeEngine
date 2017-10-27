@@ -9,7 +9,20 @@ std::once_flag ResourcesManager::onceFlag;
 ResourcesManager::ResourcesManager()
 {
 	_projectPath = Data::Instance().GetProjetPath();
-	_resourcesPath = _projectPath + "FreeEngine/Assets/Resources/";
+	if (ISRELEASE)
+	{
+		_resourcesPath = _projectPath + RELEASEFOLDER;
+		std::cout << "RELEASE VERSION " << RELEASEVERSION << '\n';
+	}
+	else
+	{
+		std::cout << "DEBUG VERSION " << RELEASEVERSION << '\n';
+		_resourcesPath = _projectPath + DEBUGFOLDER;
+	}
+
+	std::cout << "Resources Path : " << _resourcesPath << '\n' << '\n';
+
+	_resourcesPath += "/Assets/Resources/";
 }
 
 ResourcesManager::~ResourcesManager()
@@ -34,4 +47,12 @@ sf::SoundBuffer ResourcesManager::GetBuffer(std::string fileName)
 		Debug::Instance().Print("Error : fail to load sound " + _resourcesPath + fileName + '\n', DebugMessageType::ERROR);
 	}
 	return toReturn;
+}
+
+void ResourcesManager::GetMusic(sf::Music& music, std::string fileName)
+{
+	if (!music.openFromFile(_resourcesPath + fileName))
+	{
+		Debug::Instance().Print("Error : fail to load sound " + _resourcesPath + fileName + '\n', DebugMessageType::ERROR);
+	}
 }

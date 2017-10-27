@@ -4,7 +4,7 @@
 #include <mutex>
 #include <iostream>
 
-#include "SFML\Graphics.hpp"
+#include <SFML/Graphics.hpp>
 #include <SFML/Audio.hpp>
 
 class ResourcesManager
@@ -18,7 +18,7 @@ public:
 	{
 		std::call_once(ResourcesManager::onceFlag, []() {
 			_instance.reset(new ResourcesManager);
-			std::cout << "Getting  Resources Manager instance" << '\n';
+			//std::cout << "Getting  Resources Manager instance" << '\n';
 		});
 
 		return *(_instance.get());
@@ -26,6 +26,7 @@ public:
 
 	sf::Font GetFont(std::string fileName);
 	sf::SoundBuffer GetBuffer(std::string fileName);
+	void GetMusic(sf::Music& music, std::string fileName);
 
 
 //Variables

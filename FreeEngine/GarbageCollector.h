@@ -18,7 +18,7 @@ public:
 	{
 		std::call_once(GarbageCollector::onceFlag, []() {
 			_instance.reset(new GarbageCollector);
-			std::cout << "Getting  GarbageCollector instance" << '\n';
+			//std::cout << "Getting  GarbageCollector instance" << '\n';
 		});
 
 		return *(_instance.get());

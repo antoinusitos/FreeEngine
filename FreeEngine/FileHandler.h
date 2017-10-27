@@ -34,7 +34,7 @@ public:
 		std::call_once(FileHandler::onceFlag, []()
 		{
 			_instance.reset(new FileHandler);
-			std::cout << "Geting FileHandler Instance" << '\n';
+			//std::cout << "Geting FileHandler Instance" << '\n';
 		});
 		return *(_instance.get());
 	}

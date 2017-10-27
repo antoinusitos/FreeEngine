@@ -20,7 +20,7 @@ public:
 	{
 		std::call_once(ObjectsManager::onceFlag, []() {
 			_instance.reset(new ObjectsManager);
-			std::cout << "Getting  ObjectsManager instance" << '\n';
+			//std::cout << "Getting  ObjectsManager instance" << '\n';
 		});
 
 		return *(_instance.get());

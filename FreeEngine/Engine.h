@@ -8,6 +8,7 @@
 #include "FileHandler.h"
 #include "Data.h"
 #include "ResourcesManager.h"
+#include "GlobalListener.h"
 
 class Engine : public FileObserver
 {
@@ -40,6 +41,7 @@ private :
 	Debug* _debug;
 	FileHandler* _fileHandler;
 	ResourcesManager* _resourcesManager;
+	GlobalListener* _globalListener;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

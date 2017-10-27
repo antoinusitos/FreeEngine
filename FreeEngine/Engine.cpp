@@ -2,11 +2,16 @@
 #include <string>
 
 #include "Engine.h"
-#include "GameObject.h"
 
+//-------------TEST-------------
+#include "GameObject.h"
+#include "Sound.h"
 bool lol = false;
 GameObject* go;
 GameObject* goBis;
+Sound* s;
+Sound* sbis;
+//-------------TEST-------------
 
 Engine::Engine()
 {
@@ -18,6 +23,8 @@ Engine::Engine()
 	_objectManager = &ObjectsManager::Instance();
 	_fileHandler = &FileHandler::Instance();
 	_resourcesManager = &ResourcesManager::Instance();
+	_globalListener = &GlobalListener::Instance();
+
 	Launch();
 }
 
@@ -38,14 +45,19 @@ void Engine::Launch()
 	_input->Init();
 
 	_window->Init();
-	_window->InitInternalWindows();
 
 	goBis = new GameObject("BeforeStart", false);
 	goBis->RegisterInObjectManager();
 
-	_debug->SetDebugWindow(_window->GetDebugWindowLayout());
-
 	_objectManager->StartAllEngineObjects();
+
+
+	//-------------TEST-------------
+	s = new Sound();
+	s->InitMusic("theme.wav");
+	//s->Play();
+	//-------------TEST-------------
+
 	while (_isRunning)
 	{
 		// Update the time of the engine
@@ -94,6 +106,8 @@ void Engine::Update(float deltaTime)
 
 	_fileHandler->UpdateWatchers(_time->deltaTime);
 
+
+	//-------------TEST-------------
 	if (_input->GetKeyPressed(KEY::SPACE))
 	{
 		if (lol == false)
@@ -101,6 +115,11 @@ void Engine::Update(float deltaTime)
 			lol = true;
 			go = new GameObject(std::string("ObjectUpdate"));
 			go->RegisterInObjectManager();
+			sbis = new Sound();
+			sbis->InitMusic("ouverture.wav");
+			sbis->SetDistance(0, 10);
+			sbis->SetPosition(20, 0);
+			sbis->Play();
 		}
 	}
 
@@ -114,4 +133,5 @@ void Engine::Update(float deltaTime)
 			lol = false;
 		}
 	}
+	//-------------TEST-------------
 }

@@ -31,6 +31,8 @@ void Window::Init()
 	_window = std::make_unique<sf::RenderWindow>(sf::VideoMode(1920, 1080), "Free Engine");
 	_screenType = ScreenType::WINDOWED;
 #endif
+
+	InitInternalWindows();
 }
 
 void Window::InitInternalWindows()
@@ -39,6 +41,8 @@ void Window::InitInternalWindows()
 
 	dwl = std::make_unique<DebugWindowLayout>();
 	dwl->Init();
+
+	Debug::Instance().SetDebugWindow(GetDebugWindowLayout());
 }
 
 void Window::Exit()

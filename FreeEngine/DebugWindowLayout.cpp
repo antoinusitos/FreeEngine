@@ -6,10 +6,6 @@
 DebugWindowLayout::DebugWindowLayout()
 {
 	font = ResourcesManager::Instance().GetFont("arial.ttf");
-	/*if (!font.loadFromFile("arial.ttf"))
-	{
-		Debug::Instance().Print("Error : fail to load font arial.ttf" + '\n');
-	}*/
 }
 
 DebugWindowLayout::~DebugWindowLayout()
