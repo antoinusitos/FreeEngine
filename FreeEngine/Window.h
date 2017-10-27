@@ -7,6 +7,7 @@
 #include <iostream>
 
 #include "FileHandler.h"
+#include "Data.h"
 
 struct EngineData
 {
@@ -60,6 +61,7 @@ public:
 
 	void NotifyChange();
 
+//Variables
 private :
 	// Unique instance of the time
 	static std::unique_ptr<Window> _instance;
@@ -76,8 +78,17 @@ private :
 
 	std::vector<EngineData> _allEngineData;
 
+	ScreenType _screenType;
+
+
+//Functions
+private:
 	void HandleDataChanges();
 
-	bool _isFullScreen = false;
+	void SetResolutionScreen(int X, int Y, int posX, int posY);
+
+	void SetScreenType(ScreenType newType);
+
+	void GetResolutionValuesWithDelimiter(std::string& text, std::string delimiter, std::string& x, std::string& y);
 };
 

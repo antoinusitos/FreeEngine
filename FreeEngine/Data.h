@@ -5,6 +5,12 @@
 #include <mutex>
 #include <iostream>
 
+enum ScreenType
+{
+	FULLSCREEN,
+	WINDOWED,
+};
+
 class Data
 {
 public:
@@ -28,5 +34,7 @@ private:
 	// Unique instance of the time
 	static std::unique_ptr<Data> _instance;
 	static std::once_flag onceFlag;
+
+	void GetProjetPath();
 };
 

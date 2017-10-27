@@ -8,6 +8,15 @@ std::once_flag Data::onceFlag;
 
 Data::Data()
 {
+	GetProjetPath();
+}
+
+Data::~Data()
+{
+}
+
+void Data::GetProjetPath()
+{
 	char result[MAX_PATH];
 	size_t size = GetModuleFileName(NULL, (LPWSTR)result, MAX_PATH);
 	std::string temp = std::string(result, size);
@@ -26,8 +35,4 @@ Data::Data()
 	projectPath += '/';
 
 	Debug::Instance().Print("project path:" + projectPath + '\n');
-}
-
-Data::~Data()
-{
 }
