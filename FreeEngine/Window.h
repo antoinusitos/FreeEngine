@@ -9,13 +9,6 @@
 #include "FileHandler.h"
 #include "Data.h"
 
-struct EngineData
-{
-public:
-	std::string category = "";
-	std::string value = "";
-};
-
 class DebugWindowLayout;
 class WindowLayout;
 

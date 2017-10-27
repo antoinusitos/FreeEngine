@@ -3,6 +3,7 @@
 #include <string>
 
 #include "WindowLayout.h"
+#include "Data.h"
 
 class DebugWindowLayout : public WindowLayout
 {
@@ -10,7 +11,7 @@ public:
 	DebugWindowLayout();
 	~DebugWindowLayout();
 
-	void AddString(std::string newString);
+	void AddString(DebugMessage debugMessage);
 
 	void Render(sf::RenderWindow* SFMLWindow);
 

@@ -4,10 +4,10 @@
 #include "Window.h"
 #include "Time.h"
 #include "ObjectsManager.h"
-#include "GarbageCollector.h"
 #include "Debug.h"
 #include "FileHandler.h"
 #include "Data.h"
+#include "ResourcesManager.h"
 
 class Engine : public FileObserver
 {
@@ -37,9 +37,9 @@ private :
 	Window* _window;
 	Time* _time;
 	ObjectsManager* _objectManager;
-	GarbageCollector* _garbageCollector;
 	Debug* _debug;
 	FileHandler* _fileHandler;
+	ResourcesManager* _resourcesManager;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

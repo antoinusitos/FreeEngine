@@ -15,9 +15,3 @@ GarbageCollector::GarbageCollector()
 GarbageCollector::~GarbageCollector()
 {
 }
-
-/*void GarbageCollector::SetDestroyable(EngineObject* object)
-{
-	delete object;
-	object = nullptr;
-}*/

@@ -60,7 +60,7 @@ int FileHandler::RegisterNewWatcher(FileObserver* observer, std::string fileName
 	Watcher newWatcher = Watcher();
 	newWatcher.ID = ids;
 	newWatcher.observer = observer;
-	newWatcher.fileToObserve = Data::Instance().projectPath + fileName;
+	newWatcher.fileToObserve = Data::Instance().GetProjetPath() + fileName;
 	ids++;
 	_allWatcher.push_back(newWatcher);
 

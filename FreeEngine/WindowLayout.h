@@ -23,6 +23,5 @@ protected:
 	void AddToRendering();
 
 	std::vector<sf::Drawable*> _allDrawable;
-	int lol;
 };
 

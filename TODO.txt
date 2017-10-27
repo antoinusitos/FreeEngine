@@ -9,12 +9,12 @@ Entity
 Math classes
 hot reload + engine ini
 File reader/writer
+resource manager
 
 TO DO :
 
 camera manager
 audio manager
-resource manager
 sprite manager
 scene manager
 

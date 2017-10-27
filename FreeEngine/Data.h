@@ -11,6 +11,26 @@ enum ScreenType
 	WINDOWED,
 };
 
+struct EngineData
+{
+public:
+	std::string category = "";
+	std::string value = "";
+};
+
+enum DebugMessageType
+{
+	LOG,
+	WARNING,
+	ERROR,
+};
+
+struct DebugMessage
+{
+	std::string message;
+	DebugMessageType messageType;
+};
+
 class Data
 {
 public:
@@ -28,13 +48,14 @@ public:
 		return *(_instance.get());
 	}
 
-	std::string projectPath = "";
+	std::string GetProjetPath();
 
 private:
 	// Unique instance of the time
 	static std::unique_ptr<Data> _instance;
 	static std::once_flag onceFlag;
 
-	void GetProjetPath();
+	std::string _projectPath = "";
+	void RecoverProjetPath();
 };
 

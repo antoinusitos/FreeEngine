@@ -8,31 +8,34 @@ std::once_flag Data::onceFlag;
 
 Data::Data()
 {
-	GetProjetPath();
+	RecoverProjetPath();
 }
 
 Data::~Data()
 {
 }
 
-void Data::GetProjetPath()
+void Data::RecoverProjetPath()
 {
 	char result[MAX_PATH];
 	size_t size = GetModuleFileName(NULL, (LPWSTR)result, MAX_PATH);
 	std::string temp = std::string(result, size);
 
-	for (int i = 0; i < size; ++i)
+	for (int i = 0; i < (int)size; ++i)
 	{
 		if (temp[i] == '\\')
 		{
-			projectPath += '/';
+			_projectPath += '/';
 			continue;
 		}
 
 		if (i % 2 == 0 && temp[i])
-			projectPath += temp[i];
+			_projectPath += temp[i];
 	}
-	projectPath += '/';
+	_projectPath += '/';
+}
 
-	Debug::Instance().Print("project path:" + projectPath + '\n');
+std::string Data::GetProjetPath()
+{
+	return _projectPath;
 }

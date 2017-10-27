@@ -7,6 +7,7 @@
 #include <vector>
 
 #include "DebugWindowLayout.h"
+#include "Data.h"
 
 class Debug
 {
@@ -27,7 +28,7 @@ public:
 		return *(_instance.get());
 	}
 
-	void Print(std::string message);
+	void Print(std::string message, DebugMessageType messageType);
 
 	void SaveLog();
 
@@ -38,7 +39,7 @@ private:
 	static std::unique_ptr<Debug> _instance;
 	static std::once_flag onceFlag;
 
-	std::vector<std::string> _allString;
+	std::vector<DebugMessage> _allString;
 
 	DebugWindowLayout* debugWindow;
 };

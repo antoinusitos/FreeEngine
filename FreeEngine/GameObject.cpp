@@ -53,7 +53,7 @@ void GameObject::Destroy()
 {
 	EngineObject::Destroy();
 	
-	Debug::Instance().Print("Destroy object " + name);
+	Debug::Instance().Print("Destroy object " + name, DebugMessageType::LOG);
 
 	DestroyObject();
 }

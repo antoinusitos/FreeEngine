@@ -101,7 +101,7 @@ void Window::NotifyChange()
 	{
 		_allEngineData.erase(_allEngineData.begin(), _allEngineData.end());
 
-		Debug::Instance().Print("file : " + configFileName + " changed !\n");
+		Debug::Instance().Print("file : " + configFileName + " changed !\n", DebugMessageType::WARNING);
 
 		std::string delimiter = "\n";
 		std::string delimiterCategory = "=";
@@ -128,7 +128,7 @@ void Window::NotifyChange()
 	}
 	else
 	{
-		Debug::Instance().Print("Cannot open file : " + configFileName);
+		Debug::Instance().Print("Cannot open file : " + configFileName, DebugMessageType::ERROR);
 	}
 }
 
@@ -182,7 +182,7 @@ void Window::HandleDataChanges()
 			{
 				_window.get()->close();
 				_window.release();
-				_screenType == ScreenType::WINDOWED;
+				_screenType = ScreenType::WINDOWED;
 				SetScreenType(_screenType);
 			}
 		}
@@ -197,7 +197,7 @@ void Window::SetResolutionScreen(int X, int Y, int posX, int posY)
 	_window->setPosition(sf::Vector2i(posX, posY));
 
 	std::string debug = "Set new Size to windowed " + std::to_string(X) + "x" + std::to_string(Y) + '\n';
-	Debug::Instance().Print(debug);
+	Debug::Instance().Print(debug, DebugMessageType::LOG);
 }
 
 void Window::SetScreenType(ScreenType newType)

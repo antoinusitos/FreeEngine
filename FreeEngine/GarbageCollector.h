@@ -24,8 +24,6 @@ public:
 		return *(_instance.get());
 	}
 
-	//void SetDestroyable(EngineObject* object);
-
 private:
 	// Unique instance of the time
 	static std::unique_ptr<GarbageCollector> _instance;

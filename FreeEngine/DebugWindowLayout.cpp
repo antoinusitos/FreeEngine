@@ -1,13 +1,15 @@
 #include "DebugWindowLayout.h"
 #include "Window.h"
 #include "Debug.h"
+#include "ResourcesManager.h"
 
 DebugWindowLayout::DebugWindowLayout()
 {
-	if (!font.loadFromFile("arial.ttf"))
+	font = ResourcesManager::Instance().GetFont("arial.ttf");
+	/*if (!font.loadFromFile("arial.ttf"))
 	{
 		Debug::Instance().Print("Error : fail to load font arial.ttf" + '\n');
-	}
+	}*/
 }
 
 DebugWindowLayout::~DebugWindowLayout()
@@ -33,13 +35,30 @@ void DebugWindowLayout::Unregister()
 	Window::Instance().RemoveRenderingLayout(this);
 }
 
-void DebugWindowLayout::AddString(std::string newString)
+void DebugWindowLayout::AddString(DebugMessage debugMessage)
 {
 	sf::Text text;
 	text.setFont(font);
 	text.setCharacterSize(24);
-	text.setString(sf::String(newString));
-	text.setFillColor(sf::Color::Black);
+	text.setString(debugMessage.message);
+	switch (debugMessage.messageType)
+	{
+	case DebugMessageType::LOG :
+		text.setFillColor(sf::Color::Black);
+		break;
+
+	case DebugMessageType::ERROR :
+		text.setFillColor(sf::Color::Red);
+		break;
+
+	case DebugMessageType::WARNING :
+		text.setFillColor(sf::Color::Yellow);
+		break;
+		 
+	default:
+		text.setFillColor(sf::Color::Black);
+		break;
+	}
 	text.setPosition(_beginX, _beginY + _index * _incrementingY);
 	_allText.push_back(text);
 	_index++;

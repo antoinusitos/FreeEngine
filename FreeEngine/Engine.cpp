@@ -16,8 +16,8 @@ Engine::Engine()
 	_window = &Window::Instance();
 	_time = &Time::Instance();
 	_objectManager = &ObjectsManager::Instance();
-	_garbageCollector = &GarbageCollector::Instance();
 	_fileHandler = &FileHandler::Instance();
+	_resourcesManager = &ResourcesManager::Instance();
 	Launch();
 }
 
@@ -44,8 +44,6 @@ void Engine::Launch()
 	goBis->RegisterInObjectManager();
 
 	_debug->SetDebugWindow(_window->GetDebugWindowLayout());
-
-	//_fileHandler->RegisterNewWatcher(this, "FreeEngine/Assets/test.txt");
 
 	_objectManager->StartAllEngineObjects();
 	while (_isRunning)
