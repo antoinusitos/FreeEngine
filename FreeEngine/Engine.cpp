@@ -117,9 +117,10 @@ void Engine::Update(float deltaTime)
 			go = new GameObject(std::string("ObjectUpdate"));
 			go->RegisterInObjectManager();
 			sbis = new Sound();
-			sbis->InitMusic("ouverture.wav");
-			sbis->SetDistance(0, 10);
-			sbis->SetPosition(20, 0);
+			sbis->InitSound("ouverture.wav");
+			sbis->SetDistance(5, 10);
+			sbis->SetPosition(0, 0, 5);
+			sbis->SetLoop(true);
 			sbis->Play();
 		}
 	}

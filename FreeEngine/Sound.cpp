@@ -69,11 +69,12 @@ void Sound::SetLoop(bool mustLoop)
 		_sound.setLoop(mustLoop);
 }
 
-void Sound::SetPosition(float x, float y)
+void Sound::SetPosition(float x, float y, float z)
 {
 	_transform.position.x = x;
 	_transform.position.y = y;
-	_sound.setPosition(x, y, 0);
+	_transform.position.z = z;
+	_sound.setPosition(x, y, z);
 }
 
 void Sound::SetRelativeToListener(bool newState)

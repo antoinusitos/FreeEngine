@@ -21,7 +21,9 @@ public:
 	void SetLoop(bool mustLoop);
 
 	//-----3D-----//
-	void SetPosition(float x, float y);
+	
+	//BECAREFUL, X is FORWARD, Z is RIGHT
+	void SetPosition(float x, float y, float z);
 	//Note from sfml
 	//Cela peut être utile pour les sons émis par l'écouteur lui-même (comme un bruit de tir, ou de pas). 
 	//Cela a également comme effet intéressant de désactiver la spatialisation si vous mettez la position de la source audio à (0, 0, 0).

@@ -12,6 +12,7 @@ File reader/writer
 resource manager
 audio manager
 
+
 TO DO :
 
 camera manager
@@ -29,11 +30,6 @@ Editor
 Delegate
 Tag
 Layers
-
-REWORK :
-
-3D sound
-
 
 
 Ideas :

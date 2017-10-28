@@ -8,6 +8,7 @@ GlobalListener::GlobalListener()
 	_listener = sf::Listener();
 	_listener.setUpVector(0, 1, 0); 
 	_listener.setPosition(0, 0, 0);
+	_listener.setDirection(1.f, 0.f, 0.f);
 	_listener.setGlobalVolume(100);
 }
 
