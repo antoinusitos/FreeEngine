@@ -27,6 +27,13 @@ Collisions
 Level Editor
 Editor
 Delegate
+Tag
+Layers
+
+REWORK :
+
+3D sound
+
 
 
 Ideas :

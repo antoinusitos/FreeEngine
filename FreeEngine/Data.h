@@ -48,6 +48,53 @@ enum SoundType
 	LISTENER,
 };
 
+
+enum KEYCODE
+{
+	SPACE,
+	ESCAPE,
+	ARROWUP,
+	ARROWDOWN,
+	ARROWRIGHT,
+	ARROWLEFT,
+	A,
+	B,
+	C,
+	D,
+	E,
+	F,
+	G,
+	H,
+	I,
+	J,
+	K,
+	L,
+	M,
+	N,
+	O,
+	P,
+	Q,
+	R,
+	S,
+	T,
+	U,
+	V,
+	W,
+	X,
+	Y,
+	Z,
+};
+
+struct InputKey
+{
+	KEYCODE key;
+	bool pressing = false;
+	bool pressDown = false;
+	bool release = false;
+	bool init = false;
+	bool exit = false;
+};
+
 class Data
 {
 public:

@@ -37,7 +37,7 @@ void GameObject::Update(float deltaTime)
 {
 	EngineObject::Update(deltaTime);
 
-	if (Input::Instance().GetKeyPressed(KEY::ARROWRIGHT))
+	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWRIGHT))
 	{
 		transform.position.x += deltaTime * 2.0f;
 		std::cout << "pos x : " << transform.position.x << std::endl;

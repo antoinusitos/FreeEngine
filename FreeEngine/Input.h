@@ -6,17 +6,7 @@
 #include <mutex>
 #include <iostream>
 
-enum KEY
-{
-	SPACE,
-	ESCAPE,
-	ARROWUP,
-	ARROWDOWN,
-	ARROWRIGHT,
-	ARROWLEFT,
-	A,
-	B,
-};
+#include "Data.h"
 
 class Input
 {
@@ -40,8 +30,14 @@ public:
 	// Process the input related to the engine
 	void ProcessInput(sf::Window& window);
 
+	// Check if the key was just pressed
+	bool GetKeyDown(KEYCODE key);
+
 	// Check if the key is pressed
-	bool GetKeyPressed(KEY key);
+	bool GetKeyPressed(KEYCODE key);
+
+	// Check if the key is just released
+	bool GetKeyReleased(KEYCODE key);
 
 	// Check if we must close the window
 	bool MustClose();
@@ -49,6 +45,8 @@ public:
 	void SetCanInput(bool NewState);
 
 	void Init();
+
+	void Update(float deltaTime);
 
 private :
 
@@ -60,8 +58,7 @@ private :
 	static std::once_flag onceFlag;
 
 	// Map that contain the state of the Input
-	std::map<KEY, bool> _mapping;
-	std::map<KEY, bool> _lastMapping;
+	std::map<KEYCODE, InputKey> _mapping;
 
 	// Should we close the SFML window ?
 	bool _mustClose = false;

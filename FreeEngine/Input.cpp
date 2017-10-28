@@ -17,25 +17,38 @@ Input::~Input()
 
 void Input::Init()
 {
-	_mapping = std::map<KEY, bool>();
-	_mapping.emplace(KEY::SPACE, false);
-	_mapping.emplace(KEY::ESCAPE, false);
-	_mapping.emplace(KEY::ARROWUP, false);
-	_mapping.emplace(KEY::ARROWDOWN, false);
-	_mapping.emplace(KEY::ARROWRIGHT, false);
-	_mapping.emplace(KEY::ARROWLEFT, false);
-	_mapping.emplace(KEY::A, false);
-	_mapping.emplace(KEY::B, false);
+	_mapping = std::map<KEYCODE, InputKey>();
+	InputKey ik = InputKey();
+	ik.key = KEYCODE::SPACE;
+	_mapping.emplace(KEYCODE::SPACE, ik);
 
-	_lastMapping = std::map<KEY, bool>();
-	_lastMapping.emplace(KEY::SPACE, false);
-	_lastMapping.emplace(KEY::ESCAPE, false);
-	_lastMapping.emplace(KEY::ARROWUP, false);
-	_lastMapping.emplace(KEY::ARROWDOWN, false);
-	_lastMapping.emplace(KEY::ARROWRIGHT, false);
-	_lastMapping.emplace(KEY::ARROWLEFT, false);
-	_lastMapping.emplace(KEY::A, false);
-	_lastMapping.emplace(KEY::B, false);
+	ik = InputKey();
+	ik.key = KEYCODE::ESCAPE;
+	_mapping.emplace(KEYCODE::ESCAPE, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::ARROWUP;
+	_mapping.emplace(KEYCODE::ARROWUP, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::ARROWDOWN;
+	_mapping.emplace(KEYCODE::ARROWDOWN, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::ARROWRIGHT;
+	_mapping.emplace(KEYCODE::ARROWRIGHT, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::ARROWLEFT;
+	_mapping.emplace(KEYCODE::ARROWLEFT, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::A;
+	_mapping.emplace(KEYCODE::A, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::B;
+	_mapping.emplace(KEYCODE::B, ik);
 }
 
 bool Input::MustClose()
@@ -47,96 +60,119 @@ void Input::ProcessInput(sf::Window& window)
 {
 	if (!_canInput) return;
 
-	for (std::map<KEY, bool>::iterator it = _lastMapping.begin(); it != _lastMapping.end(); ++it)
-		it->second = false;
-
 	// Process all events that happend in the SFML window
 	while (window.pollEvent(_event))
 	{
-		switch (_event.type) 
+		switch (_event.type)
 		{
 		case sf::Event::Closed:
 			_mustClose = true;
 			break;
 
 		case sf::Event::KeyPressed:
+		{
+			KEYCODE k;
+			bool keyExist = true;
+
 			if (_event.key.code == sf::Keyboard::Space)
 			{
-				_mapping[KEY::SPACE] = true;
+				k = KEYCODE::SPACE;
 			}
 			else if (_event.key.code == sf::Keyboard::Escape)
 			{
-				_mapping[KEY::ESCAPE] = true;
+				k = KEYCODE::ESCAPE;
 			}
 			else if (_event.key.code == sf::Keyboard::Up)
 			{
-				_mapping[KEY::ARROWUP] = true;
+				k = KEYCODE::ARROWUP;
 			}
 			else if (_event.key.code == sf::Keyboard::Down)
 			{
-				_mapping[KEY::ARROWDOWN] = true;
+				k = KEYCODE::ARROWDOWN;
 			}
 			else if (_event.key.code == sf::Keyboard::Right)
 			{
-				_mapping[KEY::ARROWRIGHT] = true;
+				k = KEYCODE::ARROWRIGHT;
 			}
 			else if (_event.key.code == sf::Keyboard::Left)
 			{
-				_mapping[KEY::ARROWLEFT] = true;
+				k = KEYCODE::ARROWLEFT;
 			}
 			else if (_event.key.code == sf::Keyboard::A)
 			{
-				_mapping[KEY::A] = true;
+				k = KEYCODE::A;
 			}
 			else if (_event.key.code == sf::Keyboard::B)
 			{
-				_mapping[KEY::B] = true;
+				k = KEYCODE::B;
 			}
-			break;
+			else
+				keyExist = false;
 
+			if (keyExist)
+			{
+				_mapping[k].pressing = true;
+				if (_mapping[k].init == false && _mapping[k].pressDown == false)
+				{
+					_mapping[k].init = true;
+					_mapping[k].pressDown = true;
+				}
+			}
+
+			break;
+		}
 		case sf::Event::KeyReleased:
+		{
+			KEYCODE k;
+			bool keyExist = true;
+
 			if (_event.key.code == sf::Keyboard::Space)
 			{
-				_lastMapping[KEY::SPACE] = true;
-				_mapping[KEY::SPACE] = false;
+				k = KEYCODE::SPACE;
 			}
 			else if (_event.key.code == sf::Keyboard::Escape)
 			{
-				_lastMapping[KEY::ESCAPE] = true;
-				_mapping[KEY::ESCAPE] = false;
+				k = KEYCODE::ESCAPE;
 			}
 			else if (_event.key.code == sf::Keyboard::Up)
 			{
-				_lastMapping[KEY::ARROWUP] = true;
-				_mapping[KEY::ARROWUP] = false;
+				k = KEYCODE::ARROWUP;
 			}
 			else if (_event.key.code == sf::Keyboard::Down)
 			{
-				_lastMapping[KEY::ARROWDOWN] = true;
-				_mapping[KEY::ARROWDOWN] = false;
+				k = KEYCODE::ARROWDOWN;
 			}
 			else if (_event.key.code == sf::Keyboard::Right)
 			{
-				_lastMapping[KEY::ARROWRIGHT] = true;
-				_mapping[KEY::ARROWRIGHT] = false;
+				k = KEYCODE::ARROWRIGHT;
 			}
 			else if (_event.key.code == sf::Keyboard::Left)
 			{
-				_lastMapping[KEY::ARROWLEFT] = true;
-				_mapping[KEY::ARROWLEFT] = false;
+				k = KEYCODE::ARROWLEFT;
 			}
 			else if (_event.key.code == sf::Keyboard::A)
 			{
-				_lastMapping[KEY::A] = true;
-				_mapping[KEY::A] = false;
+				k = KEYCODE::A;
 			}
 			else if (_event.key.code == sf::Keyboard::B)
 			{
-				_lastMapping[KEY::B] = true;
-				_mapping[KEY::B] = false;
+				k = KEYCODE::B;
 			}
-			break;
+			else
+				keyExist = false;
 
+			if (keyExist)
+			{
+				_mapping[k].pressing = false;
+				if (!_mapping[k].exit && !_mapping[k].release)
+				{
+					_mapping[k].exit = true;
+					_mapping[k].release = true;
+				}
+			}
+
+			break;
+		}
 		default:
 
 			break;
@@ -144,12 +180,39 @@ void Input::ProcessInput(sf::Window& window)
 	}
 }
 
-bool Input::GetKeyPressed(KEY key)
+bool Input::GetKeyDown(KEYCODE key)
 {
-	return _mapping.find(key)->second != _lastMapping.find(key)->second;
+	return _mapping.find(key)->second.pressDown;
+}
+
+bool Input::GetKeyReleased(KEYCODE key)
+{
+	return _mapping.find(key)->second.release;
+}
+
+bool Input::GetKeyPressed(KEYCODE key)
+{
+	return _mapping.find(key)->second.pressing;
 }
 
 void Input::SetCanInput(bool NewState)
 {
 	_canInput = NewState;
+}
+
+void Input::Update(float deltaTime)
+{
+	for (auto& x : _mapping)
+	{
+		if (x.second.init)
+		{
+			x.second.pressDown = false;
+		}
+		if (x.second.exit)
+		{
+			x.second.exit = false;
+			x.second.release = false;
+			x.second.init = false;
+		}
+	}
 }

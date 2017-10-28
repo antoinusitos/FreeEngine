@@ -74,6 +74,7 @@ void Engine::Launch()
 
 		_window->Render();
 
+		_input->Update(_time->deltaTime);
 	}
 
 	_window->RemoveAllRendering();
@@ -86,7 +87,7 @@ void Engine::CheckMustCloseWindow()
 	_input->ProcessInput(*_window->GetWindow());
 
 	// Close the window if escape is pressed
-	if (_input->GetKeyPressed(KEY::ESCAPE) || _input->MustClose())
+	if (_input->GetKeyPressed(KEYCODE::ESCAPE) || _input->MustClose())
 	{
 		_window->Exit();
 		_isRunning = false;
@@ -108,7 +109,7 @@ void Engine::Update(float deltaTime)
 
 
 	//-------------TEST-------------
-	if (_input->GetKeyPressed(KEY::SPACE))
+	if (_input->GetKeyDown(KEYCODE::SPACE))
 	{
 		if (lol == false)
 		{
@@ -123,7 +124,7 @@ void Engine::Update(float deltaTime)
 		}
 	}
 
-	if (_input->GetKeyPressed(KEY::A))
+	if (_input->GetKeyDown(KEYCODE::A))
 	{
 		if (go != nullptr)
 		{
