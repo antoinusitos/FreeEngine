@@ -39,15 +39,15 @@ void DebugWindowLayout::AddString(DebugMessage debugMessage)
 	text.setString(debugMessage.message);
 	switch (debugMessage.messageType)
 	{
-	case DebugMessageType::LOG :
+	case DebugMessageType::DEBUGLOG :
 		text.setFillColor(sf::Color::Black);
 		break;
 
-	case DebugMessageType::ERROR :
+	case DebugMessageType::DEBUGERROR :
 		text.setFillColor(sf::Color::Red);
 		break;
 
-	case DebugMessageType::WARNING :
+	case DebugMessageType::DEBUGWARNING :
 		text.setFillColor(sf::Color::Yellow);
 		break;
 		 

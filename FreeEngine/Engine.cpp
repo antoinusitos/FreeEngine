@@ -3,16 +3,6 @@
 
 #include "Engine.h"
 
-//-------------TEST-------------
-#include "GameObject.h"
-#include "Sound.h"
-bool lol = false;
-GameObject* go;
-GameObject* goBis;
-Sound* s;
-Sound* sbis;
-//-------------TEST-------------
-
 Engine::Engine()
 {
 	_debug = &Debug::Instance(); // keep it up to record and print everything
@@ -24,6 +14,7 @@ Engine::Engine()
 	_fileHandler = &FileHandler::Instance();
 	_resourcesManager = &ResourcesManager::Instance();
 	_globalListener = &GlobalListener::Instance();
+	_gamepadManager = &GamepadManager::Instance();
 
 	Launch();
 }
@@ -46,17 +37,9 @@ void Engine::Launch()
 
 	_window->Init();
 
-	goBis = new GameObject("BeforeStart", false);
-	goBis->RegisterInObjectManager();
+	_gamepadManager->Init();
 
 	_objectManager->StartAllEngineObjects();
-
-
-	//-------------TEST-------------
-	s = new Sound();
-	s->InitMusic("theme.wav");
-	//s->Play();
-	//-------------TEST-------------
 
 	while (_isRunning)
 	{
@@ -69,11 +52,10 @@ void Engine::Launch()
 		// Put engine stuff here
 		Update(_time->deltaTime);
 
-		_objectManager->UpdateAllEngineObjects(_time->deltaTime);
-		_objectManager->RenderAllEngineObjects();
-
+		// Render every thing
 		_window->Render();
 
+		// update inputs
 		_input->Update(_time->deltaTime);
 	}
 
@@ -105,35 +87,11 @@ void Engine::Update(float deltaTime)
 		}
 	}
 
-	_fileHandler->UpdateWatchers(_time->deltaTime);
+	_fileHandler->UpdateWatchers(deltaTime);
 
+	_gamepadManager->Update(deltaTime);
 
-	//-------------TEST-------------
-	if (_input->GetKeyDown(KEYCODE::SPACE))
-	{
-		if (lol == false)
-		{
-			lol = true;
-			go = new GameObject(std::string("ObjectUpdate"));
-			go->RegisterInObjectManager();
-			sbis = new Sound();
-			sbis->InitSound("ouverture.wav");
-			sbis->SetDistance(5, 10);
-			sbis->SetPosition(0, 0, 5);
-			sbis->SetLoop(true);
-			sbis->Play();
-		}
-	}
+	_objectManager->UpdateAllEngineObjects(_time->deltaTime);
+	_objectManager->RenderAllEngineObjects();
 
-	if (_input->GetKeyDown(KEYCODE::A))
-	{
-		if (go != nullptr)
-		{
-			go->Destroy();
-			delete go;
-			go = nullptr;
-			lol = false;
-		}
-	}
-	//-------------TEST-------------
 }

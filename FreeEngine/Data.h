@@ -30,9 +30,9 @@ public:
 
 enum DebugMessageType
 {
-	LOG,
-	WARNING,
-	ERROR,
+	DEBUGLOG,
+	DEBUGWARNING,
+	DEBUGERROR,
 };
 
 struct DebugMessage

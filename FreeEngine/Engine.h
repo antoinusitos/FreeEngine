@@ -9,6 +9,7 @@
 #include "Data.h"
 #include "ResourcesManager.h"
 #include "GlobalListener.h"
+#include "GamepadManager.h"
 
 class Engine : public FileObserver
 {
@@ -42,6 +43,7 @@ private :
 	FileHandler* _fileHandler;
 	ResourcesManager* _resourcesManager;
 	GlobalListener* _globalListener;
+	GamepadManager* _gamepadManager;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

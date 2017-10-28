@@ -12,6 +12,8 @@ File reader/writer
 resource manager
 audio manager
 Tag Manager
+Gamepad Manager
+
 
 TO DO :
 

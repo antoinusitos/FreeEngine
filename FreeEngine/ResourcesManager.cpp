@@ -34,7 +34,7 @@ sf::Font ResourcesManager::GetFont(std::string fontName)
 	sf::Font toReturn;
 	if (!toReturn.loadFromFile(_resourcesPath + fontName))
 	{
-		Debug::Instance().Print("Error : fail to load font " + _resourcesPath + fontName + '\n', DebugMessageType::ERROR);
+		Debug::Instance().Print("Error : fail to load font " + _resourcesPath + fontName + '\n', DebugMessageType::DEBUGERROR);
 	}
 	return toReturn;
 }
@@ -44,7 +44,7 @@ sf::SoundBuffer ResourcesManager::GetBuffer(std::string fileName)
 	sf::SoundBuffer toReturn;
 	if (!toReturn.loadFromFile(_resourcesPath + fileName))
 	{
-		Debug::Instance().Print("Error : fail to load sound " + _resourcesPath + fileName + '\n', DebugMessageType::ERROR);
+		Debug::Instance().Print("Error : fail to load sound " + _resourcesPath + fileName + '\n', DebugMessageType::DEBUGERROR);
 	}
 	return toReturn;
 }
@@ -53,6 +53,6 @@ void ResourcesManager::GetMusic(sf::Music& music, std::string fileName)
 {
 	if (!music.openFromFile(_resourcesPath + fileName))
 	{
-		Debug::Instance().Print("Error : fail to load sound " + _resourcesPath + fileName + '\n', DebugMessageType::ERROR);
+		Debug::Instance().Print("Error : fail to load sound " + _resourcesPath + fileName + '\n', DebugMessageType::DEBUGERROR);
 	}
 }

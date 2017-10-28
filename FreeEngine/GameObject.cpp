@@ -54,7 +54,7 @@ void GameObject::Destroy()
 {
 	EngineObject::Destroy();
 	
-	Debug::Instance().Print("Destroy object " + name, DebugMessageType::LOG);
+	Debug::Instance().Print("Destroy object " + name, DebugMessageType::DEBUGLOG);
 
 	DestroyObject();
 }
@@ -65,7 +65,7 @@ void GameObject::AddTagToObject(std::string newTag)
 
 	if (newTagID == -1)
 	{
-		Debug::Instance().Print("Tag " + newTag + " does not exist. Add it first to the Tag Manager", DebugMessageType::ERROR);
+		Debug::Instance().Print("Tag " + newTag + " does not exist. Add it first to the Tag Manager", DebugMessageType::DEBUGERROR);
 		return;
 	}
 
