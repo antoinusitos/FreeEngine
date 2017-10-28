@@ -3,6 +3,8 @@
 
 #include "Engine.h"
 
+#include "Vector3.h"
+
 Engine::Engine()
 {
 	_debug = &Debug::Instance(); // keep it up to record and print everything

@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+
 class Vector3
 {
 public:
@@ -9,5 +11,13 @@ public:
 	float x;
 	float y;
 	float z;
+
+	Vector3 operator+(const Vector3& newVector3);
+	Vector3 operator-(const Vector3& newVector3);
+	Vector3 operator*(const Vector3& newVector3);
+	Vector3 operator*(const float multiplier);
+	Vector3 operator/(const Vector3& newVector3);
+
+	std::string ToString();
 };
 
