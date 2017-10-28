@@ -169,6 +169,7 @@
     <ClCompile Include="ObjectsManager.cpp" />
     <ClCompile Include="ResourcesManager.cpp" />
     <ClCompile Include="Sound.cpp" />
+    <ClCompile Include="TagManager.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Vector3.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="ObjectsManager.h" />
     <ClInclude Include="ResourcesManager.h" />
     <ClInclude Include="Sound.h" />
+    <ClInclude Include="TagManager.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Vector3.h" />

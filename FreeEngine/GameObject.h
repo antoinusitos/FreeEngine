@@ -18,5 +18,10 @@ public:
 	void Destroy();
 
 	Transform transform;
+
+	void AddTagToObject(std::string newTag);
+
+private:
+	std::vector<int> _tags;
 };
 

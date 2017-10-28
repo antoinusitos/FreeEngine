@@ -11,7 +11,7 @@ hot reload + engine ini
 File reader/writer
 resource manager
 audio manager
-
+Tag Manager
 
 TO DO :
 
@@ -28,7 +28,6 @@ Collisions
 Level Editor
 Editor
 Delegate
-Tag
 Layers
 
 

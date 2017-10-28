@@ -75,6 +75,9 @@
     <ClCompile Include="GlobalListener.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="TagManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -132,6 +135,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="GlobalListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="TagManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

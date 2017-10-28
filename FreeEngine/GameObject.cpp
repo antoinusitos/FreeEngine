@@ -1,6 +1,7 @@
 #include "GameObject.h"
 #include "Input.h"
 #include <iostream>
+#include "TagManager.h"
 
 GameObject::GameObject(std::string Name) : EngineObject()
 {
@@ -56,4 +57,17 @@ void GameObject::Destroy()
 	Debug::Instance().Print("Destroy object " + name, DebugMessageType::LOG);
 
 	DestroyObject();
+}
+
+void GameObject::AddTagToObject(std::string newTag)
+{
+	int newTagID = TagManager::Instance().GetTagID(newTag);
+
+	if (newTagID == -1)
+	{
+		Debug::Instance().Print("Tag " + newTag + " does not exist. Add it first to the Tag Manager", DebugMessageType::ERROR);
+		return;
+	}
+
+	_tags.push_back(newTagID);
 }
