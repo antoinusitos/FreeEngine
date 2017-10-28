@@ -28,6 +28,7 @@ public:
 
 	void RegisterEngineObject(EngineObject* object);
 
+	void AwakeAllEngineObjects();
 	void StartAllEngineObjects();
 	void UpdateAllEngineObjects(float deltaTime);
 	void RenderAllEngineObjects();

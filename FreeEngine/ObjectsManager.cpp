@@ -33,6 +33,14 @@ int ObjectsManager::GetID()
 	return ID-1;
 }
 
+void ObjectsManager::AwakeAllEngineObjects()
+{
+	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	{
+		(*it)->Awake();
+	}
+}
+
 void ObjectsManager::StartAllEngineObjects()
 {
 	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)

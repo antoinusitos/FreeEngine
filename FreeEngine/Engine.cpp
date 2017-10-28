@@ -41,6 +41,7 @@ void Engine::Launch()
 
 	_gamepadManager->Init();
 
+	_objectManager->AwakeAllEngineObjects();
 	_objectManager->StartAllEngineObjects();
 
 	while (_isRunning)

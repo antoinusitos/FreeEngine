@@ -13,6 +13,7 @@ resource manager
 audio manager
 Tag Manager
 Gamepad Manager
+Component
 
 
 TO DO :
@@ -21,7 +22,6 @@ camera manager
 sprite manager
 scene manager
 
-Component
 Particles
 Light ?
 Prefab

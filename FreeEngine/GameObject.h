@@ -1,14 +1,17 @@
 #pragma once
 #include "EngineObject.h"
 #include "Transform.h"
+#include "Composite.h"
 
-class GameObject : public EngineObject
+class GameObject : public EngineObject, public Composite
 {
 public:
 	GameObject(std::string Name);
 	GameObject(bool InRunTime);
 	GameObject(std::string Name, bool InRunTime);
 	~GameObject();
+
+	void Awake();
 
 	void Start();
 
