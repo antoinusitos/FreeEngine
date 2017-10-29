@@ -22,6 +22,7 @@ Engine::Engine()
 	_resourcesManager = &ResourcesManager::Instance();
 	_globalListener = &GlobalListener::Instance();
 	_gamepadManager = &GamepadManager::Instance();
+	_cameradManager = &CameraManager::Instance();
 
 	Launch();
 }
@@ -44,8 +45,11 @@ void Engine::Launch()
 
 	_window->Init();
 
-	_gamepadManager->Init();
+	_window->SetView(_cameradManager->GetView());
 
+	_window->InitInternalWindows();
+
+	_gamepadManager->Init();
 
 	go = new GameObject("go");
 	TestLeaf* l = new TestLeaf();

@@ -154,6 +154,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="Composite.cpp" />
     <ClCompile Include="Data.cpp" />
@@ -182,6 +183,7 @@
     <ClCompile Include="WindowLayout.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Component.h" />
     <ClInclude Include="Composite.h" />
     <ClInclude Include="Data.h" />

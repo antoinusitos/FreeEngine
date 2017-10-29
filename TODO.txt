@@ -14,11 +14,11 @@ audio manager
 Tag Manager
 Gamepad Manager
 Component
+Camera Manager
 
 
 TO DO :
 
-camera manager
 sprite manager
 scene manager
 
@@ -26,11 +26,10 @@ Particles
 Light ?
 Prefab
 Serialization
-Collisions
+Collisions/Layers
 Level Editor
 Editor
 Delegate
-Layers
 
 
 Ideas :

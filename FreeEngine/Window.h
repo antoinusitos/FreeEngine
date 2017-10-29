@@ -53,6 +53,11 @@ public:
 	void RemoveAllRendering();
 
 	void NotifyChange();
+	
+	float GetScreenResolutionX();
+	float GetScreenResolutionY();
+
+	void SetView(sf::View newView);
 
 //Variables
 private :
@@ -73,6 +78,8 @@ private :
 
 	ScreenType _screenType;
 
+	unsigned int _screenResolutionX;
+	unsigned int _screenResolutionY;
 
 //Functions
 private:

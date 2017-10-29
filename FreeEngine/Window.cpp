@@ -32,7 +32,7 @@ void Window::Init()
 	_screenType = ScreenType::WINDOWED;
 #endif
 
-	InitInternalWindows();
+	//InitInternalWindows();
 }
 
 void Window::InitInternalWindows()
@@ -152,10 +152,10 @@ void Window::HandleDataChanges()
 				std::string y;
 				GetResolutionValuesWithDelimiter(tempVal, "x", x, y);
 
-				unsigned int dimX = atoi(x.c_str());
-				unsigned int dimY = atoi(y.c_str());
+				_screenResolutionX = atoi(x.c_str());
+				_screenResolutionY = atoi(y.c_str());
 
-				SetResolutionScreen(dimX, dimY, 0, 0);
+				SetResolutionScreen(_screenResolutionX, _screenResolutionY, 0, 0);
 			}
 		}
 		else if (tempCat == "Resolution")
@@ -166,11 +166,11 @@ void Window::HandleDataChanges()
 				std::string y;
 				GetResolutionValuesWithDelimiter(tempVal, "x", x, y);
 
-				unsigned int dimX = atoi(x.c_str());
-				unsigned int dimY = atoi(y.c_str());
+				_screenResolutionX = atoi(x.c_str());
+				_screenResolutionY = atoi(y.c_str());
 
 				sf::Vector2u size = _window.get()->getSize();
-				SetResolutionScreen(dimX, dimY, size.x / 2, size.y / 2);
+				SetResolutionScreen(_screenResolutionX, _screenResolutionY, size.x / 2, size.y / 2);
 			}
 		}
 		else if (tempCat == "Sceen")
@@ -227,4 +227,19 @@ void Window::GetResolutionValuesWithDelimiter(std::string& text, std::string del
 	size_t posTemp = text.find(delimiter);
 	text.erase(0, posTemp + delimiter.length());
 	y = text;
+}
+
+float Window::GetScreenResolutionX()
+{
+	return _screenResolutionX;
+}
+
+float Window::GetScreenResolutionY()
+{
+	return _screenResolutionY;
+}
+
+void Window::SetView(sf::View newView)
+{
+	_window->setView(newView);
 }
