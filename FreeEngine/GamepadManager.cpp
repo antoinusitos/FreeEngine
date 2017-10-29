@@ -36,15 +36,17 @@ void GamepadManager::Update(float deltaTime)
 {
 	if (!Refresh())
 	{
-		if (_wasConnected)
+		if (_wasConnected && !_reminder)
 		{
 			Debug::Instance().Print("Please connect an Xbox 360 controller.", DebugMessageType::DEBUGERROR);
+			_reminder = true;
 		}
 	}
 	else
 	{
 		if (!_wasConnected)
 		{
+			_reminder = false;
 			_wasConnected = true;
 
 			Debug::Instance().Print("Controller connected on port " + GetPort(), DebugMessageType::DEBUGWARNING);

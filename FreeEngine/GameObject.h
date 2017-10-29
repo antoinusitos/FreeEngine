@@ -7,8 +7,7 @@ class GameObject : public EngineObject, public Composite
 {
 public:
 	GameObject(std::string Name);
-	GameObject(bool InRunTime);
-	GameObject(std::string Name, bool InRunTime);
+	GameObject();
 	~GameObject();
 
 	void Awake();

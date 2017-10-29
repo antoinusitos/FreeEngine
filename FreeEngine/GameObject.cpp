@@ -7,22 +7,12 @@ GameObject::GameObject(std::string Name) : EngineObject()
 {
 	name = Name;
 	transform = Transform();
-	Start();
 }
 
-GameObject::GameObject(bool InRunTime) : EngineObject()
+GameObject::GameObject() : EngineObject()
 {
+	name = "GameObject";
 	transform = Transform();
-	if (InRunTime)
-		Start();
-}
-
-GameObject::GameObject(std::string Name, bool InRunTime) : EngineObject()
-{
-	name = Name;
-	transform = Transform();
-	if(InRunTime)
-		Start();
 }
 
 GameObject::~GameObject()

@@ -5,6 +5,11 @@
 
 #include "Vector3.h"
 
+#include "GameObject.h"
+#include "TestLeaf.h"
+
+GameObject* go;
+
 Engine::Engine()
 {
 	_debug = &Debug::Instance(); // keep it up to record and print everything
@@ -40,6 +45,12 @@ void Engine::Launch()
 	_window->Init();
 
 	_gamepadManager->Init();
+
+
+	go = new GameObject("go");
+	TestLeaf* l = new TestLeaf();
+	go->AddLeaf(l);
+	_objectManager->RegisterEngineObject(go);
 
 	_objectManager->AwakeAllEngineObjects();
 	_objectManager->StartAllEngineObjects();

@@ -65,5 +65,6 @@ private:
 	float _rightTrigger;
 
 	bool _wasConnected = true;
+	bool _reminder = false;
 };
 
