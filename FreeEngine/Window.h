@@ -61,6 +61,8 @@ public:
 
 	void ResetToDefaultView();
 
+	void ToggleConsole();
+
 //Variables
 private :
 	// Unique instance of the time
@@ -72,7 +74,7 @@ private :
 
 	std::vector<WindowLayout*> _allWindowLayout;
 
-	std::unique_ptr<DebugWindowLayout> dwl;
+	std::unique_ptr<DebugWindowLayout> _console;
 
 	std::string configFileName = "Assets/Config/Engine.txt";
 
@@ -82,6 +84,8 @@ private :
 
 	unsigned int _screenResolutionX;
 	unsigned int _screenResolutionY;
+
+	bool _showingConsole = true;
 
 //Functions
 private:

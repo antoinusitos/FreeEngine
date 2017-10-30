@@ -64,19 +64,22 @@ void DebugWindowLayout::Render(sf::RenderWindow* SFMLWindow)
 {
 	WindowLayout::Render(SFMLWindow);
 
-	int tempIndex = 0;
-	int startingIndex = 0;
-
-	int size = _allText.size();
-	if (size > _numberLogInConsole)
+	if (_active)
 	{
-		startingIndex = size - _numberLogInConsole;
-	}
+		int tempIndex = 0;
+		int startingIndex = 0;
 
-	for (std::vector<sf::Text>::iterator it = _allText.begin() + startingIndex; it != _allText.end(); ++it)
-	{
-		(*it).setPosition(_beginX, _beginY + tempIndex * _incrementingY);
-		SFMLWindow->draw((*it));
-		tempIndex++;
+		int size = _allText.size();
+		if (size > _numberLogInConsole)
+		{
+			startingIndex = size - _numberLogInConsole;
+		}
+
+		for (std::vector<sf::Text>::iterator it = _allText.begin() + startingIndex; it != _allText.end(); ++it)
+		{
+			(*it).setPosition(_beginX, _beginY + tempIndex * _incrementingY);
+			SFMLWindow->draw((*it));
+			tempIndex++;
+		}
 	}
 }

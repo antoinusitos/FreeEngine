@@ -19,9 +19,14 @@ public:
 	virtual void Render(sf::RenderWindow* SFMLWindow);
 
 	void UnregisterToRendering();
+
+	void SetVisibility(bool newVisibility);
+
 protected:
 	void AddToRendering();
 
 	std::vector<sf::Drawable*> _allDrawable;
+
+	bool _active = true;
 };
 

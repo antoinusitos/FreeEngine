@@ -51,6 +51,7 @@ enum SoundType
 
 enum KEYCODE
 {
+	NONE,
 	SPACE,
 	ESCAPE,
 	ARROWUP,
@@ -83,6 +84,8 @@ enum KEYCODE
 	X,
 	Y,
 	Z,
+	TILDE,
+	F1
 };
 
 struct InputKey

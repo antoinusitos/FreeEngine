@@ -43,6 +43,10 @@ void Input::Init()
 	_mapping.emplace(KEYCODE::ARROWLEFT, ik);
 
 	ik = InputKey();
+	ik.key = KEYCODE::F1;
+	_mapping.emplace(KEYCODE::F1, ik);
+
+	ik = InputKey();
 	ik.key = KEYCODE::A;
 	_mapping.emplace(KEYCODE::A, ik);
 
@@ -74,39 +78,9 @@ void Input::ProcessInput(sf::Window& window)
 			KEYCODE k;
 			bool keyExist = true;
 
-			if (_event.key.code == sf::Keyboard::Space)
-			{
-				k = KEYCODE::SPACE;
-			}
-			else if (_event.key.code == sf::Keyboard::Escape)
-			{
-				k = KEYCODE::ESCAPE;
-			}
-			else if (_event.key.code == sf::Keyboard::Up)
-			{
-				k = KEYCODE::ARROWUP;
-			}
-			else if (_event.key.code == sf::Keyboard::Down)
-			{
-				k = KEYCODE::ARROWDOWN;
-			}
-			else if (_event.key.code == sf::Keyboard::Right)
-			{
-				k = KEYCODE::ARROWRIGHT;
-			}
-			else if (_event.key.code == sf::Keyboard::Left)
-			{
-				k = KEYCODE::ARROWLEFT;
-			}
-			else if (_event.key.code == sf::Keyboard::A)
-			{
-				k = KEYCODE::A;
-			}
-			else if (_event.key.code == sf::Keyboard::B)
-			{
-				k = KEYCODE::B;
-			}
-			else
+			k = GetKeycodeAssociate(_event.key.code);
+
+			if (k == KEYCODE::NONE)
 				keyExist = false;
 
 			if (keyExist)
@@ -125,40 +99,10 @@ void Input::ProcessInput(sf::Window& window)
 		{
 			KEYCODE k;
 			bool keyExist = true;
+			
+			k = GetKeycodeAssociate(_event.key.code);
 
-			if (_event.key.code == sf::Keyboard::Space)
-			{
-				k = KEYCODE::SPACE;
-			}
-			else if (_event.key.code == sf::Keyboard::Escape)
-			{
-				k = KEYCODE::ESCAPE;
-			}
-			else if (_event.key.code == sf::Keyboard::Up)
-			{
-				k = KEYCODE::ARROWUP;
-			}
-			else if (_event.key.code == sf::Keyboard::Down)
-			{
-				k = KEYCODE::ARROWDOWN;
-			}
-			else if (_event.key.code == sf::Keyboard::Right)
-			{
-				k = KEYCODE::ARROWRIGHT;
-			}
-			else if (_event.key.code == sf::Keyboard::Left)
-			{
-				k = KEYCODE::ARROWLEFT;
-			}
-			else if (_event.key.code == sf::Keyboard::A)
-			{
-				k = KEYCODE::A;
-			}
-			else if (_event.key.code == sf::Keyboard::B)
-			{
-				k = KEYCODE::B;
-			}
-			else
+			if (k == KEYCODE::NONE)
 				keyExist = false;
 
 			if (keyExist)
@@ -215,4 +159,46 @@ void Input::Update(float deltaTime)
 			x.second.init = false;
 		}
 	}
+}
+
+KEYCODE Input::GetKeycodeAssociate(sf::Keyboard::Key key)
+{
+	if (_event.key.code == sf::Keyboard::Space)
+	{
+		return KEYCODE::SPACE;
+	}
+	else if (_event.key.code == sf::Keyboard::Escape)
+	{
+		return KEYCODE::ESCAPE;
+	}
+	else if (_event.key.code == sf::Keyboard::F1)
+	{
+		return KEYCODE::F1;
+	}
+	else if (_event.key.code == sf::Keyboard::Up)
+	{
+		return KEYCODE::ARROWUP;
+	}
+	else if (_event.key.code == sf::Keyboard::Down)
+	{
+		return KEYCODE::ARROWDOWN;
+	}
+	else if (_event.key.code == sf::Keyboard::Right)
+	{
+		return KEYCODE::ARROWRIGHT;
+	}
+	else if (_event.key.code == sf::Keyboard::Left)
+	{
+		return KEYCODE::ARROWLEFT;
+	}
+	else if (_event.key.code == sf::Keyboard::A)
+	{
+		return KEYCODE::A;
+	}
+	else if (_event.key.code == sf::Keyboard::B)
+	{
+		return KEYCODE::B;
+	}
+
+	return KEYCODE::NONE;
 }

@@ -64,6 +64,8 @@ private :
 	bool _mustClose = false;
 
 	bool _canInput = false;
+
+	KEYCODE GetKeycodeAssociate(sf::Keyboard::Key key);
 };
 
 

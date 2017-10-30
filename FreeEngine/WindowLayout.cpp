@@ -11,9 +11,12 @@ WindowLayout::~WindowLayout()
 
 void WindowLayout::Render(sf::RenderWindow* SFMLWindow)
 {
-	for (std::vector<sf::Drawable*>::iterator it = _allDrawable.begin(); it != _allDrawable.end(); ++it)
+	if (_active)
 	{
-		SFMLWindow->draw((**it));
+		for (std::vector<sf::Drawable*>::iterator it = _allDrawable.begin(); it != _allDrawable.end(); ++it)
+		{
+			SFMLWindow->draw((**it));
+		}
 	}
 }
 
@@ -25,4 +28,9 @@ void WindowLayout::AddToRendering()
 void WindowLayout::UnregisterToRendering()
 {
 	Window::Instance().RemoveRenderingLayout(this);
+}
+
+void WindowLayout::SetVisibility(bool newVisibility)
+{
+	_active = newVisibility;
 }

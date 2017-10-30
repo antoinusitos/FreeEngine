@@ -38,8 +38,8 @@ void Window::Init()
 
 void Window::InitInternalWindows()
 {
-	dwl = std::make_unique<DebugWindowLayout>();
-	dwl->Init();
+	_console = std::make_unique<DebugWindowLayout>();
+	_console->Init();
 
 	Debug::Instance().SetDebugWindow(GetDebugWindowLayout());
 }
@@ -47,7 +47,7 @@ void Window::InitInternalWindows()
 void Window::Exit()
 {
 	_window->close();
-	dwl.release();
+	_console.release();
 }
 
 void Window::Render()
@@ -92,7 +92,7 @@ void Window::RemoveAllRendering()
 
 DebugWindowLayout* Window::GetDebugWindowLayout()
 {
-	return dwl.get();
+	return _console.get();
 }
 
 void Window::NotifyChange()
@@ -250,4 +250,10 @@ void Window::SetView(sf::View newView)
 void Window::ResetToDefaultView()
 {
 	SetView(_window->getDefaultView());
+}
+
+void Window::ToggleConsole()
+{
+	_showingConsole = !_showingConsole;
+	_console->SetVisibility(_showingConsole);
 }

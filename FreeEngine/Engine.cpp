@@ -116,9 +116,16 @@ void Engine::Update(float deltaTime)
 	_objectManager->UpdateAllEngineObjects(_time->deltaTime);
 	_objectManager->RenderAllEngineObjects();
 
+	if (_input->GetKeyDown(KEYCODE::F1))
+	{
+		_window->ToggleConsole();
+	}
+
+	//-----TEST-----
 	if (_input->GetKeyDown(KEYCODE::A))
 	{
 		_window->ResetToDefaultView();
 	}
+	//-----TEST-----
 
 }
