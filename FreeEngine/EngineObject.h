@@ -5,7 +5,7 @@
 
 #include "debug.h"
 
-class EngineObject : public std::enable_shared_from_this<EngineObject>
+class EngineObject
 {
 public:
 	EngineObject();

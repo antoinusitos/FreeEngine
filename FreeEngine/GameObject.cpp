@@ -96,3 +96,8 @@ void GameObject::AddTagToObject(std::string newTag)
 
 	_tags.push_back(newTagID);
 }
+
+void GameObject::Exit()
+{
+
+}

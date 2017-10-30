@@ -26,6 +26,7 @@ public:
 
 	sf::Font GetFont(std::string fileName);
 	sf::SoundBuffer GetBuffer(std::string fileName);
+	sf::Texture GetTexture(std::string fileName);
 	void GetMusic(sf::Music& music, std::string fileName);
 
 

@@ -56,3 +56,14 @@ void ResourcesManager::GetMusic(sf::Music& music, std::string fileName)
 		Debug::Instance().Print("Error : fail to load sound " + _resourcesPath + fileName + '\n', DebugMessageType::DEBUGERROR);
 	}
 }
+
+
+sf::Texture ResourcesManager::GetTexture(std::string fileName)
+{
+	sf::Texture toReturn;
+	if (!toReturn.loadFromFile(_resourcesPath + fileName))
+	{
+		Debug::Instance().Print("Error : fail to load texture " + _resourcesPath + fileName + '\n', DebugMessageType::DEBUGERROR);
+	}
+	return toReturn;
+}
