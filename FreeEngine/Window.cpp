@@ -2,6 +2,7 @@
 #include "DebugWindowLayout.h"
 #include "WindowLayout.h"
 #include "Engine.h"
+#include "CameraManager.h"
 
 const bool STARTFULLSCREEN = false;
 
@@ -32,13 +33,11 @@ void Window::Init()
 	_screenType = ScreenType::WINDOWED;
 #endif
 
-	//InitInternalWindows();
+	FileHandler::Instance().RegisterNewWatcher(this, "FreeEngine/Assets/Config/Engine.txt");
 }
 
 void Window::InitInternalWindows()
 {
-	FileHandler::Instance().RegisterNewWatcher(this, "FreeEngine/Assets/Config/Engine.txt");
-
 	dwl = std::make_unique<DebugWindowLayout>();
 	dwl->Init();
 
@@ -156,6 +155,7 @@ void Window::HandleDataChanges()
 				_screenResolutionY = atoi(y.c_str());
 
 				SetResolutionScreen(_screenResolutionX, _screenResolutionY, 0, 0);
+				CameraManager::Instance().ResizeCurrentView(_screenResolutionX, _screenResolutionY);
 			}
 		}
 		else if (tempCat == "Resolution")
@@ -171,6 +171,7 @@ void Window::HandleDataChanges()
 
 				sf::Vector2u size = _window.get()->getSize();
 				SetResolutionScreen(_screenResolutionX, _screenResolutionY, size.x / 2, size.y / 2);
+				CameraManager::Instance().ResizeCurrentView(_screenResolutionX, _screenResolutionY);
 			}
 		}
 		else if (tempCat == "Sceen")
@@ -197,6 +198,8 @@ void Window::SetResolutionScreen(int X, int Y, int posX, int posY)
 {
 	sf::Vector2u vec = sf::Vector2u(X, Y);
 	_window.get()->setSize(vec);
+
+	CameraManager::Instance().ResizeCurrentView(vec.x, vec.y);
 
 	_window->setPosition(sf::Vector2i(posX, posY));
 
@@ -242,4 +245,9 @@ float Window::GetScreenResolutionY()
 void Window::SetView(sf::View newView)
 {
 	_window->setView(newView);
+}
+
+void Window::ResetToDefaultView()
+{
+	SetView(_window->getDefaultView());
 }

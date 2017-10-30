@@ -32,6 +32,10 @@ Editor
 Delegate
 
 
+REWORK :
+
+changing from windowed to fullscreen (bug : making everything bigger)
+
 Ideas :
 
 Double return ? (out)

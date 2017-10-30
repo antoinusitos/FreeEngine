@@ -59,6 +59,8 @@ public:
 
 	void SetView(sf::View newView);
 
+	void ResetToDefaultView();
+
 //Variables
 private :
 	// Unique instance of the time

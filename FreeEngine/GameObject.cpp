@@ -2,17 +2,22 @@
 #include "Input.h"
 #include <iostream>
 #include "TagManager.h"
+#include "ObjectsManager.h"
 
 GameObject::GameObject(std::string Name) : EngineObject()
 {
+	_ID = ObjectsManager::Instance().GetID();
 	name = Name;
 	transform = Transform();
+	ObjectsManager::Instance().RegisterEngineObject(this);
 }
 
 GameObject::GameObject() : EngineObject()
 {
-	name = "GameObject";
+	_ID = ObjectsManager::Instance().GetID();
+	name = "GameObject"+ std::to_string(_ID);
 	transform = Transform();
+	ObjectsManager::Instance().RegisterEngineObject(this);
 }
 
 GameObject::~GameObject()

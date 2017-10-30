@@ -25,11 +25,16 @@ public:
 
 	sf::View GetView();
 
+	void Init();
+
+	void ResizeCurrentView(int x, int y);
+
 private:
 	// Unique instance of the time
 	static std::unique_ptr<CameraManager> _instance;
 	static std::once_flag onceFlag;
 
 	sf::View _mainView;
+	sf::View _currentView;
 };
 

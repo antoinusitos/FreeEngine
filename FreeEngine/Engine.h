@@ -45,7 +45,7 @@ private :
 	ResourcesManager* _resourcesManager;
 	GlobalListener* _globalListener;
 	GamepadManager* _gamepadManager;
-	CameraManager* _cameradManager;
+	CameraManager* _cameraManager;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

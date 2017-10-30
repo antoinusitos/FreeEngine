@@ -22,7 +22,7 @@ Engine::Engine()
 	_resourcesManager = &ResourcesManager::Instance();
 	_globalListener = &GlobalListener::Instance();
 	_gamepadManager = &GamepadManager::Instance();
-	_cameradManager = &CameraManager::Instance();
+	_cameraManager = &CameraManager::Instance();
 
 	Launch();
 }
@@ -45,16 +45,20 @@ void Engine::Launch()
 
 	_window->Init();
 
-	_window->SetView(_cameradManager->GetView());
+	_fileHandler->UpdateWatchers(_time->deltaTime);
+
+	_cameraManager->Init();
+
+	_window->SetView(_cameraManager->GetView());
 
 	_window->InitInternalWindows();
 
 	_gamepadManager->Init();
 
+	//-----TEST-----
 	go = new GameObject("go");
-	TestLeaf* l = new TestLeaf();
-	go->AddLeaf(l);
-	_objectManager->RegisterEngineObject(go);
+	go->AddLeaf(new TestLeaf());
+	//-----TEST-----
 
 	_objectManager->AwakeAllEngineObjects();
 	_objectManager->StartAllEngineObjects();
@@ -111,5 +115,10 @@ void Engine::Update(float deltaTime)
 
 	_objectManager->UpdateAllEngineObjects(_time->deltaTime);
 	_objectManager->RenderAllEngineObjects();
+
+	if (_input->GetKeyDown(KEYCODE::A))
+	{
+		_window->ResetToDefaultView();
+	}
 
 }
