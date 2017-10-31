@@ -12,6 +12,8 @@
 #include "SpriteAnimator.h"
 
 GameObject* go;
+SpriteAnimator* sr;
+float speed = 1;
 //-----TEST-----
 
 Engine::Engine()
@@ -55,7 +57,7 @@ void Engine::Launch()
 
 	_window->SetView(_cameraManager->GetView());
 
-	//_window->InitInternalWindows();
+	_window->InitInternalWindows();
 
 	_gamepadManager->Init();
 
@@ -64,7 +66,7 @@ void Engine::Launch()
 	//SpriteRenderer* sr = new SpriteRenderer();
 	//sr->Init("Sprites/zelda/frame0.png");
 	//go->AddLeaf(sr);
-	SpriteAnimator* sr = new SpriteAnimator();
+	sr = new SpriteAnimator();
 	for (int i = 0; i < 8; i++)
 	{
 		sr->AddTexture("Sprites/zelda/frame" + std::to_string(i) + ".png");
@@ -145,7 +147,8 @@ void Engine::Update(float deltaTime)
 	//-----TEST-----
 	if (_input->GetKeyDown(KEYCODE::A))
 	{
-		_window->ResetToDefaultView();
+		speed++;
+		sr->SetAnimationSpeed(speed);
 	}
 	//-----TEST-----
 

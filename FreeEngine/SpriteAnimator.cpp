@@ -48,7 +48,7 @@ void SpriteAnimator::SetOrigin(float x, float y)
 
 void SpriteAnimator::Update(float deltaTime)
 {
-	_currentAnimTime += deltaTime;
+	_currentAnimTime += deltaTime * _animationSpeed;
 
 	if (_currentAnimTime >= _animRate)
 	{
@@ -88,4 +88,9 @@ void SpriteAnimator::AddTexture(std::string fileName)
 		_sprite.setTexture(_allTexture[0]);
 	}
 	_nbFrame++;
+}
+
+void SpriteAnimator::SetAnimationSpeed(float newSpeed)
+{
+	_animationSpeed = newSpeed;
 }

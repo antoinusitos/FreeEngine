@@ -27,6 +27,8 @@ public:
 
 	void SetOrigin(float x, float y);
 
+	void SetAnimationSpeed(float newSpeed);
+
 	//TODO : cut the image to make multiples sub-images
 
 private:
@@ -40,5 +42,7 @@ private:
 	//float _animRate = 1.f / 60.f;
 	float _animRate = 0.1f;
 	float _currentAnimTime = 0;
+
+	float _animationSpeed = 1.0f;
 };
 
