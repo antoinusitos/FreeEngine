@@ -6,6 +6,8 @@
 #include <mutex>
 #include <iostream>
 
+const int FPSMAX = 60;
+
 class Time
 {
 public:
@@ -24,6 +26,8 @@ public:
 
 		return *(_instance.get());
 	}
+
+	void Init();
 
 	// Update the time in the engine
 	void Update();
@@ -44,6 +48,10 @@ private:
 	clock_t _currentTime;
 	// Time elapsed at the last frame
 	float lastTimeElapsed;
+
+	float _timeLastFrame = 0;
+
+	int _currentFps = 0;
 
 };
 

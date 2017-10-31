@@ -9,6 +9,7 @@
 #include "GameObject.h"
 #include "TestLeaf.h"
 #include "SpriteRenderer.h"
+#include "SpriteAnimator.h"
 
 GameObject* go;
 //-----TEST-----
@@ -60,8 +61,14 @@ void Engine::Launch()
 
 	//-----TEST-----
 	go = new GameObject("go");
-	SpriteRenderer* sr = new SpriteRenderer();
-	sr->Init("Sprites/testSprite.png");
+	//SpriteRenderer* sr = new SpriteRenderer();
+	//sr->Init("Sprites/zelda/frame0.png");
+	//go->AddLeaf(sr);
+	SpriteAnimator* sr = new SpriteAnimator();
+	for (int i = 0; i < 8; i++)
+	{
+		sr->AddTexture("Sprites/zelda/frame" + std::to_string(i) + ".png");
+	}
 	go->AddLeaf(sr);
 	go->transform.position.x = 100;
 	go->transform.position.y = 100;
@@ -70,6 +77,8 @@ void Engine::Launch()
 
 	_objectManager->AwakeAllEngineObjects();
 	_objectManager->StartAllEngineObjects();
+
+	_time->Init();
 
 	while (_isRunning)
 	{

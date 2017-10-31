@@ -33,6 +33,8 @@ void Window::Init()
 	_screenType = ScreenType::WINDOWED;
 #endif
 
+	_window->setFramerateLimit(60);
+
 	FileHandler::Instance().RegisterNewWatcher(this, "FreeEngine/Assets/Config/Engine.txt");
 }
 
