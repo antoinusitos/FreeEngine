@@ -27,6 +27,12 @@ public:
 
 	void SetOrigin(float x, float y);
 
+	void Start();
+	void Update(float deltaTime);
+	void Exit();
+	void Awake();
+	void Render(sf::RenderWindow* window);
+
 private:
 	sf::Sprite _sprite;
 	sf::Texture _texture;

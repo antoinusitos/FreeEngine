@@ -48,11 +48,17 @@ void GameObject::Update(float deltaTime)
 {
 	EngineObject::Update(deltaTime);
 
+	//------TEST------
 	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWRIGHT))
-	{
-		transform.position.x += deltaTime * 2.0f;
-		std::cout << "pos x : " << transform.position.x << std::endl;
-	}
+		transform.position.x += deltaTime * 100.0f;
+	else if (Input::Instance().GetKeyPressed(KEYCODE::ARROWLEFT))
+		transform.position.x -= deltaTime * 100.0f;
+
+	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWDOWN))
+		transform.position.y += deltaTime * 100.0f;
+	else if (Input::Instance().GetKeyPressed(KEYCODE::ARROWUP))
+		transform.position.y -= deltaTime * 100.0f;
+	//------TEST------
 
 	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)
 	{
@@ -60,13 +66,13 @@ void GameObject::Update(float deltaTime)
 	}
 }
 
-void GameObject::Render()
+void GameObject::Render(sf::RenderWindow* window)
 {
-	EngineObject::Render();
+	EngineObject::Render(window);
 
 	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)
 	{
-		(*it)->Render();
+		(*it)->Render(window);
 	}
 }
 
@@ -84,6 +90,11 @@ void GameObject::Destroy()
 	DestroyObject();
 }
 
+void GameObject::Exit()
+{
+
+}
+
 void GameObject::AddTagToObject(std::string newTag)
 {
 	int newTagID = TagManager::Instance().GetTagID(newTag);
@@ -95,9 +106,4 @@ void GameObject::AddTagToObject(std::string newTag)
 	}
 
 	_tags.push_back(newTagID);
-}
-
-void GameObject::Exit()
-{
-
 }

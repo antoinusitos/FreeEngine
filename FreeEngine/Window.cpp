@@ -52,12 +52,10 @@ void Window::Exit()
 
 void Window::Render()
 {
-	_window->clear(sf::Color::Black);
 	for (std::vector<WindowLayout*>::iterator it = _allWindowLayout.begin(); it != _allWindowLayout.end(); ++it)
 	{
 		(*it)->Render(_window.get());
 	}
-	_window->display();
 }
 
 void Window::AddRenderingLayout(WindowLayout* newLayout)
@@ -232,12 +230,12 @@ void Window::GetResolutionValuesWithDelimiter(std::string& text, std::string del
 	y = text;
 }
 
-float Window::GetScreenResolutionX()
+unsigned int Window::GetScreenResolutionX()
 {
 	return _screenResolutionX;
 }
 
-float Window::GetScreenResolutionY()
+unsigned int Window::GetScreenResolutionY()
 {
 	return _screenResolutionY;
 }
@@ -256,4 +254,14 @@ void Window::ToggleConsole()
 {
 	_showingConsole = !_showingConsole;
 	_console->SetVisibility(_showingConsole);
+}
+
+void Window::ClearWindow()
+{
+	_window->clear(sf::Color::Black);
+}
+
+void Window::DisplayWindow()
+{
+	_window->display();
 }

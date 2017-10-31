@@ -10,6 +10,7 @@ Composite::~Composite()
 
 void Composite::AddLeaf(Leaf* newLeaf)
 {
+	newLeaf->_parent = this;
 	components.push_back(newLeaf);
 }
 

@@ -1,7 +1,7 @@
 ######Appearence######
 #
 #FULLSCREEN/WINDOWED
-Sceen=FULLSCREEN
+Sceen=WINDOWED
 #
 #Windowed LengthxHeight
 Resolution=800x600

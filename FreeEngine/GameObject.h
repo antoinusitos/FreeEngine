@@ -1,6 +1,5 @@
 #pragma once
 #include "EngineObject.h"
-#include "Transform.h"
 #include "Composite.h"
 
 class GameObject : public EngineObject, public Composite
@@ -15,13 +14,11 @@ public:
 	void Start();
 
 	void Update(float deltaTime);
-	void Render();
+	void Render(sf::RenderWindow* window);
 
 	void Destroy();
 
 	void Exit();
-
-	Transform transform;
 
 	void AddTagToObject(std::string newTag);
 

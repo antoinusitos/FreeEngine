@@ -31,7 +31,7 @@ void EngineObject::Update(float deltaTime)
 
 }
 
-void EngineObject::Render()
+void EngineObject::Render(sf::RenderWindow* window)
 {
 
 }

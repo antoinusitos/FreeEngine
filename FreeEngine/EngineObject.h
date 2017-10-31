@@ -16,7 +16,7 @@ public:
 	virtual void Start();
 
 	virtual void Update(float deltaTime);
-	virtual void Render();
+	virtual void Render(sf::RenderWindow* window);
 
 	virtual void Destroy();
 

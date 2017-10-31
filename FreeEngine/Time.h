@@ -29,9 +29,9 @@ public:
 	void Update();
 
 	// Time elapsed since the beginning of the engine
-	double timeElapsed;
+	float timeElapsed;
 	// Time elapsed since the last frame
-	double deltaTime;
+	float deltaTime;
 
 	std::string GetCurrentTimeAsString();
 
@@ -43,7 +43,7 @@ private:
 	// Current Time according to Computer time
 	clock_t _currentTime;
 	// Time elapsed at the last frame
-	double lastTimeElapsed;
+	float lastTimeElapsed;
 
 };
 

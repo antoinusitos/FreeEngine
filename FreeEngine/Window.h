@@ -54,14 +54,17 @@ public:
 
 	void NotifyChange();
 	
-	float GetScreenResolutionX();
-	float GetScreenResolutionY();
+	unsigned int GetScreenResolutionX();
+	unsigned int GetScreenResolutionY();
 
 	void SetView(sf::View newView);
 
 	void ResetToDefaultView();
 
 	void ToggleConsole();
+
+	void ClearWindow();
+	void DisplayWindow();
 
 //Variables
 private :

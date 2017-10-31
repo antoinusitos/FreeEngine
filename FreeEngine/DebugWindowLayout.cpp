@@ -23,7 +23,6 @@ void DebugWindowLayout::Init()
 	_beginX = _background.getPosition().x + 5;
        
 	Window::Instance().AddRenderingLayout(this);
-	
 }
 
 void DebugWindowLayout::Unregister()

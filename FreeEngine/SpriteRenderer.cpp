@@ -1,5 +1,6 @@
 #include "SpriteRenderer.h"
 #include "ResourcesManager.h"
+#include "Composite.h"
 
 SpriteRenderer::SpriteRenderer()
 {
@@ -13,6 +14,7 @@ void SpriteRenderer::Init(std::string path)
 {
 	_texture = ResourcesManager::Instance().GetTexture(path);
 	_sprite.setTexture(_texture);
+	init = true;
 }
 
 sf::Sprite SpriteRenderer::GetSprite()
@@ -55,10 +57,45 @@ void SpriteRenderer::SetRotation(float angle)
 
 void SpriteRenderer::SetScale(float x, float y)
 {
-	_sprite.setScale(sf::Vector2f(x, y));
+	_sprite.scale(sf::Vector2f(x, y));
 }
 
 void SpriteRenderer::SetOrigin(float x, float y)
 {
 	_sprite.setOrigin(sf::Vector2f(x, y));
+}
+
+void SpriteRenderer::Awake()
+{
+
+}
+
+void SpriteRenderer::Start()
+{
+
+}
+
+void SpriteRenderer::Update(float deltaTime)
+{
+	float x = _parent->transform.position.x;
+	float y = _parent->transform.position.y;
+	SetPosition(x, y);
+	float r = _parent->transform.rotation.z;
+	SetRotation(r);
+	float sx = _parent->transform.scale.x;
+	float sy = _parent->transform.scale.y;
+	SetScale(sx, sy);
+}
+
+void SpriteRenderer::Render(sf::RenderWindow* window)
+{
+	if (init)
+	{
+		window->draw(_sprite);
+	}
+}
+
+void SpriteRenderer::Exit()
+{
+
 }

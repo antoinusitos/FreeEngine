@@ -5,6 +5,8 @@
 #include <memory>
 #include <mutex>
 
+#include "SFML\Graphics.hpp"
+
 class EngineObject;
 
 class ObjectsManager
@@ -31,7 +33,7 @@ public:
 	void AwakeAllEngineObjects();
 	void StartAllEngineObjects();
 	void UpdateAllEngineObjects(float deltaTime);
-	void RenderAllEngineObjects();
+	void RenderAllEngineObjects(sf::RenderWindow* window);
 	void DestroyObject(EngineObject* object);
 
 	int GetID();

@@ -5,10 +5,13 @@
 
 #include "Vector3.h"
 
+//-----TEST-----
 #include "GameObject.h"
 #include "TestLeaf.h"
+#include "SpriteRenderer.h"
 
 GameObject* go;
+//-----TEST-----
 
 Engine::Engine()
 {
@@ -51,13 +54,18 @@ void Engine::Launch()
 
 	_window->SetView(_cameraManager->GetView());
 
-	_window->InitInternalWindows();
+	//_window->InitInternalWindows();
 
 	_gamepadManager->Init();
 
 	//-----TEST-----
 	go = new GameObject("go");
-	go->AddLeaf(new TestLeaf());
+	SpriteRenderer* sr = new SpriteRenderer();
+	sr->Init("Sprites/testSprite.png");
+	go->AddLeaf(sr);
+	go->transform.position.x = 100;
+	go->transform.position.y = 100;
+
 	//-----TEST-----
 
 	_objectManager->AwakeAllEngineObjects();
@@ -71,11 +79,15 @@ void Engine::Launch()
 		// Handle the events to close the engine
 		CheckMustCloseWindow();
 
+		_window->ClearWindow();
+
 		// Put engine stuff here
 		Update(_time->deltaTime);
 
 		// Render every thing
 		_window->Render();
+
+		_window->DisplayWindow();
 
 		// update inputs
 		_input->Update(_time->deltaTime);
@@ -114,7 +126,7 @@ void Engine::Update(float deltaTime)
 	_gamepadManager->Update(deltaTime);
 
 	_objectManager->UpdateAllEngineObjects(_time->deltaTime);
-	_objectManager->RenderAllEngineObjects();
+	_objectManager->RenderAllEngineObjects(_window->GetWindow());
 
 	if (_input->GetKeyDown(KEYCODE::F1))
 	{

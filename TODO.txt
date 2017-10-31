@@ -15,11 +15,12 @@ Tag Manager
 Gamepad Manager
 Component
 Camera Manager
+Sprite manager
 
+Sprite Animator
 
 TO DO :
 
-sprite manager
 scene manager
 
 Particles
