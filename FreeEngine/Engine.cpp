@@ -14,6 +14,16 @@
 GameObject* go;
 SpriteAnimator* sr;
 float speed = 1;
+
+
+#include "Animator.h"
+#include "State.h"
+
+Animator* anim;
+State* s1;
+State* s2;
+SpriteAnimator* sr2;
+
 //-----TEST-----
 
 Engine::Engine()
@@ -66,14 +76,39 @@ void Engine::Launch()
 	//SpriteRenderer* sr = new SpriteRenderer();
 	//sr->Init("Sprites/zelda/frame0.png");
 	//go->AddLeaf(sr);
-	sr = new SpriteAnimator();
+	/*sr = new SpriteAnimator();
 	for (int i = 0; i < 8; i++)
 	{
 		sr->AddTexture("Sprites/zelda/frame" + std::to_string(i) + ".png");
 	}
 	go->AddLeaf(sr);
 	go->transform.position.x = 100;
-	go->transform.position.y = 100;
+	go->transform.position.y = 100;*/
+
+
+	anim = new Animator();
+	s1 = new State("s1");
+	s2 = new State("s2");
+
+	sr = new SpriteAnimator();
+	for (int i = 0; i < 8; i++)
+	{
+		sr->AddTexture("Sprites/zelda/frame" + std::to_string(i) + ".png");
+	}
+
+	sr2 = new SpriteAnimator();
+	sr2->AddTexture("Sprites/zelda/frame0.png");
+
+	s1->SetSpriteAnimator(sr);
+	s2->SetSpriteAnimator(sr2);
+
+	s1->SetTransition(s2);
+	s2->SetTransition(s1);
+
+	anim->AddNewState(s1);
+	anim->AddNewState(s2);
+
+	go->AddLeaf(anim);
 
 	//-----TEST-----
 
@@ -147,8 +182,7 @@ void Engine::Update(float deltaTime)
 	//-----TEST-----
 	if (_input->GetKeyDown(KEYCODE::A))
 	{
-		speed++;
-		sr->SetAnimationSpeed(speed);
+		anim->GoToNextState();
 	}
 	//-----TEST-----
 

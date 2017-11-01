@@ -1,6 +1,7 @@
 #include "SpriteAnimator.h"
 #include "ResourcesManager.h"
 #include "Composite.h"
+#include "Debug.h"
 
 SpriteAnimator::SpriteAnimator()
 {
@@ -53,20 +54,26 @@ void SpriteAnimator::Update(float deltaTime)
 	if (_currentAnimTime >= _animRate)
 	{
 		_currentAnimTime = 0;
-		_sprite.setTexture(_allTexture[_currentFrame]);
+		if ((int)_allTexture.size() != 0)
+			_sprite.setTexture(_allTexture[_currentFrame]);
+		else
+			Debug::Instance().Print("No texture to render on this sprite animator", DebugMessageType::DEBUGERROR);
 		_currentFrame++;
 		if (_currentFrame >= _nbFrame)
 			_currentFrame = 0;
 	}
 
-	float x = _parent->transform.position.x;
-	float y = _parent->transform.position.y;
-	SetPosition(x, y);
-	float r = _parent->transform.rotation.z;
-	SetRotation(r);
-	float sx = _parent->transform.scale.x;
-	float sy = _parent->transform.scale.y;
-	SetScale(sx, sy);
+	if (_parent != nullptr)
+	{
+		float x = _parent->transform.position.x;
+		float y = _parent->transform.position.y;
+		SetPosition(x, y);
+		float r = _parent->transform.rotation.z;
+		SetRotation(r);
+		float sx = _parent->transform.scale.x;
+		float sy = _parent->transform.scale.y;
+		SetScale(sx, sy);
+	}
 }
 
 void SpriteAnimator::Render(sf::RenderWindow* window)
