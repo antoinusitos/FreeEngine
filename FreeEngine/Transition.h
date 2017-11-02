@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Data.h"
+#include <vector>
 
 class State;
 
@@ -10,6 +11,8 @@ public:
 	Transition();
 	~Transition();
 
+	void AddCondition(Condition* condition);
+
 	State* newState;
-	Condition condition;
+	std::vector<Condition*> conditions;
 };

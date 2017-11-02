@@ -8,3 +8,8 @@ Transition::Transition()
 Transition::~Transition()
 {
 }
+
+void Transition::AddCondition(Condition* condition)
+{
+	conditions.push_back(condition);
+}

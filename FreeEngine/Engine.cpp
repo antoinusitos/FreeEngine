@@ -104,14 +104,17 @@ void Engine::Launch()
 	s2->SetSpriteAnimator(sr2);
 
 	Transition* t = new Transition();
-	t->condition.name = "testBool";
-	t->condition.type = 0;
-	t->condition.conditiontype.b_return = true;
+	Condition* c = new Condition();
+	c->name = "testTrigger";
+	c->type = 3;
+	t->AddCondition(c);
 
 	Transition* t2 = new Transition();
-	t2->condition.name = "testInt";
-	t2->condition.type = 1;
-	t2->condition.conditiontype.i_return = 10;
+	Condition* c2 = new Condition();
+	c2->name = "testInt";
+	c2->type = 1;
+	c2->conditiontype.i_return = 10;
+	t2->AddCondition(c2);
 
 	s1->SetTransition(s2, t);
 	s2->SetTransition(s1, t2);
@@ -193,7 +196,7 @@ void Engine::Update(float deltaTime)
 	//-----TEST-----
 	if (_input->GetKeyDown(KEYCODE::A))
 	{
-		anim->SetBool("testBool", true);
+		anim->SetTrigger("testTrigger");
 	}
 	if (_input->GetKeyDown(KEYCODE::B))
 	{

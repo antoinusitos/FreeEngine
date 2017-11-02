@@ -25,10 +25,12 @@ public:
 	void SetInt(std::string name, int value);
 	void SetFloat(std::string name, float value);
 	void SetBool(std::string name, bool value);
+	void SetTrigger(std::string name);
 
 	bool GetBool(std::string name);
 	int GetInt(std::string name);
 	float GetFloat(std::string name);
+	bool GetTrigger(std::string name);
 
 private:
 	std::vector<State*> _allState;

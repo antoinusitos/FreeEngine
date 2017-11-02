@@ -68,18 +68,30 @@ bool State::CheckTransition(Animator* anim)
 {
 	if (_transition != nullptr)
 	{
-		if (_transition->condition.type == 0)
+		for (std::vector<Condition*>::iterator it = _transition->conditions.begin(); it != _transition->conditions.end(); ++it)
 		{
-			return anim->GetBool(_transition->condition.name) == _transition->condition.conditiontype.b_return;
+			if ((*it)->type == 0)
+			{
+				if(anim->GetBool((*it)->name) != (*it)->conditiontype.b_return)
+					return false;
+			}
+			else if ((*it)->type == 1)
+			{
+				if(anim->GetInt((*it)->name) != (*it)->conditiontype.i_return)
+					return false;
+			}
+			else if ((*it)->type == 2)
+			{
+				if(anim->GetFloat((*it)->name) != (*it)->conditiontype.f_return)
+					return false;
+			}
+			else if ((*it)->type == 3)
+			{
+				if (anim->GetTrigger((*it)->name) != true)
+					return false;
+			}
 		}
-		else if (_transition->condition.type == 1)
-		{
-			return anim->GetInt(_transition->condition.name) == _transition->condition.conditiontype.i_return;
-		}
-		else if (_transition->condition.type == 2)
-		{
-			return anim->GetFloat(_transition->condition.name) == _transition->condition.conditiontype.f_return;
-		}
+		return true;
 	}
 	return false;
 }
