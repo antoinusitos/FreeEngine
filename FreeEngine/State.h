@@ -3,25 +3,12 @@
 #include "SFML\Graphics.hpp"
 
 class SpriteAnimator;
+class Animator;
+class Transition;
 
 class State
 {
 public:
-	class Transition
-	{
-	public:
-		State* newState;
-
-		Transition::Transition()
-		{
-
-		}
-
-		Transition::~Transition()
-		{
-
-		}
-	};
 
 	State(std::string newName);
 	~State();
@@ -36,7 +23,9 @@ public:
 
 	void SetSpriteAnimator(SpriteAnimator* newSpriteAnimator);
 
-	void SetTransition(State* newState);
+	void SetTransition(State* newState, Transition* newTransition);
+
+	bool CheckTransition(Animator* anim);
 
 	State* GetNextState();
 

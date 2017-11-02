@@ -1,6 +1,8 @@
 #include "State.h"
 #include "Debug.h"
 #include "SpriteAnimator.h"
+#include "Animator.h"
+#include "Transition.h"
 
 State::State(std::string newName)
 {
@@ -47,12 +49,9 @@ void State::SetSpriteAnimator(SpriteAnimator* newSpriteAnimator)
 	_spriteAnimator = newSpriteAnimator;
 }
 
-void State::SetTransition(State* newState)
+void State::SetTransition(State* newState, Transition* newTransition)
 {
-	if (_transition == nullptr)
-	{
-		_transition = new Transition();
-	}
+	_transition = newTransition;
 	_transition->newState = newState;
 }
 
@@ -63,4 +62,24 @@ State* State::GetNextState()
 		return _transition->newState;
 	}
 	return nullptr;
+}
+
+bool State::CheckTransition(Animator* anim)
+{
+	if (_transition != nullptr)
+	{
+		if (_transition->condition.type == 0)
+		{
+			return anim->GetBool(_transition->condition.name) == _transition->condition.conditiontype.b_return;
+		}
+		else if (_transition->condition.type == 1)
+		{
+			return anim->GetInt(_transition->condition.name) == _transition->condition.conditiontype.i_return;
+		}
+		else if (_transition->condition.type == 2)
+		{
+			return anim->GetFloat(_transition->condition.name) == _transition->condition.conditiontype.f_return;
+		}
+	}
+	return false;
 }

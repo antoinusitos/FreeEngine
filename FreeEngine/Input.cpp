@@ -53,6 +53,10 @@ void Input::Init()
 	ik = InputKey();
 	ik.key = KEYCODE::B;
 	_mapping.emplace(KEYCODE::B, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::C;
+	_mapping.emplace(KEYCODE::C, ik);
 }
 
 bool Input::MustClose()
@@ -198,6 +202,10 @@ KEYCODE Input::GetKeycodeAssociate(sf::Keyboard::Key key)
 	else if (_event.key.code == sf::Keyboard::B)
 	{
 		return KEYCODE::B;
+	}
+	else if (_event.key.code == sf::Keyboard::C)
+	{
+		return KEYCODE::C;
 	}
 
 	return KEYCODE::NONE;

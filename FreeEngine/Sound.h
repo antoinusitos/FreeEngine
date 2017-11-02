@@ -16,7 +16,7 @@ public:
 	void Play();
 	void Pause();
 	void Stop();
-	void SetOffset(int second);
+	void SetOffset(float second);
 	void SetPitch(float value);
 	void SetLoop(bool mustLoop);
 

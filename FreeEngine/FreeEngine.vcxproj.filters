@@ -108,6 +108,9 @@
     <ClCompile Include="State.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Transition.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -198,6 +201,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="State.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Transition.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

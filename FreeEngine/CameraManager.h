@@ -21,13 +21,13 @@ public:
 		return *(_instance.get());
 	}
 
-	void Move(int x, int y);
+	void Move(float x, float y);
 
 	sf::View GetView();
 
 	void Init();
 
-	void ResizeCurrentView(int x, int y);
+	void ResizeCurrentView(float x, float y);
 
 private:
 	// Unique instance of the time

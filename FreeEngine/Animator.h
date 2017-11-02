@@ -22,8 +22,17 @@ public:
 	void AddSpriteAnimator(SpriteAnimator* newSpriteAnimator);
 	void GoToNextState();
 
+	void SetInt(std::string name, int value);
+	void SetFloat(std::string name, float value);
+	void SetBool(std::string name, bool value);
+
+	bool GetBool(std::string name);
+	int GetInt(std::string name);
+	float GetFloat(std::string name);
+
 private:
 	std::vector<State*> _allState;
+	std::vector<Condition*> _allConditions;
 	State* _currentState;
 };
 

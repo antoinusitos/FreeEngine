@@ -14,7 +14,7 @@ DebugWindowLayout::~DebugWindowLayout()
 
 void DebugWindowLayout::Init()
 {
-	_background = sf::RectangleShape(sf::Vector2f(Window::Instance().GetWindow()->getSize().x, _debugZoneSizeY));
+	_background = sf::RectangleShape(sf::Vector2f((float)Window::Instance().GetWindow()->getSize().x, _debugZoneSizeY));
 	_background.setFillColor(sf::Color(153, 153, 153));
 	_background.setPosition(0, Window::Instance().GetWindow()->getSize().y - _debugZoneSizeY);
 	_allDrawable.push_back(&_background);

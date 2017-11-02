@@ -98,6 +98,21 @@ struct InputKey
 	bool exit = false;
 };
 
+union ConditionType
+{
+	bool b_return;
+	float f_return;
+	int i_return;
+};
+
+struct Condition
+{
+public:
+	std::string name;
+	int type; //0=bool, 1=int, 2=float
+	ConditionType conditiontype;
+};
+
 class Data
 {
 public:

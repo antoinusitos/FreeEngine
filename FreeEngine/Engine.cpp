@@ -18,6 +18,7 @@ float speed = 1;
 
 #include "Animator.h"
 #include "State.h"
+#include "Transition.h"
 
 Animator* anim;
 State* s1;
@@ -102,8 +103,18 @@ void Engine::Launch()
 	s1->SetSpriteAnimator(sr);
 	s2->SetSpriteAnimator(sr2);
 
-	s1->SetTransition(s2);
-	s2->SetTransition(s1);
+	Transition* t = new Transition();
+	t->condition.name = "testBool";
+	t->condition.type = 0;
+	t->condition.conditiontype.b_return = true;
+
+	Transition* t2 = new Transition();
+	t2->condition.name = "testInt";
+	t2->condition.type = 1;
+	t2->condition.conditiontype.i_return = 10;
+
+	s1->SetTransition(s2, t);
+	s2->SetTransition(s1, t2);
 
 	anim->AddNewState(s1);
 	anim->AddNewState(s2);
@@ -182,7 +193,15 @@ void Engine::Update(float deltaTime)
 	//-----TEST-----
 	if (_input->GetKeyDown(KEYCODE::A))
 	{
-		anim->GoToNextState();
+		anim->SetBool("testBool", true);
+	}
+	if (_input->GetKeyDown(KEYCODE::B))
+	{
+		anim->SetInt("testInt", 9);
+	}
+	if (_input->GetKeyDown(KEYCODE::C))
+	{
+		anim->SetInt("testInt", 10);
 	}
 	//-----TEST-----
 

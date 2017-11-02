@@ -1,6 +1,7 @@
 #include "Animator.h"
 #include "Composite.h"
 #include "SpriteAnimator.h"
+#include "Debug.h"
 
 Animator::Animator()
 {
@@ -17,6 +18,17 @@ void Animator::Awake()
 
 void Animator::Start()
 {
+	Condition* c = new Condition();
+	c->name = "testBool";
+	c->type = 0;
+	c->conditiontype.b_return = false;
+	_allConditions.push_back(c);
+	Condition* c2 = new Condition();
+	c2->name = "testInt";
+	c2->type = 1;
+	c2->conditiontype.i_return = 0;
+	_allConditions.push_back(c2);
+
 	if (_currentState != nullptr)
 	{
 		_currentState->OnStateEnter();
@@ -28,6 +40,7 @@ void Animator::Update(float deltaTime)
 	if (_currentState != nullptr)
 	{
 		_currentState->OnStateUpdate(deltaTime);
+		GoToNextState();
 	}
 }
 
@@ -62,10 +75,152 @@ void Animator::AddNewState(State* newState)
 
 void Animator::GoToNextState()
 {
-	if (_currentState->GetNextState() != nullptr)
+	if (_currentState->CheckTransition(this) && _currentState->GetNextState() != nullptr)
 	{
 		_currentState->OnStateExit();
 		_currentState = _currentState->GetNextState();
 		_currentState->OnStateEnter();
 	}
+}
+
+void Animator::SetInt(std::string name, int value)
+{
+	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
+	{
+		if (name == (*it)->name)
+		{
+			if ((*it)->type == 0)
+			{
+				Debug::Instance().Print(name + " is not a type bool and cannot be set (use SetInt instead) !", DebugMessageType::DEBUGERROR);
+			}
+			else if ((*it)->type == 2)
+			{
+				Debug::Instance().Print(name + " is not a type float and cannot be set (use SetInt instead) !", DebugMessageType::DEBUGERROR);
+			}
+			else if ((*it)->type == 1)
+			{
+				(*it)->conditiontype.i_return = value;
+				Debug::Instance().Print(name + " is now set to " + std::to_string(value), DebugMessageType::DEBUGLOG);
+			}
+			return;
+		}
+	}
+}
+
+void Animator::SetFloat(std::string name, float value)
+{
+	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
+	{
+		if (name == (*it)->name)
+		{
+			if ((*it)->type == 0)
+			{
+				Debug::Instance().Print(name + " is not a type bool and cannot be set (use SetFloat instead) !", DebugMessageType::DEBUGERROR);
+			}
+			else if ((*it)->type == 2)
+			{
+				(*it)->conditiontype.f_return = value;
+				Debug::Instance().Print(name + " is now set to " + std::to_string(value), DebugMessageType::DEBUGLOG);
+			}
+			else if ((*it)->type == 1)
+			{
+				Debug::Instance().Print(name + " is not a type int and cannot be set (use SetFloat instead) !", DebugMessageType::DEBUGERROR);
+			}
+			return;
+		}
+	}
+}
+
+void Animator::SetBool(std::string name, bool value)
+{
+	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
+	{
+		std::cout << "name=" << name << " and it=" << (*it)->name << '\n';
+		if (name == (*it)->name)
+		{
+			if ((*it)->type == 0)
+			{
+				(*it)->conditiontype.b_return = value;
+				Debug::Instance().Print(name + " is now set to " + std::to_string(value), DebugMessageType::DEBUGLOG);
+			}
+			else if ((*it)->type == 2)
+			{
+				Debug::Instance().Print(name + " is not a type float and cannot be set (use SetBool instead) !", DebugMessageType::DEBUGERROR);
+			}
+			else if ((*it)->type == 1)
+			{
+				Debug::Instance().Print(name + " is not a type int and cannot be set (use SetBool instead) !", DebugMessageType::DEBUGERROR);
+			}
+			return;
+		}
+	}
+}
+
+bool Animator::GetBool(std::string name)
+{
+	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
+	{
+		if (name == (*it)->name)
+		{
+			if ((*it)->type == 0)
+			{
+				return (*it)->conditiontype.b_return;
+			}
+			else if ((*it)->type == 2)
+			{
+				Debug::Instance().Print(name + " is not a type float and cannot be GET (use GetBool instead)  !", DebugMessageType::DEBUGERROR);
+			}
+			else if ((*it)->type == 1)
+			{
+				Debug::Instance().Print(name + " is not a type int and cannot be GET (use GetBool instead)  !", DebugMessageType::DEBUGERROR);
+			}
+		}
+	}
+	return false;
+}
+
+int Animator::GetInt(std::string name)
+{
+	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
+	{
+		if (name == (*it)->name)
+		{
+			if ((*it)->type == 0)
+			{
+				Debug::Instance().Print(name + " is not a type bool and cannot be GET (use GetInt instead) !", DebugMessageType::DEBUGERROR);
+			}
+			else if ((*it)->type == 2)
+			{
+				Debug::Instance().Print(name + " is not a type float and cannot be GET (use GetInt instead)  !", DebugMessageType::DEBUGERROR);
+			}
+			else if ((*it)->type == 1)
+			{
+				return (*it)->conditiontype.i_return;
+			}
+		}
+	}
+	return -1;
+}
+
+float Animator::GetFloat(std::string name)
+{
+	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
+	{
+		if (name == (*it)->name)
+		{
+			if ((*it)->type == 0)
+			{
+				Debug::Instance().Print(name + " is not a type bool and cannot be GET (use GetFloat instead)  !", DebugMessageType::DEBUGERROR);
+			}
+			else if ((*it)->type == 2)
+			{
+				return (*it)->conditiontype.f_return;
+			}
+			else if ((*it)->type == 1)
+			{
+				Debug::Instance().Print(name + " is not a type int and cannot be GET (use GetFloat instead)  !", DebugMessageType::DEBUGERROR);
+			}
+		}
+	}
+	return -1;
 }

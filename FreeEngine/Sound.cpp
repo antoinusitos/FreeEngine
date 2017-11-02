@@ -48,7 +48,7 @@ void Sound::Stop()
 		_sound.stop();
 }
 
-void Sound::SetOffset(int second)
+void Sound::SetOffset(float second)
 {
 	if (_type == SoundType::MUSIC)
 		_music.setPlayingOffset(sf::seconds(second));
