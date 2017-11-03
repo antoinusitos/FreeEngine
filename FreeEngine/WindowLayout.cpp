@@ -20,6 +20,11 @@ void WindowLayout::Render(sf::RenderWindow* SFMLWindow)
 	}
 }
 
+void WindowLayout::Update(float deltaTime)
+{
+
+}
+
 void WindowLayout::AddToRendering()
 {
 	Window::Instance().AddRenderingLayout(this);

@@ -1,6 +1,6 @@
 #pragma once
 
-#include "Vector3.h"
+#include "FVector3.h"
 
 class Transform
 {
@@ -8,8 +8,8 @@ public:
 	Transform();
 	~Transform();
 
-	Vector3 position;
-	Vector3 rotation;
-	Vector3 scale;
+	FVector3 position;
+	FVector3 rotation;
+	FVector3 scale;
 };
 

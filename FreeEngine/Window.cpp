@@ -1,5 +1,6 @@
 #include "Window.h"
 #include "DebugWindowLayout.h"
+#include "ToolBar.h"
 #include "WindowLayout.h"
 #include "Engine.h"
 #include "CameraManager.h"
@@ -48,6 +49,9 @@ void Window::InitInternalWindows()
 	_console = std::make_unique<DebugWindowLayout>();
 	_console->Init();
 
+	_toolbar = std::make_unique<ToolBar>();
+	_toolbar->Init();
+
 	Debug::Instance().SetDebugWindow(GetDebugWindowLayout());
 }
 
@@ -62,6 +66,14 @@ void Window::Render()
 	for (std::vector<WindowLayout*>::iterator it = _allWindowLayout.begin(); it != _allWindowLayout.end(); ++it)
 	{
 		(*it)->Render(_window.get());
+	}
+}
+
+void Window::Update(float deltaTime)
+{
+	for (std::vector<WindowLayout*>::iterator it = _allWindowLayout.begin(); it != _allWindowLayout.end(); ++it)
+	{
+		(*it)->Update(deltaTime);
 	}
 }
 
@@ -98,6 +110,11 @@ void Window::RemoveAllRendering()
 DebugWindowLayout* Window::GetDebugWindowLayout()
 {
 	return _console.get();
+}
+
+ToolBar* Window::GetToolBar()
+{
+	return _toolbar.get();
 }
 
 void Window::NotifyChange()

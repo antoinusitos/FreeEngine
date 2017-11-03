@@ -18,6 +18,8 @@ Camera Manager
 Sprite manager
 Animator
 Sprite Animator
+Editor Manager
+Editor
 
 
 TO DO :
@@ -25,14 +27,11 @@ TO DO :
 scene manager
 
 Particles
-Light ?
 Prefab
 Serialization
 Collisions/Layers
 Level Editor
-Editor
-Delegate
-
+UI / anchor
 
 REWORK :
 

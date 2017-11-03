@@ -10,6 +10,7 @@
 #include "Data.h"
 
 class DebugWindowLayout;
+class ToolBar;
 class WindowLayout;
 
 class Window : public FileObserver
@@ -44,11 +45,14 @@ public:
 
 	// Render the Window
 	void Render();
+	
+	void Update(float deltaTime);
 
 	void AddRenderingLayout(WindowLayout* newLayout);
 	void RemoveRenderingLayout(WindowLayout* layoutToRemove);
 
 	DebugWindowLayout* GetDebugWindowLayout();
+	ToolBar* GetToolBar();
 
 	void RemoveAllRendering();
 
@@ -78,6 +82,8 @@ private :
 	std::vector<WindowLayout*> _allWindowLayout;
 
 	std::unique_ptr<DebugWindowLayout> _console;
+
+	std::unique_ptr<ToolBar> _toolbar;
 
 	std::string configFileName = "Assets/Config/Engine.txt";
 

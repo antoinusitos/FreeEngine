@@ -11,6 +11,7 @@
 #include "GlobalListener.h"
 #include "GamepadManager.h"
 #include "CameraManager.h"
+#include "EditorManager.h"
 
 class Engine : public FileObserver
 {
@@ -46,6 +47,7 @@ private :
 	GlobalListener* _globalListener;
 	GamepadManager* _gamepadManager;
 	CameraManager* _cameraManager;
+	EditorManager* _editorManager;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

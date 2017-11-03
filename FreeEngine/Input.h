@@ -8,6 +8,8 @@
 
 #include "Data.h"
 
+#include "FVector2.h"
+
 class Input
 {
 public:
@@ -48,6 +50,10 @@ public:
 
 	void Update(float deltaTime);
 
+	void SaveMousePos(sf::Window& window);
+
+	FVector2 GetMousePosition();
+
 private :
 
 	// Object that gather the events in the SFML window
@@ -66,6 +72,9 @@ private :
 	bool _canInput = false;
 
 	KEYCODE GetKeycodeAssociate(sf::Keyboard::Key key);
+	KEYCODE GetMouseCodeAssociate(sf::Mouse::Button button);
+
+	FVector2 _mousePosition;
 };
 
 

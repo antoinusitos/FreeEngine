@@ -43,6 +43,14 @@ void Input::Init()
 	_mapping.emplace(KEYCODE::ARROWLEFT, ik);
 
 	ik = InputKey();
+	ik.key = KEYCODE::MOUSELEFT;
+	_mapping.emplace(KEYCODE::MOUSELEFT, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::MOUSERIGHT;
+	_mapping.emplace(KEYCODE::MOUSERIGHT, ik);
+
+	ik = InputKey();
 	ik.key = KEYCODE::F1;
 	_mapping.emplace(KEYCODE::F1, ik);
 
@@ -121,6 +129,50 @@ void Input::ProcessInput(sf::Window& window)
 
 			break;
 		}
+		case sf::Event::MouseButtonPressed:
+		{
+			KEYCODE k;
+			bool keyExist = true;
+
+			k = GetMouseCodeAssociate(_event.mouseButton.button);
+
+			if (k == KEYCODE::NONE)
+				keyExist = false;
+
+			if (keyExist)
+			{
+				_mapping[k].pressing = true;
+				if (_mapping[k].init == false && _mapping[k].pressDown == false)
+				{
+					_mapping[k].init = true;
+					_mapping[k].pressDown = true;
+				}
+			}
+
+			break;
+		}
+		case sf::Event::MouseButtonReleased:
+		{
+			KEYCODE k;
+			bool keyExist = true;
+
+			k = GetMouseCodeAssociate(_event.mouseButton.button);
+
+			if (k == KEYCODE::NONE)
+				keyExist = false;
+
+			if (keyExist)
+			{
+				_mapping[k].pressing = false;
+				if (!_mapping[k].exit && !_mapping[k].release)
+				{
+					_mapping[k].exit = true;
+					_mapping[k].release = true;
+				}
+			}
+
+			break;
+		}
 		default:
 
 			break;
@@ -163,6 +215,20 @@ void Input::Update(float deltaTime)
 			x.second.init = false;
 		}
 	}
+}
+
+KEYCODE Input::GetMouseCodeAssociate(sf::Mouse::Button button)
+{
+	if (button == sf::Mouse::Left)
+	{
+		return KEYCODE::MOUSELEFT;
+	}
+	else if (button == sf::Mouse::Right)
+	{
+		return KEYCODE::MOUSERIGHT;
+	}
+
+	return KEYCODE::NONE;
 }
 
 KEYCODE Input::GetKeycodeAssociate(sf::Keyboard::Key key)
@@ -209,4 +275,15 @@ KEYCODE Input::GetKeycodeAssociate(sf::Keyboard::Key key)
 	}
 
 	return KEYCODE::NONE;
+}
+
+void Input::SaveMousePos(sf::Window& window)
+{
+	sf::Vector2i localPosition = sf::Mouse::getPosition(window);
+	_mousePosition = FVector2(localPosition.x, localPosition.y);
+}
+
+FVector2 Input::GetMousePosition()
+{
+	return _mousePosition;
 }

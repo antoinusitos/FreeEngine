@@ -161,10 +161,12 @@
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="Debug.cpp" />
     <ClCompile Include="DebugWindowLayout.cpp" />
+    <ClCompile Include="EditorManager.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EngineObject.cpp" />
     <ClCompile Include="EngineVisual.cpp" />
     <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="FVector2.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GamepadManager.cpp" />
     <ClCompile Include="GarbageCollector.cpp" />
@@ -172,6 +174,7 @@
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Leaf.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MenuToolBarButton.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
     <ClCompile Include="ResourcesManager.cpp" />
     <ClCompile Include="Sound.cpp" />
@@ -181,9 +184,11 @@
     <ClCompile Include="TagManager.cpp" />
     <ClCompile Include="TestLeaf.cpp" />
     <ClCompile Include="Time.cpp" />
+    <ClCompile Include="ToolBar.cpp" />
+    <ClCompile Include="ToolBarButton.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Transition.cpp" />
-    <ClCompile Include="Vector3.cpp" />
+    <ClCompile Include="FVector3.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowLayout.cpp" />
   </ItemGroup>
@@ -195,16 +200,19 @@
     <ClInclude Include="Data.h" />
     <ClInclude Include="Debug.h" />
     <ClInclude Include="DebugWindowLayout.h" />
+    <ClInclude Include="EditorManager.h" />
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineObject.h" />
     <ClInclude Include="EngineVisual.h" />
     <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="FVector2.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GamepadManager.h" />
     <ClInclude Include="GarbageCollector.h" />
     <ClInclude Include="GlobalListener.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Leaf.h" />
+    <ClInclude Include="MenuToolBarButton.h" />
     <ClInclude Include="ObjectsManager.h" />
     <ClInclude Include="ResourcesManager.h" />
     <ClInclude Include="Sound.h" />
@@ -214,9 +222,11 @@
     <ClInclude Include="TagManager.h" />
     <ClInclude Include="TestLeaf.h" />
     <ClInclude Include="Time.h" />
+    <ClInclude Include="ToolBar.h" />
+    <ClInclude Include="ToolBarButton.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="Transition.h" />
-    <ClInclude Include="Vector3.h" />
+    <ClInclude Include="FVector3.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowLayout.h" />
   </ItemGroup>

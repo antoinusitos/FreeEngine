@@ -58,6 +58,8 @@ enum KEYCODE
 	ARROWDOWN,
 	ARROWRIGHT,
 	ARROWLEFT,
+	MOUSELEFT,
+	MOUSERIGHT,
 	A,
 	B,
 	C,
@@ -112,6 +114,12 @@ public:
 	std::string name;
 	int type; //0=bool, 1=int, 2=float, 3=Trigger
 	ConditionType conditiontype;
+};
+
+enum EditorState
+{
+	EDITING,
+	RUNNING,
 };
 
 class Data
