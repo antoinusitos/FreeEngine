@@ -16,6 +16,11 @@ Window::Window()
 
 Window::~Window()
 {
+	for (std::vector<WindowLayout*>::iterator it = _allWindowLayout.begin(); it != _allWindowLayout.end(); ++it)
+	{
+		delete (*it);
+	}
+	_allWindowLayout.clear();
 }
 
 sf::RenderWindow* Window::GetWindow()

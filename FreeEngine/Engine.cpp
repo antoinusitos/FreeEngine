@@ -46,7 +46,6 @@ Engine::Engine()
 
 Engine::~Engine()
 {
-
 }
 
 void Engine::NotifyChange()

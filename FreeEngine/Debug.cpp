@@ -14,12 +14,13 @@ Debug::Debug()
 
 Debug::~Debug()
 {
-
+	
 }
 
 void Debug::Print(std::string message, DebugMessageType messageType)
 {
 	std::string type = "";
+	std::string final = "";
 	if (messageType == 0)
 		type = "Log";
 	else if (messageType == 1)
@@ -27,10 +28,11 @@ void Debug::Print(std::string message, DebugMessageType messageType)
 	else if (messageType == 2)
 		type = "Error";
 
-	std::cout << "(" << type << ") " <<  message << '\n';
+	final = "(" + type + ") " + message + '\n';
+	std::cout << final;
 
 	DebugMessage dm = DebugMessage();
-	dm.message = message;
+	dm.message = final;
 	dm.messageType = messageType;
 
 	_allString.push_back(dm);

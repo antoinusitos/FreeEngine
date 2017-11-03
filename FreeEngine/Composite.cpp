@@ -6,6 +6,11 @@ Composite::Composite()
 
 Composite::~Composite()
 {
+	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)
+	{
+		delete (*it);
+	}
+	components.clear();
 }
 
 void Composite::AddLeaf(Leaf* newLeaf)

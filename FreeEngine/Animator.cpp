@@ -9,6 +9,17 @@ Animator::Animator()
 
 Animator::~Animator()
 {
+	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
+	{
+		delete (*it);
+	}
+	_allConditions.clear();
+
+	for (std::vector<State*>::iterator it = _allState.begin(); it != _allState.end(); ++it)
+	{
+		delete (*it);
+	}
+	_allState.clear();
 }
 
 void Animator::Awake()

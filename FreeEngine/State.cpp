@@ -11,6 +11,8 @@ State::State(std::string newName)
 
 State::~State()
 {
+	delete _spriteAnimator;
+	delete _transition;
 }
 
 void State::OnStateEnter()

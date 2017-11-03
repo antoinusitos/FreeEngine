@@ -19,6 +19,13 @@ ObjectsManager::ObjectsManager()
 
 ObjectsManager::~ObjectsManager()
 {
+	Debug::Instance().Print("remove object Manager", DebugMessageType::DEBUGLOG);
+
+	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
+	{
+		delete (*it);
+	}
+	_allEngineObjects.clear();
 }
 
 void ObjectsManager::RegisterEngineObject(EngineObject* object)

@@ -16,8 +16,9 @@ Gamepad Manager
 Component
 Camera Manager
 Sprite manager
-
+Animator
 Sprite Animator
+
 
 TO DO :
 
@@ -36,6 +37,7 @@ Delegate
 REWORK :
 
 changing from windowed to fullscreen (bug : making everything bigger)
+
 
 Ideas :
 
