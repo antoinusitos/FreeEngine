@@ -1,0 +1,13 @@
+(Warning) file : Assets/Config/Engine.txt changed !
+
+(Log) Set new Size to windowed 800x600
+
+(Log) Controller Connected to port 0
+(Log) Enter state s1
+(Log) testTrigger is now set to true
+(Log) Leaving state s1
+(Log) Enter state s2
+(Log) testInt is now set to 9
+(Log) testInt is now set to 10
+(Log) Leaving state s2
+(Log) Enter state s1

@@ -54,7 +54,7 @@ void Debug::SaveLog()
 		toWrite += (*it).message;
 	}
 
-	FileHandler::Instance().WriteFile("Assets/Log/Logs_" + currentTime + ".txt", toWrite);
+	FileHandler::Instance().WriteFile("Assets/EngineLog/Logs_" + currentTime + ".txt", toWrite);
 	
 }
 
