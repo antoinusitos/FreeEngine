@@ -28,7 +28,10 @@ public:
 		return *(_instance.get());
 	}
 
+	//Print a message in the console and windows prompt
 	void Print(std::string message, DebugMessageType messageType);
+	//Log a message only in the windows prompt
+	void Log(std::string message, DebugMessageType messageType);
 
 	void SaveLog();
 

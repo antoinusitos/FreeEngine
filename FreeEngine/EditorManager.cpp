@@ -11,3 +11,13 @@ EditorManager::EditorManager()
 EditorManager::~EditorManager()
 {
 }
+
+bool EditorManager::GetMustQuit()
+{
+	return _mustQuit;
+}
+
+void EditorManager::SetMustQuit()
+{
+	_mustQuit = true;
+}

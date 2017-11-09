@@ -27,6 +27,8 @@ void Debug::Print(std::string message, DebugMessageType messageType)
 		type = "Warning";
 	else if (messageType == 2)
 		type = "Error";
+	else if (messageType == 3)
+		type = "Engine";
 
 	final = "(" + type + ") " + message + '\n';
 	std::cout << final;
@@ -40,6 +42,29 @@ void Debug::Print(std::string message, DebugMessageType messageType)
 	{
 		debugWindow->AddString(dm);
 	}
+}
+
+void Debug::Log(std::string message, DebugMessageType messageType)
+{
+	std::string type = "";
+	std::string final = "";
+	if (messageType == 0)
+		type = "Log";
+	else if (messageType == 1)
+		type = "Warning";
+	else if (messageType == 2)
+		type = "Error";
+	else if (messageType == 3)
+		type = "Engine";
+
+	final = "(" + type + ") " + message + '\n';
+	std::cout << final;
+
+	DebugMessage dm = DebugMessage();
+	dm.message = final;
+	dm.messageType = messageType;
+
+	_allString.push_back(dm);
 }
 
 void Debug::SaveLog()

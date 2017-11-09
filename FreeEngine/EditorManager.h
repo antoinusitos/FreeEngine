@@ -22,11 +22,16 @@ public:
 		return *(_instance.get());
 	}
 
+	bool GetMustQuit();
+	void SetMustQuit();
+
 private:
 	// Unique instance of the time
 	static std::unique_ptr<EditorManager> _instance;
 	static std::once_flag onceFlag;
 
 	EditorState _currentState;
+
+	bool _mustQuit = false;
 };
 

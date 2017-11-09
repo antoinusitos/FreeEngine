@@ -1,4 +1,5 @@
 #include "TestLeaf.h"
+#include "Debug.h"
 
 TestLeaf::TestLeaf()
 {
@@ -10,12 +11,12 @@ TestLeaf::~TestLeaf()
 
 void TestLeaf::Awake()
 {
-	std::cout << "Awake test leaf" << '\n';
+	Debug::Instance().Print("Awake test leaf", DebugMessageType::DEBUGLOG);
 }
 
 void TestLeaf::Start()
 {
-	std::cout << "Start test leaf" << '\n';
+	Debug::Instance().Print("Start test leaf", DebugMessageType::DEBUGLOG);
 }
 
 void TestLeaf::Update(float deltaTime)
@@ -25,7 +26,7 @@ void TestLeaf::Update(float deltaTime)
 
 void TestLeaf::Exit()
 {
-	std::cout << "Exit test leaf" << '\n';
+	Debug::Instance().Print("Exit test leaf", DebugMessageType::DEBUGLOG);
 }
 
 void TestLeaf::Render()

@@ -25,15 +25,18 @@ Engine::Engine()
 
 Engine::~Engine()
 {
+
 }
 
 void Engine::NotifyChange()
 {
-	std::cout << "file changed !" << '\n';
+	_debug->Log("Engine observer file changed !", DebugMessageType::DEBUGENGINE);
 }
 
 void Engine::Launch()
 {
+	_debug->Log("Launching Engine...", DebugMessageType::DEBUGENGINE);
+
 	_isRunning = true;
 	
 	_input->Init();
@@ -50,10 +53,12 @@ void Engine::Launch()
 
 	_gamepadManager->Init();
 
+	_time->Init();
+
+	_debug->Log("Engine Init !", DebugMessageType::DEBUGENGINE);
+
 	_objectManager->AwakeAllEngineObjects();
 	_objectManager->StartAllEngineObjects();
-
-	_time->Init();
 
 	while (_isRunning)
 	{
@@ -87,8 +92,9 @@ void Engine::CheckMustCloseWindow()
 	_input->ProcessInput(*_window->GetWindow());
 
 	// Close the window if escape is pressed
-	if (_input->GetKeyPressed(KEYCODE::ESCAPE) || _input->MustClose())
+	if (_input->GetKeyPressed(KEYCODE::ESCAPE) || _editorManager->GetMustQuit())
 	{
+		_debug->Log("Shutting Down Engine...", DebugMessageType::DEBUGENGINE);
 		_window->Exit();
 		_isRunning = false;
 	}

@@ -1,5 +1,6 @@
 #include "Input.h"
 #include <iostream>
+#include "Debug.h"
 
 std::unique_ptr<Input> Input::_instance;
 std::once_flag Input::onceFlag;
@@ -12,7 +13,7 @@ Input::Input()
 
 Input::~Input()
 {
-	std::cout << "Destroy Input" << std::endl;
+	Debug::Instance().Log("Destroy Input", DebugMessageType::DEBUGENGINE);
 }
 
 void Input::Init()
@@ -65,11 +66,6 @@ void Input::Init()
 	ik = InputKey();
 	ik.key = KEYCODE::C;
 	_mapping.emplace(KEYCODE::C, ik);
-}
-
-bool Input::MustClose()
-{
-	return _mustClose;
 }
 
 void Input::ProcessInput(sf::Window& window)

@@ -1,4 +1,5 @@
 #include "TagManager.h"
+#include "Debug.h"
 
 std::unique_ptr<TagManager> TagManager::_instance;
 std::once_flag TagManager::onceFlag;
@@ -17,7 +18,7 @@ void TagManager::AddTag(std::string newTag)
 	{
 		if (pairTag.second == newTag)
 		{
-			std::cout << "TagManager already has tag " << newTag << '\n';
+			Debug::Instance().Print("TagManager already has tag " + newTag, DebugMessageType::DEBUGENGINE);
 			return;
 		}
 	}
@@ -45,7 +46,7 @@ void TagManager::RemoveTag(std::string newTag)
 	}
 	else
 	{
-		std::cout << "TagManager does not have tag " << newTag << '\n';
+		Debug::Instance().Print("TagManager does not have tag " + newTag, DebugMessageType::DEBUGENGINE);
 	}
 }
 

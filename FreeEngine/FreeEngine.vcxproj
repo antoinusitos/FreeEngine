@@ -165,6 +165,7 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EngineObject.cpp" />
     <ClCompile Include="EngineVisual.cpp" />
+    <ClCompile Include="ExitToolBarButton.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="FVector2.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -175,8 +176,10 @@
     <ClCompile Include="Leaf.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="MenuToolBarButton.cpp" />
+    <ClCompile Include="NewSceneToolBarButton.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
     <ClCompile Include="ResourcesManager.cpp" />
+    <ClCompile Include="SaveToolBarButton.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpriteAnimator.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
@@ -204,6 +207,7 @@
     <ClInclude Include="Engine.h" />
     <ClInclude Include="EngineObject.h" />
     <ClInclude Include="EngineVisual.h" />
+    <ClInclude Include="ExitToolBarButton.h" />
     <ClInclude Include="FileHandler.h" />
     <ClInclude Include="FVector2.h" />
     <ClInclude Include="GameObject.h" />
@@ -213,8 +217,10 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="Leaf.h" />
     <ClInclude Include="MenuToolBarButton.h" />
+    <ClInclude Include="NewSceneToolBarButton.h" />
     <ClInclude Include="ObjectsManager.h" />
     <ClInclude Include="ResourcesManager.h" />
+    <ClInclude Include="SaveToolBarButton.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SpriteAnimator.h" />
     <ClInclude Include="SpriteRenderer.h" />

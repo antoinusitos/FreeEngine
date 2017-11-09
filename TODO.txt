@@ -24,11 +24,11 @@ Editor
 
 TO DO :
 
+Serialization
 scene manager
 
 Particles
 Prefab
-Serialization
 Collisions/Layers
 Level Editor
 UI / anchor

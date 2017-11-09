@@ -24,10 +24,11 @@ void ToolBar::Init()
 	_allDrawable.push_back(&_background);
 
 	menu = new MenuToolBarButton();
+	menu->InitBackground();
 	menu->SetFont(font);
 	menu->SetName("Menu");
 	menu->SetPosition(0, 0);
-	menu->SetSize(40, 20);
+	menu->SetSize(80, 20);
 	_allButton.push_back(menu);
 
 	Window::Instance().AddRenderingLayout(this);

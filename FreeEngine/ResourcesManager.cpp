@@ -12,15 +12,15 @@ ResourcesManager::ResourcesManager()
 	if (ISRELEASE)
 	{
 		_resourcesPath = _projectPath + RELEASEFOLDER;
-		std::cout << "RELEASE VERSION " << RELEASEVERSION << '\n';
+		Debug::Instance().Log("RELEASE VERSION " + RELEASEVERSION, DebugMessageType::DEBUGENGINE);
 	}
 	else
 	{
-		std::cout << "DEBUG VERSION " << RELEASEVERSION << '\n';
+		Debug::Instance().Log("DEBUG VERSION " + RELEASEVERSION, DebugMessageType::DEBUGENGINE);
 		_resourcesPath = _projectPath + DEBUGFOLDER;
 	}
 
-	std::cout << "Resources Path : " << _resourcesPath << '\n' << '\n';
+	Debug::Instance().Log("Resources Path : " + _resourcesPath + '\n', DebugMessageType::DEBUGENGINE);
 
 	_resourcesPath += "/Assets/Resources/";
 }

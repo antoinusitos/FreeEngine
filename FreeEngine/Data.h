@@ -33,6 +33,7 @@ enum DebugMessageType
 	DEBUGLOG,
 	DEBUGWARNING,
 	DEBUGERROR,
+	DEBUGENGINE,
 };
 
 struct DebugMessage
