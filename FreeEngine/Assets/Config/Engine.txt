@@ -4,7 +4,15 @@
 Sceen=WINDOWED
 #
 #Windowed LengthxHeight
-Resolution=800x600
+Resolution=1024x720
 #
 #FullScreen LengthxHeight
 FullScreenResolution=1920x1080
+#
+######Engine######
+#Speed in seconds
+ConsoleSpeed=1
+#Height in Pixels
+ConsoleHeight=200
+#Color in format r,g,b (int, int, int) 0-255
+ConsoleColor=150,150,150

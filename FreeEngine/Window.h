@@ -94,7 +94,7 @@ private :
 	unsigned int _screenResolutionX;
 	unsigned int _screenResolutionY;
 
-	bool _showingConsole = true;
+	bool _showingConsole = false;
 
 //Functions
 private:

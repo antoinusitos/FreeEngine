@@ -49,8 +49,8 @@ void Window::InitInternalWindows()
 	_console = std::make_unique<DebugWindowLayout>();
 	_console->Init();
 
-	_toolbar = std::make_unique<ToolBar>();
-	_toolbar->Init();
+	//_toolbar = std::make_unique<ToolBar>();
+	//_toolbar->Init();
 
 	Debug::Instance().SetDebugWindow(GetDebugWindowLayout());
 }
@@ -75,6 +75,8 @@ void Window::Update(float deltaTime)
 	{
 		(*it)->Update(deltaTime);
 	}
+	if(_console)
+		_console->Update(deltaTime);
 }
 
 void Window::AddRenderingLayout(WindowLayout* newLayout)
