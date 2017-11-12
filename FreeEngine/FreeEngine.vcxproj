@@ -167,6 +167,7 @@
     <ClCompile Include="EngineVisual.cpp" />
     <ClCompile Include="ExitToolBarButton.cpp" />
     <ClCompile Include="FileHandler.cpp" />
+    <ClCompile Include="FMath.cpp" />
     <ClCompile Include="FVector2.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GamepadManager.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="EngineVisual.h" />
     <ClInclude Include="ExitToolBarButton.h" />
     <ClInclude Include="FileHandler.h" />
+    <ClInclude Include="FMath.h" />
     <ClInclude Include="FVector2.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GamepadManager.h" />

@@ -19,6 +19,8 @@ public:
 	FVector3 operator*(const float multiplier);
 	FVector3 operator/(const FVector3& newVector3);
 
+	static FVector3 Lerp(FVector3 start, FVector3 end, float percent);
+
 	std::string ToString();
 };
 

@@ -11,7 +11,7 @@ FullScreenResolution=1920x1080
 #
 ######Engine######
 #Speed in seconds
-ConsoleSpeed=1
+ConsoleSpeed=1.5
 #Height in Pixels
 ConsoleHeight=200
 #Color in format r,g,b (int, int, int) 0-255

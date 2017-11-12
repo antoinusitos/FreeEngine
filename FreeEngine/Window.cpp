@@ -194,7 +194,7 @@ void Window::HandleDataChanges()
 				_screenResolutionY = atoi(y.c_str());
 
 				sf::Vector2u size = _window.get()->getSize();
-				SetResolutionScreen(_screenResolutionX, _screenResolutionY, size.x / 2, size.y / 2);
+				SetResolutionScreen(_screenResolutionX, _screenResolutionY, 0, 0);
 				CameraManager::Instance().ResizeCurrentView(_screenResolutionX, _screenResolutionY);
 			}
 		}
@@ -279,7 +279,7 @@ void Window::ResetToDefaultView()
 void Window::ToggleConsole()
 {
 	_showingConsole = !_showingConsole;
-	_console->SetVisibility(_showingConsole);
+	_console->SetOpen(_showingConsole);
 }
 
 void Window::ClearWindow()

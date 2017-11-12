@@ -2,6 +2,7 @@
 #include "Window.h"
 #include "Debug.h"
 #include "ResourcesManager.h"
+#include "FMath.h"
 
 DebugWindowLayout::DebugWindowLayout()
 {
@@ -19,10 +20,9 @@ void DebugWindowLayout::Init()
 
 	_background = sf::RectangleShape(sf::Vector2f((float)Window::Instance().GetWindow()->getSize().x, _debugZoneSizeY));
 	_background.setFillColor(sf::Color(150, 150, 150));
-	_background.setPosition(0, Window::Instance().GetWindow()->getSize().y - _debugZoneSizeY);
-	_allDrawable.push_back(&_background);
+	_background.setPosition(0, Window::Instance().GetWindow()->getSize().y);
 
-	_beginY = _background.getPosition().y;
+	_beginY = _background.getPosition().y - _debugZoneSizeY;
 	_beginX = _background.getPosition().x + 5;
        
 	Window::Instance().AddRenderingLayout(this);
@@ -66,6 +66,8 @@ void DebugWindowLayout::Render(sf::RenderWindow* SFMLWindow)
 {
 	WindowLayout::Render(SFMLWindow);
 
+	SFMLWindow->draw(_background);
+
 	if (_active)
 	{
 		int tempIndex = 0;
@@ -90,11 +92,28 @@ void DebugWindowLayout::Update(float deltaTime)
 {
 	if (_opening)
 	{
-	
-	}
-	else
-	{
-
+		if (_direction)
+		{
+			_progress += deltaTime * _consoleSpeed;
+			if (_progress > 1)
+			{
+				_progress = 1;
+				SetVisibility(true);
+				_opening = false;
+			}
+		}
+		else
+		{
+			_progress -= deltaTime * _consoleSpeed;
+			SetVisibility(false);
+			if (_progress < 0)
+			{
+				_progress = 0;
+				_opening = false;
+			}
+		}
+		_posY = FMath::Lerp(0, _debugZoneSizeY, _progress);
+		_background.setPosition(0, Window::Instance().GetWindow()->getSize().y - _posY);
 	}
 }
 
@@ -153,6 +172,7 @@ void DebugWindowLayout::HandleDataChanges()
 		else if (tempCat == "ConsoleHeight")
 		{
 			_debugZoneSizeY = atof(tempVal.c_str());
+			_beginY = Window::Instance().GetWindow()->getSize().y - _debugZoneSizeY;
 		}
 		else if (tempCat == "ConsoleColor")
 		{
@@ -175,4 +195,10 @@ void DebugWindowLayout::HandleDataChanges()
 			_background.setFillColor(sf::Color(_color.x, _color.y, _color.z));
 		}
 	}
+}
+
+void DebugWindowLayout::SetOpen(bool newState)
+{
+	_opening = true;
+	_direction = newState;
 }
