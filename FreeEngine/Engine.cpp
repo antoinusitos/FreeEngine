@@ -3,7 +3,7 @@
 
 #include "Engine.h"
 
-#include "FVector3.h"
+#include "FMath.h"
 
 Engine::Engine()
 {
@@ -19,6 +19,7 @@ Engine::Engine()
 	_globalListener = &GlobalListener::Instance();
 	_gamepadManager = &GamepadManager::Instance();
 	_cameraManager = &CameraManager::Instance();
+	_math = &FMath::Instance();
 
 	Launch();
 }

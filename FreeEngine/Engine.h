@@ -12,6 +12,7 @@
 #include "GamepadManager.h"
 #include "CameraManager.h"
 #include "EditorManager.h"
+#include "FMath.h"
 
 class Engine : public FileObserver
 {
@@ -48,6 +49,7 @@ private :
 	GamepadManager* _gamepadManager;
 	CameraManager* _cameraManager;
 	EditorManager* _editorManager;
+	FMath* _math;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

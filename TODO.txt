@@ -20,6 +20,8 @@ Animator
 Sprite Animator
 Editor Manager
 Editor
+Clamp
+Random
 
 
 TO DO :
@@ -27,8 +29,6 @@ TO DO :
 Serialization
 scene manager
 Perlin
-Random
-Clamp
 Particles
 Prefab
 Collisions/Layers
