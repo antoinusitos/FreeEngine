@@ -18,11 +18,11 @@ public:
 	//virtual void Render(std::unique_ptr<sf::RenderWindow> SFMLWindow);
 	virtual void Render(sf::RenderWindow* SFMLWindow);
 
-	virtual void Update(float deltaTime);
+	virtual void Update(const float deltaTime);
 
 	void UnregisterToRendering();
 
-	void SetVisibility(bool newVisibility);
+	void SetVisibility(const bool newVisibility);
 
 protected:
 	void AddToRendering();

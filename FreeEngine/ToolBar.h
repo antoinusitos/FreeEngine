@@ -15,7 +15,7 @@ public:
 
 	void Render(sf::RenderWindow* SFMLWindow);
 
-	void Update(float deltaTime);
+	void Update(const float deltaTime);
 
 	void Unregister();
 

@@ -140,7 +140,7 @@ public:
 		return *(_instance.get());
 	}
 
-	std::string GetProjetPath();
+	const std::string GetProjetPath();
 
 private:
 	// Unique instance of the time

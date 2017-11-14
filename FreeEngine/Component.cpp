@@ -13,7 +13,7 @@ void Component::Start()
 
 }
 
-void Component::Update(float deltaTime)
+void Component::Update(const float deltaTime)
 {
 
 }
@@ -28,7 +28,7 @@ void Component::Awake()
 
 }
 
-void Component::Render(sf::RenderWindow* window)
+void Component::Render(const sf::RenderWindow* window)
 {
 
 }

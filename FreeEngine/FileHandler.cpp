@@ -20,7 +20,7 @@ FileHandler::~FileHandler()
 	_allWatcher.empty();
 }
 
-bool FileHandler::WriteFile(std::string fileName, std::string text)
+bool FileHandler::WriteFile(const std::string fileName, const std::string text)
 {
 	std::ofstream myfile(fileName);
 	if (myfile.is_open())
@@ -32,7 +32,7 @@ bool FileHandler::WriteFile(std::string fileName, std::string text)
 	return false;
 }
 
-std::string FileHandler::ReadFile(std::string fileName, bool* fileReadable)
+std::string FileHandler::ReadFile(const std::string fileName, bool* fileReadable)
 {
 	std::string returnString = "";
 
@@ -55,7 +55,7 @@ std::string FileHandler::ReadFile(std::string fileName, bool* fileReadable)
 	return returnString;
 }
 
-int FileHandler::RegisterNewWatcher(FileObserver* observer, std::string fileName)
+int FileHandler::RegisterNewWatcher(FileObserver* observer, const std::string fileName)
 {
 	Watcher newWatcher = Watcher();
 	newWatcher.ID = ids;
@@ -67,7 +67,7 @@ int FileHandler::RegisterNewWatcher(FileObserver* observer, std::string fileName
 	return ids;
 }
 
-void FileHandler::UpdateWatchers(float deltaTime)
+void FileHandler::UpdateWatchers(const float deltaTime)
 {
 	for (std::vector<Watcher>::iterator it = _allWatcher.begin(); it != _allWatcher.end(); ++it)
 	{		
@@ -115,7 +115,7 @@ void FileHandler::UpdateWatchers(float deltaTime)
 	}
 }
 
-void FileHandler::UnregisterWatcher(int ID)
+void FileHandler::UnregisterWatcher(const int ID)
 {
 	int index = -1;
 	bool found = false;

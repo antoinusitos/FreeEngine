@@ -13,24 +13,24 @@ public:
 	~Animator();
 
 	void Start();
-	void Update(float deltaTime);
+	void Update(const float deltaTime);
 	void Exit();
 	void Awake();
-	void Render(sf::RenderWindow* window);
+	const void Render(sf::RenderWindow* window);
 
+	const void AddSpriteAnimator(SpriteAnimator* newSpriteAnimator);
 	void AddNewState(State* newState);
-	void AddSpriteAnimator(SpriteAnimator* newSpriteAnimator);
 	void GoToNextState();
 
-	void SetInt(std::string name, int value);
-	void SetFloat(std::string name, float value);
-	void SetBool(std::string name, bool value);
-	void SetTrigger(std::string name);
+	void SetInt(const std::string name, const int value);
+	void SetFloat(const std::string name, const float value);
+	void SetBool(const std::string name, const bool value);
+	void SetTrigger(const std::string name);
 
-	bool GetBool(std::string name);
-	int GetInt(std::string name);
-	float GetFloat(std::string name);
-	bool GetTrigger(std::string name);
+	const bool GetBool(const std::string name);
+	const int GetInt(const std::string name);
+	const float GetFloat(const std::string name);
+	const bool GetTrigger(const std::string name);
 
 private:
 	std::vector<State*> _allState;

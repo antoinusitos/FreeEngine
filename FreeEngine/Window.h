@@ -46,22 +46,22 @@ public:
 	// Render the Window
 	void Render();
 	
-	void Update(float deltaTime);
+	void Update(const float deltaTime);
 
 	void AddRenderingLayout(WindowLayout* newLayout);
 	void RemoveRenderingLayout(WindowLayout* layoutToRemove);
 
 	DebugWindowLayout* GetDebugWindowLayout();
-	ToolBar* GetToolBar();
+	const ToolBar* GetToolBar();
 
 	void RemoveAllRendering();
 
 	void NotifyChange();
 	
-	unsigned int GetScreenResolutionX();
-	unsigned int GetScreenResolutionY();
+	const unsigned int GetScreenResolutionX();
+	const unsigned int GetScreenResolutionY();
 
-	void SetView(sf::View newView);
+	void SetView(const sf::View newView);
 
 	void ResetToDefaultView();
 
@@ -100,10 +100,10 @@ private :
 private:
 	void HandleDataChanges();
 
-	void SetResolutionScreen(int X, int Y, int posX, int posY);
+	void SetResolutionScreen(const int X, const int Y, const int posX, const int posY);
 
-	void SetScreenType(ScreenType newType);
+	void SetScreenType(const ScreenType newType);
 
-	void GetResolutionValuesWithDelimiter(std::string& text, std::string delimiter, std::string& x, std::string& y);
+	void GetResolutionValuesWithDelimiter(std::string& text, const std::string delimiter, std::string& x, std::string& y);
 };
 

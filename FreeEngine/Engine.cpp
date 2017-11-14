@@ -101,7 +101,7 @@ void Engine::CheckMustCloseWindow()
 	}
 }
 
-void Engine::Update(float deltaTime)
+void Engine::Update(const float deltaTime)
 {
 	if (_currentTimeForInput < _timeBeforeInput)
 	{

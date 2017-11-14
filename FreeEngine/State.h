@@ -10,12 +10,12 @@ class State
 {
 public:
 
-	State(std::string newName);
+	State(const std::string newName);
 	~State();
 
 	void OnStateEnter();
 
-	void OnStateUpdate(float deltaTime);
+	void OnStateUpdate(const float deltaTime);
 
 	void OnStateRender(sf::RenderWindow* window);
 

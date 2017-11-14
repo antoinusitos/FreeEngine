@@ -32,11 +32,11 @@ public:
 
 	void AwakeAllEngineObjects();
 	void StartAllEngineObjects();
-	void UpdateAllEngineObjects(float deltaTime);
-	void RenderAllEngineObjects(sf::RenderWindow* window);
+	void UpdateAllEngineObjects(const float deltaTime);
+	void RenderAllEngineObjects(const sf::RenderWindow* window);
 	void DestroyObject(EngineObject* object);
 
-	int GetID();
+	const int GetID();
 
 private:
 	// Unique instance of the time

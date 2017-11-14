@@ -20,7 +20,7 @@ void WindowLayout::Render(sf::RenderWindow* SFMLWindow)
 	}
 }
 
-void WindowLayout::Update(float deltaTime)
+void WindowLayout::Update(const float deltaTime)
 {
 
 }
@@ -35,7 +35,7 @@ void WindowLayout::UnregisterToRendering()
 	Window::Instance().RemoveRenderingLayout(this);
 }
 
-void WindowLayout::SetVisibility(bool newVisibility)
+void WindowLayout::SetVisibility(const bool newVisibility)
 {
 	_active = newVisibility;
 }

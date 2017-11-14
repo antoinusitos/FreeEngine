@@ -21,33 +21,33 @@ void SpriteAnimator::Start()
 
 }
 
-void SpriteAnimator::SetColor(unsigned int r, unsigned int g, unsigned int b, unsigned int a)
+void SpriteAnimator::SetColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a)
 {
 	_color = sf::Color(r, g, b, a);
 	_sprite.setColor(_color);
 }
 
-void SpriteAnimator::SetPosition(float x, float y)
+void SpriteAnimator::SetPosition(const float x, const float y)
 {
 	_sprite.setPosition(sf::Vector2f(x, y));
 }
 
-void SpriteAnimator::SetRotation(float angle)
+void SpriteAnimator::SetRotation(const float angle)
 {
 	_sprite.setRotation(angle);
 }
 
-void SpriteAnimator::SetScale(float x, float y)
+void SpriteAnimator::SetScale(const float x, const float y)
 {
 	_sprite.scale(sf::Vector2f(x, y));
 }
 
-void SpriteAnimator::SetOrigin(float x, float y)
+void SpriteAnimator::SetOrigin(const float x, const float y)
 {
 	_sprite.setOrigin(sf::Vector2f(x, y));
 }
 
-void SpriteAnimator::Update(float deltaTime)
+void SpriteAnimator::Update(const float deltaTime)
 {
 	_currentAnimTime += deltaTime * _animationSpeed;
 
@@ -87,7 +87,7 @@ void SpriteAnimator::Exit()
 
 }
 
-void SpriteAnimator::AddTexture(std::string fileName)
+void SpriteAnimator::AddTexture(const std::string fileName)
 {
 	_allTexture.push_back(ResourcesManager::Instance().GetTexture(fileName));
 	if (_nbFrame == 0)
@@ -97,7 +97,7 @@ void SpriteAnimator::AddTexture(std::string fileName)
 	_nbFrame++;
 }
 
-void SpriteAnimator::SetAnimationSpeed(float newSpeed)
+void SpriteAnimator::SetAnimationSpeed(const float newSpeed)
 {
 	_animationSpeed = newSpeed;
 }

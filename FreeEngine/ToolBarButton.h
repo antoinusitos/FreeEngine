@@ -12,18 +12,18 @@ public:
 
 	virtual void Execute() = 0;
 
-	void UpdateButton(float deltaTime);
+	void UpdateButton(const float deltaTime);
 
-	void SetPosition(float x, float y);
+	void SetPosition(const float x, const float y);
 	void SetPosition(const FVector2& position);
-	void SetSize(float x, float y);
+	void SetSize(const float x, const float y);
 	void SetSize(const FVector2& size);
 
 	void Render(sf::RenderWindow* SFMLWindow);
 
-	void SetName(std::string newName);
+	void SetName(const std::string newName);
 
-	void SetFont(sf::Font newFont);
+	void SetFont(const sf::Font newFont);
 
 	void InitBackground();
 
@@ -31,7 +31,7 @@ public:
 
 	void SetParent(ToolBarButton* newParent);
 
-	ToolBarButton* GetParent();
+	const ToolBarButton* GetParent();
 
 protected:
 

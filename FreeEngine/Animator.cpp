@@ -46,7 +46,7 @@ void Animator::Start()
 	}
 }
 
-void Animator::Update(float deltaTime)
+void Animator::Update(const float deltaTime)
 {
 	if (_currentState != nullptr)
 	{
@@ -55,7 +55,7 @@ void Animator::Update(float deltaTime)
 	}
 }
 
-void Animator::Render(sf::RenderWindow* window)
+const void Animator::Render(sf::RenderWindow* window)
 {
 	if (_currentState != nullptr)
 	{
@@ -68,7 +68,7 @@ void Animator::Exit()
 
 }
 
-void Animator::AddSpriteAnimator(SpriteAnimator* newSpriteAnimator)
+const void Animator::AddSpriteAnimator(SpriteAnimator* newSpriteAnimator)
 {
 	State* newState = new State("NewState");
 	newState->SetSpriteAnimator(newSpriteAnimator);
@@ -94,7 +94,7 @@ void Animator::GoToNextState()
 	}
 }
 
-void Animator::SetInt(std::string name, int value)
+void Animator::SetInt(const std::string name, const int value)
 {
 	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
 	{
@@ -123,7 +123,7 @@ void Animator::SetInt(std::string name, int value)
 	Debug::Instance().Print(name + " is not a valid parameter, be sure it's declared before setting it !", DebugMessageType::DEBUGERROR);
 }
 
-void Animator::SetFloat(std::string name, float value)
+void Animator::SetFloat(const std::string name, const float value)
 {
 	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
 	{
@@ -152,7 +152,7 @@ void Animator::SetFloat(std::string name, float value)
 	Debug::Instance().Print(name + " is not a valid parameter, be sure it's declared before setting it !", DebugMessageType::DEBUGERROR);
 }
 
-void Animator::SetBool(std::string name, bool value)
+void Animator::SetBool(const std::string name, const bool value)
 {
 	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
 	{
@@ -211,7 +211,7 @@ void Animator::SetTrigger(std::string name)
 	Debug::Instance().Print(name + " is not a valid parameter, be sure it's declared before setting it !", DebugMessageType::DEBUGERROR);
 }
 
-bool Animator::GetBool(std::string name)
+const bool Animator::GetBool(const std::string name)
 {
 	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
 	{
@@ -241,7 +241,7 @@ bool Animator::GetBool(std::string name)
 	return false;
 }
 
-int Animator::GetInt(std::string name)
+const int Animator::GetInt(const std::string name)
 {
 	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
 	{
@@ -269,7 +269,7 @@ int Animator::GetInt(std::string name)
 	return -1;
 }
 
-float Animator::GetFloat(std::string name)
+const float Animator::GetFloat(const std::string name)
 {
 	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
 	{
@@ -297,7 +297,7 @@ float Animator::GetFloat(std::string name)
 	return -1;
 }
 
-bool Animator::GetTrigger(std::string name)
+const bool Animator::GetTrigger(const std::string name)
 {
 	for (std::vector<Condition*>::iterator it = _allConditions.begin(); it != _allConditions.end(); ++it)
 	{

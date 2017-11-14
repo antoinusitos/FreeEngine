@@ -23,9 +23,9 @@ public:
 		return *(_instance.get());
 	}
 
-	void AddTag(std::string newTag);
-	void RemoveTag(std::string newTag);
-	int GetTagID(std::string tag);
+	void AddTag(const std::string newTag);
+	void RemoveTag(const std::string newTag);
+	const int GetTagID(const std::string tag);
 
 private:
 	// Unique instance of the time

@@ -4,7 +4,7 @@
 #include "Animator.h"
 #include "Transition.h"
 
-State::State(std::string newName)
+State::State(const std::string newName)
 {
 	_name = newName;
 }
@@ -25,7 +25,7 @@ void State::OnStateEnter()
 		Debug::Instance().Print("Enter state " + _name, DebugMessageType::DEBUGLOG);
 }
 
-void State::OnStateUpdate(float deltaTime)
+void State::OnStateUpdate(const float deltaTime)
 {
 	if (_spriteAnimator != nullptr)
 	{

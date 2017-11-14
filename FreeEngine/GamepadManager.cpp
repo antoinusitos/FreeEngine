@@ -54,12 +54,12 @@ void GamepadManager::Update(float deltaTime)
 	}
 }
 
-int GamepadManager::GetPort()
+const int GamepadManager::GetPort()
 {
 	return _controllerId + 1;
 }
 
-XINPUT_GAMEPAD *GamepadManager::GetState()
+const XINPUT_GAMEPAD *GamepadManager::GetState()
 {
 	return &_state.Gamepad;
 }
@@ -130,24 +130,24 @@ bool GamepadManager::Refresh()
 	return false;
 }
 
-bool GamepadManager::IsPressed(WORD button)
+const bool GamepadManager::IsPressed(const WORD button)
 {
 	return (_state.Gamepad.wButtons & button) != 0;
 }
 
-bool GamepadManager::IsDown(WORD button)
+const bool GamepadManager::IsDown(const WORD button)
 {
 	return (_buttonState[button] && !_lastButtonState[button]);
 }
 
-bool GamepadManager::IsUp(WORD button)
+const bool GamepadManager::IsUp(const WORD button)
 {
 	return (!_buttonState[button] && _lastButtonState[button]);
 }
 
-float GamepadManager::GetLeftStickX() { return _leftStickX; }
-float GamepadManager::GetLeftStickY() { return _leftStickY; }
-float GamepadManager::GetRightStickX() { return _rightStickX; }
-float GamepadManager::GetRightStickY() { return _rightStickY; }
-float GamepadManager::GetLeftTrigger() { return _leftTrigger; }
-float GamepadManager::GetRightTrigger() { return _rightTrigger; }
+const float GamepadManager::GetLeftStickX() { return _leftStickX; }
+const float GamepadManager::GetLeftStickY() { return _leftStickY; }
+const float GamepadManager::GetRightStickX() { return _rightStickX; }
+const float GamepadManager::GetRightStickY() { return _rightStickY; }
+const float GamepadManager::GetLeftTrigger() { return _leftTrigger; }
+const float GamepadManager::GetRightTrigger() { return _rightTrigger; }

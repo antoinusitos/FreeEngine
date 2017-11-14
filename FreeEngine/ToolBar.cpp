@@ -52,7 +52,7 @@ void ToolBar::Render(sf::RenderWindow* SFMLWindow)
 	}
 }
 
-void ToolBar::Update(float deltaTime)
+void ToolBar::Update(const float deltaTime)
 {
 	WindowLayout::Update(deltaTime);
 

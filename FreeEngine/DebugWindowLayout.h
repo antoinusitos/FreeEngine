@@ -13,11 +13,11 @@ public:
 	DebugWindowLayout();
 	~DebugWindowLayout();
 
-	void AddString(DebugMessage debugMessage);
+	void AddString(const DebugMessage debugMessage);
 
 	void Render(sf::RenderWindow* SFMLWindow);
 
-	void Update(float deltaTime);
+	void Update(const float deltaTime);
 
 	void Init();
 
@@ -25,7 +25,7 @@ public:
 
 	void NotifyChange();
 
-	void SetOpen(bool newState);
+	void SetOpen(const bool newState);
 
 private:
 	sf::RectangleShape _background;
@@ -35,7 +35,7 @@ private:
 	float _posY = 0;
 	float _progress = 0;
 
-	std::string configFileName = "Assets/Config/Engine.txt";
+	const std::string configFileName = "Assets/Config/Engine.txt";
 
 	bool _opening = false;
 	bool _direction = true;

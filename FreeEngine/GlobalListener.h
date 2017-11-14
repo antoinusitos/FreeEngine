@@ -23,9 +23,9 @@ public:
 		return *(_instance.get());
 	}
 
-	void SetPosition(float x, float y);
+	void SetPosition(const float x, const float y);
 
-	void SetGlobalVolume(float volume);
+	void SetGlobalVolume(const float volume);
 
 //Variables
 private:

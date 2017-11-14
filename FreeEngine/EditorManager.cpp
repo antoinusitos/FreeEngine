@@ -12,7 +12,7 @@ EditorManager::~EditorManager()
 {
 }
 
-bool EditorManager::GetMustQuit()
+const bool EditorManager::GetMustQuit()
 {
 	return _mustQuit;
 }

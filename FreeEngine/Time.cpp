@@ -58,7 +58,7 @@ void Time::Update()
 	}
 }
 
-std::string Time::GetCurrentTimeAsString()
+const std::string Time::GetCurrentTimeAsString()
 {
 	time_t rawtime;
 	struct tm timeinfo;

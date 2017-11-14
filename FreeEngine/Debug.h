@@ -29,11 +29,11 @@ public:
 	}
 
 	//Print a message in the console and windows prompt
-	void Print(std::string message, DebugMessageType messageType);
+	void Print(const std::string message, const DebugMessageType messageType);
 	//Log a message only in the windows prompt
-	void Log(std::string message, DebugMessageType messageType);
+	void Log(const std::string message, const DebugMessageType messageType);
 
-	void SaveLog();
+	const void SaveLog();
 
 	void SetDebugWindow(DebugWindowLayout* newWindow);
 

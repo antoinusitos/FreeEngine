@@ -22,7 +22,7 @@ public:
 		return *(_instance.get());
 	}
 
-	bool GetMustQuit();
+	const bool GetMustQuit();
 	void SetMustQuit();
 
 private:

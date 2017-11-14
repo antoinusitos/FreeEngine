@@ -10,7 +10,7 @@ public:
 	~TestLeaf();
 
 	virtual void Start();
-	virtual void Update(float deltaTime);
+	virtual void Update(const float deltaTime);
 	virtual void Exit();
 	virtual void Awake();
 	virtual void Render();

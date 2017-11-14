@@ -35,7 +35,7 @@ void Data::RecoverProjetPath()
 	_projectPath += '/';
 }
 
-std::string Data::GetProjetPath()
+const std::string Data::GetProjetPath()
 {
 	return _projectPath;
 }

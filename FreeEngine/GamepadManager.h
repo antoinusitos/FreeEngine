@@ -24,24 +24,24 @@ public:
 	}
 
 	void Init();
-	void Update(float deltaTime);
+	void Update(const float deltaTime);
 
 	bool A_button_pressed = false;
 
-	int  GetPort();
-	XINPUT_GAMEPAD *GetState();
+	const int GetPort();
+	const XINPUT_GAMEPAD *GetState();
 	bool CheckConnection();
 	bool Refresh();
 
-	bool IsPressed(WORD button);
-	bool IsDown(WORD button);
-	bool IsUp(WORD button);
-	float GetLeftStickX();
-	float GetLeftStickY();
-	float GetRightStickX();
-	float GetRightStickY();
-	float GetLeftTrigger();
-	float GetRightTrigger();
+	const bool IsPressed(const WORD button);
+	const bool IsDown(const WORD button);
+	const bool IsUp(const WORD button);
+	const float GetLeftStickX();
+	const float GetLeftStickY();
+	const float GetRightStickX();
+	const float GetRightStickY();
+	const float GetLeftTrigger();
+	const float GetRightTrigger();
 
 private:
 	// Unique instance of the time

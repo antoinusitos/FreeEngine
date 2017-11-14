@@ -30,11 +30,10 @@ ObjectsManager::~ObjectsManager()
 
 void ObjectsManager::RegisterEngineObject(EngineObject* object)
 {
-
 	_allEngineObjects.push_back(object);
 }
 
-int ObjectsManager::GetID()
+const int ObjectsManager::GetID()
 {
 	ID++;
 	return ID-1;
@@ -56,7 +55,7 @@ void ObjectsManager::StartAllEngineObjects()
 	}
 }
 
-void ObjectsManager::UpdateAllEngineObjects(float deltaTime)
+void ObjectsManager::UpdateAllEngineObjects(const float deltaTime)
 {
 	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{
@@ -65,7 +64,7 @@ void ObjectsManager::UpdateAllEngineObjects(float deltaTime)
 	}
 }
 
-void ObjectsManager::RenderAllEngineObjects(sf::RenderWindow* window)
+void ObjectsManager::RenderAllEngineObjects(const sf::RenderWindow* window)
 {
 	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{

@@ -37,7 +37,7 @@ public:
 	// Time elapsed since the last frame
 	float deltaTime;
 
-	std::string GetCurrentTimeAsString();
+	const std::string GetCurrentTimeAsString();
 
 private:
 	// Unique instance of the time

@@ -10,7 +10,7 @@ ToolBarButton::~ToolBarButton()
 {
 }
 
-void ToolBarButton::UpdateButton(float deltaTime)
+void ToolBarButton::UpdateButton(const float deltaTime)
 {
 	if (
 		Input::Instance().GetMousePosition().x > _position.x &&
@@ -56,7 +56,7 @@ void ToolBarButton::UpdateButton(float deltaTime)
 	}
 }
 
-void ToolBarButton::SetPosition(float x, float y)
+void ToolBarButton::SetPosition(const float x, const float y)
 {
 	_position.x = x;
 	_position.y = y;
@@ -72,7 +72,7 @@ void ToolBarButton::SetPosition(const FVector2& position)
 	_background.setPosition(position.x, position.y);
 }
 
-void ToolBarButton::SetSize(float x, float y)
+void ToolBarButton::SetSize(const float x, const float y)
 {
 	_size.x = x;
 	_size.y = y;
@@ -99,7 +99,7 @@ void ToolBarButton::Render(sf::RenderWindow* SFMLWindow)
 	}
 }
 
-void ToolBarButton::SetName(std::string newName)
+void ToolBarButton::SetName(const std::string newName)
 {
 	_name = newName;
 	_text.setFont(_font);
@@ -107,7 +107,7 @@ void ToolBarButton::SetName(std::string newName)
 	_text.setString(newName);
 }
 
-void ToolBarButton::SetFont(sf::Font newFont)
+void ToolBarButton::SetFont(const sf::Font newFont)
 {
 	_font = newFont;
 	for (std::vector<ToolBarButton*>::iterator it = _subButtons.begin(); it != _subButtons.end(); ++it)
@@ -123,7 +123,7 @@ void ToolBarButton::InitBackground()
 	_background.setPosition(0, 0);
 }
 
-void ToolBarButton::SetActive(bool newState)
+void ToolBarButton::SetActive(const bool newState)
 {
 	_active = newState;
 	for (std::vector<ToolBarButton*>::iterator it = _subButtons.begin(); it != _subButtons.end(); ++it)
@@ -137,7 +137,7 @@ void ToolBarButton::SetParent(ToolBarButton* newParent)
 	_parent = newParent;
 }
 
-ToolBarButton* ToolBarButton::GetParent()
+const ToolBarButton* ToolBarButton::GetParent()
 {
 	return _parent;
 }

@@ -10,24 +10,24 @@ public:
 	~SpriteAnimator();
 
 	void Start();
-	void Update(float deltaTime);
+	void Update(const float deltaTime);
 	void Exit();
 	void Awake();
 	void Render(sf::RenderWindow* window);
 
-	void AddTexture(std::string fileName);
+	void AddTexture(const std::string fileName);
 
-	void SetColor(unsigned int r, unsigned int g, unsigned int b, unsigned int a);
+	void SetColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a);
 
-	void SetPosition(float x, float y);
+	void SetPosition(const float x, const float y);
 
-	void SetRotation(float angle);
+	void SetRotation(const float angle);
 
-	void SetScale(float x, float y);
+	void SetScale(const float x, const float y);
 
-	void SetOrigin(float x, float y);
+	void SetOrigin(const float x, const float y);
 
-	void SetAnimationSpeed(float newSpeed);
+	void SetAnimationSpeed(const float newSpeed);
 
 	//TODO : cut the image to make multiples sub-images
 

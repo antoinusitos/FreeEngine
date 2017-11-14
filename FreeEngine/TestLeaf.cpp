@@ -19,7 +19,7 @@ void TestLeaf::Start()
 	Debug::Instance().Print("Start test leaf", DebugMessageType::DEBUGLOG);
 }
 
-void TestLeaf::Update(float deltaTime)
+void TestLeaf::Update(const float deltaTime)
 {
 	//std::cout << "Update test leaf" << '\n';
 }

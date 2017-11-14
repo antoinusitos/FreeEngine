@@ -10,25 +10,25 @@ public:
 	SpriteRenderer();
 	~SpriteRenderer();
 
-	void Init(std::string path);
-	sf::Sprite GetSprite();
-	sf::Texture GetTexture();
+	void Init(const std::string path);
+	const sf::Sprite GetSprite();
+	const sf::Texture GetTexture();
 
-	void SetSmooth(bool newState);
-	void SetRepeat(bool newState);
+	void SetSmooth(const bool newState);
+	void SetRepeat(const bool newState);
 
-	void SetColor(unsigned int r, unsigned int g, unsigned int b, unsigned int a);
+	void SetColor(const unsigned int r, const unsigned int g, const unsigned int b, const unsigned int a);
 
-	void SetPosition(float x, float y);
+	void SetPosition(const float x, const float y);
 
-	void SetRotation(float angle);
+	void SetRotation(const float angle);
 
-	void SetScale(float x, float y);
+	void SetScale(const float x, const float y);
 
-	void SetOrigin(float x, float y);
+	void SetOrigin(const float x, const float y);
 
 	void Start();
-	void Update(float deltaTime);
+	void Update(const float deltaTime);
 	void Exit();
 	void Awake();
 	void Render(sf::RenderWindow* window);

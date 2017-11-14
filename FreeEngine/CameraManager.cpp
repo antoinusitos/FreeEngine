@@ -14,12 +14,12 @@ CameraManager::~CameraManager()
 {
 }
 
-void CameraManager::Move(float x, float y)
+void CameraManager::Move(const float x, const float y)
 {
 	_mainView.move(x, y);
 }
 
-sf::View CameraManager::GetView()
+const sf::View CameraManager::GetView()
 {
 	return _mainView;
 }
@@ -32,7 +32,7 @@ void CameraManager::Init()
 	_currentView = _mainView;
 }
 
-void CameraManager::ResizeCurrentView(float x, float y)
+void CameraManager::ResizeCurrentView(const float x, const float y)
 {
 	_currentView.reset(sf::FloatRect(0, 0, x, y));
 }

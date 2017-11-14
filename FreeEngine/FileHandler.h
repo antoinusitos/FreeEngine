@@ -39,11 +39,11 @@ public:
 		return *(_instance.get());
 	}
 
-	bool WriteFile(std::string fileName, std::string text);
-	std::string ReadFile(std::string fileName, bool* fileReadable);
-	int RegisterNewWatcher(FileObserver* observer, std::string fileName);
-	void UpdateWatchers(float deltaTime);
-	void UnregisterWatcher(int ID);
+	bool WriteFile(const std::string fileName, const std::string text);
+	std::string ReadFile(const std::string fileName, bool* fileReadable);
+	int RegisterNewWatcher(FileObserver* observer, const std::string fileName);
+	void UpdateWatchers(const float deltaTime);
+	void UnregisterWatcher(const int ID);
 
 private:
 	std::vector<Watcher> _allWatcher;

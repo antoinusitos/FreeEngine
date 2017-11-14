@@ -12,7 +12,7 @@ TagManager::~TagManager()
 {
 }
 
-void TagManager::AddTag(std::string newTag)
+void TagManager::AddTag(const std::string newTag)
 {
 	for (auto& pairTag : _tags)
 	{
@@ -26,7 +26,7 @@ void TagManager::AddTag(std::string newTag)
 	_tags.emplace((int)_tags.size(), newTag);
 }
 
-void TagManager::RemoveTag(std::string newTag)
+void TagManager::RemoveTag(const std::string newTag)
 {
 	bool found = false;
 	int index = 0;
@@ -50,7 +50,7 @@ void TagManager::RemoveTag(std::string newTag)
 	}
 }
 
-int TagManager::GetTagID(std::string tag)
+const int TagManager::GetTagID(const std::string tag)
 {
 	for (auto& pairTag : _tags)
 	{

@@ -14,7 +14,7 @@ FMath::~FMath()
 {
 }
 
-float FMath::Lerp(float start, float end, float percent)
+float FMath::Lerp(const float start, const float end, float percent)
 {
 	if (percent < 0) percent = 0;
 	else if (percent > 1) percent = 1;
@@ -22,7 +22,7 @@ float FMath::Lerp(float start, float end, float percent)
 	return toReturn;
 }
 
-float FMath::Clamp(float value, float min, float max)
+const float FMath::Clamp(const float value, const float min, const float max)
 {
 	if (value < min) return min;
 	else if (value > max) return max;
@@ -30,13 +30,13 @@ float FMath::Clamp(float value, float min, float max)
 }
 
 // Random float between min [inclusive] and max [exclusive]
-float FMath::Random(float min, float max)
+const float FMath::Random(const float min, const float max)
 {
 	return (rand() / (double)RAND_MAX) * (max - min) + min;
 }
 
 // Random int between min [inclusive] and max [exclusive]
-int FMath::Random(int min, int max)
+const int FMath::Random(const int min, const int max)
 {
 	return rand() % (max - min) + min;
 }

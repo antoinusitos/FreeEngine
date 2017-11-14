@@ -44,7 +44,7 @@ void GameObject::Start()
 	}
 }
 
-void GameObject::Update(float deltaTime)
+void GameObject::Update(const float deltaTime)
 {
 	EngineObject::Update(deltaTime);
 
@@ -66,7 +66,7 @@ void GameObject::Update(float deltaTime)
 	}
 }
 
-void GameObject::Render(sf::RenderWindow* window)
+void GameObject::Render(const sf::RenderWindow* window)
 {
 	EngineObject::Render(window);
 
@@ -95,7 +95,7 @@ void GameObject::Exit()
 
 }
 
-void GameObject::AddTagToObject(std::string newTag)
+void GameObject::AddTagToObject(const std::string newTag)
 {
 	int newTagID = TagManager::Instance().GetTagID(newTag);
 

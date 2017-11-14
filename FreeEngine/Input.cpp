@@ -176,27 +176,27 @@ void Input::ProcessInput(sf::Window& window)
 	}
 }
 
-bool Input::GetKeyDown(KEYCODE key)
+const bool Input::GetKeyDown(const KEYCODE key)
 {
 	return _mapping.find(key)->second.pressDown;
 }
 
-bool Input::GetKeyReleased(KEYCODE key)
+const bool Input::GetKeyReleased(const KEYCODE key)
 {
 	return _mapping.find(key)->second.release;
 }
 
-bool Input::GetKeyPressed(KEYCODE key)
+const bool Input::GetKeyPressed(const KEYCODE key)
 {
 	return _mapping.find(key)->second.pressing;
 }
 
-void Input::SetCanInput(bool NewState)
+void Input::SetCanInput(const bool NewState)
 {
 	_canInput = NewState;
 }
 
-void Input::Update(float deltaTime)
+void Input::Update(const float deltaTime)
 {
 	for (auto& x : _mapping)
 	{
@@ -213,7 +213,7 @@ void Input::Update(float deltaTime)
 	}
 }
 
-KEYCODE Input::GetMouseCodeAssociate(sf::Mouse::Button button)
+const KEYCODE Input::GetMouseCodeAssociate(const sf::Mouse::Button button)
 {
 	if (button == sf::Mouse::Left)
 	{
@@ -227,7 +227,7 @@ KEYCODE Input::GetMouseCodeAssociate(sf::Mouse::Button button)
 	return KEYCODE::NONE;
 }
 
-KEYCODE Input::GetKeycodeAssociate(sf::Keyboard::Key key)
+const KEYCODE Input::GetKeycodeAssociate(const sf::Keyboard::Key key)
 {
 	if (_event.key.code == sf::Keyboard::Space)
 	{
@@ -273,13 +273,13 @@ KEYCODE Input::GetKeycodeAssociate(sf::Keyboard::Key key)
 	return KEYCODE::NONE;
 }
 
-void Input::SaveMousePos(sf::Window& window)
+void Input::SaveMousePos(const sf::Window& window)
 {
 	sf::Vector2i localPosition = sf::Mouse::getPosition(window);
 	_mousePosition = FVector2(localPosition.x, localPosition.y);
 }
 
-FVector2 Input::GetMousePosition()
+const FVector2 Input::GetMousePosition()
 {
 	return _mousePosition;
 }

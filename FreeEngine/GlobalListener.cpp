@@ -16,12 +16,12 @@ GlobalListener::~GlobalListener()
 {
 }
 
-void GlobalListener::SetPosition(float x, float y)
+void GlobalListener::SetPosition(const float x, const float y)
 {
 	_listener.setPosition(x, y, 0);
 }
 
-void GlobalListener::SetGlobalVolume(float volume)
+void GlobalListener::SetGlobalVolume(const float volume)
 {
 	_listener.setGlobalVolume(volume);
 }

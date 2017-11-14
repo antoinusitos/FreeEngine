@@ -33,26 +33,26 @@ public:
 	void ProcessInput(sf::Window& window);
 
 	// Check if the key was just pressed
-	bool GetKeyDown(KEYCODE key);
+	const bool GetKeyDown(const KEYCODE key);
 
 	// Check if the key is pressed
-	bool GetKeyPressed(KEYCODE key);
+	const bool GetKeyPressed(const KEYCODE key);
 
 	// Check if the key is just released
-	bool GetKeyReleased(KEYCODE key);
+	const bool GetKeyReleased(const KEYCODE key);
 
 	// Check if we must close the window
-	bool MustClose();
+	const bool MustClose();
 
-	void SetCanInput(bool NewState);
+	void SetCanInput(const bool NewState);
 
 	void Init();
 
-	void Update(float deltaTime);
+	void Update(const float deltaTime);
 
-	void SaveMousePos(sf::Window& window);
+	void SaveMousePos(const sf::Window& window);
 
-	FVector2 GetMousePosition();
+	const FVector2 GetMousePosition();
 
 private :
 
@@ -71,8 +71,8 @@ private :
 
 	bool _canInput = false;
 
-	KEYCODE GetKeycodeAssociate(sf::Keyboard::Key key);
-	KEYCODE GetMouseCodeAssociate(sf::Mouse::Button button);
+	const KEYCODE GetKeycodeAssociate(const sf::Keyboard::Key key);
+	const KEYCODE GetMouseCodeAssociate(const sf::Mouse::Button button);
 
 	FVector2 _mousePosition;
 };

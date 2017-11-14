@@ -15,8 +15,8 @@ public:
 	virtual void Awake();
 	virtual void Start();
 
-	virtual void Update(float deltaTime);
-	virtual void Render(sf::RenderWindow* window);
+	virtual void Update(const float deltaTime);
+	virtual void Render(const sf::RenderWindow* window);
 
 	virtual void Destroy();
 
@@ -24,7 +24,7 @@ public:
 
 	std::string name;
 
-	void RegisterInObjectManager();
+	const void RegisterInObjectManager();
 
 protected:
 	int _ID = -1;

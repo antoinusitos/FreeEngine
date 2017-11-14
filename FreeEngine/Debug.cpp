@@ -17,7 +17,7 @@ Debug::~Debug()
 	
 }
 
-void Debug::Print(std::string message, DebugMessageType messageType)
+void Debug::Print(const std::string message, const DebugMessageType messageType)
 {
 	std::string type = "";
 	std::string final = "";
@@ -44,7 +44,7 @@ void Debug::Print(std::string message, DebugMessageType messageType)
 	}
 }
 
-void Debug::Log(std::string message, DebugMessageType messageType)
+void Debug::Log(const std::string message, const DebugMessageType messageType)
 {
 	std::string type = "";
 	std::string final = "";
@@ -67,7 +67,7 @@ void Debug::Log(std::string message, DebugMessageType messageType)
 	_allString.push_back(dm);
 }
 
-void Debug::SaveLog()
+const void Debug::SaveLog()
 {
 
 	std::string currentTime = Time::Instance().GetCurrentTimeAsString();

@@ -114,7 +114,7 @@ DebugWindowLayout* Window::GetDebugWindowLayout()
 	return _console.get();
 }
 
-ToolBar* Window::GetToolBar()
+const ToolBar* Window::GetToolBar()
 {
 	return _toolbar.get();
 }
@@ -248,7 +248,7 @@ void Window::SetScreenType(ScreenType newType)
 	}
 }
 
-void Window::GetResolutionValuesWithDelimiter(std::string& text, std::string delimiter, std::string& x, std::string& y)
+void Window::GetResolutionValuesWithDelimiter(std::string& text, const std::string delimiter, std::string& x, std::string& y)
 {
 	x = text.substr(0, text.find(delimiter));
 	size_t posTemp = text.find(delimiter);
@@ -256,12 +256,12 @@ void Window::GetResolutionValuesWithDelimiter(std::string& text, std::string del
 	y = text;
 }
 
-unsigned int Window::GetScreenResolutionX()
+const unsigned int Window::GetScreenResolutionX()
 {
 	return _screenResolutionX;
 }
 
-unsigned int Window::GetScreenResolutionY()
+const unsigned int Window::GetScreenResolutionY()
 {
 	return _screenResolutionY;
 }

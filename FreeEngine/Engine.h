@@ -20,7 +20,7 @@ public:
 	Engine();
 	~Engine();
 
-	void Update(float deltaTime);
+	void Update(const float deltaTime);
 
 	// Launch the engine and init every classes
 	void Launch();

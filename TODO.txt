@@ -22,6 +22,7 @@ Editor Manager
 Editor
 Clamp
 Random
+Put Const everywhere
 
 
 TO DO :
@@ -38,7 +39,6 @@ UI / anchor
 REWORK :
 
 changing from windowed to fullscreen (bug : making everything bigger)
-Put Const everywhere
 
 Ideas :
 

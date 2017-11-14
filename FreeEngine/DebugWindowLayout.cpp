@@ -33,7 +33,7 @@ void DebugWindowLayout::Unregister()
 	Window::Instance().RemoveRenderingLayout(this);
 }
 
-void DebugWindowLayout::AddString(DebugMessage debugMessage)
+void DebugWindowLayout::AddString(const DebugMessage debugMessage)
 {
 	sf::Text text;
 	text.setFont(font);
@@ -88,7 +88,7 @@ void DebugWindowLayout::Render(sf::RenderWindow* SFMLWindow)
 	}
 }
 
-void DebugWindowLayout::Update(float deltaTime)
+void DebugWindowLayout::Update(const float deltaTime)
 {
 	if (_opening)
 	{

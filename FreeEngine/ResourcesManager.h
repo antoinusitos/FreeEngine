@@ -24,10 +24,10 @@ public:
 		return *(_instance.get());
 	}
 
-	sf::Font GetFont(std::string fileName);
-	sf::SoundBuffer GetBuffer(std::string fileName);
-	sf::Texture GetTexture(std::string fileName);
-	void GetMusic(sf::Music& music, std::string fileName);
+	const sf::Font GetFont(const std::string fileName);
+	const sf::SoundBuffer GetBuffer(const std::string fileName);
+	const sf::Texture GetTexture(const std::string fileName);
+	const void GetMusic(sf::Music& music, const std::string fileName);
 
 
 //Variables

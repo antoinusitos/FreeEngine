@@ -24,7 +24,7 @@ void Sound::InitMusic(std::string soundName)
 	 _type = SoundType::MUSIC;
 }
 
-void Sound::Play()
+const void Sound::Play()
 {
 	if (_type == SoundType::MUSIC)
 		_music.play();
@@ -32,7 +32,7 @@ void Sound::Play()
 		_sound.play();
 }
 
-void Sound::Pause()
+const void Sound::Pause()
 {
 	if (_type == SoundType::MUSIC)
 		_music.pause();
@@ -40,7 +40,7 @@ void Sound::Pause()
 		_sound.pause();
 }
 
-void Sound::Stop()
+const void Sound::Stop()
 {
 	if (_type == SoundType::MUSIC)
 		_music.stop();
@@ -48,7 +48,7 @@ void Sound::Stop()
 		_sound.stop();
 }
 
-void Sound::SetOffset(float second)
+void Sound::SetOffset(const float second)
 {
 	if (_type == SoundType::MUSIC)
 		_music.setPlayingOffset(sf::seconds(second));
@@ -56,12 +56,12 @@ void Sound::SetOffset(float second)
 		_sound.setPlayingOffset(sf::seconds(second));
 }
 
-void Sound::SetPitch(float value)
+void Sound::SetPitch(const float value)
 {
 	_sound.setPitch(value);
 }
 
-void Sound::SetLoop(bool mustLoop)
+void Sound::SetLoop(const bool mustLoop)
 {
 	if (_type == SoundType::MUSIC)
 		_music.setLoop(mustLoop);
@@ -69,7 +69,7 @@ void Sound::SetLoop(bool mustLoop)
 		_sound.setLoop(mustLoop);
 }
 
-void Sound::SetPosition(float x, float y, float z)
+void Sound::SetPosition(const float x, const float y, const float z)
 {
 	_transform.position.x = x;
 	_transform.position.y = y;
@@ -77,12 +77,12 @@ void Sound::SetPosition(float x, float y, float z)
 	_sound.setPosition(x, y, z);
 }
 
-void Sound::SetRelativeToListener(bool newState)
+void Sound::SetRelativeToListener(const bool newState)
 {
 	_sound.setRelativeToListener(newState);
 }
 
-void Sound::SetDistance(float minDist, float maxDist)
+void Sound::SetDistance(const float minDist, const float maxDist)
 {
 	_sound.setMinDistance(minDist);
 	_sound.setAttenuation(maxDist);

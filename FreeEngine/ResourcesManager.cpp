@@ -29,7 +29,7 @@ ResourcesManager::~ResourcesManager()
 {
 }
 
-sf::Font ResourcesManager::GetFont(std::string fontName)
+const sf::Font ResourcesManager::GetFont(const std::string fontName)
 {
 	sf::Font toReturn;
 	if (!toReturn.loadFromFile(_resourcesPath + fontName))
@@ -39,7 +39,7 @@ sf::Font ResourcesManager::GetFont(std::string fontName)
 	return toReturn;
 }
 
-sf::SoundBuffer ResourcesManager::GetBuffer(std::string fileName)
+const sf::SoundBuffer ResourcesManager::GetBuffer(const std::string fileName)
 {
 	sf::SoundBuffer toReturn;
 	if (!toReturn.loadFromFile(_resourcesPath + fileName))
@@ -49,7 +49,7 @@ sf::SoundBuffer ResourcesManager::GetBuffer(std::string fileName)
 	return toReturn;
 }
 
-void ResourcesManager::GetMusic(sf::Music& music, std::string fileName)
+const void ResourcesManager::GetMusic(sf::Music& music, const std::string fileName)
 {
 	if (!music.openFromFile(_resourcesPath + fileName))
 	{
@@ -58,7 +58,7 @@ void ResourcesManager::GetMusic(sf::Music& music, std::string fileName)
 }
 
 
-sf::Texture ResourcesManager::GetTexture(std::string fileName)
+const sf::Texture ResourcesManager::GetTexture(const std::string fileName)
 {
 	sf::Texture toReturn;
 	if (!toReturn.loadFromFile(_resourcesPath + fileName))

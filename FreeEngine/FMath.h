@@ -20,14 +20,14 @@ public:
 		return *(_instance.get());
 	}
 
-	static float Lerp(float start, float end, float percent);
+	static float Lerp(const float start, const float end, float percent);
 
-	static float Clamp(float value, float min, float max);
+	const static float Clamp(const float value, const float min, const float max);
 
 	// Random float between min [inclusive] and max [exclusive]
-	static float Random(float min, float max);
+	const static float Random(const float min, const float max);
 	// Random int between min [inclusive] and max [exclusive]
-	static int Random(int min, int max);
+	const static int Random(const int min, const int max);
 
 //Variables
 private:

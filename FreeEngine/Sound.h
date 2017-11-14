@@ -11,25 +11,25 @@ public:
 	Sound();
 	~Sound();
 
-	void InitSound(std::string soundName);
-	void InitMusic(std::string soundName);
-	void Play();
-	void Pause();
-	void Stop();
-	void SetOffset(float second);
-	void SetPitch(float value);
-	void SetLoop(bool mustLoop);
+	void InitSound(const std::string soundName);
+	void InitMusic(const std::string soundName);
+	const void Play();
+	const void Pause();
+	const void Stop();
+	void SetOffset(const float second);
+	void SetPitch(const float value);
+	void SetLoop(const bool mustLoop);
 
 	//-----3D-----//
 	
 	//BECAREFUL, X is FORWARD, Z is RIGHT
-	void SetPosition(float x, float y, float z);
+	void SetPosition(const float x, const float y, const float z);
 	//Note from sfml
 	//Cela peut être utile pour les sons émis par l'écouteur lui-même (comme un bruit de tir, ou de pas). 
 	//Cela a également comme effet intéressant de désactiver la spatialisation si vous mettez la position de la source audio à (0, 0, 0).
 	//Les sons non-spatialisés peuvent se révéler utiles dans de nombreuses situations : sons d'interface graphique (clics), musiques ambiantes, etc.
-	void SetRelativeToListener(bool newState);
-	void SetDistance(float minDist, float maxDist);
+	void SetRelativeToListener(const bool newState);
+	void SetDistance(const float minDist, const float maxDist);
 
 private:
 	sf::SoundBuffer _buffer;
