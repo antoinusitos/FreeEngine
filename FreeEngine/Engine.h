@@ -13,6 +13,7 @@
 #include "CameraManager.h"
 #include "EditorManager.h"
 #include "FMath.h"
+#include "SaveManager.h"
 
 class Engine : public FileObserver
 {
@@ -50,6 +51,7 @@ private :
 	CameraManager* _cameraManager;
 	EditorManager* _editorManager;
 	FMath* _math;
+	SaveManager* _saveManager;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

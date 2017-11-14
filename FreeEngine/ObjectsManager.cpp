@@ -64,7 +64,7 @@ void ObjectsManager::UpdateAllEngineObjects(const float deltaTime)
 	}
 }
 
-void ObjectsManager::RenderAllEngineObjects(const sf::RenderWindow* window)
+void ObjectsManager::RenderAllEngineObjects(sf::RenderWindow* window)
 {
 	for (std::vector<EngineObject*>::iterator it = _allEngineObjects.begin(); it != _allEngineObjects.end(); ++it)
 	{

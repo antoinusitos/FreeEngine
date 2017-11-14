@@ -55,7 +55,7 @@ void Animator::Update(const float deltaTime)
 	}
 }
 
-const void Animator::Render(sf::RenderWindow* window)
+void Animator::Render(sf::RenderWindow* window)
 {
 	if (_currentState != nullptr)
 	{

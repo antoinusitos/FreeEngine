@@ -14,13 +14,16 @@ public:
 	void Start();
 
 	void Update(const float deltaTime);
-	void Render(const sf::RenderWindow* window);
+	void Render(sf::RenderWindow* window);
 
 	void Destroy();
 
 	void Exit();
 
 	void AddTagToObject(const std::string newTag);
+
+	void SaveObject();
+	void LoadObject();
 
 private:
 	std::vector<int> _tags;

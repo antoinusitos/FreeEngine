@@ -28,7 +28,7 @@ void Component::Awake()
 
 }
 
-void Component::Render(const sf::RenderWindow* window)
+void Component::Render(sf::RenderWindow* window)
 {
 
 }

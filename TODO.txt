@@ -24,10 +24,13 @@ Clamp
 Random
 Put Const everywhere
 
+LAST:
+Serialization
+
+------------------------------------------------------------------
 
 TO DO :
 
-Serialization
 scene manager
 Perlin
 Particles
@@ -36,9 +39,13 @@ Collisions/Layers
 Level Editor
 UI / anchor
 
+------------------------------------------------------------------
+
 REWORK :
 
 changing from windowed to fullscreen (bug : making everything bigger)
+
+------------------------------------------------------------------
 
 Ideas :
 

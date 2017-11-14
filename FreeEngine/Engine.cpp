@@ -5,6 +5,12 @@
 
 #include "FMath.h"
 
+//TEST
+#include "GameObject.h"
+
+GameObject* go;
+//TEST
+
 Engine::Engine()
 {
 	_debug = &Debug::Instance(); // keep it up to record and print everything
@@ -20,6 +26,7 @@ Engine::Engine()
 	_gamepadManager = &GamepadManager::Instance();
 	_cameraManager = &CameraManager::Instance();
 	_math = &FMath::Instance();
+	_saveManager = &SaveManager::Instance();
 
 	Launch();
 }
@@ -55,6 +62,16 @@ void Engine::Launch()
 	_gamepadManager->Init();
 
 	_time->Init();
+
+	//TEST
+	_saveManager->LoadAll();
+
+	go = new GameObject();
+	go->transform.position.x = 20;
+	go->transform.position.y = 10;
+	go->LoadObject();
+
+	//TEST
 
 	_debug->Log("Engine Init !", DebugMessageType::DEBUGENGINE);
 
@@ -127,5 +144,9 @@ void Engine::Update(const float deltaTime)
 	{
 		_window->ToggleConsole();
 	}
-
+	if (_input->GetKeyDown(KEYCODE::B))
+	{
+		go->SaveObject();
+		_saveManager->SaveAll();
+	}
 }

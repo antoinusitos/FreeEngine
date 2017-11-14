@@ -138,6 +138,9 @@
     <ClCompile Include="FMath.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SaveManager.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Engine.h">
@@ -258,6 +261,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="FMath.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SaveManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

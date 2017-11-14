@@ -5,6 +5,8 @@
 #include <mutex>
 #include <iostream>
 
+#include "Transform.h"
+
 
 // For release version,
 // - Copy all the Assets in the Debug folder
@@ -121,6 +123,22 @@ enum EditorState
 {
 	EDITING,
 	RUNNING,
+};
+
+union SaveData
+{
+	float		fValue;
+	int			iValue;
+	char*		sValue;
+	char*		tValue;
+};
+
+struct SaveInfo
+{
+public:
+	std::string name;
+	int dataType; //0=float, 1=int, 2=char*, 3=Transform*
+	SaveData data;
 };
 
 class Data

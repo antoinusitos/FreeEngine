@@ -33,7 +33,7 @@ public:
 	void AwakeAllEngineObjects();
 	void StartAllEngineObjects();
 	void UpdateAllEngineObjects(const float deltaTime);
-	void RenderAllEngineObjects(const sf::RenderWindow* window);
+	void RenderAllEngineObjects(sf::RenderWindow* window);
 	void DestroyObject(EngineObject* object);
 
 	const int GetID();

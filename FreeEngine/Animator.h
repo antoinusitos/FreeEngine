@@ -16,7 +16,7 @@ public:
 	void Update(const float deltaTime);
 	void Exit();
 	void Awake();
-	const void Render(sf::RenderWindow* window);
+	void Render(sf::RenderWindow* window);
 
 	const void AddSpriteAnimator(SpriteAnimator* newSpriteAnimator);
 	void AddNewState(State* newState);

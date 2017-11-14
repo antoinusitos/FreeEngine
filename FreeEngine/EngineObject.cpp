@@ -31,7 +31,7 @@ void EngineObject::Update(const float deltaTime)
 
 }
 
-void EngineObject::Render(const sf::RenderWindow* window)
+void EngineObject::Render(sf::RenderWindow* window)
 {
 
 }
@@ -50,4 +50,14 @@ void EngineObject::DestroyObject()
 const void EngineObject::RegisterInObjectManager()
 {
 	ObjectsManager::Instance().RegisterEngineObject(this);
+}
+
+void EngineObject::SaveObject()
+{
+
+}
+
+void EngineObject::LoadObject()
+{
+
 }
