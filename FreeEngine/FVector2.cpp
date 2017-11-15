@@ -53,3 +53,16 @@ std::string FVector2::ToString()
 {
 	return std::string("x:" + std::to_string(x) + ", y:" + std::to_string(y));
 }
+
+float FVector2::GetMagnitude()
+{
+	_magnitude = sqrt(x*x + y*y);
+	return _magnitude;
+}
+
+void FVector2::Normalize()
+{
+	float m = GetMagnitude();
+	x = x / m;
+	y = y / m;
+}

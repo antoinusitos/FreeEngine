@@ -60,3 +60,17 @@ std::string FVector3::ToString()
 {
 	return std::string("x:" + std::to_string(x) + ", y:" + std::to_string(y) + ", z:" + std::to_string(z));
 }
+
+float FVector3::GetMagnitude()
+{
+	_magnitude = sqrt(x*x + y*y + z*z);
+	return _magnitude;
+}
+
+void FVector3::Normalize()
+{
+	float m = GetMagnitude();
+	x = x / m;
+	y = y / m;
+	z = z / m;
+}

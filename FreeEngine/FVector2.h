@@ -19,6 +19,12 @@ public:
 	FVector2 operator*(const float multiplier);
 	FVector2 operator/(const FVector2& newVector2);
 
+	float GetMagnitude();
+	void Normalize();
+
 	std::string ToString();
+
+private:
+	float _magnitude;
 };
 

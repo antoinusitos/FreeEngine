@@ -180,8 +180,11 @@
     <ClCompile Include="NewSceneToolBarButton.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
     <ClCompile Include="ResourcesManager.cpp" />
+    <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SaveManager.cpp" />
     <ClCompile Include="SaveToolBarButton.cpp" />
+    <ClCompile Include="Scene.cpp" />
+    <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SpriteAnimator.cpp" />
     <ClCompile Include="SpriteRenderer.cpp" />
@@ -223,8 +226,11 @@
     <ClInclude Include="NewSceneToolBarButton.h" />
     <ClInclude Include="ObjectsManager.h" />
     <ClInclude Include="ResourcesManager.h" />
+    <ClInclude Include="RigidBody.h" />
     <ClInclude Include="SaveManager.h" />
     <ClInclude Include="SaveToolBarButton.h" />
+    <ClInclude Include="Scene.h" />
+    <ClInclude Include="SceneManager.h" />
     <ClInclude Include="Sound.h" />
     <ClInclude Include="SpriteAnimator.h" />
     <ClInclude Include="SpriteRenderer.h" />

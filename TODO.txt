@@ -26,18 +26,20 @@ Put Const everywhere
 
 LAST:
 Serialization
+Scene
+Scene manager
 
 ------------------------------------------------------------------
 
 TO DO :
 
-scene manager
 Perlin
 Particles
 Prefab
 Collisions/Layers
 Level Editor
 UI / anchor
+RigidBody / Basic Leaf
 
 ------------------------------------------------------------------
 
