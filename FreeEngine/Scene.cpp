@@ -1,5 +1,6 @@
 #include "Scene.h"
 #include "FileHandler.h"
+#include "GameObject.h"
 
 Scene::Scene(const std::string name)
 {
@@ -11,9 +12,41 @@ Scene::~Scene()
 {
 }
 
+int compare(const void * a, const void * b)
+{
+	GameObject* e1 = (GameObject*)a;
+	GameObject* e2 = (GameObject*)b;
+
+	if (e1->transform.position.z < e2->transform.position.z)
+	{
+		std::cout << e1->name << "<" << e2->name << '\n';
+		return -1;
+	}
+	else if (e1->transform.position.z == e2->transform.position.z)
+	{
+		std::cout << e1->name << "==" << e2->name << '\n';
+		return 0;
+	}
+	else if (e1->transform.position.z > e2->transform.position.z)
+	{
+		std::cout << e1->name << ">" << e2->name << '\n';
+		return 1;
+	}
+}
+
 void Scene::PreAwake()
 {
 	// only for the scene
+	for (std::vector<GameObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
+	{
+		std::cout << (*it)->name << '\n';
+	}
+	std::cout << "quick sort !" << '\n';
+
+	for (std::vector<GameObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
+	{
+		std::cout << (*it)->name << '\n';
+	}
 }
 
 void Scene::Awake()
@@ -24,7 +57,7 @@ void Scene::Awake()
 	{
 		(*it)->Awake();
 	}
-	for (std::vector<EngineObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
+	for (std::vector<GameObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
 	{
 		(*it)->Awake();
 	}
@@ -39,7 +72,7 @@ void Scene::Start()
 	{
 		(*it)->Start();
 	}
-	for (std::vector<EngineObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
+	for (std::vector<GameObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
 	{
 		(*it)->Start();
 	}
@@ -52,7 +85,7 @@ void Scene::Update(const float deltaTime)
 	{
 		(*it)->Update(deltaTime);
 	}
-	for (std::vector<EngineObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
+	for (std::vector<GameObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
 	{
 		(*it)->Update(deltaTime);
 	}
@@ -65,7 +98,7 @@ void Scene::Render(sf::RenderWindow* window)
 	{
 		(*it)->Render(window);
 	}
-	for (std::vector<EngineObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
+	for (std::vector<GameObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); it++)
 	{
 		(*it)->Render(window);
 	}
@@ -100,7 +133,7 @@ void Scene::LoadObject()
 	}
 }
 
-void Scene::AddDynamicObjectToScene(EngineObject* newObject)
+void Scene::AddDynamicObjectToScene(GameObject* newObject)
 {
 	_dynamicObjectsInScene.push_back(newObject);
 }
@@ -108,4 +141,12 @@ void Scene::AddDynamicObjectToScene(EngineObject* newObject)
 void Scene::AddStaticObjectToScene(EngineObject* newObject)
 {
 	_staticObjectsInScene.push_back(newObject);
+}
+
+void Scene::SortDynamicObjects(int size)
+{
+	while (true)
+	{
+		
+	}
 }

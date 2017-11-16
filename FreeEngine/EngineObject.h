@@ -29,6 +29,8 @@ public:
 	virtual void SaveObject();
 	virtual void LoadObject();
 
+
+
 protected:
 	int _ID = -1;
 

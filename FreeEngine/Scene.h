@@ -2,6 +2,8 @@
 
 #include "EngineObject.h"
 
+class GameObject;
+
 class Scene : public EngineObject
 {
 public:
@@ -20,8 +22,10 @@ public:
 	void SaveObject();
 	void LoadObject();
 
-	void AddDynamicObjectToScene(EngineObject* newObject);
+	void AddDynamicObjectToScene(GameObject* newObject);
 	void AddStaticObjectToScene(EngineObject* newObject);
+
+	void SortDynamicObjects(int size);
 
 private:
 	std::string _name;
@@ -30,6 +34,6 @@ private:
 	bool _mustLoad = false;
 
 	std::vector<EngineObject*> _staticObjectsInScene; // including objects to load (environment)
-	std::vector<EngineObject*> _dynamicObjectsInScene; // including objects spawned (player, particules, bullets, etc.)
+	std::vector<GameObject*> _dynamicObjectsInScene; // including objects spawned (player, particules, bullets, etc.)
 };
 

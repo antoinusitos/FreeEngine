@@ -2,7 +2,6 @@
 #include <string>
 
 #include "Engine.h"
-
 #include "FMath.h"
 
 Engine::Engine()
@@ -60,8 +59,12 @@ void Engine::Launch()
 
 	_sceneManager->LoadScenesFromFile();
 
+	TESTFUNCTION();
+
 	_debug->Log("Engine Init !", DebugMessageType::DEBUGENGINE);
 
+
+	_sceneManager->PreAwakeCurrentScene();
 	_objectManager->AwakeAllEngineObjects();
 	_sceneManager->AwakeCurrentScene();
 	_objectManager->StartAllEngineObjects();
@@ -149,4 +152,34 @@ void Engine::Render()
 {
 	_objectManager->RenderAllEngineObjects(_window->GetWindow());
 	_sceneManager->RenderCurrentScene(_window->GetWindow());
+}
+
+#include "GameObject.h"
+#include "SpriteRenderer.h"
+#include "Scene.h"
+
+void Engine::TESTFUNCTION()
+{
+	_sceneManager->NewScene("TestScene");
+	if (_sceneManager->GetCurrentScene() == nullptr)
+	{
+		_sceneManager->LoadScene("TestScene");
+	}
+
+	GameObject* go = new GameObject("go");
+	GameObject* go2 = new GameObject("go2");
+
+	go->transform.position = FVector3(50, 100, 30);
+	go2->transform.position = FVector3(60, 110, 20);
+
+	SpriteRenderer* sr = new SpriteRenderer();
+	sr->Init("Sprites/testSprite.png");
+	go->AddLeaf(sr);
+
+	SpriteRenderer* sr2 = new SpriteRenderer();
+	sr2->Init("Sprites/testSprite2.png");
+	go2->AddLeaf(sr2);
+
+	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go);
+	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go2);
 }

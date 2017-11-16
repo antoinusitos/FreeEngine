@@ -22,9 +22,6 @@ public:
 	Engine();
 	~Engine();
 
-	void Update(const float deltaTime);
-	void Render();
-
 	// Launch the engine and init every classes
 	void Launch();
 
@@ -58,6 +55,11 @@ private :
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;
+
+	void Update(const float deltaTime);
+	void Render();
+
+	void TESTFUNCTION();
 
 };
 

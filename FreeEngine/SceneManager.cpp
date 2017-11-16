@@ -109,6 +109,14 @@ Scene* SceneManager::GetCurrentScene()
 	return _currentScene;
 }
 
+void SceneManager::PreAwakeCurrentScene()
+{
+	if (_currentScene != nullptr)
+	{
+		_currentScene->PreAwake();
+	}
+}
+
 void SceneManager::AwakeCurrentScene()
 {
 	if (_currentScene != nullptr)

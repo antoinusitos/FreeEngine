@@ -34,6 +34,7 @@ public:
 
 	Scene* GetCurrentScene();
 
+	void PreAwakeCurrentScene();
 	void AwakeCurrentScene();
 	void StartCurrentScene();
 	void UpdateCurrentScene(float deltaTime);
