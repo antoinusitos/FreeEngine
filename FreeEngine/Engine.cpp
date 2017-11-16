@@ -27,6 +27,7 @@ Engine::Engine()
 	_cameraManager = &CameraManager::Instance();
 	_math = &FMath::Instance();
 	_saveManager = &SaveManager::Instance();
+	_sceneManager = &SceneManager::Instance();
 
 	Launch();
 }
@@ -62,6 +63,9 @@ void Engine::Launch()
 	_gamepadManager->Init();
 
 	_time->Init();
+
+	_sceneManager->LoadScenesFromFile();
+	_sceneManager->NewScene("sceneTest");
 
 	//TEST
 	_saveManager->LoadAll();
@@ -100,6 +104,7 @@ void Engine::Launch()
 		_input->Update(_time->deltaTime);
 	}
 
+	_sceneManager->SaveScenesInFile();
 	_window->RemoveAllRendering();
 	_debug->SaveLog();
 }

@@ -1,8 +1,10 @@
 #include "Scene.h"
+#include "FileHandler.h"
 
 Scene::Scene(const std::string name)
 {
 	_name = name;
+	_fileName = "Assets/Scene/" + _name + ".txt";
 }
 
 Scene::~Scene()
@@ -77,9 +79,21 @@ void Scene::Destroy()
 void Scene::SaveObject()
 {
 	// save all objects in the scene
+	std::cout << "write file " << _fileName << '\n';
+	FileHandler::Instance().WriteFile(_fileName, "");
 }
 
 void Scene::LoadObject()
 {
 	// load all objects in the scene
+	bool fileReadable = false;
+	std::string allFiles = FileHandler::Instance().ReadFile(_fileName, &fileReadable);
+	if (fileReadable)
+	{
+		
+	}
+	else
+	{
+		Debug::Instance().Print("File " + _fileName + " not readable", DebugMessageType::DEBUGERROR);
+	}
 }

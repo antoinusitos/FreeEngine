@@ -14,6 +14,7 @@
 #include "EditorManager.h"
 #include "FMath.h"
 #include "SaveManager.h"
+#include "SceneManager.h"
 
 class Engine : public FileObserver
 {
@@ -52,6 +53,7 @@ private :
 	EditorManager* _editorManager;
 	FMath* _math;
 	SaveManager* _saveManager;
+	SceneManager* _sceneManager;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

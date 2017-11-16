@@ -22,6 +22,7 @@ public:
 
 private:
 	std::string _name;
+	std::string _fileName;
 	bool _loaded = false;
 	bool _mustLoad = false;
 
