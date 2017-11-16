@@ -2,6 +2,7 @@
 #include <Windows.h>
 
 #include "Debug.h"
+#include "Scene.h"
 
 std::unique_ptr<Data> Data::_instance;
 std::once_flag Data::onceFlag;

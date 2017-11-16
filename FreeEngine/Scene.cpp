@@ -80,7 +80,9 @@ void Scene::SaveObject()
 {
 	// save all objects in the scene
 	std::cout << "write file " << _fileName << '\n';
-	FileHandler::Instance().WriteFile(_fileName, "");
+	std::string toWrite = "";
+	// Find a way to store objects and to save them
+	FileHandler::Instance().WriteFile(_fileName, toWrite);
 }
 
 void Scene::LoadObject()
@@ -90,10 +92,20 @@ void Scene::LoadObject()
 	std::string allFiles = FileHandler::Instance().ReadFile(_fileName, &fileReadable);
 	if (fileReadable)
 	{
-		
+		// Find a way to store objects and to load them
 	}
 	else
 	{
 		Debug::Instance().Print("File " + _fileName + " not readable", DebugMessageType::DEBUGERROR);
 	}
+}
+
+void Scene::AddDynamicObjectToScene(EngineObject* newObject)
+{
+	_dynamicObjectsInScene.push_back(newObject);
+}
+
+void Scene::AddStaticObjectToScene(EngineObject* newObject)
+{
+	_staticObjectsInScene.push_back(newObject);
 }

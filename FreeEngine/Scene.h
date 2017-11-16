@@ -20,6 +20,9 @@ public:
 	void SaveObject();
 	void LoadObject();
 
+	void AddDynamicObjectToScene(EngineObject* newObject);
+	void AddStaticObjectToScene(EngineObject* newObject);
+
 private:
 	std::string _name;
 	std::string _fileName;

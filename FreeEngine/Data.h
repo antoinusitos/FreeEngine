@@ -7,6 +7,7 @@
 
 #include "Transform.h"
 
+class Scene;
 
 // For release version,
 // - Copy all the Assets in the Debug folder
@@ -139,6 +140,13 @@ public:
 	std::string name;
 	int dataType; //0=float, 1=int, 2=char*, 3=Transform*
 	SaveData data;
+};
+
+struct SceneInfo
+{
+public:
+	std::string name;
+	Scene* scene;
 };
 
 class Data

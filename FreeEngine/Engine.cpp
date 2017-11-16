@@ -5,12 +5,6 @@
 
 #include "FMath.h"
 
-//TEST
-#include "GameObject.h"
-
-GameObject* go;
-//TEST
-
 Engine::Engine()
 {
 	_debug = &Debug::Instance(); // keep it up to record and print everything
@@ -65,22 +59,13 @@ void Engine::Launch()
 	_time->Init();
 
 	_sceneManager->LoadScenesFromFile();
-	_sceneManager->NewScene("sceneTest");
-
-	//TEST
-	_saveManager->LoadAll();
-
-	go = new GameObject();
-	go->transform.position.x = 20;
-	go->transform.position.y = 10;
-	go->LoadObject();
-
-	//TEST
 
 	_debug->Log("Engine Init !", DebugMessageType::DEBUGENGINE);
 
 	_objectManager->AwakeAllEngineObjects();
+	_sceneManager->AwakeCurrentScene();
 	_objectManager->StartAllEngineObjects();
+	_sceneManager->StartCurrentScene();
 
 	while (_isRunning)
 	{
@@ -94,6 +79,9 @@ void Engine::Launch()
 
 		// Put engine stuff here
 		Update(_time->deltaTime);
+
+		// Render scene and other stuff
+		Render();
 
 		// Render every thing
 		_window->Render();
@@ -139,19 +127,26 @@ void Engine::Update(const float deltaTime)
 	_gamepadManager->Update(deltaTime);
 
 	_objectManager->UpdateAllEngineObjects(_time->deltaTime);
-	_objectManager->RenderAllEngineObjects(_window->GetWindow());
+	_sceneManager->UpdateCurrentScene(deltaTime);
 
 	_input->SaveMousePos(*_window->GetWindow());
 
 	_window->Update(deltaTime);
 
-	if (_input->GetKeyDown(KEYCODE::F1))
+	if (_input->GetKeyDown(KEYCODE::F1) && !ISRELEASE)
 	{
 		_window->ToggleConsole();
 	}
-	if (_input->GetKeyDown(KEYCODE::B))
-	{
-		go->SaveObject();
-		_saveManager->SaveAll();
-	}
+
+	// TEST
+
+
+
+	// TEST
+}
+
+void Engine::Render()
+{
+	_objectManager->RenderAllEngineObjects(_window->GetWindow());
+	_sceneManager->RenderCurrentScene(_window->GetWindow());
 }
