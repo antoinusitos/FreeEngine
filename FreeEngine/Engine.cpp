@@ -169,8 +169,13 @@ void Engine::TESTFUNCTION()
 	GameObject* go = new GameObject("go");
 	GameObject* go2 = new GameObject("go2");
 
-	go->transform.position = FVector3(50, 100, 30);
-	go2->transform.position = FVector3(60, 110, 20);
+	GameObject* background = new GameObject("background");
+	GameObject* foreground = new GameObject("foreground");
+
+	go->transform.position = FVector3(50, 200, 1);
+	go2->transform.position = FVector3(60, 200, 1);
+	background->transform.position = FVector3(0, -300, 3);
+	foreground->transform.position = FVector3(0, -300, 0);
 
 	SpriteRenderer* sr = new SpriteRenderer();
 	sr->Init("Sprites/testSprite.png");
@@ -180,6 +185,23 @@ void Engine::TESTFUNCTION()
 	sr2->Init("Sprites/testSprite2.png");
 	go2->AddLeaf(sr2);
 
+	SpriteRenderer* sr3 = new SpriteRenderer();
+	sr3->Init("Sprites/Background_01/PARALLAX/background.png");
+	SpriteRenderer* sr4 = new SpriteRenderer();
+	sr4->Init("Sprites/Background_01/PARALLAX/clouds.png");
+	SpriteRenderer* sr5 = new SpriteRenderer();
+	sr5->Init("Sprites/Background_01/PARALLAX/rocks.png");
+	background->AddLeaf(sr3);
+	background->AddLeaf(sr4);
+	background->AddLeaf(sr5);
+
+	SpriteRenderer* sr6 = new SpriteRenderer();
+	sr6->Init("Sprites/Background_01/PARALLAX/trees.png");
+	foreground->AddLeaf(sr6);
+
 	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go);
 	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go2);
+	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(foreground);
+
+	_sceneManager->GetCurrentScene()->AddStaticObjectToScene(background);
 }

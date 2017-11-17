@@ -50,7 +50,7 @@ void GameObject::Update(const float deltaTime)
 	EngineObject::Update(deltaTime);
 
 	//------TEST------
-	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWRIGHT))
+	/*if (Input::Instance().GetKeyPressed(KEYCODE::ARROWRIGHT))
 		transform.position.x += deltaTime * 100.0f;
 	else if (Input::Instance().GetKeyPressed(KEYCODE::ARROWLEFT))
 		transform.position.x -= deltaTime * 100.0f;
@@ -58,7 +58,7 @@ void GameObject::Update(const float deltaTime)
 	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWDOWN))
 		transform.position.y += deltaTime * 100.0f;
 	else if (Input::Instance().GetKeyPressed(KEYCODE::ARROWUP))
-		transform.position.y -= deltaTime * 100.0f;
+		transform.position.y -= deltaTime * 100.0f;*/
 	//------TEST------
 
 	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)

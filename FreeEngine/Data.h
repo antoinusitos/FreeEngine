@@ -17,6 +17,8 @@ const std::string DEBUGFOLDER = "FreeEngine";
 const std::string RELEASEFOLDER = "Debug";
 const std::string RELEASEVERSION = "0.1";
 
+//WARNING : Be sure that objects have the correct collisions and layers
+const int LAYERSNUMBER = 4; // 3 background, 2 terrain, 1 dynamic, 0 foreground
 
 enum ScreenType
 {

@@ -27,12 +27,13 @@ Scene
 Scene manager
 
 LAST:
-Serialization
+Serialization (still need to serialize objects for scene)
 
 ------------------------------------------------------------------
 
 TO DO :
 
+Input Leaf for players
 Perlin
 Particles
 Prefab
