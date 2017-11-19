@@ -29,6 +29,9 @@ public:
 	// Random int between min [inclusive] and max [exclusive]
 	const static int Random(const int min, const int max);
 
+	// Map a value from a range to another range
+	const static float Map(const float value, const float fromMin, const float fromMax, const float toMin, const float toMax);
+
 //Variables
 private:
 	// Unique instance of the time

@@ -40,3 +40,8 @@ const int FMath::Random(const int min, const int max)
 {
 	return rand() % (max - min) + min;
 }
+
+const float FMath::Map(const float value, const float fromMin, const float fromMax, const float toMin, const float toMax)
+{
+	return toMin + ((toMax - toMin) / (fromMax - fromMin)) * (value - fromMin);
+}
