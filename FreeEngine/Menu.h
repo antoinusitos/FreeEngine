@@ -2,6 +2,8 @@
 
 #include "Scene.h"
 
+class Sound;
+
 class Menu : public Scene
 {
 public:
@@ -14,6 +16,8 @@ public:
 
 	void Update(const float deltaTime);
 	void Render(sf::RenderWindow* window);
+
+	void Destroy();
 
 private:
 	int _currentIndex = 0;
@@ -29,9 +33,11 @@ private:
 
 	sf::RectangleShape _background;
 
+	std::vector<Sound*> _allSounds;
+	
 	void ChangeIndex();
 
-
+	void RenderingWork();
 
 };
 

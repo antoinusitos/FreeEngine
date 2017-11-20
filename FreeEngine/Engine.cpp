@@ -3,6 +3,7 @@
 
 #include "Engine.h"
 #include "Menu.h"
+#include "TestScene.h"
 
 Engine::Engine()
 {
@@ -57,11 +58,10 @@ void Engine::Launch()
 
 	_time->Init();
 
-	_sceneManager->LoadScenesFromFile();
+	//_sceneManager->LoadScenesFromFile();
 
+	_sceneManager->NewScene(new TestScene());
 	_sceneManager->NewScene(new Menu());
-
-	//TESTFUNCTION();
 	
 	_debug->Log("Engine Init !", DebugMessageType::DEBUGENGINE);
 
@@ -148,56 +148,4 @@ void Engine::Render()
 {
 	_objectManager->RenderAllEngineObjects(_window->GetWindow());
 	_sceneManager->RenderCurrentScene(_window->GetWindow());
-}
-
-#include "GameObject.h"
-#include "SpriteRenderer.h"
-#include "Scene.h"
-#include "InputLeaf.h"
-#include "SpriteAnimator.h"
-#include "FMath.h"
-
-void Engine::TESTFUNCTION()
-{
-	_sceneManager->NewScene("TestScene");
-	if (_sceneManager->GetCurrentScene() == nullptr)
-	{
-		_sceneManager->LoadScene("TestScene");
-	}
-
-	GameObject* go = new GameObject("go");
-
-	GameObject* background = new GameObject("background");
-	GameObject* foreground = new GameObject("foreground");
-
-	go->transform.position = FVector3(60, 520, 1);
-	go->transform.scale = FVector3(.75f, .75f, .75f);
-	background->transform.position = FVector3(0, -300, 3);
-	foreground->transform.position = FVector3(0, -300, 0);
-
-	SpriteRenderer* sr = new SpriteRenderer();
-	sr->Init("Sprites/testSprite.png");
-	go->AddLeaf(sr);
-	InputLeaf* inputL = new InputLeaf();
-	go->AddLeaf(inputL);
-
-	SpriteRenderer* sr3 = new SpriteRenderer();
-	sr3->Init("Sprites/Background_01/PARALLAX/background.png");
-	SpriteRenderer* sr4 = new SpriteRenderer();
-	sr4->Init("Sprites/Background_01/PARALLAX/clouds.png");
-	SpriteRenderer* sr5 = new SpriteRenderer();
-	sr5->Init("Sprites/Background_01/PARALLAX/rocks.png");
-	background->AddLeaf(sr3);
-	background->AddLeaf(sr4);
-	background->AddLeaf(sr5);
-
-	SpriteRenderer* sr6 = new SpriteRenderer();
-	sr6->Init("Sprites/Background_01/PARALLAX/trees.png");
-	foreground->AddLeaf(sr6);
-
-	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go);
-	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(foreground);
-
-	_sceneManager->GetCurrentScene()->AddStaticObjectToScene(background);
-
 }

@@ -41,9 +41,6 @@ public:
 	// Check if the key is just released
 	const bool GetKeyReleased(const KEYCODE key);
 
-	// Check if we must close the window
-	const bool MustClose();
-
 	void SetCanInput(const bool NewState);
 
 	void Init();
@@ -65,9 +62,6 @@ private :
 
 	// Map that contain the state of the Input
 	std::map<KEYCODE, InputKey> _mapping;
-
-	// Should we close the SFML window ?
-	bool _mustClose = false;
 
 	bool _canInput = false;
 

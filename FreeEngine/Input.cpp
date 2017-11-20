@@ -1,6 +1,7 @@
 #include "Input.h"
 #include <iostream>
 #include "Debug.h"
+#include "EditorManager.h"
 
 std::unique_ptr<Input> Input::_instance;
 std::once_flag Input::onceFlag;
@@ -26,6 +27,10 @@ void Input::Init()
 	ik = InputKey();
 	ik.key = KEYCODE::ESCAPE;
 	_mapping.emplace(KEYCODE::ESCAPE, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::ENTER;
+	_mapping.emplace(KEYCODE::ENTER, ik);
 
 	ik = InputKey();
 	ik.key = KEYCODE::ARROWUP;
@@ -78,7 +83,7 @@ void Input::ProcessInput(sf::Window& window)
 		switch (_event.type)
 		{
 		case sf::Event::Closed:
-			_mustClose = true;
+			EditorManager::Instance().SetMustQuit();
 			break;
 
 		case sf::Event::KeyPressed:
@@ -236,6 +241,10 @@ const KEYCODE Input::GetKeycodeAssociate(const sf::Keyboard::Key key)
 	else if (_event.key.code == sf::Keyboard::Escape)
 	{
 		return KEYCODE::ESCAPE;
+	}
+	else if (_event.key.code == sf::Keyboard::Return)
+	{
+		return KEYCODE::ENTER;
 	}
 	else if (_event.key.code == sf::Keyboard::F1)
 	{

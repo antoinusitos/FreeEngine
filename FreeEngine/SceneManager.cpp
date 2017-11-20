@@ -21,10 +21,24 @@ void SceneManager::LoadScene(const std::string name)
 		if (name == (*it)->name)
 		{
 			std::cout << "Scene " << name << " found ! Loading..." << '\n';
+
+			if (_currentScene != nullptr)
+			{
+				_currentScene->Destroy();
+			}
+
 			_currentScene = (*it)->scene;
+			
+			Debug::Instance().Print("Current Scene : " + _currentScene->name, DebugMessageType::DEBUGENGINE);
+			
 			_currentScene->LoadObject();
+			_currentScene->PreAwake();
+			_currentScene->Awake();
+			_currentScene->Start();
+			return;
 		}
 	}
+	Debug::Instance().Print("Cannot load scene : " + name, DebugMessageType::DEBUGERROR);
 }
 
 void SceneManager::LoadScenesFromFile()
@@ -123,6 +137,7 @@ void SceneManager::PreAwakeCurrentScene()
 {
 	if (_currentScene != nullptr)
 	{
+		Debug::Instance().Print("Current Scene : " + _currentScene->name, DebugMessageType::DEBUGENGINE);
 		_currentScene->PreAwake();
 	}
 }

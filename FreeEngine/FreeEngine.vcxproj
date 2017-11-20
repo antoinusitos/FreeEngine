@@ -193,6 +193,7 @@
     <ClCompile Include="State.cpp" />
     <ClCompile Include="TagManager.cpp" />
     <ClCompile Include="TestLeaf.cpp" />
+    <ClCompile Include="TestScene.cpp" />
     <ClCompile Include="Time.cpp" />
     <ClCompile Include="ToolBar.cpp" />
     <ClCompile Include="ToolBarButton.cpp" />
@@ -241,6 +242,7 @@
     <ClInclude Include="State.h" />
     <ClInclude Include="TagManager.h" />
     <ClInclude Include="TestLeaf.h" />
+    <ClInclude Include="TestScene.h" />
     <ClInclude Include="Time.h" />
     <ClInclude Include="ToolBar.h" />
     <ClInclude Include="ToolBarButton.h" />

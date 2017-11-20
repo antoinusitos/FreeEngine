@@ -2,6 +2,9 @@
 #include "ResourcesManager.h"
 #include "Window.h"
 #include "Input.h"
+#include "EditorManager.h"
+#include "SceneManager.h"
+#include "Sound.h"
 
 Menu::Menu() : Scene::Scene("Menu")
 {
@@ -50,6 +53,7 @@ void Menu::PreAwake()
 		tempY += space;
 	}
 
+	_background.setFillColor(sf::Color(0, 114, 117));
 }
 
 void Menu::Awake()
@@ -60,7 +64,13 @@ void Menu::Awake()
 void Menu::Start()
 {
 	Scene::Start();
+	
+	Sound* theme = new Sound();
+	theme->InitMusic("theme.wav");
+	theme->SetLoop(true);
+	theme->Play();
 
+	_allSounds.push_back(theme);
 }
 
 void Menu::Update(const float deltaTime)
@@ -79,16 +89,12 @@ void Menu::Update(const float deltaTime)
 		if (_currentIndex < 0)
 			_currentIndex = _maxIndex - 1 ;
 	}
-
-	for (std::vector<sf::Text>::iterator it = _allText.begin(); it < _allText.end(); it++)
+	else if (Input::Instance().GetKeyDown(KEYCODE::ENTER))
 	{
-		(*it).setStyle(sf::Text::Regular);
-		(*it).setOutlineThickness(0);
+		ChangeIndex();
 	}
 
-	_allText.at(_currentIndex).setStyle(sf::Text::Bold);
-	_allText.at(_currentIndex).setOutlineColor(sf::Color::White);
-	_allText.at(_currentIndex).setOutlineThickness(1);
+	RenderingWork();
 }
 
 void Menu::Render(sf::RenderWindow* window)
@@ -105,5 +111,52 @@ void Menu::Render(sf::RenderWindow* window)
 
 void Menu::ChangeIndex()
 {
+	if (_currentIndex == 0)
+	{
+		// NEW
+		Debug::Instance().Print("Loading Scene : TestScene", DebugMessageType::DEBUGENGINE);
+		SceneManager::Instance().LoadScene("TestScene");
+	}
+	else if (_currentIndex == 1)
+	{
+		// LOAD
+	}
+	else if (_currentIndex == 2)
+	{
+		// OPTIONS
+	}
+	else if (_currentIndex == 3)
+	{
+		// EXIT
+		Debug::Instance().Print("Exit Menu !", DebugMessageType::DEBUGENGINE);
+		EditorManager::Instance().SetMustQuit();
+	}
+}
 
+void Menu::RenderingWork()
+{
+	for (std::vector<sf::Text>::iterator it = _allText.begin(); it < _allText.end(); it++)
+	{
+		(*it).setStyle(sf::Text::Regular);
+		(*it).setOutlineThickness(0);
+	}
+
+	_allText.at(_currentIndex).setStyle(sf::Text::Bold);
+	_allText.at(_currentIndex).setOutlineColor(sf::Color::White);
+	_allText.at(_currentIndex).setOutlineThickness(2);
+
+	unsigned int windowSizeX = Window::Instance().GetScreenResolutionX();
+	unsigned int windowSizeY = Window::Instance().GetScreenResolutionY();
+
+	_background.setSize(sf::Vector2f(windowSizeX, windowSizeY));
+}
+
+void Menu::Destroy()
+{
+	for (std::vector<Sound*>::iterator it = _allSounds.begin(); it != _allSounds.end(); ++it)
+	{
+		(*it)->Stop();
+		delete (*it);
+	}
+	_allSounds.clear();
 }

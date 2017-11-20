@@ -59,7 +59,5 @@ private :
 	void Update(const float deltaTime);
 	void Render();
 
-	void TESTFUNCTION();
-
 };
 
