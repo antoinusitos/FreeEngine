@@ -157,6 +157,7 @@ void Engine::Render()
 #include "GameObject.h"
 #include "SpriteRenderer.h"
 #include "Scene.h"
+#include "InputLeaf.h"
 
 void Engine::TESTFUNCTION()
 {
@@ -198,10 +199,14 @@ void Engine::TESTFUNCTION()
 	SpriteRenderer* sr6 = new SpriteRenderer();
 	sr6->Init("Sprites/Background_01/PARALLAX/trees.png");
 	foreground->AddLeaf(sr6);
+	
+	InputLeaf* inputL = new InputLeaf();
+	go->AddLeaf(inputL);
 
 	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go);
 	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go2);
 	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(foreground);
 
 	_sceneManager->GetCurrentScene()->AddStaticObjectToScene(background);
+
 }

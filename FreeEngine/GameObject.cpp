@@ -10,7 +10,6 @@ GameObject::GameObject(std::string Name) : EngineObject()
 	_ID = ObjectsManager::Instance().GetID();
 	name = Name;
 	transform = Transform();
-	ObjectsManager::Instance().RegisterEngineObject(this);
 }
 
 GameObject::GameObject() : EngineObject()
@@ -18,7 +17,6 @@ GameObject::GameObject() : EngineObject()
 	_ID = ObjectsManager::Instance().GetID();
 	name = "GameObject"+ std::to_string(_ID);
 	transform = Transform();
-	ObjectsManager::Instance().RegisterEngineObject(this);
 }
 
 GameObject::~GameObject()
@@ -48,18 +46,6 @@ void GameObject::Start()
 void GameObject::Update(const float deltaTime)
 {
 	EngineObject::Update(deltaTime);
-
-	//------TEST------
-	/*if (Input::Instance().GetKeyPressed(KEYCODE::ARROWRIGHT))
-		transform.position.x += deltaTime * 100.0f;
-	else if (Input::Instance().GetKeyPressed(KEYCODE::ARROWLEFT))
-		transform.position.x -= deltaTime * 100.0f;
-
-	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWDOWN))
-		transform.position.y += deltaTime * 100.0f;
-	else if (Input::Instance().GetKeyPressed(KEYCODE::ARROWUP))
-		transform.position.y -= deltaTime * 100.0f;*/
-	//------TEST------
 
 	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)
 	{
