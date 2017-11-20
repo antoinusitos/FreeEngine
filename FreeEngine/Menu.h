@@ -1,0 +1,37 @@
+#pragma once
+
+#include "Scene.h"
+
+class Menu : public Scene
+{
+public:
+	Menu();
+	~Menu();
+
+	void PreAwake();
+	void Awake();
+	void Start();
+
+	void Update(const float deltaTime);
+	void Render(sf::RenderWindow* window);
+
+private:
+	int _currentIndex = 0;
+	int _maxIndex = 0;
+
+	sf::Font _font;
+
+	sf::Text _textNewGame;
+	sf::Text _textLoadGame;
+	sf::Text _textOption;
+	sf::Text _textExit;
+	std::vector<sf::Text> _allText;
+
+	sf::RectangleShape _background;
+
+	void ChangeIndex();
+
+
+
+};
+

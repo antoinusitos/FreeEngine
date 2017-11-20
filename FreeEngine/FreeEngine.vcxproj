@@ -177,6 +177,7 @@
     <ClCompile Include="InputLeaf.cpp" />
     <ClCompile Include="Leaf.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menu.cpp" />
     <ClCompile Include="MenuToolBarButton.cpp" />
     <ClCompile Include="NewSceneToolBarButton.cpp" />
     <ClCompile Include="ObjectsManager.cpp" />
@@ -224,6 +225,7 @@
     <ClInclude Include="Input.h" />
     <ClInclude Include="InputLeaf.h" />
     <ClInclude Include="Leaf.h" />
+    <ClInclude Include="Menu.h" />
     <ClInclude Include="MenuToolBarButton.h" />
     <ClInclude Include="NewSceneToolBarButton.h" />
     <ClInclude Include="ObjectsManager.h" />

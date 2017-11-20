@@ -10,12 +10,12 @@ public:
 	Scene(const std::string name);
 	~Scene();
 
-	void PreAwake();
-	void Awake();
-	void Start();
+	virtual void PreAwake();
+	virtual void Awake();
+	virtual void Start();
 
-	void Update(const float deltaTime);
-	void Render(sf::RenderWindow* window);
+	virtual void Update(const float deltaTime);
+	virtual void Render(sf::RenderWindow* window);
 
 	void Destroy();
 

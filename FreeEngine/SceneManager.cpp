@@ -104,6 +104,16 @@ void SceneManager::NewScene(const std::string name)
 	Debug::Instance().Log("Set Current Scene to " + name, DebugMessageType::DEBUGENGINE);
 }
 
+void SceneManager::NewScene(Scene* newScene)
+{
+	_currentScene = newScene;
+	SceneInfo* si = new SceneInfo();
+	si->name = newScene->name;
+	si->scene = _currentScene;
+	_allScene.push_back(si);
+	Debug::Instance().Log("Set Current Scene to " + newScene->name, DebugMessageType::DEBUGENGINE);
+}
+
 Scene* SceneManager::GetCurrentScene()
 {
 	return _currentScene;

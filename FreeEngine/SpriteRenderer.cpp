@@ -57,7 +57,7 @@ void SpriteRenderer::SetRotation(const float angle)
 
 void SpriteRenderer::SetScale(const float x, const float y)
 {
-	_sprite.scale(sf::Vector2f(x, y));
+	_sprite.setScale(sf::Vector2f(x, y));
 }
 
 void SpriteRenderer::SetOrigin(const float x, const float y)

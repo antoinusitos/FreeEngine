@@ -29,7 +29,7 @@ ResourcesManager::~ResourcesManager()
 {
 }
 
-const sf::Font ResourcesManager::GetFont(const std::string fontName)
+/*const*/ sf::Font ResourcesManager::GetFont(const std::string fontName)
 {
 	sf::Font toReturn;
 	if (!toReturn.loadFromFile(_resourcesPath + fontName))

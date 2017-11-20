@@ -29,6 +29,7 @@ public:
 	void SaveScenesInFile();
 
 	void NewScene(const std::string name);
+	void NewScene(Scene* newScene);
 
 	void ToStringAllScenes();
 

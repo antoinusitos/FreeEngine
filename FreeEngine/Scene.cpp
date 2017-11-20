@@ -15,7 +15,6 @@ Scene::~Scene()
 void Scene::PreAwake()
 {
 	// only for the scene
-	
 }
 
 void Scene::Awake()
