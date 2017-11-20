@@ -43,6 +43,8 @@ public:
 	const float GetLeftTrigger();
 	const float GetRightTrigger();
 
+	void SetWantToUseGamepad(bool newState);
+
 private:
 	// Unique instance of the time
 	static std::unique_ptr<GamepadManager> _instance;
@@ -66,5 +68,6 @@ private:
 
 	bool _wasConnected = true;
 	bool _reminder = false;
+	bool _wantToUseGamepad = false;
 };
 

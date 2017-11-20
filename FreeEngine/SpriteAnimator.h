@@ -29,13 +29,19 @@ public:
 
 	void SetAnimationSpeed(const float newSpeed);
 
-	//TODO : cut the image to make multiples sub-images
+	void AddAtlas(const std::string fileName, int nbFrames, int totalHeight, int totalWidth, int frameHeight, int frameWidth, int offsetX = 0, int offsetY = 0);
 
 private:
 	sf::Sprite _sprite;
 	std::vector<sf::Texture> _allTexture;
 	int _currentFrame = 0;
 	int _nbFrame = 0;
+
+	//atlas stuff
+	bool _isAtlas = false;
+	int _atlasNbFrames = 0;
+	std::vector<sf::IntRect> _atlasRect;
+
 
 	sf::Color _color = sf::Color::White;
 

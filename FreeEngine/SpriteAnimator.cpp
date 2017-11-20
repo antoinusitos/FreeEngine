@@ -54,10 +54,25 @@ void SpriteAnimator::Update(const float deltaTime)
 	if (_currentAnimTime >= _animRate)
 	{
 		_currentAnimTime = 0;
-		if ((int)_allTexture.size() != 0)
-			_sprite.setTexture(_allTexture[_currentFrame]);
+
+		if (!_isAtlas)
+		{
+			if ((int)_allTexture.size() != 0)
+				_sprite.setTexture(_allTexture[_currentFrame]);
+			else
+				Debug::Instance().Print("No texture to render on this sprite animator", DebugMessageType::DEBUGERROR);
+		}
 		else
-			Debug::Instance().Print("No texture to render on this sprite animator", DebugMessageType::DEBUGERROR);
+		{
+			if ((int)_atlasRect.size() != 0)
+			{
+				_sprite.setTexture(_allTexture[0]);
+				_sprite.setTextureRect(_atlasRect[_currentFrame]);
+
+			}
+			else
+				Debug::Instance().Print("No texture from atlas to render on this sprite animator", DebugMessageType::DEBUGERROR);
+		}
 		_currentFrame++;
 		if (_currentFrame >= _nbFrame)
 			_currentFrame = 0;
@@ -100,4 +115,34 @@ void SpriteAnimator::AddTexture(const std::string fileName)
 void SpriteAnimator::SetAnimationSpeed(const float newSpeed)
 {
 	_animationSpeed = newSpeed;
+}
+
+void SpriteAnimator::AddAtlas(const std::string fileName, int nbFrames, int totalHeight, int totalWidth, int frameHeight, int frameWidth, int offsetX, int offsetY)
+{
+	_isAtlas = true;
+	_nbFrame = nbFrames;
+
+	_allTexture.push_back(ResourcesManager::Instance().GetTexture(fileName));
+
+	if (totalHeight % frameHeight != 0)
+		Debug::Instance().Print(fileName + " has a ratio totalHeight / frameHeight with floating number", DebugMessageType::DEBUGWARNING);
+
+	if (totalWidth % frameWidth != 0)
+		Debug::Instance().Print(fileName + " has a ratio totalWidth / frameWidth with floating number", DebugMessageType::DEBUGWARNING);
+
+	int tempHeight = offsetY;
+	int tempWidth = offsetX;
+
+	for (int i = 0; i < nbFrames; i++)
+	{
+		_atlasRect.push_back(sf::IntRect(tempWidth, tempHeight, frameWidth, frameHeight));
+		tempWidth += frameWidth;
+		if (tempWidth > totalWidth)
+		{
+			tempWidth = 0;
+			tempHeight += frameHeight;
+		}
+	}
+
+	Debug::Instance().Log("Atlas created !", DebugMessageType::DEBUGENGINE);
 }

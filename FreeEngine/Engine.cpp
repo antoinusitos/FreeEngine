@@ -158,6 +158,7 @@ void Engine::Render()
 #include "SpriteRenderer.h"
 #include "Scene.h"
 #include "InputLeaf.h"
+#include "SpriteAnimator.h"
 
 void Engine::TESTFUNCTION()
 {
@@ -169,18 +170,22 @@ void Engine::TESTFUNCTION()
 
 	GameObject* go = new GameObject("go");
 	GameObject* go2 = new GameObject("go2");
+	GameObject* go3 = new GameObject("go3");
 
 	GameObject* background = new GameObject("background");
 	GameObject* foreground = new GameObject("foreground");
 
 	go->transform.position = FVector3(50, 200, 1);
 	go2->transform.position = FVector3(60, 200, 1);
+	go3->transform.position = FVector3(100, 100, 1);
 	background->transform.position = FVector3(0, -300, 3);
 	foreground->transform.position = FVector3(0, -300, 0);
 
 	SpriteRenderer* sr = new SpriteRenderer();
 	sr->Init("Sprites/testSprite.png");
 	go->AddLeaf(sr);
+	InputLeaf* inputL = new InputLeaf();
+	go->AddLeaf(inputL);
 
 	SpriteRenderer* sr2 = new SpriteRenderer();
 	sr2->Init("Sprites/testSprite2.png");
@@ -200,12 +205,15 @@ void Engine::TESTFUNCTION()
 	sr6->Init("Sprites/Background_01/PARALLAX/trees.png");
 	foreground->AddLeaf(sr6);
 	
-	InputLeaf* inputL = new InputLeaf();
-	go->AddLeaf(inputL);
+	SpriteAnimator* sa = new SpriteAnimator();
+	sa->AddAtlas("Sprites/link.png", 8, 32, 192, 32, 24, 0, 32);
+	go3->AddLeaf(sa);
+
 
 	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go);
 	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go2);
 	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(foreground);
+	_sceneManager->GetCurrentScene()->AddDynamicObjectToScene(go3);
 
 	_sceneManager->GetCurrentScene()->AddStaticObjectToScene(background);
 

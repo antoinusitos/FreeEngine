@@ -34,6 +34,8 @@ void GamepadManager::Init()
 
 void GamepadManager::Update(float deltaTime)
 {
+	if (!_wantToUseGamepad) return;
+
 	if (!Refresh())
 	{
 		if (_wasConnected && !_reminder)
@@ -151,3 +153,8 @@ const float GamepadManager::GetRightStickX() { return _rightStickX; }
 const float GamepadManager::GetRightStickY() { return _rightStickY; }
 const float GamepadManager::GetLeftTrigger() { return _leftTrigger; }
 const float GamepadManager::GetRightTrigger() { return _rightTrigger; }
+
+void GamepadManager::SetWantToUseGamepad(bool newState)
+{
+	_wantToUseGamepad = newState;
+}
