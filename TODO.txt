@@ -60,6 +60,7 @@ Light ?
 REWORK :
 
 changing from windowed to fullscreen (bug : making everything bigger)
+Create a GetComponent Function on GameObject
 
 ------------------------------------------------------------------
 
