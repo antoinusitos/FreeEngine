@@ -41,6 +41,15 @@ Collisions/Layers
 Level Editor
 UI / anchor
 RigidBody / Basic Leaf
+Dialog
+Cinematic
+Camera blend/lerp
+Camera fade
+Shaders / post effect
+Async load
+Easy thread system
+Pause menu
+
 
 ------------------------------------------------------------------
 
