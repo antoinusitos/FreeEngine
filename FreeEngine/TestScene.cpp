@@ -3,6 +3,9 @@
 #include "SpriteRenderer.h"
 #include "InputLeaf.h"
 #include "SceneManager.h"
+#include "CameraManager.h"
+#include "FMath.h"
+#include "TestLeaf.h"
 
 TestScene::TestScene() : Scene::Scene("TestScene")
 {
@@ -30,6 +33,8 @@ void TestScene::PreAwake()
 	go->AddLeaf(sr);
 	inputL = new InputLeaf();
 	go->AddLeaf(inputL);
+	tl = new TestLeaf();
+	go->AddLeaf(tl);
 
 	sr3 = new SpriteRenderer();
 	sr3->Init("Sprites/Background_01/PARALLAX/background.png");
@@ -65,6 +70,9 @@ void TestScene::Update(const float deltaTime)
 {
 	Scene::Update(deltaTime);
 
+	float x = CameraManager::Instance().GetCurrentX();
+	float y = CameraManager::Instance().GetCurrentY();
+	CameraManager::Instance().Move(FMath::Lerp(x, go->transform.position.x, deltaTime), FMath::Lerp(y, go->transform.position.y, deltaTime));
 }
 
 void TestScene::Render(sf::RenderWindow* window)

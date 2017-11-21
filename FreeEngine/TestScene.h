@@ -5,6 +5,7 @@
 class GameObject;
 class SpriteRenderer;
 class InputLeaf;
+class TestLeaf;
 
 class TestScene : public Scene
 {
@@ -31,5 +32,7 @@ private:
 	SpriteRenderer* sr6;
 
 	InputLeaf* inputL;
+
+	TestLeaf* tl;
 };
 

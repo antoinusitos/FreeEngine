@@ -4,6 +4,8 @@
 #include <memory>
 #include <mutex>
 
+class GameObject;
+
 class CameraManager
 {
 public:
@@ -29,6 +31,9 @@ public:
 
 	void ResizeCurrentView(const float x, const float y);
 
+	const float GetCurrentX();
+	const float GetCurrentY();
+
 private:
 	// Unique instance of the time
 	static std::unique_ptr<CameraManager> _instance;
@@ -36,5 +41,8 @@ private:
 
 	sf::View _mainView;
 	sf::View _currentView;
+
+	float _currentX;
+	float _currentY;
 };
 

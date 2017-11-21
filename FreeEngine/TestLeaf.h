@@ -13,6 +13,6 @@ public:
 	virtual void Update(const float deltaTime);
 	virtual void Exit();
 	virtual void Awake();
-	virtual void Render();
+	virtual void Render(sf::RenderWindow* window);
 };
 
