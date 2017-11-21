@@ -70,9 +70,18 @@ void TestScene::Update(const float deltaTime)
 {
 	Scene::Update(deltaTime);
 
+	if (_timer < _fadeDuration)
+	{
+		_timer += deltaTime;
+		CameraManager::Instance().SetFade(FMath::Lerp(255, 0, _timer / _fadeDuration));
+	}
+
 	float x = CameraManager::Instance().GetCurrentX();
 	float y = CameraManager::Instance().GetCurrentY();
-	CameraManager::Instance().Move(FMath::Lerp(x, go->transform.position.x, deltaTime), FMath::Lerp(y, go->transform.position.y, deltaTime));
+	CameraManager::Instance().Move(
+		FMath::Lerp(x, go->transform.position.x, deltaTime * _cameraSpeed), 
+		FMath::Lerp(y, go->transform.position.y, deltaTime * _cameraSpeed)
+	);
 }
 
 void TestScene::Render(sf::RenderWindow* window)

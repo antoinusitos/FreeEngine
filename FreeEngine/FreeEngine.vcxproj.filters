@@ -156,9 +156,6 @@
     <ClCompile Include="SceneManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="InputLeaf.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
@@ -169,6 +166,9 @@
       <Filter>Source Files\Test</Filter>
     </ClCompile>
     <ClCompile Include="TestLeaf.cpp">
+      <Filter>Source Files\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="InputLeaf.cpp">
       <Filter>Source Files\Test</Filter>
     </ClCompile>
   </ItemGroup>
@@ -242,9 +242,6 @@
     <ClInclude Include="Leaf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestLeaf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="CameraManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -312,6 +309,9 @@
       <Filter>Header Files\Test</Filter>
     </ClInclude>
     <ClInclude Include="RigidBody.h">
+      <Filter>Header Files\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="TestLeaf.h">
       <Filter>Header Files\Test</Filter>
     </ClInclude>
   </ItemGroup>

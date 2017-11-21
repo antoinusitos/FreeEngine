@@ -39,5 +39,10 @@ private:
 
 	void RenderingWork();
 
+	float _fadeDuration = 0.5f;
+	float _timer = 0;
+
+	float _waitForFadeOut = false;
+
 };
 

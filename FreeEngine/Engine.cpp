@@ -136,11 +136,18 @@ void Engine::Update(const float deltaTime)
 
 	_input->SaveMousePos(*_window->GetWindow());
 
+	_cameraManager->Update(deltaTime);
+
 	_window->Update(deltaTime);
 
 	if (_input->GetKeyDown(KEYCODE::F1) && !ISRELEASE)
 	{
 		_window->ToggleConsole();
+	}
+
+	if (_input->GetKeyDown(KEYCODE::F2) && !ISRELEASE)
+	{
+		_editorManager->ChangeCurrentState();
 	}
 }
 
@@ -148,4 +155,7 @@ void Engine::Render()
 {
 	_objectManager->RenderAllEngineObjects(_window->GetWindow());
 	_sceneManager->RenderCurrentScene(_window->GetWindow());
+
+	// do this at the end for the post process
+	_cameraManager->Render(_window->GetWindow());
 }

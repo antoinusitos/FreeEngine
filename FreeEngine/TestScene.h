@@ -34,5 +34,10 @@ private:
 	InputLeaf* inputL;
 
 	TestLeaf* tl;
+
+	float _cameraSpeed = 1.5f;
+
+	float _fadeDuration = 0.5f;
+	float _timer = 0;
 };
 

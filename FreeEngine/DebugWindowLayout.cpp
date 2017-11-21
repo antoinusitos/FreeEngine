@@ -3,6 +3,7 @@
 #include "Debug.h"
 #include "ResourcesManager.h"
 #include "FMath.h"
+#include "CameraManager.h"
 
 DebugWindowLayout::DebugWindowLayout()
 {
@@ -18,12 +19,17 @@ void DebugWindowLayout::Init()
 {
 	FileHandler::Instance().RegisterNewWatcher(this, "FreeEngine/Assets/Config/Engine.txt");
 
-	_background = sf::RectangleShape(sf::Vector2f((float)Window::Instance().GetWindow()->getSize().x, _debugZoneSizeY));
+	_sizeX = static_cast<float>(Window::Instance().GetWindow()->getSize().x);
+	_background = sf::RectangleShape(sf::Vector2f(_sizeX, _debugZoneSizeY));
 	_background.setFillColor(sf::Color(150, 150, 150));
-	_background.setPosition(0, Window::Instance().GetWindow()->getSize().y);
 
-	_beginY = _background.getPosition().y - _debugZoneSizeY;
-	_beginX = _background.getPosition().x + 5;
+	_positionX = CameraManager::Instance().GetCurrentX() - (_sizeX / 2);
+	_positionY = CameraManager::Instance().GetCurrentY() + (Window::Instance().GetWindow()->getSize().y / 2) - _posY;
+
+	_background.setPosition(
+		_positionX,
+		_positionY
+	);
        
 	Window::Instance().AddRenderingLayout(this);
 }
@@ -57,7 +63,7 @@ void DebugWindowLayout::AddString(const DebugMessage debugMessage)
 		text.setFillColor(sf::Color::Black);
 		break;
 	}
-	text.setPosition(_beginX, _beginY + _index * _incrementingY);
+
 	_allText.push_back(text);
 	_index++;
 }
@@ -81,7 +87,7 @@ void DebugWindowLayout::Render(sf::RenderWindow* SFMLWindow)
 
 		for (std::vector<sf::Text>::iterator it = _allText.begin() + startingIndex; it != _allText.end(); ++it)
 		{
-			(*it).setPosition(_beginX, _beginY + tempIndex * _incrementingY);
+			(*it).setPosition(_positionX + _beginX, _positionY + _beginY + tempIndex * _incrementingY);
 			SFMLWindow->draw((*it));
 			tempIndex++;
 		}
@@ -113,8 +119,15 @@ void DebugWindowLayout::Update(const float deltaTime)
 			}
 		}
 		_posY = FMath::Lerp(0, _debugZoneSizeY, _progress);
-		_background.setPosition(0, Window::Instance().GetWindow()->getSize().y - _posY);
 	}
+
+	_positionX = CameraManager::Instance().GetCurrentX() - (_sizeX / 2);
+	_positionY = CameraManager::Instance().GetCurrentY() + (Window::Instance().GetWindow()->getSize().y / 2) - _posY;
+
+	_background.setPosition(
+		_positionX,
+		_positionY
+	);
 }
 
 void DebugWindowLayout::NotifyChange()
@@ -172,7 +185,6 @@ void DebugWindowLayout::HandleDataChanges()
 		else if (tempCat == "ConsoleHeight")
 		{
 			_debugZoneSizeY = atof(tempVal.c_str());
-			_beginY = Window::Instance().GetWindow()->getSize().y - _debugZoneSizeY;
 		}
 		else if (tempCat == "ConsoleColor")
 		{

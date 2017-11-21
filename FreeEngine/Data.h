@@ -94,7 +94,8 @@ enum KEYCODE
 	Y,
 	Z,
 	TILDE,
-	F1
+	F1,
+	F2,
 };
 
 struct InputKey

@@ -5,6 +5,8 @@
 #include "EditorManager.h"
 #include "SceneManager.h"
 #include "Sound.h"
+#include "CameraManager.h"
+#include "FMath.h"
 
 Menu::Menu() : Scene::Scene("Menu")
 {
@@ -77,6 +79,24 @@ void Menu::Update(const float deltaTime)
 {
 	Scene::Update(deltaTime);
 
+	if (_waitForFadeOut)
+	{
+		_timer += deltaTime;
+		CameraManager::Instance().SetFade(FMath::Lerp(0, 255, _timer / _fadeDuration));
+		if (_timer > _fadeDuration)
+		{
+			CameraManager::Instance().SetFade(255);
+			ChangeIndex();
+		}
+		return;
+	}
+
+	if (_timer < _fadeDuration)
+	{
+		_timer += deltaTime;
+		CameraManager::Instance().SetFade(FMath::Lerp(255, 0, _timer / _fadeDuration));
+	}
+
 	if (Input::Instance().GetKeyDown(KEYCODE::ARROWDOWN))
 	{
 		_currentIndex++;
@@ -91,7 +111,8 @@ void Menu::Update(const float deltaTime)
 	}
 	else if (Input::Instance().GetKeyDown(KEYCODE::ENTER))
 	{
-		ChangeIndex();
+		_waitForFadeOut = true;
+		_timer = 0;
 	}
 
 	RenderingWork();

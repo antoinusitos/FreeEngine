@@ -106,8 +106,8 @@ bool GamepadManager::Refresh()
 		_buttonState[XINPUT_GAMEPAD_X] = (_state.Gamepad.wButtons & XINPUT_GAMEPAD_X) != 0;
 		_buttonState[XINPUT_GAMEPAD_Y] = (_state.Gamepad.wButtons & XINPUT_GAMEPAD_Y) != 0;
 
-		float normLX = fmaxf(-1, (float)_state.Gamepad.sThumbLX / 32767);
-		float normLY = fmaxf(-1, (float)_state.Gamepad.sThumbLY / 32767);
+		float normLX = fmaxf(-1, static_cast<float>(_state.Gamepad.sThumbLX) / 32767);
+		float normLY = fmaxf(-1, static_cast<float>(_state.Gamepad.sThumbLY) / 32767);
 
 		_leftStickX = (abs(normLX) < _deadzoneX ? 0 : (abs(normLX) - _deadzoneX) * (normLX / abs(normLX)));
 		_leftStickY = (abs(normLY) < _deadzoneY ? 0 : (abs(normLY) - _deadzoneY) * (normLY / abs(normLY)));
@@ -115,8 +115,8 @@ bool GamepadManager::Refresh()
 		if (_deadzoneX > 0) _leftStickX *= 1 / (1 - _deadzoneX);
 		if (_deadzoneY > 0) _leftStickY *= 1 / (1 - _deadzoneY);
 
-		float normRX = fmaxf(-1, (float)_state.Gamepad.sThumbRX / 32767);
-		float normRY = fmaxf(-1, (float)_state.Gamepad.sThumbRY / 32767);
+		float normRX = fmaxf(-1, static_cast<float>(_state.Gamepad.sThumbRX) / 32767);
+		float normRY = fmaxf(-1, static_cast<float>(_state.Gamepad.sThumbRY) / 32767);
 
 		_rightStickX = (abs(normRX) < _deadzoneX ? 0 : (abs(normRX) - _deadzoneX) * (normRX / abs(normRX)));
 		_rightStickY = (abs(normRY) < _deadzoneY ? 0 : (abs(normRY) - _deadzoneY) * (normRY / abs(normRY)));
@@ -124,8 +124,8 @@ bool GamepadManager::Refresh()
 		if (_deadzoneX > 0) _rightStickX *= 1 / (1 - _deadzoneX);
 		if (_deadzoneY > 0) _rightStickY *= 1 / (1 - _deadzoneY);
 
-		_leftTrigger = (float)_state.Gamepad.bLeftTrigger / 255;
-		_rightTrigger = (float)_state.Gamepad.bRightTrigger / 255;
+		_leftTrigger = static_cast<float>(_state.Gamepad.bLeftTrigger) / 255;
+		_rightTrigger = static_cast<float>(_state.Gamepad.bRightTrigger) / 255;
 
 		return true;
 	}

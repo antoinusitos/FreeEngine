@@ -61,6 +61,10 @@ void Input::Init()
 	_mapping.emplace(KEYCODE::F1, ik);
 
 	ik = InputKey();
+	ik.key = KEYCODE::F2;
+	_mapping.emplace(KEYCODE::F2, ik);
+
+	ik = InputKey();
 	ik.key = KEYCODE::A;
 	_mapping.emplace(KEYCODE::A, ik);
 
@@ -71,6 +75,99 @@ void Input::Init()
 	ik = InputKey();
 	ik.key = KEYCODE::C;
 	_mapping.emplace(KEYCODE::C, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::D;
+	_mapping.emplace(KEYCODE::D, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::E;
+	_mapping.emplace(KEYCODE::E, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::F;
+	_mapping.emplace(KEYCODE::F, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::G;
+	_mapping.emplace(KEYCODE::G, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::H;
+	_mapping.emplace(KEYCODE::H, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::I;
+	_mapping.emplace(KEYCODE::I, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::J;
+	_mapping.emplace(KEYCODE::J, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::K;
+	_mapping.emplace(KEYCODE::K, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::L;
+	_mapping.emplace(KEYCODE::L, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::M;
+	_mapping.emplace(KEYCODE::M, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::N;
+	_mapping.emplace(KEYCODE::N, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::O;
+	_mapping.emplace(KEYCODE::O, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::P;
+	_mapping.emplace(KEYCODE::P, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::Q;
+	_mapping.emplace(KEYCODE::Q, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::R;
+	_mapping.emplace(KEYCODE::R, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::S;
+	_mapping.emplace(KEYCODE::S, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::T;
+	_mapping.emplace(KEYCODE::T, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::U;
+	_mapping.emplace(KEYCODE::U, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::V;
+	_mapping.emplace(KEYCODE::V, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::W;
+	_mapping.emplace(KEYCODE::W, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::X;
+	_mapping.emplace(KEYCODE::X, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::Y;
+	_mapping.emplace(KEYCODE::Y, ik);
+
+	ik = InputKey();
+	ik.key = KEYCODE::Z;
+	_mapping.emplace(KEYCODE::Z, ik);
+
 }
 
 void Input::ProcessInput(sf::Window& window)
@@ -250,6 +347,10 @@ const KEYCODE Input::GetKeycodeAssociate(const sf::Keyboard::Key key)
 	{
 		return KEYCODE::F1;
 	}
+	else if (_event.key.code == sf::Keyboard::F2)
+	{
+		return KEYCODE::F2;
+	}
 	else if (_event.key.code == sf::Keyboard::Up)
 	{
 		return KEYCODE::ARROWUP;
@@ -277,6 +378,98 @@ const KEYCODE Input::GetKeycodeAssociate(const sf::Keyboard::Key key)
 	else if (_event.key.code == sf::Keyboard::C)
 	{
 		return KEYCODE::C;
+	}
+	else if (_event.key.code == sf::Keyboard::D)
+	{
+		return KEYCODE::D;
+	}
+	else if (_event.key.code == sf::Keyboard::E)
+	{
+		return KEYCODE::E;
+	}
+	else if (_event.key.code == sf::Keyboard::F)
+	{
+		return KEYCODE::F;
+	}
+	else if (_event.key.code == sf::Keyboard::G)
+	{
+		return KEYCODE::G;
+	}
+	else if (_event.key.code == sf::Keyboard::H)
+	{
+		return KEYCODE::H;
+	}
+	else if (_event.key.code == sf::Keyboard::I)
+	{
+		return KEYCODE::I;
+	}
+	else if (_event.key.code == sf::Keyboard::J)
+	{
+		return KEYCODE::J;
+	}
+	else if (_event.key.code == sf::Keyboard::K)
+	{
+		return KEYCODE::K;
+	}
+	else if (_event.key.code == sf::Keyboard::L)
+	{
+		return KEYCODE::L;
+	}
+	else if (_event.key.code == sf::Keyboard::M)
+	{
+		return KEYCODE::M;
+	}
+	else if (_event.key.code == sf::Keyboard::N)
+	{
+		return KEYCODE::N;
+	}
+	else if (_event.key.code == sf::Keyboard::O)
+	{
+		return KEYCODE::O;
+	}
+	else if (_event.key.code == sf::Keyboard::P)
+	{
+		return KEYCODE::P;
+	}
+	else if (_event.key.code == sf::Keyboard::Q)
+	{
+		return KEYCODE::Q;
+	}
+	else if (_event.key.code == sf::Keyboard::R)
+	{
+		return KEYCODE::R;
+	}
+	else if (_event.key.code == sf::Keyboard::S)
+	{
+		return KEYCODE::S;
+	}
+	else if (_event.key.code == sf::Keyboard::T)
+	{
+		return KEYCODE::T;
+	}
+	else if (_event.key.code == sf::Keyboard::U)
+	{
+		return KEYCODE::U;
+	}
+	else if (_event.key.code == sf::Keyboard::V)
+	{
+		return KEYCODE::V;
+	}
+	else if (_event.key.code == sf::Keyboard::W)
+	{
+		return KEYCODE::W;
+	}
+	else if (_event.key.code == sf::Keyboard::X)
+	{
+		return KEYCODE::X;
+	}
+	else if (_event.key.code == sf::Keyboard::Y)
+	{
+		return KEYCODE::Y;
+	}
+	else if (_event.key.code == sf::Keyboard::Z)
+	{
+		return KEYCODE::Z;
 	}
 
 	return KEYCODE::NONE;

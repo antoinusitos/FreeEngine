@@ -26,9 +26,12 @@ Put Const everywhere
 Scene
 Scene manager
 Input Leaf for players
+Serialization (still need to serialize objects for scene)
 
 LAST:
-Serialization (still need to serialize objects for scene)
+Camera blend/lerp
+Camera fade
+Scene viewer (debug)
 
 ------------------------------------------------------------------
 
@@ -43,13 +46,10 @@ UI / anchor
 RigidBody / Basic Leaf
 Dialog
 Cinematic
-Camera blend/lerp
-Camera fade
 Shaders / post effect
 Async load
 Easy thread system
 Pause menu
-Scene viewer (debug)
 Multiplayer Local
 Multiplayer Net
 Light ?

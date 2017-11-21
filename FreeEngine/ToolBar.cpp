@@ -18,7 +18,7 @@ ToolBar::~ToolBar()
 
 void ToolBar::Init()
 {
-	_background = sf::RectangleShape(sf::Vector2f((float)Window::Instance().GetWindow()->getSize().x, _toolZoneSizeY));
+	_background = sf::RectangleShape(sf::Vector2f(static_cast<float>(Window::Instance().GetWindow()->getSize().x), _toolZoneSizeY));
 	_background.setFillColor(sf::Color(153, 153, 153));
 	_background.setPosition(0, 0);
 	_allDrawable.push_back(&_background);

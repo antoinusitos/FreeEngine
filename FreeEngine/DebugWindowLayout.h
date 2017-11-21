@@ -31,8 +31,9 @@ private:
 	sf::RectangleShape _background;
 
 	float _debugZoneSizeY = 200.f;
+	float _sizeX = 0;
 	float _consoleSpeed = 0.5f;
-	float _posY = 0;
+	float _posY = 0; // relative for the animation
 	float _progress = 0;
 
 	const std::string configFileName = "Assets/Config/Engine.txt";
@@ -45,9 +46,12 @@ private:
 
 	int _numberLogInConsole = 7;
 	int _index = 0;
-	float _beginY = 0;
-	float _beginX = 0;
+	float _beginY = 5;
+	float _beginX = 5;
 	float _incrementingY = 25;
+
+	float _positionX = 0;
+	float _positionY = 0;
 
 	FVector3 _color;
 

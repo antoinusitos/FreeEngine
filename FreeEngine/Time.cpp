@@ -25,7 +25,7 @@ void Time::Init()
 	_currentTime = clock();
 
 	// Calculate the time elapsed in seconds
-	timeElapsed = (float)_currentTime / CLOCKS_PER_SEC;
+	timeElapsed = static_cast<float>(_currentTime) / CLOCKS_PER_SEC;
 	// Calculate the time elapsed since last frame
 	deltaTime = timeElapsed - lastTimeElapsed;
 
@@ -39,7 +39,7 @@ void Time::Update()
 	_currentTime = clock();
 
 	// Calculate the time elapsed in seconds
-	timeElapsed = (float)_currentTime / CLOCKS_PER_SEC;
+	timeElapsed = static_cast<float>(_currentTime) / CLOCKS_PER_SEC;
 	// Calculate the time elapsed since last frame
 	deltaTime = timeElapsed - lastTimeElapsed;
 

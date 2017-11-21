@@ -34,6 +34,11 @@ public:
 	const float GetCurrentX();
 	const float GetCurrentY();
 
+	void Render(sf::RenderWindow* SFMLWindow);
+	void Update(const float deltaTime);
+
+	void SetFade(const float fadeValue);
+
 private:
 	// Unique instance of the time
 	static std::unique_ptr<CameraManager> _instance;
@@ -41,8 +46,22 @@ private:
 
 	sf::View _mainView;
 	sf::View _currentView;
+	sf::View _debugView;
 
 	float _currentX;
 	float _currentY;
-};
 
+	float _debugViewX;
+	float _debugViewY;
+	float _debugViewSpeed = 100.0f;
+
+	sf::RectangleShape _fadeRect;
+	sf::Color _fadeColor;
+
+	sf::Font* _font;
+
+	sf::Text _titleText;
+	sf::Text _camSpeed;
+
+	bool _editing = false;
+};

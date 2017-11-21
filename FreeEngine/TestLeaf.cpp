@@ -2,6 +2,7 @@
 #include "Debug.h"
 #include "Input.h"
 #include "Composite.h"
+#include "EditorManager.h"
 
 TestLeaf::TestLeaf()
 {
@@ -25,10 +26,12 @@ void TestLeaf::Update(const float deltaTime)
 {
 	//std::cout << "Update test leaf" << '\n';
 
+	if (EditorManager::Instance().GetCurrentState() == EditorState::EDITING) return;
+
 	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWRIGHT))
-		_parent->transform.position.x += deltaTime * 20.0f;
+		_parent->transform.position.x += deltaTime * 200.0f;
 	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWLEFT))
-		_parent->transform.position.x -= deltaTime * 20.0f;
+		_parent->transform.position.x -= deltaTime * 200.0f;
 }
 
 void TestLeaf::Exit()

@@ -25,12 +25,15 @@ public:
 	const bool GetMustQuit();
 	void SetMustQuit();
 
+	const EditorState GetCurrentState();
+	void ChangeCurrentState();
+
 private:
 	// Unique instance of the time
 	static std::unique_ptr<EditorManager> _instance;
 	static std::once_flag onceFlag;
 
-	EditorState _currentState;
+	EditorState _currentState = EditorState::RUNNING;
 
 	bool _mustQuit = false;
 };
