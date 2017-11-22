@@ -18,6 +18,11 @@ public:
 	FVector3 operator*(const FVector3& newVector3);
 	FVector3 operator*(const float multiplier);
 	FVector3 operator/(const FVector3& newVector3);
+	void operator=(const FVector3& newVector3);
+	void operator+=(const FVector3& newVector3);
+	void operator-=(const FVector3& newVector3);
+	void operator*=(const FVector3& newVector3);
+	void operator/=(const FVector3& newVector3);
 
 	float GetMagnitude();
 	void Normalize();

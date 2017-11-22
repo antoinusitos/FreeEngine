@@ -11,6 +11,6 @@ public:
 
 	bool init = false;
 
-	Composite* _parent;
+	Composite* _parent = nullptr;
 };
 

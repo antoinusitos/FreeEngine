@@ -51,6 +51,41 @@ FVector3 FVector3::operator/(const FVector3& newVector3)
 	return FVector3(x / newVector3.x, y / newVector3.y, z / newVector3.z);
 }
 
+void FVector3::operator=(const FVector3& newVector3)
+{
+	x = newVector3.x;
+	y = newVector3.y;
+	z = newVector3.z;
+}
+
+void FVector3::operator+=(const FVector3& newVector3)
+{
+	x += newVector3.x;
+	y += newVector3.y;
+	z += newVector3.z;
+}
+
+void FVector3::operator-=(const FVector3& newVector3)
+{
+	x -= newVector3.x;
+	y -= newVector3.y;
+	z -= newVector3.z;
+}
+
+void FVector3::operator*=(const FVector3& newVector3)
+{
+	x *= newVector3.x;
+	y *= newVector3.y;
+	z *= newVector3.z;
+}
+
+void FVector3::operator/=(const FVector3& newVector3)
+{
+	x /= newVector3.x;
+	y /= newVector3.y;
+	z /= newVector3.z;
+}
+
 FVector3 FVector3::Lerp(FVector3 start, FVector3 end, float percent)
 {
 	return (start + (end - start) * percent);

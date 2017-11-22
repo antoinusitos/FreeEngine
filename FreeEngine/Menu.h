@@ -3,6 +3,7 @@
 #include "Scene.h"
 
 class Sound;
+class ParticleSystem;
 
 class Menu : public Scene
 {
@@ -44,5 +45,6 @@ private:
 
 	float _waitForFadeOut = false;
 
+	ParticleSystem* p = nullptr;
 };
 

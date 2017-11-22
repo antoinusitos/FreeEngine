@@ -7,6 +7,7 @@
 #include "Sound.h"
 #include "CameraManager.h"
 #include "FMath.h"
+#include "ParticleSystem.h"
 
 Menu::Menu() : Scene::Scene("Menu")
 {
@@ -73,6 +74,15 @@ void Menu::Start()
 	theme->Play();
 
 	_allSounds.push_back(theme);
+
+	p = new ParticleSystem();
+	p->SetSpawnTime(0.07f);
+	p->SetPosition(FVector3(100, 700, 0));
+	p->SpawnRandomSize(0.5f, 1.5f);
+	p->SpawnRandomLocation(FVector3(-50, 0, 0), FVector3(50, 0, 0));
+	p->SpawnRandomLifeTime(1.5f, 2.5f);
+	p->SetColor(FMath::Random(0, 255), FMath::Random(0, 255), FMath::Random(0, 255), 255);
+	//p->SpawnRandomColor();
 }
 
 void Menu::Update(const float deltaTime)
@@ -96,6 +106,8 @@ void Menu::Update(const float deltaTime)
 		_timer += deltaTime;
 		CameraManager::Instance().SetFade(FMath::Lerp(255, 0, _timer / _fadeDuration));
 	}
+
+	p->Update(deltaTime);
 
 	if (Input::Instance().GetKeyDown(KEYCODE::ARROWDOWN))
 	{
@@ -128,6 +140,8 @@ void Menu::Render(sf::RenderWindow* window)
 	{
 		window->draw(*it);
 	}
+
+	p->Render(window);
 }
 
 void Menu::ChangeIndex()
