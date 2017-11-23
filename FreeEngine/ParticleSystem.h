@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Leaf.h"
+#include "FVector4.h"
 
 class Particle;
 
@@ -32,7 +33,12 @@ public:
 
 	void SpawnRandomColor();
 
+	void SpawnColorOverTime(const FVector4& beginColor, const FVector4& endColor);
+
+	void SpawnScaleOverTime(const float beginScale, const float endScale);
+
 	//ADD OVER LIFETIME
+
 
 private:
 	std::vector<Particle*> _allParticles;
@@ -55,10 +61,15 @@ private:
 
 	bool _useNewColor = false;
 	bool _useRandomColor = false;
-	float _colorR = 0;
-	float _colorG = 0;
-	float _colorB = 0;
-	float _colorA = 0;
+	FVector4 _randomColor = FVector4();
+
+	bool _useColorOverTime = false;
+	FVector4 _beginColor = FVector4();
+	FVector4 _endColor = FVector4();
+
+	bool _useScaleOverTime = false;
+	float _beginScale = 0;
+	float _endScale = 0;
 
 	Transform _transform;
 

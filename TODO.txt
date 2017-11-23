@@ -27,18 +27,20 @@ Scene
 Scene manager
 Input Leaf for players
 Serialization (still need to serialize objects for scene)
-
-LAST:
 Camera blend/lerp
 Camera fade
 Scene viewer (debug)
+
+LAST:
+Particles + Emitter
 
 ------------------------------------------------------------------
 
 TO DO :
 
+Pause menu
+
 Perlin
-Particles
 Prefab
 Collisions/Layers
 Level Editor
@@ -49,19 +51,19 @@ Cinematic
 Shaders / post effect
 Async load
 Easy thread system
-Pause menu
 Multiplayer Local
 Multiplayer Net
 Light ?
-
+Curve (Bezier for lerp)
 
 ------------------------------------------------------------------
 
 REWORK :
 
+Modify Composite to possess other composites
+
 changing from windowed to fullscreen (bug : making everything bigger)
 Create a GetComponent Function on GameObject
-Modify Composite to possess other composites
 
 ------------------------------------------------------------------
 

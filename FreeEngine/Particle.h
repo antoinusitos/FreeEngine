@@ -2,6 +2,7 @@
 
 #include "SFML\Graphics.hpp"
 #include "FVector3.h"
+#include "FVector4.h"
 #include "Transform.h"
 
 class Particle
@@ -26,6 +27,10 @@ public:
 
 	void SetColor(const int r, const int g, const int b, const int a);
 
+	void SetColorOverTime(const FVector4& beginColor, const FVector4& endColor);
+
+	void SetScaleOverTime(const float beginScale, const float endScale);
+
 private:
 	FVector3 _velocity;
 	FVector3 _acceleration;
@@ -39,7 +44,15 @@ private:
 
 	bool _isDead = false;
 
-	sf::Color _color = sf::Color(100, 250, 50, 255);
+	sf::Color _color = sf::Color(255, 255, 255, 255);
+
+	bool _colorOverLifeTime = false;
+	FVector4 _beginColor = FVector4();
+	FVector4 _endColor = FVector4();
+
+	bool _useScaleOverTime = false;
+	float _beginScale = 0;
+	float _endScale = 0;
 
 	//TEST
 	sf::CircleShape _shape;

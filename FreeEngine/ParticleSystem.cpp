@@ -43,9 +43,16 @@ void ParticleSystem::Update(const float deltaTime)
 		SpawnAParticle();
 	}
 
-	for (std::vector<Particle*>::iterator it = _allParticles.begin(); it < _allParticles.end(); it++)
+	for (std::vector<Particle*>::iterator it = _allParticles.begin(); it != _allParticles.end();)
 	{
 		(*it)->Update(deltaTime);
+		if ((*it)->GetIsDead())
+		{
+			delete (*it);
+			it = _allParticles.erase(it);
+		}
+		else
+			it++;
 	}
 }
 
@@ -81,8 +88,12 @@ void ParticleSystem::SpawnAParticle()
 	if (_randomLifeTime) { p->SetLifeTime(FMath::Random(_randomLifeTimeMin, _randomLifeTimeMax)); }
 	else p->SetLifeTime(_particleLifeTime);
 
-	if (_useNewColor) { p->SetColor(_colorR, _colorG, _colorB, _colorA); }
+	if (_useNewColor) { p->SetColor(_randomColor.x, _randomColor.y, _randomColor.z, _randomColor.w); }
 	if (_useRandomColor) { p->SetColor(FMath::Random(0, 255), FMath::Random(0, 255), FMath::Random(0, 255), 255); }
+
+	if (_useColorOverTime) { p->SetColorOverTime(_beginColor, _endColor); }
+
+	if (_useScaleOverTime) { p->SetScaleOverTime(_beginScale, _endScale); }
 
 	_allParticles.push_back(p);
 }
@@ -126,13 +137,27 @@ void ParticleSystem::SpawnRandomLifeTime(const float minlifeTime, const float ma
 void ParticleSystem::SetColor(const float r, const float g, const float b, const float a)
 {
 	_useNewColor = true;
-	_colorR = r;
-	_colorG = g;
-	_colorB = b;
-	_colorA = a;
+	_randomColor.x = r;
+	_randomColor.y = g;
+	_randomColor.z = b;
+	_randomColor.w = a;
 }
 
 void ParticleSystem::SpawnRandomColor()
 {
 	_useRandomColor = true;
+}
+
+void ParticleSystem::SpawnColorOverTime(const FVector4& beginColor, const FVector4& endColor)
+{
+	_useColorOverTime = true;
+	_beginColor = beginColor;
+	_endColor = endColor;
+}
+
+void ParticleSystem::SpawnScaleOverTime(const float beginScale, const float endScale)
+{
+	_useScaleOverTime = true;
+	_beginScale = beginScale;
+	_endScale = endScale;
 }

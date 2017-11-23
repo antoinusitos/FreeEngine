@@ -78,11 +78,13 @@ void Menu::Start()
 	p = new ParticleSystem();
 	p->SetSpawnTime(0.07f);
 	p->SetPosition(FVector3(100, 700, 0));
-	p->SpawnRandomSize(0.5f, 1.5f);
-	p->SpawnRandomLocation(FVector3(-50, 0, 0), FVector3(50, 0, 0));
+	//p->SpawnRandomSize(0.5f, 1.5f);
+	p->SpawnScaleOverTime(FMath::Random(0.5f, 1.5f), 0);
+	p->SpawnRandomLocation(FVector3(-70, 0, 0), FVector3(70, 0, 0));
 	p->SpawnRandomLifeTime(1.5f, 2.5f);
-	p->SetColor(FMath::Random(0, 255), FMath::Random(0, 255), FMath::Random(0, 255), 255);
+	//p->SetColor(FMath::Random(0, 255), FMath::Random(0, 255), FMath::Random(0, 255), 255);
 	//p->SpawnRandomColor();
+	p->SpawnColorOverTime(FVector4(40, 1, 1, 255), FVector4(226, 209, 5, 0));
 }
 
 void Menu::Update(const float deltaTime)
