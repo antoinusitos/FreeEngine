@@ -36,6 +36,7 @@ public:
 	void SpawnColorOverTime(const FVector4& beginColor, const FVector4& endColor);
 
 	void SpawnScaleOverTime(const float beginScale, const float endScale);
+	void SpawnRandomScaleOverTime(const float beginScaleA, const float beginScaleB, const float endScale);
 
 	//ADD OVER LIFETIME
 
@@ -68,7 +69,9 @@ private:
 	FVector4 _endColor = FVector4();
 
 	bool _useScaleOverTime = false;
+	bool _useRandomScaleOverTime = false;
 	float _beginScale = 0;
+	float _beginScaleB = 0;
 	float _endScale = 0;
 
 	Transform _transform;

@@ -94,6 +94,7 @@ void ParticleSystem::SpawnAParticle()
 	if (_useColorOverTime) { p->SetColorOverTime(_beginColor, _endColor); }
 
 	if (_useScaleOverTime) { p->SetScaleOverTime(_beginScale, _endScale); }
+	else if (_useRandomScaleOverTime) { p->SetScaleOverTime(FMath::Random(_beginScale, _beginScaleB), _endScale); }
 
 	_allParticles.push_back(p);
 }
@@ -159,5 +160,13 @@ void ParticleSystem::SpawnScaleOverTime(const float beginScale, const float endS
 {
 	_useScaleOverTime = true;
 	_beginScale = beginScale;
+	_endScale = endScale;
+}
+
+void ParticleSystem::SpawnRandomScaleOverTime(const float beginScaleA, const float beginScaleB, const float endScale)
+{
+	_useRandomScaleOverTime = true;
+	_beginScale = beginScaleA;
+	_beginScaleB = beginScaleB;
 	_endScale = endScale;
 }
