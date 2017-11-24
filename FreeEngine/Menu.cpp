@@ -28,6 +28,8 @@ void Menu::PreAwake()
 {
 	Scene::PreAwake();
 
+	std::cout << "pre awake Menu" << '\n';
+  
 	_maxIndex = 4;
 
 	unsigned int windowSizeX = Window::Instance().GetScreenResolutionX();
@@ -74,21 +76,6 @@ void Menu::Start()
 	theme->Play();
 
 	_allSounds.push_back(theme);
-
-	p = new ParticleSystem();
-	p->SetSpawnTime(0.02f);
-	//p->SetPosition(FVector3(100, 700, 0));
-	p->SetPosition(FVector3(100, 400, 0));
-	p->SpawnRandomSize(0.1f, 0.1f);
-	//p->SpawnRandomScaleOverTime(0.75f, 1.5f, 0);
-	p->SpawnRandomLocation(FVector3(-50, 0, 0), FVector3(50, 0, 0));
-	p->SpawnRandomLifeTime(1.5f, 2.5f);
-	//p->SetColor(FMath::Random(0, 255), FMath::Random(0, 255), FMath::Random(0, 255), 255);
-	//p->SpawnRandomColor();
-	p->SpawnColorOverTime(FVector4(40, 1, 1, 255), FVector4(226, 209, 5, 0));
-	p->SetUseTexture("Sprites/glow.png");
-	//p->SetUseGravity(true);
-	p->SetUseInitialVelocity(FVector3(0.05f, 0, 0));
 }
 
 void Menu::Update(const float deltaTime)
@@ -113,8 +100,6 @@ void Menu::Update(const float deltaTime)
 		CameraManager::Instance().SetFade(FMath::Lerp(255, 0, _timer / _fadeDuration));
 	}
 
-	p->Update(deltaTime);
-
 	if (Input::Instance().GetKeyDown(KEYCODE::ARROWDOWN))
 	{
 		_currentIndex++;
@@ -133,8 +118,10 @@ void Menu::Update(const float deltaTime)
 		_timer = 0;
 	}
 
-	if(Input::Instance().GetKeyDown(KEYCODE::H))
-		p->SetUseGravity(true);
+	if (Input::Instance().GetKeyDown(KEYCODE::ESCAPE))
+	{
+		EditorManager::Instance().SetMustQuit();
+	}
 
 	RenderingWork();
 }
@@ -149,8 +136,6 @@ void Menu::Render(sf::RenderWindow* window)
 	{
 		window->draw(*it);
 	}
-
-	p->Render(window);
 }
 
 void Menu::ChangeIndex()
@@ -159,7 +144,7 @@ void Menu::ChangeIndex()
 	{
 		// NEW
 		Debug::Instance().Print("Loading Scene : TestScene", DebugMessageType::DEBUGENGINE);
-		SceneManager::Instance().LoadScene("TestScene");
+		SceneManager::Instance().LoadScene("TestScene", true);
 	}
 	else if (_currentIndex == 1)
 	{
@@ -187,7 +172,7 @@ void Menu::RenderingWork()
 
 	_allText.at(_currentIndex).setStyle(sf::Text::Bold);
 	_allText.at(_currentIndex).setOutlineColor(sf::Color::White);
-	_allText.at(_currentIndex).setOutlineThickness(2);
+	_allText.at(_currentIndex).setOutlineThickness(5);
 
 	unsigned int windowSizeX = Window::Instance().GetScreenResolutionX();
 	unsigned int windowSizeY = Window::Instance().GetScreenResolutionY();
@@ -203,4 +188,5 @@ void Menu::Destroy()
 		delete (*it);
 	}
 	_allSounds.clear();
+	_allText.clear();
 }

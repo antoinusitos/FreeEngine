@@ -24,7 +24,7 @@ public:
 		return *(_instance.get());
 	}
 
-	void LoadScene(const std::string name);
+	void LoadScene(const std::string name, bool InitScene);
 	void LoadScenesFromFile();
 	void SaveScenesInFile();
 

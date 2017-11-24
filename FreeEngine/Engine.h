@@ -15,6 +15,7 @@
 #include "FMath.h"
 #include "SaveManager.h"
 #include "SceneManager.h"
+#include "GameManager.h"
 
 class Engine : public FileObserver
 {
@@ -52,6 +53,7 @@ private :
 	FMath* _math;
 	SaveManager* _saveManager;
 	SceneManager* _sceneManager;
+	GameManager* _gameManager;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;

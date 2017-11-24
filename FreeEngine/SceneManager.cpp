@@ -14,7 +14,7 @@ SceneManager::~SceneManager()
 {
 }
 
-void SceneManager::LoadScene(const std::string name)
+void SceneManager::LoadScene(const std::string name, bool InitScene)
 {
 	for (std::vector<SceneInfo*>::iterator it = _allScene.begin(); it != _allScene.end(); it++)
 	{
@@ -31,10 +31,13 @@ void SceneManager::LoadScene(const std::string name)
 			
 			Debug::Instance().Print("Current Scene : " + _currentScene->name, DebugMessageType::DEBUGENGINE);
 			
-			_currentScene->LoadObject();
-			_currentScene->PreAwake();
-			_currentScene->Awake();
-			_currentScene->Start();
+			if (InitScene)
+			{
+				_currentScene->LoadObject();
+				_currentScene->PreAwake();
+				_currentScene->Awake();
+				_currentScene->Start();
+			}
 			return;
 		}
 	}
@@ -110,22 +113,19 @@ void SceneManager::NewScene(const std::string name)
 		}
 	}
 
-	_currentScene = new Scene(name);
+	Scene* tmpScene = new Scene(name);
 	SceneInfo* si = new SceneInfo();
 	si->name = name;
-	si->scene = _currentScene;
+	si->scene = tmpScene;
 	_allScene.push_back(si);
-	Debug::Instance().Log("Set Current Scene to " + name, DebugMessageType::DEBUGENGINE);
 }
 
 void SceneManager::NewScene(Scene* newScene)
 {
-	_currentScene = newScene;
 	SceneInfo* si = new SceneInfo();
 	si->name = newScene->name;
-	si->scene = _currentScene;
+	si->scene = newScene;
 	_allScene.push_back(si);
-	Debug::Instance().Log("Set Current Scene to " + newScene->name, DebugMessageType::DEBUGENGINE);
 }
 
 Scene* SceneManager::GetCurrentScene()

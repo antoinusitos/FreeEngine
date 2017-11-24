@@ -54,6 +54,11 @@ enum SoundType
 	LISTENER,
 };
 
+enum GameState
+{
+	PLAY,
+	PAUSE
+};
 
 enum KEYCODE
 {

@@ -165,11 +165,13 @@
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="EngineObject.cpp" />
     <ClCompile Include="EngineVisual.cpp" />
+    <ClCompile Include="EXEMPLE.cpp" />
     <ClCompile Include="ExitToolBarButton.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="FMath.cpp" />
     <ClCompile Include="FVector2.cpp" />
     <ClCompile Include="FVector4.cpp" />
+    <ClCompile Include="GameManager.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="GamepadManager.cpp" />
     <ClCompile Include="GarbageCollector.cpp" />
@@ -184,6 +186,7 @@
     <ClCompile Include="ObjectsManager.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="ParticleSystem.cpp" />
+    <ClCompile Include="PauseMenu.cpp" />
     <ClCompile Include="ResourcesManager.cpp" />
     <ClCompile Include="RigidBody.cpp" />
     <ClCompile Include="SaveManager.cpp" />
@@ -223,6 +226,7 @@
     <ClInclude Include="FMath.h" />
     <ClInclude Include="FVector2.h" />
     <ClInclude Include="FVector4.h" />
+    <ClInclude Include="GameManager.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="GamepadManager.h" />
     <ClInclude Include="GarbageCollector.h" />
@@ -236,6 +240,7 @@
     <ClInclude Include="ObjectsManager.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="ParticleSystem.h" />
+    <ClInclude Include="PauseMenu.h" />
     <ClInclude Include="ResourcesManager.h" />
     <ClInclude Include="RigidBody.h" />
     <ClInclude Include="SaveManager.h" />

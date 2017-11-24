@@ -22,6 +22,7 @@ Engine::Engine()
 	_math = &FMath::Instance();
 	_saveManager = &SaveManager::Instance();
 	_sceneManager = &SceneManager::Instance();
+	_gameManager = &GameManager::Instance();
 
 	Launch();
 }
@@ -60,11 +61,12 @@ void Engine::Launch()
 
 	//_sceneManager->LoadScenesFromFile();
 
-	_sceneManager->NewScene(new TestScene());
 	_sceneManager->NewScene(new Menu());
+	_sceneManager->NewScene(new TestScene());
 	
-	_debug->Log("Engine Init !", DebugMessageType::DEBUGENGINE);
+	_sceneManager->LoadScene("Menu", false);
 
+	_debug->Log("Engine Init !", DebugMessageType::DEBUGENGINE);
 
 	_sceneManager->PreAwakeCurrentScene();
 	_objectManager->AwakeAllEngineObjects();
@@ -108,7 +110,7 @@ void Engine::CheckMustCloseWindow()
 	_input->ProcessInput(*_window->GetWindow());
 
 	// Close the window if escape is pressed
-	if (_input->GetKeyPressed(KEYCODE::ESCAPE) || _editorManager->GetMustQuit())
+	if (_editorManager->GetMustQuit())
 	{
 		_debug->Log("Shutting Down Engine...", DebugMessageType::DEBUGENGINE);
 		_window->Exit();

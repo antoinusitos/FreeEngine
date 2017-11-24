@@ -44,7 +44,5 @@ private:
 	float _timer = 0;
 
 	float _waitForFadeOut = false;
-
-	ParticleSystem* p = nullptr;
 };
 
