@@ -31,11 +31,18 @@ public:
 
 	void SetScaleOverTime(const float beginScale, const float endScale);
 
+	void SetTexture(sf::Texture newTexture);
+
+	void SetUseGravity(float mass = 1);
+
+	void ApplyForce(const FVector3& force);
+
 private:
 	FVector3 _velocity;
 	FVector3 _acceleration;
 	Transform _transform;
 
+	bool _useTexture = false;
 	sf::Sprite _sprite;
 	sf::Texture _texture;
 
@@ -53,6 +60,8 @@ private:
 	bool _useScaleOverTime = false;
 	float _beginScale = 0;
 	float _endScale = 0;
+
+	float _mass = 1;
 
 	//TEST
 	sf::CircleShape _shape;

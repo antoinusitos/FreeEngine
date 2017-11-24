@@ -42,16 +42,30 @@ void Particle::Init()
 	_shape.setScale(_transform.scale.x, _transform.scale.y);
 }
 
+void Particle::ApplyForce(const FVector3& force)
+{
+	FVector3 f = force;
+	f /= _mass;
+	_acceleration += f;
+}
+
 void Particle::Update(float deltaTime)
 {
 	_velocity += _acceleration;
 	_transform.position += _velocity;
-	_shape.setPosition(_transform.position.x, _transform.position.y);
+	_acceleration *= 0;
 
 	if (_useScaleOverTime)
 	{
 		float current = FMath::Lerp(_beginScale, _endScale, 1 - _lifeTime / _startLifeTime);
-		_shape.setScale(current, current);
+		if (_useTexture)
+		{
+			_sprite.setScale(current, current);
+		}
+		else
+		{
+			_shape.setScale(current, current);
+		}
 	}
 	else
 	{
@@ -61,12 +75,30 @@ void Particle::Update(float deltaTime)
 	if (_colorOverLifeTime)
 	{
 		FVector4 col = FVector4::Lerp(_beginColor, _endColor,  1 -_lifeTime / _startLifeTime);
-		_shape.setFillColor(sf::Color(col.x, col.y, col.z, col.w));
+		_color = sf::Color(col.x, col.y, col.z, col.w);
 	}
 	else
 	{
 		_color.a = (_lifeTime / _startLifeTime) * 255;
+	}
+
+	if (_useTexture)
+	{
+		_sprite.setColor(_color);
+	}
+	else
+	{
 		_shape.setFillColor(_color);
+	}
+
+	if (_useTexture)
+	{
+		_sprite.setPosition(_transform.position.x, _transform.position.y);
+		_sprite.setScale(_transform.scale.x, _transform.scale.y);
+	}
+	else
+	{
+		_shape.setPosition(_transform.position.x, _transform.position.y);
 	}
 
 	_lifeTime -= deltaTime;
@@ -79,7 +111,14 @@ void Particle::Update(float deltaTime)
 
 void Particle::Render(sf::RenderWindow* window)
 {
-	window->draw(_shape);
+	if (_useTexture)
+	{
+		window->draw(_sprite);
+	}
+	else
+	{
+		window->draw(_shape);
+	}
 }
 
 const bool Particle::GetIsDead()
@@ -113,4 +152,16 @@ void Particle::SetScaleOverTime(const float beginScale, const float endScale)
 	_beginScale = beginScale;
 	_endScale = endScale;
 	_shape.setScale(_beginScale, _beginScale);
+}
+
+void Particle::SetTexture(sf::Texture newTexture)
+{
+	_useTexture = true;
+	_texture = newTexture;
+	_sprite.setTexture(_texture);
+}
+
+void Particle::SetUseGravity(float mass)
+{
+	_mass = mass;
 }

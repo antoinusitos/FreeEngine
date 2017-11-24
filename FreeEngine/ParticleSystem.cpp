@@ -2,6 +2,7 @@
 #include "ParticleSystem.h"
 #include "Composite.h"
 #include "FMath.h"
+#include "ResourcesManager.h"
 
 ParticleSystem::ParticleSystem()
 {
@@ -45,6 +46,10 @@ void ParticleSystem::Update(const float deltaTime)
 
 	for (std::vector<Particle*>::iterator it = _allParticles.begin(); it != _allParticles.end();)
 	{
+		if (_overrideMass) { (*it)->SetUseGravity(_newMass); }
+		if (_useGravity) { (*it)->ApplyForce(FVector3(0, 0.01f, 0)); }
+		if(_useInitialVelocity) { (*it)->ApplyForce(_initialVelocity); }
+
 		(*it)->Update(deltaTime);
 		if ((*it)->GetIsDead())
 		{
@@ -95,6 +100,8 @@ void ParticleSystem::SpawnAParticle()
 
 	if (_useScaleOverTime) { p->SetScaleOverTime(_beginScale, _endScale); }
 	else if (_useRandomScaleOverTime) { p->SetScaleOverTime(FMath::Random(_beginScale, _beginScaleB), _endScale); }
+
+	if (_useTexture) { p->SetTexture(_texture); }
 
 	_allParticles.push_back(p);
 }
@@ -169,4 +176,36 @@ void ParticleSystem::SpawnRandomScaleOverTime(const float beginScaleA, const flo
 	_beginScale = beginScaleA;
 	_beginScaleB = beginScaleB;
 	_endScale = endScale;
+}
+
+void ParticleSystem::SetUseTexture(const std::string name)
+{
+	_useTexture = true;
+	_texture = ResourcesManager::Instance().GetTexture(name);
+}
+
+void ParticleSystem::SetUseGravity(const bool newState)
+{
+	_useGravity = newState;
+}
+
+void ParticleSystem::SetUseGravity(const bool newState, float newMass)
+{
+	_useGravity = newState;
+	_overrideMass = true;
+	_newMass = newMass;
+}
+
+void ParticleSystem::ApplyForce(const FVector3& f)
+{
+	for (std::vector<Particle*>::iterator it = _allParticles.begin(); it < _allParticles.end(); it++)
+	{
+		(*it)->ApplyForce(f);
+	}
+}
+
+void ParticleSystem::SetUseInitialVelocity(const FVector3& velocity)
+{
+	_useInitialVelocity = true;
+	_initialVelocity = velocity;
 }

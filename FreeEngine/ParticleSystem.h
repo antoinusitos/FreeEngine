@@ -38,7 +38,14 @@ public:
 	void SpawnScaleOverTime(const float beginScale, const float endScale);
 	void SpawnRandomScaleOverTime(const float beginScaleA, const float beginScaleB, const float endScale);
 
-	//ADD OVER LIFETIME
+	void SetUseTexture(const std::string name);
+	
+	void SetUseGravity(const bool newState);
+	void SetUseGravity(const bool newState, float newMass);
+
+	void ApplyForce(const FVector3& f);
+
+	void SetUseInitialVelocity(const FVector3& velocity);
 
 
 private:
@@ -75,6 +82,16 @@ private:
 	float _endScale = 0;
 
 	Transform _transform;
+
+	bool _useTexture = false;
+	sf::Texture _texture;
+
+	bool _useGravity = false;
+	bool _overrideMass = false;
+	float _newMass = 0;
+
+	bool _useInitialVelocity = false;
+	FVector3 _initialVelocity = FVector3();
 
 	void SpawnAParticle();
 };
