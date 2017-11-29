@@ -21,6 +21,7 @@ Sprite Animator
 Editor Manager
 Editor
 Clamp
+Map value
 Random
 Put Const everywhere
 Scene
@@ -31,15 +32,17 @@ Camera blend/lerp
 Camera fade
 Scene viewer (debug)
 Particles + Emitter
+Pause menu (still need to fix scene transition)
 
 LAST:
-Pause menu
+Curve (Bezier for lerp) (need to expend to be bigger than between 0-1)
+Clamp01
 
 ------------------------------------------------------------------
 
 TO DO :
 
-Curve (Bezier for lerp)
+Shaders / post effect
 
 Perlin
 Prefab
@@ -49,7 +52,6 @@ UI / anchor
 RigidBody / Basic Leaf
 Dialog
 Cinematic
-Shaders / post effect
 Async load
 Easy thread system
 Multiplayer Local

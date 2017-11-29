@@ -167,6 +167,7 @@
     <ClCompile Include="EngineVisual.cpp" />
     <ClCompile Include="EXEMPLE.cpp" />
     <ClCompile Include="ExitToolBarButton.cpp" />
+    <ClCompile Include="FCurve.cpp" />
     <ClCompile Include="FileHandler.cpp" />
     <ClCompile Include="FMath.cpp" />
     <ClCompile Include="FVector2.cpp" />
@@ -222,6 +223,7 @@
     <ClInclude Include="EngineObject.h" />
     <ClInclude Include="EngineVisual.h" />
     <ClInclude Include="ExitToolBarButton.h" />
+    <ClInclude Include="FCurve.h" />
     <ClInclude Include="FileHandler.h" />
     <ClInclude Include="FMath.h" />
     <ClInclude Include="FVector2.h" />

@@ -29,6 +29,13 @@ const float FMath::Clamp(const float value, const float min, const float max)
 	return value;
 }
 
+const float FMath::Clamp01(const float value)
+{
+	if (value < 0) return 0;
+	else if (value > 1) return 1;
+	return value;
+}
+
 // Random float between min [inclusive] and max [exclusive]
 const float FMath::Random(const float min, const float max)
 {

@@ -37,6 +37,8 @@ void Engine::NotifyChange()
 	_debug->Log("Engine observer file changed !", DebugMessageType::DEBUGENGINE);
 }
 
+#include "FCurve.h"
+
 void Engine::Launch()
 {
 	_debug->Log("Launching Engine...", DebugMessageType::DEBUGENGINE);

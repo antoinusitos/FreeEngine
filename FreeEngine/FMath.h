@@ -23,6 +23,7 @@ public:
 	static float Lerp(const float start, const float end, float percent);
 
 	const static float Clamp(const float value, const float min, const float max);
+	const static float Clamp01(const float value);
 
 	// Random float between min [inclusive] and max [exclusive]
 	const static float Random(const float min, const float max);

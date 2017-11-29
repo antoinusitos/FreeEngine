@@ -24,7 +24,8 @@ void SceneManager::LoadScene(const std::string name, bool InitScene)
 
 			if (_currentScene != nullptr)
 			{
-				_currentScene->Destroy();
+				//TODO : fix transition and remove of sprite renderer from test scene to menu
+				//_currentScene->Destroy();
 			}
 
 			_currentScene = (*it)->scene;
