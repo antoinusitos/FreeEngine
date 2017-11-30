@@ -28,6 +28,9 @@ public:
 	const sf::SoundBuffer GetBuffer(const std::string fileName);
 	const sf::Texture GetTexture(const std::string fileName);
 	const void GetMusic(sf::Music& music, const std::string fileName);
+	const void GetVertexShader(sf::Shader& shader, const std::string fileName);
+	const void GetFragmentShader(sf::Shader& shader, const std::string fileName);
+	const void GetVertexFragmentShader(sf::Shader& shader, const std::string vertexFileName, const std::string fragmentFileName);
 
 
 //Variables

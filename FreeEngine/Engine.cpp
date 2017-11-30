@@ -37,8 +37,6 @@ void Engine::NotifyChange()
 	_debug->Log("Engine observer file changed !", DebugMessageType::DEBUGENGINE);
 }
 
-#include "FCurve.h"
-
 void Engine::Launch()
 {
 	_debug->Log("Launching Engine...", DebugMessageType::DEBUGENGINE);
@@ -70,6 +68,21 @@ void Engine::Launch()
 
 	_debug->Log("Engine Init !", DebugMessageType::DEBUGENGINE);
 
+	// TEST
+	sf::CircleShape circle;
+	circle.setRadius(100.f);
+	circle.setOrigin(circle.getRadius(), circle.getRadius());
+	circle.setPosition(sf::Vector2f(_window->GetWindow()->getSize()) / 2.f);
+	circle.setFillColor(sf::Color::Transparent);
+	sf::Shader shader;
+	_resourcesManager->GetVertexFragmentShader(shader, "VertexShader.vert", "RadialGradient.frag");
+	shader.setUniform("color", sf::Glsl::Vec4(0, 0, 255, 1.0f));
+	shader.setUniform("center", circle.getPosition());
+	shader.setUniform("radius", circle.getRadius());
+	shader.setUniform("expand", 0.f);
+	shader.setUniform("windowHeight", static_cast<float>(_window->GetWindow()->getSize().y));
+	// TEST
+
 	_sceneManager->PreAwakeCurrentScene();
 	_objectManager->AwakeAllEngineObjects();
 	_sceneManager->AwakeCurrentScene();
@@ -94,6 +107,8 @@ void Engine::Launch()
 
 		// Render every thing
 		_window->Render();
+
+		_window->GetWindow()->draw(circle, &shader);
 
 		_window->DisplayWindow();
 

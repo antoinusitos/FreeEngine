@@ -67,3 +67,27 @@ const sf::Texture ResourcesManager::GetTexture(const std::string fileName)
 	}
 	return toReturn;
 }
+
+const void ResourcesManager::GetVertexShader(sf::Shader& shader, const std::string fileName)
+{
+	if (!shader.loadFromFile(_resourcesPath + fileName, sf::Shader::Vertex))
+	{
+		Debug::Instance().Print("Error : fail to load vertex shader " + _resourcesPath + fileName + '\n', DebugMessageType::DEBUGERROR);
+	}
+}
+
+const void ResourcesManager::GetFragmentShader(sf::Shader& shader, const std::string fileName)
+{
+	if (!shader.loadFromFile(_resourcesPath + fileName, sf::Shader::Fragment))
+	{
+		Debug::Instance().Print("Error : fail to load fragment shader " + _resourcesPath + fileName + '\n', DebugMessageType::DEBUGERROR);
+	}
+}
+
+const void ResourcesManager::GetVertexFragmentShader(sf::Shader& shader, const std::string vertexFileName, const std::string fragmentFileName)
+{
+	if (!shader.loadFromFile(_resourcesPath + vertexFileName, _resourcesPath + fragmentFileName))
+	{
+		Debug::Instance().Print("Error : fail to load vertex shader " + _resourcesPath + vertexFileName + " or fragment shader " + _resourcesPath + fragmentFileName + '\n', DebugMessageType::DEBUGERROR);
+	}
+}
