@@ -93,3 +93,12 @@ shader.setUniform("windowHeight", static_cast<float>(_window->GetWindow()->getSi
 _window->GetWindow()->draw(circle, &shader);
 
 */
+
+
+/*
+
+**** SCREEN SHAKE ****
+
+_screenShakeManager->ShakeForSeconds(2.0f, 0.5f, 0.03f);
+
+*/

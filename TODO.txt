@@ -39,16 +39,16 @@ Clamp01
 LAST:
 
 Shaders / post effect (need to make some examples and basics shaders)
+Screenshake Manager
 
 ------------------------------------------------------------------
 
 TO DO :
 
-Screenshake
+Collisions/Layers
 
 Perlin
 Prefab
-Collisions/Layers
 Level Editor
 UI / anchor
 RigidBody / Basic Leaf

@@ -23,6 +23,7 @@ Engine::Engine()
 	_saveManager = &SaveManager::Instance();
 	_sceneManager = &SceneManager::Instance();
 	_gameManager = &GameManager::Instance();
+	_screenShakeManager = &ScreenShakeManager::Instance();
 
 	Launch();
 }
@@ -138,6 +139,7 @@ void Engine::Update(const float deltaTime)
 
 	_input->SaveMousePos(*_window->GetWindow());
 
+	_screenShakeManager->Update(deltaTime);
 	_cameraManager->Update(deltaTime);
 
 	_window->Update(deltaTime);

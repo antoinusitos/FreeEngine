@@ -109,3 +109,12 @@ void FVector3::Normalize()
 	y = y / m;
 	z = z / m;
 }
+
+float FVector3::Distance(const FVector3& start, const FVector3& end)
+{
+	return sqrt(
+		(end.x - start.x) * (end.x - start.x) +
+		(end.y - start.y) * (end.y - start.y) +
+		(end.z - start.z) * (end.z - start.z) 
+	);
+}

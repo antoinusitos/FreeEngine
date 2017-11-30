@@ -65,12 +65,12 @@ void CameraManager::ResizeCurrentView(const float x, const float y)
 
 const float CameraManager::GetCurrentX()
 {
-	return _currentX;
+	return _currentX + _localOffset.x;
 }
 
 const float CameraManager::GetCurrentY()
 {
-	return _currentY;
+	return _currentY + _localOffset.y;
 }
 
 void CameraManager::Render(sf::RenderWindow* SFMLWindow)
@@ -164,4 +164,9 @@ void CameraManager::Update(const float deltaTime)
 		std::string s = "Cam Speed = " + std::to_string(static_cast<int>(_debugViewSpeed));
 		_camSpeed.setString(s);
 	}
+}
+
+void CameraManager::SetLocalOffset(const FVector3& newOffset)
+{
+	_localOffset = newOffset;
 }

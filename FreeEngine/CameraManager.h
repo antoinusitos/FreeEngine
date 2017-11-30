@@ -3,6 +3,7 @@
 #include "SFML/Graphics.hpp"
 #include <memory>
 #include <mutex>
+#include "FVector3.h"
 
 class GameObject;
 
@@ -39,6 +40,8 @@ public:
 
 	void SetFade(const float fadeValue);
 
+	void SetLocalOffset(const FVector3& newOffset);
+
 private:
 	// Unique instance of the time
 	static std::unique_ptr<CameraManager> _instance;
@@ -64,4 +67,6 @@ private:
 	sf::Text _camSpeed;
 
 	bool _editing = false;
+
+	FVector3 _localOffset = FVector3();
 };
