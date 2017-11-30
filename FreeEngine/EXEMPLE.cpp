@@ -72,3 +72,24 @@ sr3->AddAtlas("Sprites/Background_01/PARALLAX/background.png", 5, 500, 50, 100, 
 background->AddLeaf(sr3);
 
 */
+
+/*
+
+**** SHADER ****
+
+sf::CircleShape circle;
+circle.setRadius(100.f);
+circle.setOrigin(circle.getRadius(), circle.getRadius());
+circle.setPosition(sf::Vector2f(_window->GetWindow()->getSize()) / 2.f);
+circle.setFillColor(sf::Color::Transparent);
+sf::Shader shader;
+_resourcesManager->GetVertexFragmentShader(shader, "VertexShader.vert", "RadialGradient.frag");
+shader.setUniform("color", sf::Glsl::Vec4(0, 0, 255, 1.0f));
+shader.setUniform("center", circle.getPosition());
+shader.setUniform("radius", circle.getRadius());
+shader.setUniform("expand", 0.7f);
+shader.setUniform("windowHeight", static_cast<float>(_window->GetWindow()->getSize().y));
+
+_window->GetWindow()->draw(circle, &shader);
+
+*/

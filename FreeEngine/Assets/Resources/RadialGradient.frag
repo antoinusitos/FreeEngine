@@ -12,7 +12,7 @@ void main(void)
 
 	if (r < 1.0)
 	{
-		gl_FragColor = mix(color, gl_Color, (r - expand) / (1 - expand));
+		gl_FragColor = mix(color, gl_Color, 1 - ((r - expand) / (1 - expand)));
 	}
 	else
 	{

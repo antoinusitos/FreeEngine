@@ -33,16 +33,18 @@ Camera fade
 Scene viewer (debug)
 Particles + Emitter
 Pause menu (still need to fix scene transition)
-
-LAST:
 Curve (Bezier for lerp) (need to expend to be bigger than between 0-1)
 Clamp01
+
+LAST:
+
+Shaders / post effect (need to make some examples and basics shaders)
 
 ------------------------------------------------------------------
 
 TO DO :
 
-Shaders / post effect
+Screenshake
 
 Perlin
 Prefab
@@ -57,7 +59,6 @@ Easy thread system
 Multiplayer Local
 Multiplayer Net
 Light ?
-Screenshake
 
 ------------------------------------------------------------------
 
