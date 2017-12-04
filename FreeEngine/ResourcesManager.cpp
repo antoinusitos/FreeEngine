@@ -91,3 +91,13 @@ const void ResourcesManager::GetVertexFragmentShader(sf::Shader& shader, const s
 		Debug::Instance().Print("Error : fail to load vertex shader " + _resourcesPath + vertexFileName + " or fragment shader " + _resourcesPath + fragmentFileName + '\n', DebugMessageType::DEBUGERROR);
 	}
 }
+
+const sf::Image ResourcesManager::GetImage(const std::string fileName)
+{
+	sf::Image toReturn;
+	if (!toReturn.loadFromFile(_resourcesPath + fileName))
+	{
+		Debug::Instance().Print("Error : fail to load image " + _resourcesPath + fileName + '\n', DebugMessageType::DEBUGERROR);
+	}
+	return toReturn;
+}

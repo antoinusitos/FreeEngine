@@ -2,6 +2,8 @@
 
 #include <memory>
 #include <mutex>
+#include "FVector4.h"
+#include <vector>
 
 class FMath
 {
@@ -32,6 +34,9 @@ public:
 
 	// Map a value from a range to another range
 	const static float Map(const float value, const float fromMin, const float fromMax, const float toMin, const float toMax);
+
+	const static FVector4 GetRandomPixelColor(const std::string fileName);
+	const static std::vector<FVector4> GetPixels(const std::string fileName);
 
 //Variables
 private:

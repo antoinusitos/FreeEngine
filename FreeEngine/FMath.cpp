@@ -1,6 +1,7 @@
 #include "FMath.h"
 #include <stdlib.h>
 #include <time.h>
+#include "ResourcesManager.h"
 
 std::unique_ptr<FMath> FMath::_instance;
 std::once_flag FMath::onceFlag;
@@ -51,4 +52,32 @@ const int FMath::Random(const int min, const int max)
 const float FMath::Map(const float value, const float fromMin, const float fromMax, const float toMin, const float toMax)
 {
 	return toMin + ((toMax - toMin) / (fromMax - fromMin)) * (value - fromMin);
+}
+
+const FVector4 FMath::GetRandomPixelColor(const std::string fileName)
+{
+	sf::Image image = ResourcesManager::Instance().GetImage(fileName);
+	unsigned int width = image.getSize().x;
+	unsigned int height = image.getSize().y;
+
+	sf::Color col = image.getPixel(Random(0, width - 1), Random(0, height - 1));
+	return FVector4(col.r, col.g, col.b, col.a);
+}
+
+const std::vector<FVector4> FMath::GetPixels(const std::string fileName)
+{
+	sf::Image image = ResourcesManager::Instance().GetImage(fileName);
+	unsigned int width = image.getSize().x;
+	unsigned int height = image.getSize().y;
+	
+	std::vector<FVector4> toReturn;
+	for (int i = 0; i < height; i++)
+	{
+		for (int j = 0; j < width; j++)
+		{
+			sf::Color col = image.getPixel(j, i);
+			toReturn.push_back(FVector4(col.r, col.g, col.b, col.a));
+		}
+	}
+	return toReturn;
 }

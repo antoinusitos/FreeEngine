@@ -31,6 +31,7 @@ public:
 	const void GetVertexShader(sf::Shader& shader, const std::string fileName);
 	const void GetFragmentShader(sf::Shader& shader, const std::string fileName);
 	const void GetVertexFragmentShader(sf::Shader& shader, const std::string vertexFileName, const std::string fragmentFileName);
+	const sf::Image GetImage(const std::string fileName);
 
 
 //Variables
