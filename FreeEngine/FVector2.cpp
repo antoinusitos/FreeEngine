@@ -66,3 +66,8 @@ void FVector2::Normalize()
 	x = x / m;
 	y = y / m;
 }
+
+float FVector2::DotProduct(const FVector2& start, const FVector2& end)
+{
+	return start.x * end.x + start.y * end.y;
+}

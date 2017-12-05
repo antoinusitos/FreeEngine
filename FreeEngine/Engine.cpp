@@ -67,20 +67,6 @@ void Engine::Launch()
 	
 	_sceneManager->LoadScene("Menu", false);
 
-
-	for (int i = 0; i < 10; i++)
-	{
-		std::cout << "random:" << FMath::GetRandomPixelColor("perlin-noise.png").x << '\n';
-	}
-
-	std::vector<FVector4> l = FMath::GetPixels("perlin-noise.png");
-
-	/*for (int i = 0; i < l.size(); i++)
-	{
-		std::cout << "pixel:" << l[i].x << '\n';
-	}*/
-
-
 	_debug->Log("Engine Init !", DebugMessageType::DEBUGENGINE);
 
 	_sceneManager->PreAwakeCurrentScene();

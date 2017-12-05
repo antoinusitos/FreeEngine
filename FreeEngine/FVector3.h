@@ -32,6 +32,8 @@ public:
 	std::string ToString();
 
 	static float Distance(const FVector3& start, const FVector3& end);
+	static float DotProduct(const FVector3& start, const FVector3& end);
+	static FVector3 CrossProduct(const FVector3& start, const FVector3& end);
 
 private:
 	float _magnitude;

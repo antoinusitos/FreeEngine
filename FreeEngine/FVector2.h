@@ -24,6 +24,8 @@ public:
 
 	std::string ToString();
 
+	static float DotProduct(const FVector2& start, const FVector2& end);
+
 private:
 	float _magnitude;
 };

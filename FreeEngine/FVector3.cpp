@@ -118,3 +118,19 @@ float FVector3::Distance(const FVector3& start, const FVector3& end)
 		(end.z - start.z) * (end.z - start.z) 
 	);
 }
+
+float FVector3::DotProduct(const FVector3& start, const FVector3& end)
+{
+	return start.x * end.x + start.y * end.y + start.z * end.z;
+}
+
+FVector3 FVector3::CrossProduct(const FVector3& start, const FVector3& end)
+{
+	FVector3 toReturn = FVector3();
+
+	toReturn.x = start.y * end.z - start.z * end.y;
+	toReturn.y = start.z * end.x - start.x * end.z;
+	toReturn.z = start.x * end.y - start.y * end.x;
+
+	return toReturn;
+}

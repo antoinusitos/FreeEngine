@@ -18,6 +18,7 @@ p->SetUseInitialVelocity(FVector3(0.05f, 0, 0));
 
 */
 
+
 /*
 
 **** CURVE ****
@@ -36,6 +37,7 @@ while(true)
 
 */
 
+
 /*
 
 **** SPRITE RENDERER ****
@@ -51,6 +53,7 @@ background->AddLeaf(sr4);
 
 */
 
+
 /*
 
 **** SPRITE ANIMATOR TEXTURES ****
@@ -63,6 +66,7 @@ background->AddLeaf(sr3);
 
 */
 
+
 /*
 
 **** SPRITE ANIMATOR ATLAS ****
@@ -72,6 +76,7 @@ sr3->AddAtlas("Sprites/Background_01/PARALLAX/background.png", 5, 500, 50, 100, 
 background->AddLeaf(sr3);
 
 */
+
 
 /*
 
@@ -100,5 +105,24 @@ _window->GetWindow()->draw(circle, &shader);
 **** SCREEN SHAKE ****
 
 _screenShakeManager->ShakeForSeconds(2.0f, 0.5f, 0.03f);
+
+*/
+
+
+/*
+
+**** PERLIN NOISE ****
+
+for (int i = 0; i < 10; i++)
+{
+std::cout << "random:" << FMath::GetRandomPixelColor("perlin-noise.png").x << '\n';
+}
+
+std::vector<FVector4> l = FMath::GetPixels("perlin-noise.png");
+
+for (int i = 0; i < l.size(); i++)
+{
+	std::cout << "pixel:" << l[i].x << '\n';
+}
 
 */
