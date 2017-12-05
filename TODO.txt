@@ -33,7 +33,7 @@ Camera fade
 Scene viewer (debug)
 Particles + Emitter
 Pause menu (still need to fix scene transition)
-Curve (Bezier for lerp) (need to expend to be bigger than between 0-1)
+Curve (Bezier for lerp) (need to make curve and visual) (need to expend to be bigger than between 0-1)
 Clamp01
 Shaders / post effect (need to make some examples and basics shaders)
 Screenshake Manager
