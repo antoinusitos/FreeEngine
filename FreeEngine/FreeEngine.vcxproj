@@ -209,6 +209,7 @@
     <ClCompile Include="Transition.cpp" />
     <ClCompile Include="FVector3.cpp" />
     <ClCompile Include="UIManager.cpp" />
+    <ClCompile Include="UITransform.cpp" />
     <ClCompile Include="Window.cpp" />
     <ClCompile Include="WindowLayout.cpp" />
   </ItemGroup>
@@ -266,6 +267,7 @@
     <ClInclude Include="Transition.h" />
     <ClInclude Include="FVector3.h" />
     <ClInclude Include="UIManager.h" />
+    <ClInclude Include="UITransform.h" />
     <ClInclude Include="Window.h" />
     <ClInclude Include="WindowLayout.h" />
   </ItemGroup>

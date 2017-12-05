@@ -39,6 +39,7 @@ void Engine::NotifyChange()
 	_debug->Log("Engine observer file changed !", DebugMessageType::DEBUGENGINE);
 }
 
+
 void Engine::Launch()
 {
 	_debug->Log("Launching Engine...", DebugMessageType::DEBUGENGINE);
@@ -143,6 +144,8 @@ void Engine::Update(const float deltaTime)
 	_screenShakeManager->Update(deltaTime);
 	_cameraManager->Update(deltaTime);
 
+	_uiManager->Update(deltaTime);
+
 	_window->Update(deltaTime);
 
 	if (_input->GetKeyDown(KEYCODE::F1) && !ISRELEASE)
@@ -158,9 +161,13 @@ void Engine::Update(const float deltaTime)
 
 void Engine::Render()
 {
-	_objectManager->RenderAllEngineObjects(_window->GetWindow());
-	_sceneManager->RenderCurrentScene(_window->GetWindow());
+	sf::RenderWindow* window = _window->GetWindow();
+
+	_objectManager->RenderAllEngineObjects(window);
+	_sceneManager->RenderCurrentScene(window);
+
+	_uiManager->Render(window);
 
 	// do this at the end for the post process
-	_cameraManager->Render(_window->GetWindow());
+	_cameraManager->Render(window);
 }

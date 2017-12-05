@@ -67,7 +67,7 @@ REWORK :
 Modify Composite to possess other composites
 
 changing from windowed to fullscreen (bug : making everything bigger)
-Create a GetComponent Function on GameObject
+Create a GetComponent Function on GameObject (TODO : create template function, working without)
 
 ------------------------------------------------------------------
 

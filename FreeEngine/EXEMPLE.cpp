@@ -1,3 +1,6 @@
+#pragma once
+
+#pragma region PARTICLE SYSTEM
 /*
 
 **** PARTICLE SYSTEM ****
@@ -17,8 +20,9 @@ p->SetUseTexture("Sprites/glow.png");
 p->SetUseInitialVelocity(FVector3(0.05f, 0, 0));
 
 */
+#pragma endregion
 
-
+#pragma region CURVE
 /*
 
 **** CURVE ****
@@ -36,8 +40,9 @@ while(true)
 }
 
 */
+#pragma endregion
 
-
+#pragma region SPRITE RENDERER
 /*
 
 **** SPRITE RENDERER ****
@@ -52,8 +57,9 @@ background->AddLeaf(sr4);
 ...
 
 */
+#pragma endregion
 
-
+#pragma region SPRITE ANIMATOR TEXTURES
 /*
 
 **** SPRITE ANIMATOR TEXTURES ****
@@ -65,8 +71,9 @@ sr3->AddTexture("Sprites/Background_01/PARALLAX/background2.png");
 background->AddLeaf(sr3);
 
 */
+#pragma endregion
 
-
+#pragma region SPRITE ANIMATOR ATLAS
 /*
 
 **** SPRITE ANIMATOR ATLAS ****
@@ -76,8 +83,9 @@ sr3->AddAtlas("Sprites/Background_01/PARALLAX/background.png", 5, 500, 50, 100, 
 background->AddLeaf(sr3);
 
 */
+#pragma endregion
 
-
+#pragma region SHADER
 /*
 
 **** SHADER ****
@@ -98,8 +106,9 @@ shader.setUniform("windowHeight", static_cast<float>(_window->GetWindow()->getSi
 _window->GetWindow()->draw(circle, &shader);
 
 */
+#pragma endregion
 
-
+#pragma region SCREEN SHAKE
 /*
 
 **** SCREEN SHAKE ****
@@ -107,8 +116,9 @@ _window->GetWindow()->draw(circle, &shader);
 _screenShakeManager->ShakeForSeconds(2.0f, 0.5f, 0.03f);
 
 */
+#pragma endregion
 
-
+#pragma region PERLIN NOISE
 /*
 
 **** PERLIN NOISE ****
@@ -126,3 +136,40 @@ for (int i = 0; i < l.size(); i++)
 }
 
 */
+#pragma endregion
+
+#pragma region GET COMPONENT FROM OBJECT
+/*
+
+**** GET COMPONENT FROM OBJECT ****
+
+SpriteRenderer* sr = nullptr;
+
+for (std::vector<Leaf*>::iterator it = go->components.begin(); it != go->components.end(); ++it)
+{
+	sr = static_cast<SpriteRenderer*>(*it);
+	if (sr != NULL){ break; }
+}
+
+if (sr != NULL)
+{
+	std::cout << "we got the component !" << '\n';
+}
+
+*/
+#pragma endregion
+
+#pragma region SHOW UI ON SCREEN
+/*
+
+**** SHOW UI ON SCREEN ****
+
+sr7 = new SpriteRenderer();
+sr7->Init("Sprites/testSprite2.png");
+life->AddLeaf(sr7);
+uiTransform = new UITransform();
+life->AddLeaf(uiTransform);
+UIManager::Instance().AddGameObjectToList(life);
+
+*/
+#pragma endregion

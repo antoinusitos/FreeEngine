@@ -8,6 +8,8 @@
 #include "TestLeaf.h"
 #include "GameManager.h"
 #include "PauseMenu.h"
+#include "UITransform.h"
+#include "UIManager.h"
 
 TestScene::TestScene() : Scene::Scene("TestScene")
 {
@@ -27,6 +29,7 @@ void TestScene::PreAwake()
 	go = new GameObject("go");
 	background = new GameObject("background");
 	foreground = new GameObject("foreground");
+	life = new GameObject("life");
 
 	go->transform.position = FVector3(60, 520, 1);
 	go->transform.scale = FVector3(.75f, .75f, .75f);
@@ -54,6 +57,13 @@ void TestScene::PreAwake()
 	sr6 = new SpriteRenderer();
 	sr6->Init("Sprites/Background_01/PARALLAX/trees.png");
 	foreground->AddLeaf(sr6);
+
+	sr7 = new SpriteRenderer();
+	sr7->Init("Sprites/testSprite2.png");
+	life->AddLeaf(sr7);
+	uiTransform = new UITransform();
+	life->AddLeaf(uiTransform);
+	UIManager::Instance().AddGameObjectToList(life);
 
 	AddDynamicObjectToScene(go);
 	AddDynamicObjectToScene(foreground);

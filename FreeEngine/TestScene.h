@@ -7,6 +7,7 @@ class SpriteRenderer;
 class InputLeaf;
 class TestLeaf;
 class PauseMenu;
+class UITransform;
 
 class TestScene : public Scene
 {
@@ -27,12 +28,16 @@ private:
 	GameObject* go;
 	GameObject* background;
 	GameObject* foreground;
+	GameObject* life;
 
 	SpriteRenderer* sr;
 	SpriteRenderer* sr3;
 	SpriteRenderer* sr4;
 	SpriteRenderer* sr5;
 	SpriteRenderer* sr6;
+	SpriteRenderer* sr7;
+
+	UITransform* uiTransform;
 
 	InputLeaf* inputL;
 
