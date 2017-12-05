@@ -24,6 +24,7 @@ Engine::Engine()
 	_sceneManager = &SceneManager::Instance();
 	_gameManager = &GameManager::Instance();
 	_screenShakeManager = &ScreenShakeManager::Instance();
+	_uiManager = &UIManager::Instance();
 
 	Launch();
 }

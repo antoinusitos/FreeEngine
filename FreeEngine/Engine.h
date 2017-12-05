@@ -17,6 +17,7 @@
 #include "SceneManager.h"
 #include "GameManager.h"
 #include "ScreenShakeManager.h"
+#include "UIManager.h"
 
 class Engine : public FileObserver
 {
@@ -56,6 +57,7 @@ private :
 	SceneManager* _sceneManager;
 	GameManager* _gameManager;
 	ScreenShakeManager* _screenShakeManager;
+	UIManager* _uiManager;
 
 	float _timeBeforeInput = 2.0f;
 	float _currentTimeForInput = 0.0f;
