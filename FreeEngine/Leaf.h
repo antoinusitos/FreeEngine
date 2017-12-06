@@ -10,7 +10,5 @@ public:
 	~Leaf();
 
 	bool init = false;
-
-	Composite* _parent = nullptr;
 };
 

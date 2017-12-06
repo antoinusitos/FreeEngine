@@ -26,51 +26,30 @@ GameObject::~GameObject()
 void GameObject::Awake()
 {
 	EngineObject::Awake();
-
-	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)
-	{
-		(*it)->Awake();
-	}
+	Composite::Awake();
 }
 
 void GameObject::Start()
 {
 	EngineObject::Start();
-
-	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)
-	{
-		(*it)->Start();
-	}
+	Composite::Start();
 }
 
 void GameObject::Update(const float deltaTime)
 {
 	EngineObject::Update(deltaTime);
-
-	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)
-	{
-		(*it)->Update(deltaTime);
-	}
+	Composite::Update(deltaTime);
 }
 
 void GameObject::Render(sf::RenderWindow* window)
 {
 	EngineObject::Render(window);
-
-	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)
-	{
-		(*it)->Render(window);
-	}
+	Composite::Render(window);
 }
 
 void GameObject::Destroy()
 {
 	EngineObject::Destroy();
-	
-	for (std::vector<Leaf*>::iterator it = components.begin(); it != components.end(); ++it)
-	{
-		(*it)->Exit();
-	}
 
 	Debug::Instance().Print("Destroy object " + name, DebugMessageType::DEBUGLOG);
 
@@ -79,7 +58,7 @@ void GameObject::Destroy()
 
 void GameObject::Exit()
 {
-
+	Composite::Exit();
 }
 
 void GameObject::AddTagToObject(const std::string newTag)

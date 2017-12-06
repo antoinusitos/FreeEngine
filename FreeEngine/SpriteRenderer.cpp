@@ -77,14 +77,17 @@ void SpriteRenderer::Start()
 
 void SpriteRenderer::Update(const float deltaTime)
 {
-	float x = _parent->transform.position.x;
-	float y = _parent->transform.position.y;
-	SetPosition(x, y);
-	float r = _parent->transform.rotation.z;
-	SetRotation(r);
-	float sx = _parent->transform.scale.x;
-	float sy = _parent->transform.scale.y;
-	SetScale(sx, sy);
+	if (_parent != nullptr)
+	{
+		float x = _parent->transform.position.x;
+		float y = _parent->transform.position.y;
+		SetPosition(x, y);
+		float r = _parent->transform.rotation.z;
+		SetRotation(r);
+		float sx = _parent->transform.scale.x;
+		float sy = _parent->transform.scale.y;
+		SetScale(sx, sy);
+	}
 }
 
 void SpriteRenderer::Render(sf::RenderWindow* window)

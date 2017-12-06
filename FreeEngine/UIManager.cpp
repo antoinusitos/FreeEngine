@@ -21,7 +21,7 @@ void UIManager::Update(const float deltaTime)
 
 	for (std::vector<GameObject*>::iterator it = _allComponents.begin(); it != _allComponents.end(); it++)
 	{
-		for (std::vector<Leaf*>::iterator comp = (*it)->components.begin(); comp != (*it)->components.end(); ++comp)
+		for (std::vector<Component*>::iterator comp = (*it)->components.begin(); comp != (*it)->components.end(); ++comp)
 		{
 			UITransform* ui = static_cast<UITransform*>(*comp);
 			if (ui != NULL)

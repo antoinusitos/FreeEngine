@@ -38,11 +38,11 @@ void TestScene::PreAwake()
 
 	sr = new SpriteRenderer();
 	sr->Init("Sprites/testSprite.png");
-	go->AddLeaf(sr);
+	go->AddComponent(sr);
 	inputL = new InputLeaf();
-	go->AddLeaf(inputL);
+	go->AddComponent(inputL);
 	tl = new TestLeaf();
-	go->AddLeaf(tl);
+	go->AddComponent(tl);
 
 	sr3 = new SpriteRenderer();
 	sr3->Init("Sprites/Background_01/PARALLAX/background.png");
@@ -50,19 +50,19 @@ void TestScene::PreAwake()
 	sr4->Init("Sprites/Background_01/PARALLAX/clouds.png");
 	sr5 = new SpriteRenderer();
 	sr5->Init("Sprites/Background_01/PARALLAX/rocks.png");
-	background->AddLeaf(sr3);
-	background->AddLeaf(sr4);
-	background->AddLeaf(sr5);
+	background->AddComponent(sr3);
+	background->AddComponent(sr4);
+	background->AddComponent(sr5);
 
 	sr6 = new SpriteRenderer();
 	sr6->Init("Sprites/Background_01/PARALLAX/trees.png");
-	foreground->AddLeaf(sr6);
+	foreground->AddComponent(sr6);
 
 	sr7 = new SpriteRenderer();
 	sr7->Init("Sprites/testSprite2.png");
-	life->AddLeaf(sr7);
+	life->AddComponent(sr7);
 	uiTransform = new UITransform();
-	life->AddLeaf(uiTransform);
+	life->AddComponent(uiTransform);
 	UIManager::Instance().AddGameObjectToList(life);
 
 	AddDynamicObjectToScene(go);
@@ -119,6 +119,12 @@ void TestScene::Update(const float deltaTime)
 			_pauseMenu->Active(false);
 		}
 	}
+
+	if (Input::Instance().GetKeyDown(KEYCODE::SPACE))
+	{
+		RemoveDynamicObjectToScene(foreground);
+		go->AddChild(foreground);
+	}
 }
 
 void TestScene::Render(sf::RenderWindow* window)
@@ -136,8 +142,17 @@ void TestScene::Destroy()
 {
 	UIManager::Instance().EmptyGameObjectList();
 
+	go->Exit();
+	go->Destroy();
+	go->DestroyObject();
 	delete go;
+	background->Exit();
+	background->Destroy();
+	background->DestroyObject();
 	delete background;
+	foreground->Exit();
+	foreground->Destroy();
+	foreground->DestroyObject();
 	delete foreground;
 
 	delete _pauseMenu;

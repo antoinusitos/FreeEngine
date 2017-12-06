@@ -18,11 +18,13 @@ public:
 	virtual void Awake() = 0;
 	virtual void Render(sf::RenderWindow* window) = 0;
 
-	void AddLeaf(Leaf* newLeaf);
-	void RemoveLeaf(Leaf* leafToRemove);
+	void AddComponent(Component* newLeaf);
+	void RemoveComponent(Component* leafToRemove);
 
-	std::vector<Leaf*> components;
+	void AddChild(Composite* newChild);
+	void RemoveChild(Composite* child);
 
-	Transform transform;
+	std::vector<Component*> components;
+	std::vector<Composite*> children;
 };
 

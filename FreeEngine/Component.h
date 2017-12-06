@@ -16,5 +16,10 @@ public:
 	virtual void Render(sf::RenderWindow* window) = 0;
 
 	bool isActive = true;
+
+	Component* _parent = nullptr;
+
+	Transform transform;
+	Transform transformFromParent;
 };
 

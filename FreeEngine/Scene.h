@@ -25,6 +25,9 @@ public:
 	void AddDynamicObjectToScene(GameObject* newObject);
 	void AddStaticObjectToScene(EngineObject* newObject);
 
+	void RemoveDynamicObjectToScene(GameObject* object);
+	void RemoveStaticObjectToScene(EngineObject* object);
+
 	void SetTransition(bool newState);
 
 	void ClearStaticObjects();

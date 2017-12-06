@@ -115,6 +115,46 @@ void Scene::AddStaticObjectToScene(EngineObject* newObject)
 	_staticObjectsInScene.push_back(newObject);
 }
 
+void Scene::RemoveDynamicObjectToScene(GameObject* object)
+{
+	int index = -1;
+	bool found = false;
+	for (std::vector<GameObject*>::iterator it = _dynamicObjectsInScene.begin(); it != _dynamicObjectsInScene.end(); ++it)
+	{
+		index++;
+		if ((*it) == object)
+		{
+			found = true;
+			break;
+		}
+	}
+
+	if (found)
+	{
+		_dynamicObjectsInScene.erase(_dynamicObjectsInScene.begin() + index);
+	}
+}
+
+void Scene::RemoveStaticObjectToScene(EngineObject* object)
+{
+	int index = -1;
+	bool found = false;
+	for (std::vector<EngineObject*>::iterator it = _staticObjectsInScene.begin(); it != _staticObjectsInScene.end(); ++it)
+	{
+		index++;
+		if ((*it) == object)
+		{
+			found = true;
+			break;
+		}
+	}
+
+	if (found)
+	{
+		_staticObjectsInScene.erase(_staticObjectsInScene.begin() + index);
+	}
+}
+
 void Scene::SetTransition(bool newState)
 {
 	_transition = newState;
