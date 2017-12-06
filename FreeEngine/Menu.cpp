@@ -28,7 +28,7 @@ void Menu::PreAwake()
 {
 	Scene::PreAwake();
 
-	std::cout << "pre awake Menu" << '\n';
+	Debug::Instance().Print("pre awake Menu", DebugMessageType::DEBUGENGINE);
   
 	_maxIndex = 4;
 
@@ -64,18 +64,28 @@ void Menu::PreAwake()
 void Menu::Awake()
 {
 	Scene::Awake();
+
+	Debug::Instance().Print("Awake Menu", DebugMessageType::DEBUGENGINE);
 }
 
 void Menu::Start()
 {
 	Scene::Start();
 	
+	Debug::Instance().Print("Start Menu ", DebugMessageType::DEBUGENGINE);
+
 	Sound* theme = new Sound();
 	theme->InitMusic("theme.wav");
 	theme->SetLoop(true);
 	theme->Play();
 
 	_allSounds.push_back(theme);
+
+	_waitForFadeOut = false;
+	_timer = 0;
+
+	CameraManager::Instance().SetLocalOffset(FVector3());
+	CameraManager::Instance().Move(Window::Instance().GetScreenResolutionX() / 2, Window::Instance().GetScreenResolutionY() / 2);
 }
 
 void Menu::Update(const float deltaTime)
@@ -160,6 +170,7 @@ void Menu::ChangeIndex()
 		Debug::Instance().Print("Exit Menu !", DebugMessageType::DEBUGENGINE);
 		EditorManager::Instance().SetMustQuit();
 	}
+	_currentIndex = 0;
 }
 
 void Menu::RenderingWork()
@@ -189,4 +200,6 @@ void Menu::Destroy()
 	}
 	_allSounds.clear();
 	_allText.clear();
+	ClearDynamicObjects();
+	ClearStaticObjects();
 }

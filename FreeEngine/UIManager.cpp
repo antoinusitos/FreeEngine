@@ -46,3 +46,12 @@ void UIManager::AddGameObjectToList(GameObject* newGo)
 {
 	_allComponents.push_back(newGo);
 }
+
+void UIManager::EmptyGameObjectList()
+{
+	for (std::vector<GameObject*>::iterator it = _allComponents.begin(); it != _allComponents.end(); ++it)
+	{
+		delete (*it);
+	}
+	_allComponents.clear();
+}

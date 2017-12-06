@@ -65,6 +65,8 @@ private:
 
 	sf::Text _titleText;
 	sf::Text _camSpeed;
+	sf::Text _camPos;
+	sf::Text _debugCamPos;
 
 	bool _editing = false;
 

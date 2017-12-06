@@ -25,7 +25,10 @@ public:
 	void AddDynamicObjectToScene(GameObject* newObject);
 	void AddStaticObjectToScene(EngineObject* newObject);
 
-	void SortDynamicObjects(int size);
+	void SetTransition(bool newState);
+
+	void ClearStaticObjects();
+	void ClearDynamicObjects();
 
 private:
 	std::string _name;
@@ -35,5 +38,8 @@ private:
 
 	std::vector<EngineObject*> _staticObjectsInScene; // including objects to load (environment)
 	std::vector<GameObject*> _dynamicObjectsInScene; // including objects spawned (player, particules, bullets, etc.)
+
+protected:
+	bool _transition = false;
 };
 

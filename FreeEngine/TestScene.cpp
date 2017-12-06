@@ -83,6 +83,8 @@ void TestScene::Start()
 
 void TestScene::Update(const float deltaTime)
 {
+	if (_transition) return;
+
 	if (_timer < _fadeDuration)
 	{
 		_timer += deltaTime;
@@ -102,6 +104,7 @@ void TestScene::Update(const float deltaTime)
 		);
 	}
 
+	UIManager::Instance().Update(deltaTime);
 	_pauseMenu->Update(deltaTime);
 
 	if (Input::Instance().GetKeyDown(KEYCODE::ESCAPE))
@@ -120,26 +123,25 @@ void TestScene::Update(const float deltaTime)
 
 void TestScene::Render(sf::RenderWindow* window)
 {
+	if (_transition) return;
+
 	Scene::Render(window);
+
+	UIManager::Instance().Render(window);
 
 	_pauseMenu->Render(window);
 }
 
 void TestScene::Destroy()
 {
+	UIManager::Instance().EmptyGameObjectList();
+
 	delete go;
 	delete background;
 	delete foreground;
 
-	delete sr;
-	delete sr3;
-	delete sr4;
-	delete sr5;
-	delete sr6;
-
-	delete inputL;
-
-	delete tl;
-
 	delete _pauseMenu;
+
+	ClearDynamicObjects();
+	ClearStaticObjects();
 }

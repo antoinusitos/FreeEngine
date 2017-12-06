@@ -28,5 +28,7 @@ private:
 
 	int _index = 0;
 	bool _active = false;
+
+	bool _transition = false;
 };
 

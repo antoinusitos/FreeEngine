@@ -56,6 +56,12 @@ void CameraManager::Init()
 	std::string s = "Cam Speed = " + std::to_string(static_cast<int>(_debugViewSpeed));
 	_camSpeed.setString(s);
 	_camSpeed.setCharacterSize(24);
+
+	_camPos.setFont(*_font);
+	_camPos.setCharacterSize(24);
+
+	_debugCamPos.setFont(*_font);
+	_debugCamPos.setCharacterSize(24);
 }
 
 void CameraManager::ResizeCurrentView(const float x, const float y)
@@ -79,14 +85,24 @@ void CameraManager::Render(sf::RenderWindow* SFMLWindow)
 	{
 		_titleText.setPosition(
 			_debugViewX - (Window::Instance().GetScreenResolutionX() / 2) + 10,
-			10 + _titleText.getCharacterSize()
+			_debugViewY - (Window::Instance().GetScreenResolutionY() / 2) + (10 + _titleText.getCharacterSize())
 		);
 		_camSpeed.setPosition(
 			_debugViewX - (Window::Instance().GetScreenResolutionX() / 2) + 10,
-			(10 + _titleText.getCharacterSize()) * 2
+			_debugViewY - (Window::Instance().GetScreenResolutionY() / 2) + (10 + _titleText.getCharacterSize()) * 2
+		);
+		_camPos.setPosition(
+			_debugViewX - (Window::Instance().GetScreenResolutionX() / 2) + 10,
+			_debugViewY - (Window::Instance().GetScreenResolutionY() / 2) + (10 + _titleText.getCharacterSize()) * 3
+		);
+		_debugCamPos.setPosition(
+			_debugViewX - (Window::Instance().GetScreenResolutionX() / 2) + 10,
+			_debugViewY - (Window::Instance().GetScreenResolutionY() / 2) + (10 + _titleText.getCharacterSize()) * 4
 		);
 		SFMLWindow->draw(_titleText);
 		SFMLWindow->draw(_camSpeed);
+		SFMLWindow->draw(_camPos);
+		SFMLWindow->draw(_debugCamPos);
 	}
 
 	_fadeRect.setFillColor(_fadeColor);
@@ -163,6 +179,10 @@ void CameraManager::Update(const float deltaTime)
 
 		std::string s = "Cam Speed = " + std::to_string(static_cast<int>(_debugViewSpeed));
 		_camSpeed.setString(s);
+		std::string pos = "Cam Pos = (" + std::to_string(_currentX) + "," + std::to_string(_currentY) + "," + "0)";
+		_camPos.setString(pos);
+		std::string posDebug = "Debug Cam Pos = (" + std::to_string(_debugViewX)+ "," + std::to_string(_debugViewY) + "," + "0)";
+		_debugCamPos.setString(posDebug);
 	}
 }
 

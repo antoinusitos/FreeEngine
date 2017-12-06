@@ -144,8 +144,6 @@ void Engine::Update(const float deltaTime)
 	_screenShakeManager->Update(deltaTime);
 	_cameraManager->Update(deltaTime);
 
-	_uiManager->Update(deltaTime);
-
 	_window->Update(deltaTime);
 
 	if (_input->GetKeyDown(KEYCODE::F1) && !ISRELEASE)
@@ -165,8 +163,6 @@ void Engine::Render()
 
 	_objectManager->RenderAllEngineObjects(window);
 	_sceneManager->RenderCurrentScene(window);
-
-	_uiManager->Render(window);
 
 	// do this at the end for the post process
 	_cameraManager->Render(window);

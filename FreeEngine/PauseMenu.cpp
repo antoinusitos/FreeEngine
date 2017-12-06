@@ -6,6 +6,7 @@
 #include "SceneManager.h"
 #include "CameraManager.h"
 #include "GameManager.h"
+#include "Scene.h"
 
 PauseMenu::PauseMenu()
 {
@@ -69,6 +70,8 @@ void PauseMenu::Active(bool newState)
 
 void PauseMenu::Update(const float deltaTime)
 {
+	if (_transition) return;
+
 	if (_active)
 	{
 		if (Input::Instance().GetKeyDown(KEYCODE::ARROWDOWN))
@@ -116,6 +119,8 @@ void PauseMenu::ChangeIndex()
 	else if (_index == 1)
 	{
 		// MENU
+		_transition = true;
+		SceneManager::Instance().GetCurrentScene()->SetTransition(true);
 		SceneManager::Instance().LoadScene("Menu", true);
 	}
 	else if (_index == 2)
@@ -127,6 +132,8 @@ void PauseMenu::ChangeIndex()
 
 void PauseMenu::RenderingWork()
 {
+	if (_transition) return;
+
 	float x = CameraManager::Instance().GetCurrentX();
 	float y = CameraManager::Instance().GetCurrentY();
 

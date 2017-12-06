@@ -115,10 +115,17 @@ void Scene::AddStaticObjectToScene(EngineObject* newObject)
 	_staticObjectsInScene.push_back(newObject);
 }
 
-void Scene::SortDynamicObjects(int size)
+void Scene::SetTransition(bool newState)
 {
-	while (true)
-	{
-		
-	}
+	_transition = newState;
+}
+
+void Scene::ClearStaticObjects()
+{
+	_staticObjectsInScene.clear();
+}
+
+void Scene::ClearDynamicObjects()
+{
+	_dynamicObjectsInScene.clear();
 }

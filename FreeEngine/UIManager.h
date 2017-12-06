@@ -30,6 +30,8 @@ public:
 
 	void AddGameObjectToList(GameObject* newGo);
 
+	void EmptyGameObjectList();
+
 private:
 	// Unique instance of the time
 	static std::unique_ptr<UIManager> _instance;
