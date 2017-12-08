@@ -160,6 +160,7 @@
     <ClCompile Include="Composite.cpp" />
     <ClCompile Include="Data.cpp" />
     <ClCompile Include="Debug.cpp" />
+    <ClCompile Include="DebugObject.cpp" />
     <ClCompile Include="DebugWindowLayout.cpp" />
     <ClCompile Include="EditorManager.cpp" />
     <ClCompile Include="Engine.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Composite.h" />
     <ClInclude Include="Data.h" />
     <ClInclude Include="Debug.h" />
+    <ClInclude Include="DebugObject.h" />
     <ClInclude Include="DebugWindowLayout.h" />
     <ClInclude Include="EditorManager.h" />
     <ClInclude Include="Engine.h" />

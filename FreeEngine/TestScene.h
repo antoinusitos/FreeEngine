@@ -8,6 +8,7 @@ class InputLeaf;
 class TestLeaf;
 class PauseMenu;
 class UITransform;
+class DebugObject;
 
 class TestScene : public Scene
 {
@@ -44,6 +45,8 @@ private:
 	TestLeaf* tl;
 
 	PauseMenu* _pauseMenu = nullptr;
+
+	DebugObject* _debugObject = nullptr;
 
 	float _cameraSpeed = 1.5f;
 

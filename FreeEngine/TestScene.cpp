@@ -10,6 +10,7 @@
 #include "PauseMenu.h"
 #include "UITransform.h"
 #include "UIManager.h"
+#include "DebugObject.h"
 
 TestScene::TestScene() : Scene::Scene("TestScene")
 {
@@ -23,6 +24,9 @@ TestScene::~TestScene()
 
 void TestScene::PreAwake()
 {
+	_timer = 0;
+	_transition = false;
+
 	_pauseMenu = new PauseMenu();
 	_pauseMenu->Init();
 
@@ -57,6 +61,8 @@ void TestScene::PreAwake()
 	sr6 = new SpriteRenderer();
 	sr6->Init("Sprites/Background_01/PARALLAX/trees.png");
 	foreground->AddComponent(sr6);
+	_debugObject = new DebugObject();
+	foreground->AddComponent(_debugObject);
 
 	sr7 = new SpriteRenderer();
 	sr7->Init("Sprites/testSprite2.png");
@@ -159,4 +165,11 @@ void TestScene::Destroy()
 
 	ClearDynamicObjects();
 	ClearStaticObjects();
+
+	_transition = false;
+	_timer = 0;
+	if (GameManager::Instance().GetCurrentState() == GameState::PAUSE)
+	{
+		GameManager::Instance().ChangeCurrentState();
+	}
 }

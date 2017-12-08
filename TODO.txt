@@ -32,7 +32,7 @@ Camera blend/lerp
 Camera fade
 Scene viewer (debug)
 Particles + Emitter
-Pause menu (still need to fix scene transition)
+Pause menu
 Bezier (need to make curve and visual) (need to expend to be bigger than between 0-1)
 Clamp01
 Shaders / post effect (need to make some examples and basics shaders)
@@ -42,7 +42,7 @@ dot / cross product
 
 LAST:
 UI / anchor
-Children / Parent (need to move children relatively to the parent)
+Children / Parent
 
 ------------------------------------------------------------------
 

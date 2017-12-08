@@ -60,6 +60,7 @@ void Composite::Update(const float deltaTime)
 		(*it)->transform.position = transform.position + (*it)->transformFromParent.position;
 		(*it)->transform.rotation = transform.rotation + (*it)->transformFromParent.rotation;
 		(*it)->transform.scale = transform.scale * (*it)->transformFromParent.scale;
+		(*it)->Update(deltaTime);
 	}
 
 	for (std::vector<Component*>::iterator it = components.begin(); it != components.end(); ++it)
