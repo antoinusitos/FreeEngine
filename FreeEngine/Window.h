@@ -70,6 +70,8 @@ public:
 	void ClearWindow();
 	void DisplayWindow();
 
+	void DrawObject(const sf::Drawable& drawable);
+
 //Variables
 private :
 	// Unique instance of the time
@@ -95,6 +97,9 @@ private :
 	unsigned int _screenResolutionY;
 
 	bool _showingConsole = false;
+
+	sf::Shader _currentShader;
+	bool _useCustomShader = false;
 
 //Functions
 private:

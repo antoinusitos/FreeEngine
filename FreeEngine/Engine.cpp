@@ -96,6 +96,26 @@ void Engine::Launch()
 		// Render every thing
 		_window->Render();
 
+		/* TEST
+
+		sf::CircleShape circle;
+		circle.setRadius(100.f);
+		circle.setOrigin(circle.getRadius(), circle.getRadius());
+		circle.setPosition(sf::Vector2f(_window->GetWindow()->getSize()) / 2.f);
+		circle.setFillColor(sf::Color(100, 25, 178, 255));
+		sf::CircleShape circle2;
+		circle2.setRadius(100.f);
+		circle2.setOrigin(circle.getRadius(), circle.getRadius());
+		circle2.setPosition(sf::Vector2f(_window->GetWindow()->getSize()) / 3.f);
+		circle2.setFillColor(sf::Color(64, 41, 88, 255));
+		sf::Shader shader;
+		_resourcesManager->GetVertexFragmentShader(shader, "VertexShader.vert", "BlackAndWhite.frag");
+
+
+		_window->GetWindow()->draw(circle, &shader);
+		_window->GetWindow()->draw(circle2, &shader);*/
+
+
 		_window->DisplayWindow();
 
 		// update inputs

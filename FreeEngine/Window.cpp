@@ -291,3 +291,11 @@ void Window::DisplayWindow()
 {
 	_window->display();
 }
+
+void Window::DrawObject(const sf::Drawable& drawable)
+{
+	if (_useCustomShader)
+		_window->draw(drawable, &_currentShader);
+	else
+		_window->draw(drawable);
+}
