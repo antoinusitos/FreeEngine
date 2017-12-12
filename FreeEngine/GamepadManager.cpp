@@ -16,19 +16,27 @@ GamepadManager::~GamepadManager()
 
 void GamepadManager::Init()
 {
-	ZeroMemory(&_state, sizeof(XINPUT_STATE));
-
-	if (XInputGetState(0, &_state) == ERROR_SUCCESS)
+	for (int i = 0; i < 4; i++)
 	{
-		_buttonState.emplace(XINPUT_GAMEPAD_A, false);
-		_buttonState.emplace(XINPUT_GAMEPAD_B, false);
-		_buttonState.emplace(XINPUT_GAMEPAD_X, false);
-		_buttonState.emplace(XINPUT_GAMEPAD_Y, false);
+		_states.push_back(XINPUT_STATE());
+		_gamepadValues.push_back(GamepadValues());
 
-		_lastButtonState = _buttonState;
+		ZeroMemory(&_states[i], sizeof(XINPUT_STATE));
 
-		// controller is connected on port 0
-		Debug::Instance().Print("Controller Connected to port 0", DebugMessageType::DEBUGLOG);
+		_buttonState.push_back(std::map<WORD, bool>());
+
+		if (XInputGetState(i, &_states[i]) == ERROR_SUCCESS)
+		{
+			_buttonState[i].emplace(XINPUT_GAMEPAD_A, false);
+			_buttonState[i].emplace(XINPUT_GAMEPAD_B, false);
+			_buttonState[i].emplace(XINPUT_GAMEPAD_X, false);
+			_buttonState[i].emplace(XINPUT_GAMEPAD_Y, false);
+
+			_lastButtonState = _buttonState;
+
+			// controller is connected on port i
+			Debug::Instance().Print("Controller Connected to port " + i, DebugMessageType::DEBUGLOG);
+		}
 	}
 }
 
@@ -38,123 +46,153 @@ void GamepadManager::Update(float deltaTime)
 
 	if (!Refresh())
 	{
+		//TODO : rework
 		if (_wasConnected && !_reminder)
 		{
-			Debug::Instance().Print("Please connect an Xbox 360 controller.", DebugMessageType::DEBUGERROR);
-			_reminder = true;
+			//Debug::Instance().Print("Please connect an Xbox 360 controller.", DebugMessageType::DEBUGERROR);
+			//_reminder = true;
 		}
 	}
 	else
 	{
-		if (!_wasConnected)
+		//TODO : rework
+		/*if (!_wasConnected)
 		{
 			_reminder = false;
 			_wasConnected = true;
 
 			Debug::Instance().Print("Controller connected on port " + GetPort(), DebugMessageType::DEBUGWARNING);
-		}
+		}*/
 	}
 }
 
-const int GamepadManager::GetPort()
+const int GamepadManager::GetPort(int playerNumber)
 {
-	return _controllerId + 1;
+	return _gamepadValues[playerNumber]._controllerId;
 }
 
-const XINPUT_GAMEPAD *GamepadManager::GetState()
+const XINPUT_GAMEPAD *GamepadManager::GetState(int playerNumber)
 {
-	return &_state.Gamepad;
+	return &_states[playerNumber].Gamepad;
 }
 
-bool GamepadManager::CheckConnection()
+bool GamepadManager::CheckConnection(int playerNumber)
 {
 	int controllerId = -1;
 
-	for (DWORD i = 0; i < XUSER_MAX_COUNT && controllerId == -1; i++)
+	int portTaken[4] = { -1, -1, -1, -1 };
+
+	for (int players = 0; players < _nbPlayers; players++)
 	{
-		XINPUT_STATE state;
-		ZeroMemory(&state, sizeof(XINPUT_STATE));
+		controllerId = -1;
+		for (DWORD i = 0; i < XUSER_MAX_COUNT; i++)
+		{
+			XINPUT_STATE state;
+			ZeroMemory(&state, sizeof(XINPUT_STATE));
 
-		if (XInputGetState(i, &state) == ERROR_SUCCESS)
-			controllerId = i;
+			if (XInputGetState(i, &state) == ERROR_SUCCESS)
+			{
+				bool canTake = true;
+				for (int p = 0; p < playerNumber; p++)
+				{
+					if (portTaken[p] == i)
+						canTake = false;
+				}
+				if (canTake)
+				{
+					controllerId = i;
+					portTaken[players] = i;
+					_gamepadValues[playerNumber]._controllerId = controllerId;
+					break;
+				}
+			}
+		}
+
+		if (controllerId == -1)
+		{
+			std::cout << "CANNOT AFFECT controller ID for player "<< players << " !" << '\n';
+			return false;
+		}
+
 	}
-
-	_controllerId = controllerId;
-
-	return controllerId != -1;
+	return true;
 }
 
 // Returns false if the controller has been disconnected
 bool GamepadManager::Refresh()
 {
-	if (_controllerId == -1)
-		CheckConnection();
-
-	if (_controllerId != -1)
+	for (int i = 0; i < _nbPlayers; i++)
 	{
-		ZeroMemory(&_state, sizeof(XINPUT_STATE));
-		if (XInputGetState(_controllerId, &_state) != ERROR_SUCCESS)
-		{
-			_controllerId = -1;
-			return false;
-		}
-
-		_lastButtonState = _buttonState;
-
-		_buttonState[XINPUT_GAMEPAD_A] = (_state.Gamepad.wButtons & XINPUT_GAMEPAD_A) != 0;
-		_buttonState[XINPUT_GAMEPAD_B] = (_state.Gamepad.wButtons & XINPUT_GAMEPAD_B) != 0;
-		_buttonState[XINPUT_GAMEPAD_X] = (_state.Gamepad.wButtons & XINPUT_GAMEPAD_X) != 0;
-		_buttonState[XINPUT_GAMEPAD_Y] = (_state.Gamepad.wButtons & XINPUT_GAMEPAD_Y) != 0;
-
-		float normLX = fmaxf(-1, static_cast<float>(_state.Gamepad.sThumbLX) / 32767);
-		float normLY = fmaxf(-1, static_cast<float>(_state.Gamepad.sThumbLY) / 32767);
-
-		_leftStickX = (abs(normLX) < _deadzoneX ? 0 : (abs(normLX) - _deadzoneX) * (normLX / abs(normLX)));
-		_leftStickY = (abs(normLY) < _deadzoneY ? 0 : (abs(normLY) - _deadzoneY) * (normLY / abs(normLY)));
-
-		if (_deadzoneX > 0) _leftStickX *= 1 / (1 - _deadzoneX);
-		if (_deadzoneY > 0) _leftStickY *= 1 / (1 - _deadzoneY);
-
-		float normRX = fmaxf(-1, static_cast<float>(_state.Gamepad.sThumbRX) / 32767);
-		float normRY = fmaxf(-1, static_cast<float>(_state.Gamepad.sThumbRY) / 32767);
-
-		_rightStickX = (abs(normRX) < _deadzoneX ? 0 : (abs(normRX) - _deadzoneX) * (normRX / abs(normRX)));
-		_rightStickY = (abs(normRY) < _deadzoneY ? 0 : (abs(normRY) - _deadzoneY) * (normRY / abs(normRY)));
-
-		if (_deadzoneX > 0) _rightStickX *= 1 / (1 - _deadzoneX);
-		if (_deadzoneY > 0) _rightStickY *= 1 / (1 - _deadzoneY);
-
-		_leftTrigger = static_cast<float>(_state.Gamepad.bLeftTrigger) / 255;
-		_rightTrigger = static_cast<float>(_state.Gamepad.bRightTrigger) / 255;
-
-		return true;
+		CheckConnection(i);
 	}
-	return false;
+
+	for (int i = 0; i < _nbPlayers; i++)
+	{
+		if (_gamepadValues[i]._controllerId != -1)
+		{
+			ZeroMemory(&_states[i], sizeof(XINPUT_STATE));
+			if (XInputGetState(_gamepadValues[i]._controllerId, &_states[i]) != ERROR_SUCCESS)
+			{
+				_gamepadValues[i]._controllerId = -1;
+				return false;
+			}
+
+			_lastButtonState = _buttonState;
+
+			_buttonState[i][XINPUT_GAMEPAD_A] = (_states[i].Gamepad.wButtons & XINPUT_GAMEPAD_A) != 0;
+			_buttonState[i][XINPUT_GAMEPAD_B] = (_states[i].Gamepad.wButtons & XINPUT_GAMEPAD_B) != 0;
+			_buttonState[i][XINPUT_GAMEPAD_X] = (_states[i].Gamepad.wButtons & XINPUT_GAMEPAD_X) != 0;
+			_buttonState[i][XINPUT_GAMEPAD_Y] = (_states[i].Gamepad.wButtons & XINPUT_GAMEPAD_Y) != 0;
+
+			float normLX = fmaxf(-1, static_cast<float>(_states[i].Gamepad.sThumbLX) / 32767);
+			float normLY = fmaxf(-1, static_cast<float>(_states[i].Gamepad.sThumbLY) / 32767);
+
+			_gamepadValues[i]._leftStickX = (abs(normLX) < _deadzoneX ? 0 : (abs(normLX) - _deadzoneX) * (normLX / abs(normLX)));
+			_gamepadValues[i]._leftStickY = (abs(normLY) < _deadzoneY ? 0 : (abs(normLY) - _deadzoneY) * (normLY / abs(normLY)));
+
+			if (_deadzoneX > 0) _gamepadValues[i]._leftStickX *= 1 / (1 - _deadzoneX);
+			if (_deadzoneY > 0) _gamepadValues[i]._leftStickY *= 1 / (1 - _deadzoneY);
+
+			float normRX = fmaxf(-1, static_cast<float>(_states[i].Gamepad.sThumbRX) / 32767);
+			float normRY = fmaxf(-1, static_cast<float>(_states[i].Gamepad.sThumbRY) / 32767);
+
+			_gamepadValues[i]._rightStickX = (abs(normRX) < _deadzoneX ? 0 : (abs(normRX) - _deadzoneX) * (normRX / abs(normRX)));
+			_gamepadValues[i]._rightStickY = (abs(normRY) < _deadzoneY ? 0 : (abs(normRY) - _deadzoneY) * (normRY / abs(normRY)));
+
+			if (_deadzoneX > 0) _gamepadValues[i]._rightStickX *= 1 / (1 - _deadzoneX);
+			if (_deadzoneY > 0) _gamepadValues[i]._rightStickY *= 1 / (1 - _deadzoneY);
+
+			_gamepadValues[i]._leftTrigger = static_cast<float>(_states[i].Gamepad.bLeftTrigger) / 255;
+			_gamepadValues[i]._rightTrigger = static_cast<float>(_states[i].Gamepad.bRightTrigger) / 255;
+		}
+	}
+	return true;
 }
 
-const bool GamepadManager::IsPressed(const WORD button)
+const bool GamepadManager::IsPressed(const WORD button, int playerNumber)
 {
-	return (_state.Gamepad.wButtons & button) != 0;
+	return (_states[playerNumber].Gamepad.wButtons & button) != 0;
 }
 
-const bool GamepadManager::IsDown(const WORD button)
+const bool GamepadManager::IsDown(const WORD button, int playerNumber)
 {
-	return (_buttonState[button] && !_lastButtonState[button]);
+	return (_buttonState[playerNumber][button] && !_lastButtonState[playerNumber][button]);
 }
 
-const bool GamepadManager::IsUp(const WORD button)
+const bool GamepadManager::IsUp(const WORD button, int playerNumber)
 {
-	return (!_buttonState[button] && _lastButtonState[button]);
+	return (!_buttonState[playerNumber][button] && _lastButtonState[playerNumber][button]);
 }
 
-const float GamepadManager::GetLeftStickX() { return _leftStickX; }
-const float GamepadManager::GetLeftStickY() { return _leftStickY; }
-const float GamepadManager::GetRightStickX() { return _rightStickX; }
-const float GamepadManager::GetRightStickY() { return _rightStickY; }
-const float GamepadManager::GetLeftTrigger() { return _leftTrigger; }
-const float GamepadManager::GetRightTrigger() { return _rightTrigger; }
+const float GamepadManager::GetLeftStickX(int playerNumber) { return _gamepadValues[playerNumber]._leftStickX; }
+const float GamepadManager::GetLeftStickY(int playerNumber) { return _gamepadValues[playerNumber]._leftStickY; }
+const float GamepadManager::GetRightStickX(int playerNumber) { return _gamepadValues[playerNumber]._rightStickX; }
+const float GamepadManager::GetRightStickY(int playerNumber) { return _gamepadValues[playerNumber]._rightStickY; }
+const float GamepadManager::GetLeftTrigger(int playerNumber) { return _gamepadValues[playerNumber]._leftTrigger; }
+const float GamepadManager::GetRightTrigger(int playerNumber) { return _gamepadValues[playerNumber]._rightTrigger; }
 
-void GamepadManager::SetWantToUseGamepad(bool newState)
+void GamepadManager::SetWantToUseGamepad(bool newState, int nbPlayers)
 {
 	_wantToUseGamepad = newState;
+	_nbPlayers = nbPlayers;
 }

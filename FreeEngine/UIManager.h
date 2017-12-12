@@ -19,7 +19,6 @@ public:
 	{
 		std::call_once(UIManager::onceFlag, []() {
 			_instance.reset(new UIManager);
-			//std::cout << "Getting UIManager instance" << '\n';
 		});
 
 		return *(_instance.get());

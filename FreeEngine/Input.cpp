@@ -8,8 +8,6 @@ std::once_flag Input::onceFlag;
 
 Input::Input()
 {
-	//std::cout << "Creation Input" << std::endl;
-	// Initialization of the map of the input
 }
 
 Input::~Input()

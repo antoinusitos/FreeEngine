@@ -14,5 +14,10 @@ public:
 	virtual void Exit();
 	virtual void Awake();
 	virtual void Render(sf::RenderWindow* window);
+	
+	void SetPlayerNumber(int newNumber);
+
+private:
+	int _playerNumber = -1;
 };
 

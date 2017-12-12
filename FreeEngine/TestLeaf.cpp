@@ -1,6 +1,7 @@
 #include "TestLeaf.h"
 #include "Debug.h"
 #include "Input.h"
+#include "GamepadManager.h"
 #include "Composite.h"
 #include "EditorManager.h"
 
@@ -24,13 +25,13 @@ void TestLeaf::Start()
 
 void TestLeaf::Update(const float deltaTime)
 {
-	//std::cout << "Update test leaf" << '\n';
-
 	if (EditorManager::Instance().GetCurrentState() == EditorState::EDITING) return;
 
-	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWRIGHT))
+	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWRIGHT) || GamepadManager::Instance().GetLeftStickX(_playerNumber) >= 0.25f)
+	{
 		_parent->transform.position.x += deltaTime * 200.0f;
-	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWLEFT))
+	}
+	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWLEFT) || GamepadManager::Instance().GetLeftStickX(_playerNumber) <= -0.25f)
 		_parent->transform.position.x -= deltaTime * 200.0f;
 }
 
@@ -41,5 +42,9 @@ void TestLeaf::Exit()
 
 void TestLeaf::Render(sf::RenderWindow* window)
 {
-	//std::cout << "Render test leaf" << '\n';
+}
+
+void TestLeaf::SetPlayerNumber(int newNumber)
+{
+	_playerNumber = newNumber;
 }

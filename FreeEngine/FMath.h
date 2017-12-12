@@ -16,7 +16,6 @@ public:
 	{
 		std::call_once(FMath::onceFlag, []() {
 			_instance.reset(new FMath);
-			//std::cout << "Getting  Window instance" << '\n';
 		});
 
 		return *(_instance.get());

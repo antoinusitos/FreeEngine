@@ -18,7 +18,6 @@ public:
 	{
 		std::call_once(CameraManager::onceFlag, []() {
 			_instance.reset(new CameraManager);
-			//std::cout << "Getting  Window instance" << '\n';
 		});
 
 		return *(_instance.get());

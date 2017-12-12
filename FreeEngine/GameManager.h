@@ -16,7 +16,6 @@ public:
 	{
 		std::call_once(GameManager::onceFlag, []() {
 			_instance.reset(new GameManager);
-			//std::cout << "Getting  Window instance" << '\n';
 		});
 
 		return *(_instance.get());

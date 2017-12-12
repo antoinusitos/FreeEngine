@@ -18,7 +18,6 @@ public:
 	{
 		std::call_once(SaveManager::onceFlag, []() {
 			_instance.reset(new SaveManager);
-			//std::cout << "Getting  Window instance" << '\n';
 		});
 
 		return *(_instance.get());

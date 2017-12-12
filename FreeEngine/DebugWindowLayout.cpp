@@ -174,7 +174,7 @@ void DebugWindowLayout::HandleDataChanges()
 {
 	for (std::vector<EngineData>::iterator it = _allEngineData.begin(); it != _allEngineData.end(); ++it)
 	{
-		//std::cout << "category:" << (it)->category << " || value:" << (it)->value << '\n';
+
 		std::string tempCat = (it)->category.c_str();
 		std::string tempVal = (it)->value.c_str();
 

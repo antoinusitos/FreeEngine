@@ -27,11 +27,13 @@ public:
 
 private:
 	GameObject* go;
+	GameObject* go2;
 	GameObject* background;
 	GameObject* foreground;
 	GameObject* life;
 
 	SpriteRenderer* sr;
+	SpriteRenderer* sr2;
 	SpriteRenderer* sr3;
 	SpriteRenderer* sr4;
 	SpriteRenderer* sr5;
@@ -43,6 +45,7 @@ private:
 	InputLeaf* inputL;
 
 	TestLeaf* tl;
+	TestLeaf* tl2;
 
 	PauseMenu* _pauseMenu = nullptr;
 

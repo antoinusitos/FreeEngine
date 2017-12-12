@@ -103,6 +103,17 @@ enum KEYCODE
 	F2,
 };
 
+struct GamepadValues
+{
+	int _controllerId;
+	float _leftStickX;
+	float _leftStickY;
+	float _rightStickX;
+	float _rightStickY;
+	float _leftTrigger;
+	float _rightTrigger;
+};
+
 struct InputKey
 {
 	KEYCODE key;
@@ -169,7 +180,6 @@ public:
 	{
 		std::call_once(Data::onceFlag, []() {
 			_instance.reset(new Data);
-			//std::cout << "Getting  Data instance" << '\n';
 		});
 
 		return *(_instance.get());

@@ -17,7 +17,6 @@ public:
 	{
 		std::call_once(TagManager::onceFlag, []() {
 			_instance.reset(new TagManager);
-			//std::cout << "Getting  Window instance" << '\n';
 		});
 
 		return *(_instance.get());

@@ -18,7 +18,6 @@ public:
 	{
 		std::call_once(ResourcesManager::onceFlag, []() {
 			_instance.reset(new ResourcesManager);
-			//std::cout << "Getting  Resources Manager instance" << '\n';
 		});
 
 		return *(_instance.get());

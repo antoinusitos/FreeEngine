@@ -16,7 +16,6 @@ public:
 	{
 		std::call_once(EditorManager::onceFlag, []() {
 			_instance.reset(new EditorManager);
-			//std::cout << "Getting  Window instance" << '\n';
 		});
 
 		return *(_instance.get());

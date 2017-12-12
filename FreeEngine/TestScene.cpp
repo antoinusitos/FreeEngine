@@ -11,6 +11,7 @@
 #include "UITransform.h"
 #include "UIManager.h"
 #include "DebugObject.h"
+#include "GamepadManager.h"
 
 TestScene::TestScene() : Scene::Scene("TestScene")
 {
@@ -31,12 +32,15 @@ void TestScene::PreAwake()
 	_pauseMenu->Init();
 
 	go = new GameObject("go");
+	go2 = new GameObject("go2");
 	background = new GameObject("background");
 	foreground = new GameObject("foreground");
 	life = new GameObject("life");
 
 	go->transform.position = FVector3(60, 520, 1);
 	go->transform.scale = FVector3(.75f, .75f, .75f);
+	go2->transform.position = FVector3(60, 520, 1);
+	go2->transform.scale = FVector3(.75f, .75f, .75f);
 	background->transform.position = FVector3(0, -300, 3);
 	foreground->transform.position = FVector3(0, -300, 0);
 
@@ -46,7 +50,15 @@ void TestScene::PreAwake()
 	inputL = new InputLeaf();
 	go->AddComponent(inputL);
 	tl = new TestLeaf();
+	tl->SetPlayerNumber(0);
 	go->AddComponent(tl);
+
+	sr2 = new SpriteRenderer();
+	sr2->Init("Sprites/testSprite2.png");
+	go2->AddComponent(sr2);
+	tl2 = new TestLeaf();
+	tl2->SetPlayerNumber(1);
+	go2->AddComponent(tl2);
 
 	sr3 = new SpriteRenderer();
 	sr3->Init("Sprites/Background_01/PARALLAX/background.png");
@@ -72,9 +84,12 @@ void TestScene::PreAwake()
 	UIManager::Instance().AddGameObjectToList(life);
 
 	AddDynamicObjectToScene(go);
+	AddDynamicObjectToScene(go2);
 	AddDynamicObjectToScene(foreground);
 
 	AddStaticObjectToScene(background);
+
+	GamepadManager::Instance().SetWantToUseGamepad(true, 2);
 }
 
 void TestScene::Awake()
@@ -157,6 +172,10 @@ void TestScene::Destroy()
 	go->Destroy();
 	go->DestroyObject();
 	delete go;
+	go2->Exit();
+	go2->Destroy();
+	go2->DestroyObject();
+	delete go2;
 	background->Exit();
 	background->Destroy();
 	background->DestroyObject();

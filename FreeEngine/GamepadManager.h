@@ -5,6 +5,8 @@
 #include <memory>
 #include <mutex>
 #include <map>
+#include <vector>
+#include "Data.h"
 
 class GamepadManager
 {
@@ -17,7 +19,6 @@ public:
 	{
 		std::call_once(GamepadManager::onceFlag, []() {
 			_instance.reset(new GamepadManager);
-			//std::cout << "Getting  Window instance" << '\n';
 		});
 
 		return *(_instance.get());
@@ -28,44 +29,40 @@ public:
 
 	bool A_button_pressed = false;
 
-	const int GetPort();
-	const XINPUT_GAMEPAD *GetState();
-	bool CheckConnection();
+	const int GetPort(int playerNumber);
+	const XINPUT_GAMEPAD *GetState(int playerNumber);
+	bool CheckConnection(int playerNumber);
 	bool Refresh();
 
-	const bool IsPressed(const WORD button);
-	const bool IsDown(const WORD button);
-	const bool IsUp(const WORD button);
-	const float GetLeftStickX();
-	const float GetLeftStickY();
-	const float GetRightStickX();
-	const float GetRightStickY();
-	const float GetLeftTrigger();
-	const float GetRightTrigger();
+	const bool IsPressed(const WORD button, int playerNumber);
+	const bool IsDown(const WORD button, int playerNumber);
+	const bool IsUp(const WORD button, int playerNumber);
+	const float GetLeftStickX(int playerNumber);
+	const float GetLeftStickY(int playerNumber);
+	const float GetRightStickX(int playerNumber);
+	const float GetRightStickY(int playerNumber);
+	const float GetLeftTrigger(int playerNumber);
+	const float GetRightTrigger(int playerNumber);
 
-	void SetWantToUseGamepad(bool newState);
+	void SetWantToUseGamepad(bool newState, int nbPlayers);
 
 private:
 	// Unique instance of the time
 	static std::unique_ptr<GamepadManager> _instance;
 	static std::once_flag onceFlag;
 
-	XINPUT_STATE _state;
-	int _controllerId = -1;
+	std::vector<XINPUT_STATE> _states;
 
-	std::map<WORD, bool> _buttonState;
-	std::map<WORD, bool> _lastButtonState;
+	int _nbPlayers = 0;
+
+	std::vector<std::map<WORD, bool>> _buttonState;
+	std::vector<std::map<WORD, bool>> _lastButtonState;
 
 	float _deadzoneX;
 	float _deadzoneY;
 
-	float _leftStickX;
-	float _leftStickY;
-	float _rightStickX;
-	float _rightStickY;
-	float _leftTrigger;
-	float _rightTrigger;
-
+	std::vector<GamepadValues> _gamepadValues;
+	
 	bool _wasConnected = true;
 	bool _reminder = false;
 	bool _wantToUseGamepad = false;

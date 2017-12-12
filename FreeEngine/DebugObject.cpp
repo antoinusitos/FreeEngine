@@ -18,7 +18,6 @@ void DebugObject::Start()
 
 void DebugObject::Update(const float deltaTime)
 {
-	std::cout << transform.position.ToString() << '\n';
 }
 
 void DebugObject::Exit()

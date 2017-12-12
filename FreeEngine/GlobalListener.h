@@ -17,7 +17,6 @@ public:
 	{
 		std::call_once(GlobalListener::onceFlag, []() {
 			_instance.reset(new GlobalListener);
-			//std::cout << "Getting  Window instance" << '\n';
 		});
 
 		return *(_instance.get());
