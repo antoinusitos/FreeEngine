@@ -72,6 +72,8 @@ public:
 
 	void DrawObject(const sf::Drawable& drawable);
 
+	void ActivateShader();
+
 //Variables
 private :
 	// Unique instance of the time
@@ -98,7 +100,7 @@ private :
 
 	bool _showingConsole = false;
 
-	sf::Shader _currentShader;
+	sf::Shader* _currentShader;
 	bool _useCustomShader = false;
 
 //Functions

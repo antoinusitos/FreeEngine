@@ -94,7 +94,8 @@ void SpriteRenderer::Render(sf::RenderWindow* window)
 {
 	if (init)
 	{
-		window->draw(_sprite);
+		Window::Instance().DrawObject(_sprite);
+		//window->draw(_sprite);
 	}
 }
 

@@ -2,7 +2,7 @@ uniform sampler2D texture;
 
 void main()
 {
-	vec4 pixel = texture2D(texture, gl_TexCoord[0].xy);
+	vec4 pixel = gl_Color;
 	float color = pixel.x + pixel.y + pixel.z;
 	color = color / 3.0;
 	pixel.x = color;

@@ -131,6 +131,11 @@ void TestScene::Update(const float deltaTime)
 		RemoveDynamicObjectToScene(foreground);
 		go->AddChild(foreground);
 	}
+
+	if (Input::Instance().GetKeyDown(KEYCODE::C))
+	{
+		Window::Instance().ActivateShader();
+	}
 }
 
 void TestScene::Render(sf::RenderWindow* window)

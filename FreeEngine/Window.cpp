@@ -4,6 +4,7 @@
 #include "WindowLayout.h"
 #include "Engine.h"
 #include "CameraManager.h"
+#include "ResourcesManager.h"
 
 const bool STARTFULLSCREEN = false;
 
@@ -295,7 +296,14 @@ void Window::DisplayWindow()
 void Window::DrawObject(const sf::Drawable& drawable)
 {
 	if (_useCustomShader)
-		_window->draw(drawable, &_currentShader);
+		_window->draw(drawable, _currentShader);
 	else
 		_window->draw(drawable);
+}
+
+void Window::ActivateShader()
+{
+	_currentShader = new sf::Shader();
+	_useCustomShader = true;
+	ResourcesManager::Instance().GetVertexFragmentShader(*_currentShader, "VertexShader.vert", "BlackAndWhite.frag");
 }
