@@ -33,6 +33,11 @@ void TestLeaf::Update(const float deltaTime)
 	}
 	if (Input::Instance().GetKeyPressed(KEYCODE::ARROWLEFT) || GamepadManager::Instance().GetLeftStickX(_playerNumber) <= -0.25f)
 		_parent->transform.position.x -= deltaTime * 200.0f;
+
+	if (GamepadManager::Instance().IsDown(XINPUT_GAMEPAD_A, _playerNumber))
+	{
+		std::cout << "player " << _playerNumber << " pressed A" << '\n';
+	}
 }
 
 void TestLeaf::Exit()

@@ -46,23 +46,20 @@ void GamepadManager::Update(float deltaTime)
 
 	if (!Refresh())
 	{
-		//TODO : rework
 		if (_wasConnected && !_reminder)
 		{
-			//Debug::Instance().Print("Please connect an Xbox 360 controller.", DebugMessageType::DEBUGERROR);
-			//_reminder = true;
+			// TO DO : Show a popup for the players
+			Debug::Instance().Print("Please connect an Xbox 360 controller.", DebugMessageType::DEBUGERROR);
+			_reminder = true;
 		}
 	}
 	else
 	{
-		//TODO : rework
-		/*if (!_wasConnected)
+		if (!_wasConnected)
 		{
 			_reminder = false;
 			_wasConnected = true;
-
-			Debug::Instance().Print("Controller connected on port " + GetPort(), DebugMessageType::DEBUGWARNING);
-		}*/
+		}
 	}
 }
 
@@ -110,7 +107,7 @@ bool GamepadManager::CheckConnection(int playerNumber)
 
 		if (controllerId == -1)
 		{
-			std::cout << "CANNOT AFFECT controller ID for player "<< players << " !" << '\n';
+			//std::cout << "CANNOT AFFECT controller ID for player "<< players << " !" << '\n';
 			return false;
 		}
 
@@ -123,7 +120,8 @@ bool GamepadManager::Refresh()
 {
 	for (int i = 0; i < _nbPlayers; i++)
 	{
-		CheckConnection(i);
+		bool c = CheckConnection(i);
+		if (!c) return false;
 	}
 
 	for (int i = 0; i < _nbPlayers; i++)
@@ -137,7 +135,7 @@ bool GamepadManager::Refresh()
 				return false;
 			}
 
-			_lastButtonState = _buttonState;
+			_lastButtonState[i] = _buttonState[i];
 
 			_buttonState[i][XINPUT_GAMEPAD_A] = (_states[i].Gamepad.wButtons & XINPUT_GAMEPAD_A) != 0;
 			_buttonState[i][XINPUT_GAMEPAD_B] = (_states[i].Gamepad.wButtons & XINPUT_GAMEPAD_B) != 0;

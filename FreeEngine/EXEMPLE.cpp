@@ -173,3 +173,17 @@ UIManager::Instance().AddGameObjectToList(life);
 
 */
 #pragma endregion
+
+#pragma region GAMEPAD
+
+/*
+
+**** GAMEPAD ****
+
+if (GamepadManager::Instance().GetLeftStickX(_playerNumber) >= 0.25f)
+
+if (GamepadManager::Instance().IsPressed(XINPUT_GAMEPAD_A, _playerNumber))
+
+*/
+
+#pragma endregion
