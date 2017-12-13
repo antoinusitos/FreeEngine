@@ -2,6 +2,7 @@
 #include "FileHandler.h"
 #include "Debug.h"
 #include "Scene.h"
+#include "Window.h"
 
 std::unique_ptr<SceneManager> SceneManager::_instance;
 std::once_flag SceneManager::onceFlag;
@@ -16,15 +17,32 @@ SceneManager::~SceneManager()
 
 void SceneManager::LoadScene(const std::string name, bool InitScene)
 {
+	int i = 0;
+	std::string sceneName = "";
+	char c;
+	while (name[i])
+	{
+		c = name[i];
+		sceneName += tolower(c);
+		i++;
+	}
+
 	for (std::vector<SceneInfo*>::iterator it = _allScene.begin(); it != _allScene.end(); it++)
 	{
-		if (name == (*it)->name)
+		i = 0;
+		std::string tempSceneName = "";
+		while ((*it)->name[i])
 		{
-			std::cout << "Scene " << name << " found ! Loading..." << '\n';
+			c = (*it)->name[i];
+			tempSceneName += tolower(c);
+			i++;
+		}
+		if (sceneName == tempSceneName)
+		{
+			std::cout << "Scene " << sceneName << " found ! Loading..." << '\n';
 
 			if (_currentScene != nullptr)
 			{
-				//TODO : fix transition and remove of sprite renderer from test scene to menu
 				_currentScene->Destroy();
 			}
 
@@ -42,7 +60,7 @@ void SceneManager::LoadScene(const std::string name, bool InitScene)
 			return;
 		}
 	}
-	Debug::Instance().Print("Cannot load scene : " + name, DebugMessageType::DEBUGERROR);
+	Debug::Instance().Print("Cannot load scene : " + sceneName, DebugMessageType::DEBUGERROR);
 }
 
 void SceneManager::LoadScenesFromFile()

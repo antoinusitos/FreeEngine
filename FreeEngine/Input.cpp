@@ -31,6 +31,10 @@ void Input::Init()
 	_mapping.emplace(KEYCODE::ENTER, ik);
 
 	ik = InputKey();
+	ik.key = KEYCODE::RETURN;
+	_mapping.emplace(KEYCODE::RETURN, ik);
+
+	ik = InputKey();
 	ik.key = KEYCODE::ARROWUP;
 	_mapping.emplace(KEYCODE::ARROWUP, ik);
 
@@ -188,6 +192,8 @@ void Input::ProcessInput(sf::Window& window)
 
 			k = GetKeycodeAssociate(_event.key.code);
 
+			ConvertKeyToChar(_event.key.code);
+
 			if (k == KEYCODE::NONE)
 				keyExist = false;
 
@@ -341,6 +347,10 @@ const KEYCODE Input::GetKeycodeAssociate(const sf::Keyboard::Key key)
 	{
 		return KEYCODE::ENTER;
 	}
+	else if (_event.key.code == sf::Keyboard::BackSpace)
+	{
+		return KEYCODE::RETURN;
+	}
 	else if (_event.key.code == sf::Keyboard::F1)
 	{
 		return KEYCODE::F1;
@@ -482,4 +492,140 @@ void Input::SaveMousePos(const sf::Window& window)
 const FVector2 Input::GetMousePosition()
 {
 	return _mousePosition;
+}
+
+std::string Input::GetLastInput()
+{
+	std::string s = _lastInput;
+	_lastInput = "";
+	return s;
+}
+
+void Input::RemoveLastInput()
+{
+	_lastInput = "";
+}
+
+bool Input::MustEraseOnLetter()
+{
+	bool temp = _mustErase;
+	_mustErase = false;
+	return temp;
+}
+
+void Input::ConvertKeyToChar(const sf::Keyboard::Key key)
+{
+	if (_event.key.code == sf::Keyboard::A)
+	{
+		_lastInput = 'A';
+	}
+	else if (_event.key.code == sf::Keyboard::B)
+	{
+		_lastInput = 'B';
+	}
+	else if (_event.key.code == sf::Keyboard::C)
+	{
+		_lastInput = 'C';
+	}
+	else if (_event.key.code == sf::Keyboard::D)
+	{
+		_lastInput = 'D';
+	}
+	else if (_event.key.code == sf::Keyboard::E)
+	{
+		_lastInput = 'E';
+	}
+	else if (_event.key.code == sf::Keyboard::F)
+	{
+		_lastInput = 'F';
+	}
+	else if (_event.key.code == sf::Keyboard::G)
+	{
+		_lastInput = 'G';
+	}
+	else if (_event.key.code == sf::Keyboard::H)
+	{
+		_lastInput = 'H';
+	}
+	else if (_event.key.code == sf::Keyboard::I)
+	{
+		_lastInput = 'I';
+	}
+	else if (_event.key.code == sf::Keyboard::J)
+	{
+		_lastInput = 'J';
+	}
+	else if (_event.key.code == sf::Keyboard::K)
+	{
+		_lastInput = 'K';
+	}
+	else if (_event.key.code == sf::Keyboard::L)
+	{
+		_lastInput = 'L';
+	}
+	else if (_event.key.code == sf::Keyboard::M)
+	{
+		_lastInput = 'M';
+	}
+	else if (_event.key.code == sf::Keyboard::N)
+	{
+		_lastInput = 'N';
+	}
+	else if (_event.key.code == sf::Keyboard::O)
+	{
+		_lastInput = 'O';
+	}
+	else if (_event.key.code == sf::Keyboard::P)
+	{
+		_lastInput = 'P';
+	}
+	else if (_event.key.code == sf::Keyboard::Q)
+	{
+		_lastInput = 'Q';
+	}
+	else if (_event.key.code == sf::Keyboard::R)
+	{
+		_lastInput = 'R';
+	}
+	else if (_event.key.code == sf::Keyboard::S)
+	{
+		_lastInput = 'S';
+	}
+	else if (_event.key.code == sf::Keyboard::T)
+	{
+		_lastInput = 'T';
+	}
+	else if (_event.key.code == sf::Keyboard::U)
+	{
+		_lastInput = 'U';
+	}
+	else if (_event.key.code == sf::Keyboard::V)
+	{
+		_lastInput = 'V';
+	}
+	else if (_event.key.code == sf::Keyboard::W)
+	{
+		_lastInput = 'W';
+	}
+	else if (_event.key.code == sf::Keyboard::X)
+	{
+		_lastInput = 'X';
+	}
+	else if (_event.key.code == sf::Keyboard::Y)
+	{
+		_lastInput = 'Y';
+	}
+	else if (_event.key.code == sf::Keyboard::Z)
+	{
+		_lastInput = 'Z';
+	}
+	else if (_event.key.code == sf::Keyboard::Space)
+	{
+		_lastInput = ' ';
+	}
+	else if (_event.key.code == sf::Keyboard::BackSpace)
+	{
+		_mustErase = true;
+		_lastInput = "";
+	}
 }

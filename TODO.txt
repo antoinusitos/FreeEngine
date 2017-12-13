@@ -41,10 +41,12 @@ Perlin
 dot / cross product
 UI / anchor
 Children / Parent
+Modify Composite to possess other composites
+Multiplayer Local
 
 LAST:
 
-Multiplayer Local
+Rework console to be able to receive input
 
 ------------------------------------------------------------------
 
@@ -65,8 +67,6 @@ Light ?
 ------------------------------------------------------------------
 
 REWORK :
-
-Modify Composite to possess other composites
 
 changing from windowed to fullscreen (bug : making everything bigger)
 Create a GetComponent Function on GameObject (TODO : create template function, working without)

@@ -27,6 +27,8 @@ public:
 
 	void SetOpen(const bool newState);
 
+	void HandleConsoleWord();
+
 private:
 	sf::RectangleShape _background;
 
@@ -58,5 +60,9 @@ private:
 	void HandleDataChanges();
 
 	std::vector<EngineData> _allEngineData;
+
+	std::string _currentDebugstring = "";
+	bool _isInput = false;
+	sf::Text _debugStringText;
 };
 

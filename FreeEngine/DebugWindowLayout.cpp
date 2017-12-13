@@ -4,6 +4,8 @@
 #include "ResourcesManager.h"
 #include "FMath.h"
 #include "CameraManager.h"
+#include "Input.h"
+#include "SceneManager.h"
 
 DebugWindowLayout::DebugWindowLayout()
 {
@@ -31,6 +33,10 @@ void DebugWindowLayout::Init()
 		_positionY
 	);
        
+	_debugStringText.setPosition(_positionX, _positionY + _posY - 15.0f);
+	_debugStringText.setFont(font);
+	_debugStringText.setCharacterSize(15);
+
 	Window::Instance().AddRenderingLayout(this);
 }
 
@@ -91,6 +97,8 @@ void DebugWindowLayout::Render(sf::RenderWindow* SFMLWindow)
 			SFMLWindow->draw((*it));
 			tempIndex++;
 		}
+
+		SFMLWindow->draw(_debugStringText);
 	}
 }
 
@@ -128,6 +136,43 @@ void DebugWindowLayout::Update(const float deltaTime)
 		_positionX,
 		_positionY
 	);
+
+	_debugStringText.setPosition(_positionX + 5.0f, _positionY + _posY - 25.0f);
+
+	if (_active)
+	{
+		if (Input::Instance().GetKeyDown(KEYCODE::ENTER))
+		{
+			if (!_isInput)
+			{
+				_isInput = true;
+				Input::Instance().RemoveLastInput();
+			}
+			else
+			{
+				HandleConsoleWord();
+				_isInput = false;
+				_currentDebugstring = "";
+			}
+		}
+
+		if (_isInput)
+		{
+			bool mustErase = Input::Instance().MustEraseOnLetter();
+			std::string s = Input::Instance().GetLastInput();
+			if (mustErase && _currentDebugstring.size() > 0)
+			{
+				_currentDebugstring.erase(_currentDebugstring.size() - 1, _currentDebugstring.size());
+			}
+			else
+			{
+				_currentDebugstring += s;
+			}
+		}
+
+		_debugStringText.setString(_currentDebugstring);
+	}
+	
 }
 
 void DebugWindowLayout::NotifyChange()
@@ -213,4 +258,27 @@ void DebugWindowLayout::SetOpen(bool newState)
 {
 	_opening = true;
 	_direction = newState;
+}
+
+void DebugWindowLayout::HandleConsoleWord()
+{
+	std::cout << "hande:" << _currentDebugstring << '\n';
+	std::vector<std::string> allStrings;
+
+	std::string delimiter = " ";
+
+	size_t pos = 0;
+	std::string token;
+	while ((pos = _currentDebugstring.find(delimiter)) != std::string::npos) {
+		token = _currentDebugstring.substr(0, pos);
+		allStrings.push_back(token);
+		_currentDebugstring.erase(0, pos + delimiter.length());
+	}
+	
+	allStrings.push_back(_currentDebugstring);
+
+	if (allStrings[0] == "OPEN")
+	{
+		SceneManager::Instance().LoadScene(allStrings[1], true);
+	}
 }

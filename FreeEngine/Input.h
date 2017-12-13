@@ -50,6 +50,11 @@ public:
 
 	const FVector2 GetMousePosition();
 
+	std::string GetLastInput();
+	void RemoveLastInput();
+	void ConvertKeyToChar(const sf::Keyboard::Key key);
+	bool MustEraseOnLetter();
+
 private :
 
 	// Object that gather the events in the SFML window
@@ -68,6 +73,9 @@ private :
 	const KEYCODE GetMouseCodeAssociate(const sf::Mouse::Button button);
 
 	FVector2 _mousePosition;
+
+	bool _mustErase = false;
+	std::string _lastInput = "";
 };
 
 
